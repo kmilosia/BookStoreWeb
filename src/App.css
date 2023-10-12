@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@layer components{
+    .scrolled-navbar-bg{
+        @apply bg-midday-semitransparent dark:bg-midnight-semitransparent;
+    }
+    .default-navbar-bg{
+        @apply bg-midnight-50 dark:bg-midnight-950;
+    }
+    .default-text{
+        @apply text-midnight-950 dark:text-midnight-50;
+    }
+    .footer-bg{
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .footer-bg-dark{
+        background-position: center;
+        background-image: url("assets/magic-forest.jpg");
+        box-shadow: inset 0 0 0 2000px rgba(24, 24, 38, 0.8);
+    }
+    .footer-bg-light{
+        background-position: bottom;
+        background-image: url("assets/clouds-peach.jpg");
+        box-shadow: inset 0 0 0 2000px rgba(246, 246, 249, 0.5);
+    }  
+    .footer-layout-sm{
+        @apply flex flex-col items-center;
+    }
+    .footer-layout-md{
+        @apply grid grid-cols-4 gap-5 items-start;
+    }
+    .footer-layout-lg{
+        @apply grid grid-cols-4 gap-12 items-start;
+    }
+}
+*{
+    font-family: 'Poppins', sans-serif;
+    /* box-sizing: border-box; */
+}
+.font-delius{
+    font-family: 'Delius Swash Caps', sans-serif;
+}
