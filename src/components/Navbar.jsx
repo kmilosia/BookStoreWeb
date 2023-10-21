@@ -6,8 +6,6 @@ import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
 import {HiOutlineSearch} from 'react-icons/hi'
 import {FiSun, FiMoon} from 'react-icons/fi'
 import {BiShoppingBag, BiHeart, BiUser} from 'react-icons/bi'
-import NavbarLink from './NavbarLink'
-import { navbarLinks } from '../utils/objects/navbar-links'
 import BookMenu from './BookMenu'
 
 function Navbar() {
@@ -36,8 +34,13 @@ function Navbar() {
     const toggleNavbar = () => {
       setIsNavbarOpened(!isNavbarOpened)
     }
-    const handleHoverMenu = (key) => {
+    const handleHoverOverMenu = (key) => {
       setMenuCategory(key)
+      setIsMenuExpanded(true)
+    }
+    const handleHoverLeaveMenu = () => {
+      setIsMenuExpanded(false)
+      setMenuCategory(null)
     }
     useLayoutEffect(() => {
       setNavHeight(ref.current.clientHeight)
@@ -79,16 +82,25 @@ function Navbar() {
       </div>
       {isNavbarOpened &&
       <div className='flex flex-row items-center justify-center w-full pt-2 pb-5'>
-        {navbarLinks.map(item=>(
-          <NavbarLink key={item.id} id={item.id} path={item.path} title={item.title} setIsMenuExpanded={setIsMenuExpanded} menuCategory={menuCategory} setMenuCategory={setMenuCategory}/>
-        ))}
+            <Link to='/Home'  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Strona Główna</Link>
+            <Link to='/Store' onMouseOver={() => handleHoverOverMenu("store")} onMouseLeave={() => {setIsMenuExpanded(false); setMenuCategory(null);}}  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Sklep</Link>
+            <Link to='/Books' onMouseOver={() => handleHoverOverMenu("books")} onMouseLeave={() => {setIsMenuExpanded(false); setMenuCategory(null);}} className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Książki</Link>
+            <Link to='/EBooks' onMouseOver={() => handleHoverOverMenu("ebooks")} onMouseLeave={() => {setIsMenuExpanded(false); setMenuCategory(null);}} className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>E-Booki</Link>
+            <Link to='/Blog'  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Blog</Link>
+            <Link to='/News'  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Wiadomości</Link>
+            <Link to='/Contact'  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Kontakt</Link>
       </div>
       }
     </nav>
     { isMenuExpanded &&
     <div className={`fixed w-full right-0 top-[${navHeight}px] z-[1000] transition-all bg-midnight-50 dark:bg-midnight-950`}>
-      {menuCategory === 1 ? <BookMenu /> : menuCategory === 2 ? <p></p> : <p></p>
-        
+      {menuCategory === 'store' ?
+      <BookMenu /> 
+      : menuCategory === 'books' ?
+      <p></p>
+      : menuCategory === 'ebooks' ?
+      <p></p>
+      : <></>
       }
       <h1>Hello</h1>
     </div>

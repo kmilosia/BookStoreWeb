@@ -4,30 +4,30 @@ import { Link } from 'react-router-dom'
 
 function BookMenu() {
   return (
-    <div className='grid grid-cols-2'>
-      <div className='flex flex-row'>
+    <div className='grid grid-cols-2 transition-all text-midnight-950 dark:text-midnight-50'>
+      <div className='grid grid-cols-2 gap-5 px-10 py-10'>
         <div className='flex flex-col'>
-            <Link>Książki realistyczne</Link>
-            <Link>Historyczne</Link>
-            <Link>Biograficzne</Link>
-            <Link>Poradniki</Link>
-            <Link>Podręczniki</Link>
-            <Link>Religijne</Link>
-            <Link>Polityczne</Link>
-            <Link>Medyczne</Link>
-            <Link>Naukowe</Link>
-            <Link>Zobacz wszystkie..</Link>
+            <Link className='font-semibold my-1 text-lg'>Książki Realistyczne</Link>
+            <Link className='my-1'>Historyczne</Link>
+            <Link className='my-1'>Biograficzne</Link>
+            <Link className='my-1'>Poradniki</Link>
+            <Link className='my-1'>Podręczniki</Link>
+            <Link className='my-1'>Religijne</Link>
+            <Link className='my-1'>Polityczne</Link>
+            <Link className='my-1'>Medyczne</Link>
+            <Link className='my-1'>Naukowe</Link>
+            <Link className='text-sm font-semibold my-1 text-midnight-500'>Zobacz wszystkie...</Link>
         </div>
         <div className='flex flex-col'>
-            <Link>Książki fikcyjne</Link>
-            <Link>Fantastyka</Link>
-            <Link>Biograficzne</Link>
-            <Link>Science Fiction</Link>
-            <Link>Horrory</Link>
-            <Link>Romanse</Link>
-            <Link>Poezja</Link>
-            <Link>Komiksy</Link>
-            <Link>Zobacz wszystkie..</Link>
+        <Link className='font-semibold my-1 text-lg'>Książki Fikcyjne</Link>
+            <Link className='my-1'>Fantastyka</Link>
+            <Link className='my-1'>Biograficzne</Link>
+            <Link className='my-1'>Science Fiction</Link>
+            <Link className='my-1'>Horrory</Link>
+            <Link className='my-1'>Romanse</Link>
+            <Link className='my-1'>Poezja</Link>
+            <Link className='my-1'>Komiksy</Link>
+            <Link className='text-sm font-semibold my-1 text-midnight-500'>Zobacz wszystkie...</Link>
         </div>
       </div>
       <img src={bookImage} className='w-full h-full object-cover'/>
