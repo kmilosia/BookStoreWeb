@@ -1,6 +1,6 @@
 import React from 'react'
 
-function BookDetails() {
+function Book() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function BookDetails() {
   )
 }
 
-export default BookDetails
+export default Book

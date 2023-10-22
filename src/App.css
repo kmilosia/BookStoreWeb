@@ -6,6 +6,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 @layer components{
+    .truncated-text{
+        @apply whitespace-nowrap overflow-hidden text-ellipsis;
+    }
+    .divider{
+        @apply border-t-[1px] my-2 border-midnight-200 dark:border-midnight-800;
+      }
+    .default-page-wrapper{
+        @apply min-h-screen max-w-full bg-midnight-50 dark:bg-midnight-950 text-midnight-950 dark:text-midnight-50;
+    }
     .scrolled-navbar-bg{
         @apply bg-midday-semitransparent dark:bg-midnight-semitransparent;
     }

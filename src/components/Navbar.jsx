@@ -52,7 +52,7 @@ function Navbar() {
     window.addEventListener('scroll', changeNavbarBackground)
     return (
       <>
-    <nav ref={ref} className={`flex flex-col sticky w-full py-1 px-4 top-0 backdrop-blur-sm z-[100] transition-colors ${isScrolled ? 'scrolled-navbar-bg' : 'default-navbar-bg'}`}>
+    <nav ref={ref} className={`flex flex-col sticky w-full py-1 px-4 top-0 backdrop-blur-sm z-[100] shadow-lg transition-colors ${isScrolled ? 'scrolled-navbar-bg' : 'default-navbar-bg'}`}>
       <div className='grid grid-cols-3 px-4 my-4 items-center'>    
         <Link className='flex flex-row items-center p-1 transition-all text-orange-600 hover:text-orange-700 dark:hover:text-orange-500'>
           <GiSecretBook className='text-3xl mx-1'/>
@@ -82,13 +82,13 @@ function Navbar() {
       </div>
       {isNavbarOpened &&
       <div className='flex flex-row items-center justify-center w-full pt-2 pb-5'>
-            <Link to='/Home'  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Strona Główna</Link>
-            <Link to='/Store' onMouseOver={() => handleHoverOverMenu("store")} onMouseLeave={() => {setIsMenuExpanded(false); setMenuCategory(null);}}  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Sklep</Link>
-            <Link to='/Books' onMouseOver={() => handleHoverOverMenu("books")} onMouseLeave={() => {setIsMenuExpanded(false); setMenuCategory(null);}} className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Książki</Link>
-            <Link to='/EBooks' onMouseOver={() => handleHoverOverMenu("ebooks")} onMouseLeave={() => {setIsMenuExpanded(false); setMenuCategory(null);}} className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>E-Booki</Link>
-            <Link to='/Blog'  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Blog</Link>
-            <Link to='/News'  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Wiadomości</Link>
-            <Link to='/Contact'  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Kontakt</Link>
+            <Link to='/'  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Strona Główna</Link>
+            <Link to='/store' onMouseOver={() => handleHoverOverMenu("store")} onMouseLeave={() => {setIsMenuExpanded(false); setMenuCategory(null);}}  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Sklep</Link>
+            <Link to='/books' onMouseOver={() => handleHoverOverMenu("books")} onMouseLeave={() => {setIsMenuExpanded(false); setMenuCategory(null);}} className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Książki</Link>
+            <Link to='/ebooks' onMouseOver={() => handleHoverOverMenu("ebooks")} onMouseLeave={() => {setIsMenuExpanded(false); setMenuCategory(null);}} className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>E-Booki</Link>
+            <Link to='/blog'  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Blog</Link>
+            <Link to='/news'  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Wiadomości</Link>
+            <Link to='/contact'  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-600 dark:text-midnight-50 dark:hover:text-orange-600'>Kontakt</Link>
       </div>
       }
     </nav>

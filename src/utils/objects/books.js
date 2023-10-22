@@ -1,0 +1,8 @@
+export const books = [
+    {id: 1, title: "Some book", imgURL: "https://cdn.kobo.com/book-images/a73d1700-00d5-4d30-9ca8-fc2e3f17488d/353/569/90/False/harry-potter-i-insygnia-smierci.jpg", price: 24.99, wishlisted: false, score: 3, author: "Some Author", available: true},
+    {id: 2, title: "Some book", imgURL: "https://cdn.kobo.com/book-images/a73d1700-00d5-4d30-9ca8-fc2e3f17488d/353/569/90/False/harry-potter-i-insygnia-smierci.jpg", price: 24.99, wishlisted: false, score: 1, author: "Some Author", available: true},
+    {id: 3, title: "Some book that has very long title", imgURL: "https://cdn.kobo.com/book-images/a73d1700-00d5-4d30-9ca8-fc2e3f17488d/353/569/90/False/harry-potter-i-insygnia-smierci.jpg", price: 24.99, wishlisted: false, score: 5, author: "Some Author", available: true},
+    {id: 4, title: "Some book", imgURL: "https://cdn.kobo.com/book-images/a73d1700-00d5-4d30-9ca8-fc2e3f17488d/353/569/90/False/harry-potter-i-insygnia-smierci.jpg", price: 24.99, wishlisted: false, score: 2, author: "Some Author", available: true},
+    {id: 5, title: "Some book", imgURL: "https://cdn.kobo.com/book-images/a73d1700-00d5-4d30-9ca8-fc2e3f17488d/353/569/90/False/harry-potter-i-insygnia-smierci.jpg", price: 24.99, wishlisted: false, score: 5, author: "Some Author", available: true},
+    {id: 6, title: "Some book", imgURL: "https://cdn.kobo.com/book-images/a73d1700-00d5-4d30-9ca8-fc2e3f17488d/353/569/90/False/harry-potter-i-insygnia-smierci.jpg", price: 24.99, wishlisted: false, score: 2, author: "Some Author", available: true},
+]
