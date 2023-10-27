@@ -9,6 +9,13 @@ module.exports = {
       colors: {
         'midnight-semitransparent': 'rgba(24,24,38,0.8)',
         'midday-semitransparent': 'rgba(246,246,249,0.8)',
+        sunrise: {
+          100: '#FDFCF7',
+          200: '#F9F6EF',
+          300: '#F0EEE2',
+          400: '#d7d4cd',
+          500: '#C8C5BC',
+        },
         midnight: {
           50: '#F6F6F9',
           100: '#EAEAEF',
@@ -18,16 +25,15 @@ module.exports = {
           400: '#9D9DB2',
           500: '#8F8EA9',
           600: '#6F6F8E',
-          700: '#4A4A6A',
-          750: '#33324D',
-          800: '#2a2b37',
-          850: '#212134',
-          900: '#2F2F3B',
+          700: '#33324D',
+          800: '#212134',
+          900: '#1b1b2b',
           950: '#181826',
         }
       }
     },
   },
-  plugins: [],
-}
+  plugins: [
+    require('@tailwindcss/forms'),
+  ]}
 

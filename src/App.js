@@ -1,6 +1,6 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import {Book, Books, EBook, EBooks, Home, Navbar, Rental, Store} from './import'
+import {Book, Books, ElectronicBook, ElectronicBooks, Home, Navbar, Rental, Store} from './import'
 import Footer from './components/Footer';
 
 function App() {
@@ -9,12 +9,12 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />}/>
-        <Route path='/store' element={<Store />}/>
-        <Route path='/rental' element={<Rental />}/>
-        <Route path='/books' element={<Books />}/>
-        <Route path='/book' element={<Book />}/>
-        <Route path='/ebooks' element={<EBooks />}/>
-        <Route path='/ebook' element={<EBook />}/>
+        <Route path='/sklep' element={<Store />}/>
+        <Route path='/wypozyczalnia' element={<Rental />}/>
+        <Route path='/ksiazki' element={<Books />}/>
+        <Route path='/ksiazka' element={<Book />}/>
+        <Route path='/e-booki' element={<ElectronicBooks />}/>
+        <Route path='/e-book' element={<ElectronicBook />}/>
       </Routes>
       <Footer />
     </Router>
