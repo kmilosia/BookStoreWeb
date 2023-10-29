@@ -16,7 +16,7 @@
         @apply border-t-[1px] my-2 border-midnight-200 dark:border-midnight-800;
       }
     .default-page-wrapper{
-        @apply min-h-screen max-w-full bg-midnight-50 dark:bg-midnight-950 text-midnight-950 dark:text-midnight-50;
+        @apply min-h-screen max-w-full bg-sunrise-200 dark:bg-midnight-950 text-midnight-950 dark:text-midnight-50;
     }
     .scrolled-navbar-bg{
         @apply bg-midday-semitransparent dark:bg-midnight-semitransparent;

@@ -7,6 +7,7 @@ export {default as Book} from './pages/Book'
 export {default as Books} from './pages/Books'
 export {default as ElectronicBook} from './pages/ElectronicBook'
 export {default as ElectronicBooks} from './pages/ElectronicBooks'
+export {default as RentalElectronicBook} from './pages/RentalElectronicBook'
 
 //components
 export {default as Navbar} from './components/Navbar'

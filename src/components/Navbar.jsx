@@ -84,9 +84,9 @@ function Navbar() {
       <div className='flex flex-row items-center justify-center w-full pt-2 pb-5'>
             <Link to='/'  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>Strona Główna</Link>
             <Link to='/sklep' onMouseOver={() => handleHoverOverMenu("store")} onMouseLeave={() => {setIsMenuExpanded(false); setMenuCategory(null);}}  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>Sklep</Link>
+            <Link to='/wypozyczalnia'  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>Wypożyczalnia</Link>
             <Link to='/ksiazki' onMouseOver={() => handleHoverOverMenu("books")} onMouseLeave={() => {setIsMenuExpanded(false); setMenuCategory(null);}} className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>Książki</Link>
             <Link to='/e-booki' onMouseOver={() => handleHoverOverMenu("ebooks")} onMouseLeave={() => {setIsMenuExpanded(false); setMenuCategory(null);}} className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>E-Booki</Link>
-            <Link to='/blog'  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>Blog</Link>
             <Link to='/wiadomosci'  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>Wiadomości</Link>
             <Link to='/kontakt'  className='mx-3 text-sm font-semibold text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>Kontakt</Link>
       </div>
