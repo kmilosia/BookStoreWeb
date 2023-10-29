@@ -1,57 +1,294 @@
 import React from 'react'
 import {FaHeart} from 'react-icons/fa'
 import {BsShareFill,BsArrowDownShort,BsArrowUpShort} from 'react-icons/bs'
+import Stars from '../components/elements/Stars'
+import MyCarousel from '../components/MyCarousel'
+import BooksCarousel from '../components/BooksCarousel'
+import {categories} from '../utils/objects/categories-links';
+import Carousel from 'react-grid-carousel'
+
 
 
 function Book() {
   return (
-    // <div className='flex flex-col px-10 py-5 bg-[#F0EEE2] min-h-screen'>
-    //   <div className='grid grid-cols-2 gap-10'>
-    //     <div className='relative'>
-    //       <img src='https://i2-prod.walesonline.co.uk/incoming/article6890072.ece/ALTERNATES/s615b/hp1.jpg' className='w-auto h-80 object-contain absolute right-0 bottom-[-5rem] shadow-book' />
-    //     </div>
-    //     <div className='flex flex-col py-10 w-3/4 relative'>
-    //       <h1 className='text-4xl font-semibold my-3'>Harry Potter and Philosopher's Stone</h1>
-    //       <h2 className='font-[500] my-3 text-lg'>J.K. Rowling</h2>
-    //       <p className='my-3'>Fantasy book about boy who was magician.</p>
-    //       <div className='flex flex-row justify-between my-5 w-full absolute left-0 bottom-[-5rem]'>
-    //         <button className='bg-midnight-950 text-white px-3 py-2 rounded-2xl text-sm'>Dodaj do koszyka</button>
-    //         <div className='flex flex-row'>
-    //           <button className='rounded-3xl bg-sunrise-200 h-10 w-10 flex items-center justify-center mx-1'><FaHeart /></button>
-    //           <button className='rounded-3xl bg-sunrise-200 h-10 w-10 flex items-center justify-center mx-1'><BsShareFill /></button>
-    //         </div> 
-    //       </div>
-    //     </div>
-    //     </div>
-    //   <div className='bg-[#FDFCF7] py-32'>
-    //     <h1>hello</h1>
-    //   </div>
-    // </div>
-    <div className='flex flex-col px-12 py-5 bg-[#F0EEE2] min-h-screen'>
-    <div className='h-96 w-full relative'>
-    <div className='grid grid-cols-[1fr_2fr_3fr] gap-10 h-96 w-full top-0'>
-      <div className='flex flex-col justify-center items-center'>
+    <div className='flex flex-col px-12 py-5 bg-sunrise-300 min-h-screen'>
+    <div className='h-80 w-full relative'>
+    <div className='grid grid-cols-[1fr_2fr_3fr] gap-20 h-96 w-full top-[2rem] absolute'>
+      <div className='flex flex-row justify-end items-center'>
+        <div className='flex flex-col mx-3'>
+          <button className='h-20 w-20 my-1 bg-sunrise-100 px-1 py-1 rounded-md border-sunrise-100 border-2 hover:border-orange-400'>
+            <img src='https://images.ctfassets.net/usf1vwtuqyxm/24YWmI4UcyoMwj7wdKrEcL/374de1941927db12bd844fb197eab11f/English_Harry_Potter_3_Epub_9781781100233.jpg?w=914&q=70&fm=jpg' className='w-full h-full object-contain' />
+          </button>
+          <button className='h-20 w-20 my-1 bg-sunrise-100 px-1 py-1 rounded-md border-sunrise-100 border-2 hover:border-orange-400'>
+            <img src='https://images.ctfassets.net/usf1vwtuqyxm/24YWmI4UcyoMwj7wdKrEcL/374de1941927db12bd844fb197eab11f/English_Harry_Potter_3_Epub_9781781100233.jpg?w=914&q=70&fm=jpg' className='w-full h-full object-contain' />
+          </button>
+          <button className='h-20 w-20 my-1 bg-sunrise-100 px-1 py-1 rounded-md border-sunrise-100 border-2 hover:border-orange-400'>
+            <img src='https://images.ctfassets.net/usf1vwtuqyxm/24YWmI4UcyoMwj7wdKrEcL/374de1941927db12bd844fb197eab11f/English_Harry_Potter_3_Epub_9781781100233.jpg?w=914&q=70&fm=jpg' className='w-full h-full object-contain' />
+          </button>
+        </div>
+      <div className='flex flex-col justify-center items-end'>
         <button className='text-4xl rounded-3xl my-1 hover:bg-sunrise-100'><BsArrowUpShort /></button>
         <button className='text-4xl rounded-3xl my-1 hover:bg-sunrise-100'><BsArrowDownShort /></button>
       </div>
+      </div> 
       <img src='https://i2-prod.walesonline.co.uk/incoming/article6890072.ece/ALTERNATES/s615b/hp1.jpg' className='h-96 w-auto object-contain justify-self-end shadow-book' />
-      <div className='flex flex-col w-3/4 relative'>
-      <h1 className='text-4xl font-semibold my-3'>Harry Potter and Philosopher's Stone</h1>
-           <h2 className='font-[500] my-3 text-lg'>J.K. Rowling</h2>
-          <p className='my-3'>Fantasy book about boy who was magician.</p>
-          <div className='flex flex-row justify-between my-5 w-full absolute bottom-0'>
-            <button className='bg-midnight-950 text-white px-3 py-2 rounded-2xl text-sm'>Dodaj do koszyka</button>
+      <div className='flex flex-col w-3/4 relative border-b-[1px] border-sunrise-300'>
+      <h1 className='text-4xl font-semibold my-3 cursor-default'>Harry Potter and Philosopher's Stone</h1>
+           <h2 className='font-[500] my-2 text-lg cursor-default'>J.K. Rowling</h2>
+           <a href='#reviews' className='my-2 w-max group flex flex-row items-center'>
+            <Stars score={4} />
+            <p className='opacity-0 mx-2 text-yellow-400 text-xs transition duration-500 ease-in-out group-hover:opacity-100'>Przejdź do recenzji..</p>
+           </a>
+          <p className='font-light my-2 cursor-default'>Okładka twarda</p>
+          <h3 className='text-3xl font-[600] my-2 cursor-default'>39.99 zł</h3>
+          <div className='flex flex-row justify-between w-full absolute bottom-5'>
+            <button className='bg-midnight-950 text-white px-4 py-2 rounded-3xl text-sm'>Dodaj do koszyka</button>
             <div className='flex flex-row'>
-              <button className='rounded-3xl bg-sunrise-200 h-10 w-10 flex items-center justify-center mx-1'><FaHeart /></button>
-              <button className='rounded-3xl bg-sunrise-200 h-10 w-10 flex items-center justify-center mx-1'><BsShareFill /></button>
+              <button className='rounded-3xl bg-sunrise-300 h-10 w-10 flex items-center justify-center mx-1'><FaHeart /></button>
+              <button className='rounded-3xl bg-sunrise-300 h-10 w-10 flex items-center justify-center mx-1'><BsShareFill /></button>
             </div> 
           </div>
       </div>
     </div>
     </div>
-    <div className='bg-[#FDFCF7] py-32'>
-      <h1>hello</h1>
+    <div className='bg-sunrise-100 pt-40 pb-10 px-10 '>
+      <div className='grid grid-cols-[3fr_2fr] gap-10 px-5'>
+      <div className='flex flex-col'>
+        <div className='flex flex-col my-3'>
+          <h3 className='font-[600] mb-3'>Opis</h3>
+          <p className='break-all'>Lorem ipsum dolor sit amet consectetur adipisicing econsectetur lit. Eius maxime, quidem fugconsectetur it doloribus magniconsectetur consectetur  aperiam beatae. Facilis rem excepturi vaspernationeaspernationeaspernationeaspernationeaspernationeaspernationeaspernationeaspernatione ex aut?Eligendi in sit animi natus maiores ratione ex aut?          
+          <button className='text-sm text-orange-400 mx-2'>Czytaj więcej..</button></p>
+        </div>  
+        <div className='grid grid-cols-2 gap-2'>
+        <div className='flex flex-col my-3'>
+          <h3 className='font-[600] mb-3'>ISBN</h3>
+          <p>6473829837</p>
+        </div>  
+        <div className='flex flex-col my-3'>
+          <h3 className='font-[600] mb-3'>Data wydania</h3>
+          <p>20-04-2021</p>
+        </div> 
+        </div>
+        <div className='grid grid-cols-2 gap-2'>
+        <div className='flex flex-col my-3'>
+          <h3 className='font-[600] mb-3'>Liczba stron</h3>
+          <p>548</p>
+        </div>  
+        <div className='flex flex-col my-3'>
+          <h3 className='font-[600] mb-3'>Język oryginalny</h3>
+          <p>Angielski</p>
+        </div>
+        </div>
+        </div>
+      <div className='flex flex-col mt-3'>
+        <div className='flex flex-col my-3'>
+          <h3 className='font-[600] mb-3'>Autor</h3>
+          <p>J.K. Rowling</p>
+        </div>
+        <div className='flex flex-col my-3'>
+          <h3 className='font-[600] mb-3'>Wydawnictwo</h3>
+          <p>Wydawnictwo Nasza Księgarnia</p>
+        </div>
+        <div className='grid grid-cols-2 gap-3'>
+        <div className='flex flex-col my-3'>
+          <h3 className='font-[600] mb-3'>Język produktu</h3>
+          <p>Polski</p>
+        </div>
+        <div className='flex flex-col my-3'>
+          <h3 className='font-[600] mb-3'>Tłumaczenie</h3>
+          <p>Jan Kowalski</p>
+        </div>
+        </div>
+        <div className='grid grid-cols-2 gap-3'>
+        <div className='flex flex-col my-3'>
+          <h3 className='font-[600] mb-3'>Wydanie</h3>
+          <p>Okładka twarda</p>
+        </div>
+        <div className='flex flex-col my-3'>
+          <h3 className='font-[600] mb-3'>Format</h3>
+          <p>Książka</p>
+        </div>
+        </div>
+       
+      </div>
+      </div>
     </div>
+      <div className='flex flex-col px-5 py-8 my-5 bg-sunrise-100'>
+        <h1 className='text-2xl font-semibold mx-5 my-3'>Podobne produkty</h1>
+          <div className='flex flex-col max-w-full'>
+            <Carousel cols={5} rows={1} gap={30}>
+              <Carousel.Item>
+                <div className='flex flex-col'>
+                <img src='https://ecsmedia.pl/cdn-cgi/image/format=webp,width=544,height=544,/c/gra-o-tron-piesn-lodu-i-ognia-tom-1-b-iext139015180.jpg' className='w-full aspect-square object-contain'/>
+                <h1 className='font-semibold my-1'>Gra o Tron</h1>
+                <p className=' font-light text-sm'>George R.R. Martin</p>
+                <Stars score={3} />
+                <h2 className='font-semibold'>34.99zł</h2>
+                <button className='bg-orange-400 py-2 my-1 rounded-md text-white text-sm w-full hover:bg-orange-500'>Dodaj do koszyka</button>
+                </div>
+              </Carousel.Item>
+              <Carousel.Item>
+                <div className='flex flex-col'>
+                <img src='https://ecsmedia.pl/cdn-cgi/image/format=webp,width=544,height=544,/c/gra-o-tron-piesn-lodu-i-ognia-tom-1-b-iext139015180.jpg' className='w-full aspect-square object-contain'/>
+                <h1 className='font-semibold my-1'>Gra o Tron</h1>
+                <p className=' font-light text-sm'>George R.R. Martin</p>
+                <Stars score={3} />
+                <h2 className='font-semibold'>34.99zł</h2>
+                <button className='bg-orange-400 py-2 my-1 rounded-md text-white text-sm w-full hover:bg-orange-500'>Dodaj do koszyka</button>
+                </div>
+              </Carousel.Item>
+              <Carousel.Item>
+                <div className='flex flex-col'>
+                <img src='https://ecsmedia.pl/cdn-cgi/image/format=webp,width=544,height=544,/c/gra-o-tron-piesn-lodu-i-ognia-tom-1-b-iext139015180.jpg' className='w-full aspect-square object-contain'/>
+                <h1 className='font-semibold my-1'>Gra o Tron</h1>
+                <p className=' font-light text-sm'>George R.R. Martin</p>
+                <Stars score={3} />
+                <h2 className='font-semibold'>34.99zł</h2>
+                <button className='bg-orange-400 py-2 my-1 rounded-md text-white text-sm w-full hover:bg-orange-500'>Dodaj do koszyka</button>
+                </div>
+              </Carousel.Item>
+              <Carousel.Item>
+                <div className='flex flex-col'>
+                <img src='https://ecsmedia.pl/cdn-cgi/image/format=webp,width=544,height=544,/c/gra-o-tron-piesn-lodu-i-ognia-tom-1-b-iext139015180.jpg' className='w-full aspect-square object-contain'/>
+                <h1 className='font-semibold my-1'>Gra o Tron</h1>
+                <p className=' font-light text-sm'>George R.R. Martin</p>
+                <Stars score={3} />
+                <h2 className='font-semibold'>34.99zł</h2>
+                <button className='bg-orange-400 py-2 my-1 rounded-md text-white text-sm w-full hover:bg-orange-500'>Dodaj do koszyka</button>
+                </div>
+              </Carousel.Item>
+              <Carousel.Item>
+                <div className='flex flex-col'>
+                <img src='https://ecsmedia.pl/cdn-cgi/image/format=webp,width=544,height=544,/c/gra-o-tron-piesn-lodu-i-ognia-tom-1-b-iext139015180.jpg' className='w-full aspect-square object-contain'/>
+                <h1 className='font-semibold my-1'>Gra o Tron</h1>
+                <p className=' font-light text-sm'>George R.R. Martin</p>
+                <Stars score={3} />
+                <h2 className='font-semibold'>34.99zł</h2>
+                <button className='bg-orange-400 py-2 my-1 rounded-md text-white text-sm w-full hover:bg-orange-500'>Dodaj do koszyka</button>
+                </div>
+              </Carousel.Item>
+              <Carousel.Item>
+                <div className='flex flex-col'>
+                <img src='https://ecsmedia.pl/cdn-cgi/image/format=webp,width=544,height=544,/c/gra-o-tron-piesn-lodu-i-ognia-tom-1-b-iext139015180.jpg' className='w-full aspect-square object-contain'/>
+                <h1 className='font-semibold my-1'>Gra o Tron</h1>
+                <p className=' font-light text-sm'>George R.R. Martin</p>
+                <Stars score={3} />
+                <h2 className='font-semibold'>34.99zł</h2>
+                <button className='bg-orange-400 py-2 my-1 rounded-md text-white text-sm w-full hover:bg-orange-500'>Dodaj do koszyka</button>
+                </div>
+              </Carousel.Item>
+              <Carousel.Item>
+                <div className='flex flex-col'>
+                <img src='https://ecsmedia.pl/cdn-cgi/image/format=webp,width=544,height=544,/c/gra-o-tron-piesn-lodu-i-ognia-tom-1-b-iext139015180.jpg' className='w-full aspect-square object-contain'/>
+                <h1 className='font-semibold my-1'>Gra o Tron</h1>
+                <p className=' font-light text-sm'>George R.R. Martin</p>
+                <Stars score={3} />
+                <h2 className='font-semibold'>34.99zł</h2>
+                <button className='bg-orange-400 py-2 my-1 rounded-md text-white text-sm w-full hover:bg-orange-500'>Dodaj do koszyka</button>
+                </div>
+              </Carousel.Item>
+            </Carousel>
+          </div>
+      </div>
+      <div id='reviews' className='flex flex-col px-5 py-8 my-5 bg-sunrise-100 scroll-mt-32'>
+        <h1 className='text-2xl font-semibold mx-5 my-2'>Recenzje</h1>
+        <div className='flex flex-row my-2 mx-5 py-10 justify-around items-center bg-white'>
+          <div className='flex flex-col items-center'>
+            <h1 className='font-bold text-5xl'>4,2</h1>
+            <Stars score={4} />
+            <p className='text-sm'>Średnia ocena z 200 recenzji</p>
+            <button className='bg-orange-400 hover:bg-orange-500 rounded-3xl w-full text-white text-sm py-2 my-1'>Oceń książkę</button>
+          </div>
+          <div className='flex flex-col'>
+
+            <div className='flex flex-row items-center'>
+              <Stars score={5} />
+              <div className="w-[8rem] bg-gray-200 rounded-full h-2.5 mx-2 dark:bg-gray-700">
+                <div className='bg-orange-400 h-2.5 rounded-full w-[45%]'></div>
+              </div>
+              <span className='text-xs font-light'>20 recenzji</span>
+            </div>
+            <div className='flex flex-row items-center'>
+              <Stars score={4} />
+              <div className="w-[8rem] bg-gray-200 rounded-full h-2.5 mx-2 dark:bg-gray-700">
+                <div className='bg-orange-400 h-2.5 rounded-full w-[70%]'></div>
+              </div>
+              <span className='text-xs font-light'>70 recenzji</span>
+            </div>
+            <div className='flex flex-row items-center'>
+              <Stars score={3} />
+              <div className="w-[8rem] bg-gray-200 rounded-full h-2.5 mx-2 dark:bg-gray-700">
+                <div className='bg-orange-400 h-2.5 rounded-full w-[55%]'></div>
+              </div>
+              <span className='text-xs font-light'>50 recenzji</span>
+            </div>
+            <div className='flex flex-row items-center'>
+              <Stars score={2} />
+              <div className="w-[8rem] bg-gray-200 rounded-full h-2.5 mx-2 dark:bg-gray-700">
+                <div className='bg-orange-400 h-2.5 rounded-full w-[10%]'></div>
+              </div>
+              <span className='text-xs font-light'>10 recenzji</span>
+            </div>
+            <div className='flex flex-row items-center'>
+              <Stars score={1} />
+              <div className="w-[8rem] bg-gray-200 rounded-full h-2.5 mx-2 dark:bg-gray-700">
+                <div className='bg-orange-400 h-2.5 rounded-full w-[0%]'></div>
+              </div>
+              <span className='text-xs font-light'>0 recenzji</span>
+            </div>         
+          </div>
+        </div>
+        <div className='flex flex-row mx-5 my-2 justify-end'>
+        <select id="countries" class="bg-gray-50 border border-sunrise-300 text-gray-900 text-sm rounded-md no-ring block w-[10rem] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white ">
+          <option selected>Sortuj po</option>
+          <option value="newest">Najnowsze</option>
+          <option value="oldest">Najstarsze</option>
+          <option value="highest">Najlepiej oceniane</option>
+          <option value="lowest">Najgorzej oceniane</option>
+        </select>
+        </div>
+        <div className='flex flex-col mx-5 my-2 w-3/4 px-2'>
+
+        <div className='flex flex-col border-b-[1px] border-sunrise-300 my-3 py-4'>
+          <div className='flex flex-col'>
+          <h1 className=''>Monika Bellaliza</h1>
+          <Stars score={4} />
+          </div>
+          <p className='my-2'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam fugit sint pariatur aut incidunt facere consequuntur labore odit tempore quis! Quia, omnis velit. Obcaecati, culpa! Reiciendis quaerat sequi consectetur voluptatibus!</p>
+          <p className='text-xs font-light'>23-01-2020</p>
+        </div>
+
+        <div className='flex flex-col border-b-[1px] border-sunrise-300 my-3 py-4'>
+          <div className='flex flex-col'>
+          <h1 className=''>Monika Bellaliza</h1>
+          <Stars score={4} />
+          </div>
+          <p className='my-2'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam fugit sint pariatur aut incidunt facere consequuntur labore odit tempore quis! Quia, omnis velit. Obcaecati, culpa! Reiciendis quaerat sequi consectetur voluptatibus!</p>
+          <p className='text-xs font-light'>23-01-2020</p>
+        </div>
+
+        <div className='flex flex-col border-b-[1px] border-sunrise-300 my-3 py-4'>
+          <div className='flex flex-col'>
+          <h1 className=''>Monika Bellaliza</h1>
+          <Stars score={4} />
+          </div>
+          <p className='my-2'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam fugit sint pariatur aut incidunt facere consequuntur labore odit tempore quis! Quia, omnis velit. Obcaecati, culpa! Reiciendis quaerat sequi consectetur voluptatibus!</p>
+          <p className='text-xs font-light'>23-01-2020</p>
+        </div>
+
+        <div className='flex flex-col border-b-[1px] border-sunrise-300 my-3 py-4'>
+          <div className='flex flex-col'>
+          <h1 className=''>Monika Bellaliza</h1>
+          <Stars score={4} />
+          </div>
+          <p className='my-2'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam fugit sint pariatur aut incidunt facere consequuntur labore odit tempore quis! Quia, omnis velit. Obcaecati, culpa! Reiciendis quaerat sequi consectetur voluptatibus!</p>
+          <p className='text-xs font-light'>23-01-2020</p>
+        </div>
+
+
+        </div>
+        
+      </div>
   </div>
   )
 }

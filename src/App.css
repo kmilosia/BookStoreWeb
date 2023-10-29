@@ -55,6 +55,9 @@
     font-family: 'Poppins', sans-serif;
     /* box-sizing: border-box; */
 }
+html{
+    scroll-behavior: smooth;
+}
 .font-delius{
     font-family: 'Delius Swash Caps', sans-serif;
 }

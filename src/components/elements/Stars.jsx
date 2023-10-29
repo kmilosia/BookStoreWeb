@@ -3,7 +3,7 @@ import { AiFillStar } from 'react-icons/ai';
 
 function Stars({ score }) {
   return (
-    <div className='flex flex-row items-center'>
+    <div className='flex flex-row items-center my-1'>
       {(() => {
         switch (score) {
           case 1:

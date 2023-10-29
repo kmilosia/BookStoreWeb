@@ -52,7 +52,7 @@ const MyCarousel = () => {
   }, []);
 
   return (
-    <div className="carousel my-2 mx-auto">
+    <div className="carousel my-2 mx-auto w-full">
       <div className="relative overflow-hidden">
         <div className="flex justify-between absolute top left w-full h-full">
          <LeftArrow movePrev={movePrev}/>
