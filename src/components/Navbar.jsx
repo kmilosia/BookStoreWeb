@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import {GiSecretBook} from 'react-icons/gi'
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
 import {HiOutlineSearch} from 'react-icons/hi'
+import {LuBookMarked} from 'react-icons/lu'
 import {FiSun, FiMoon} from 'react-icons/fi'
 import {BiShoppingBag, BiHeart, BiUser} from 'react-icons/bi'
 import BookMenu from './BookMenu'
@@ -74,6 +75,9 @@ function Navbar() {
         </button>
         <button className='mx-2 text-xl text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>
           <BiShoppingBag/>
+        </button>
+        <button className='mx-2 text-xl text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>
+          <LuBookMarked/>
         </button>
         <button className='mx-2 text-xl text-midnight-950  transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500' onClick={toggleNavbar}>
           {isNavbarOpened ? <AiOutlineClose/> : <AiOutlineMenu />}        

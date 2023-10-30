@@ -10,8 +10,12 @@ import romance from '../assets/categories/romance.png'
 import science from '../assets/categories/science.png'
 import scifi from '../assets/categories/scifi.png'
 import teenagers from '../assets/categories/teenagers.png'
-import book from '../assets/categories/book.png'
-import ebook from '../assets/categories/ebook.png'
+import history from '../assets/categories/history.png'
+import biography from '../assets/categories/biography.png'
+import cooking from '../assets/categories/cooking.png'
+import custom from '../assets/categories/custom.png'
+import comics from '../assets/categories/comics.png'
+import school from '../assets/categories/school.png'
 import CategoryCarouselItem from '../components/page-elements/CategoryCarouselItem'
 import BookCarouselItem from '../components/page-elements/BookCarouselItem'
 import { Link } from 'react-router-dom'
@@ -52,7 +56,22 @@ function Rental() {
             <CategoryCarouselItem src={poetry} title="Poezja" />
           </Carousel.Item>
           <Carousel.Item>
-            <CategoryCarouselItem src={lifestyle} title="Poradnik" />
+            <CategoryCarouselItem src={history} title="Historia" />
+          </Carousel.Item>
+          <Carousel.Item>
+            <CategoryCarouselItem src={school} title="Podręczniki" />
+          </Carousel.Item>
+          <Carousel.Item>
+            <CategoryCarouselItem src={custom} title="Obyczajowe" />
+          </Carousel.Item>
+          <Carousel.Item>
+            <CategoryCarouselItem src={comics} title="Komiks" />
+          </Carousel.Item>
+          <Carousel.Item>
+            <CategoryCarouselItem src={cooking} title="Kulinarne" />
+          </Carousel.Item>
+          <Carousel.Item>
+            <CategoryCarouselItem src={biography} title="Biografia" />
           </Carousel.Item>
         </Carousel>
         </div>
