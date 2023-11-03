@@ -10,6 +10,8 @@ export {default as ElectronicBooks} from './pages/ElectronicBooks'
 export {default as RentalElectronicBook} from './pages/RentalElectronicBook'
 export {default as RentalBooks} from './pages/RentalBooks'
 export {default as Contact} from './pages/Contact'
+export {default as News} from './pages/News'
+export {default as AllNews} from './pages/AllNews'
 
 //components
 export {default as Navbar} from './components/Navbar'

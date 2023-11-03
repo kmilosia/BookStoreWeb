@@ -17,17 +17,15 @@ import custom from '../assets/categories/custom.png'
 import comics from '../assets/categories/comics.png'
 import school from '../assets/categories/school.png'
 import CategoryCarouselItem from '../components/page-elements/CategoryCarouselItem'
-import BookCarouselItem from '../components/page-elements/BookCarouselItem'
-import { Link } from 'react-router-dom'
 import ElectronicBookCarouselItem from '../components/page-elements/ElectronicBookCarouselItem'
 
 function Rental() {
   return (
-    <div className='default-page-wrapper flex flex-col px-4 py-4 overflow-hidden'>
-        <div className='max-w-full px-2 py-2'>       
+    <div className='default-page-wrapper flex flex-col px-1 lg:px-4 py-4 overflow-hidden'>
+        <div className='max-w-full px-1 lg:px-2 py-2'>
         <div className='mb-5 flex flex-col'>
-        <h1 className='text-2xl font-semibold mx-5 my-5'>Popularne kategorie</h1>
-        <Carousel cols={5} rows={1} gap={30}>
+        <h1 className='text-2xl font-semibold mx-5 mt-3 mb-5 lg:mt-5'>Popularne kategorie</h1>
+        <Carousel cols={5} rows={1} gap={20}>
           <Carousel.Item>
             <CategoryCarouselItem src={fantasy} title="Fantasy" />
           </Carousel.Item>
@@ -76,7 +74,7 @@ function Rental() {
         </Carousel>
         </div>
         <div className='flex flex-col my-5'>
-        <h1 className='text-2xl font-semibold mx-5 my-5'>Popularne e-booki</h1>
+        <h1 className='text-2xl font-semibold mx-5 mt-3 mb-5 lg:mt-5'>Popularne Ebooki</h1>
           <Carousel cols={5} rows={1} gap={20}>
             <Carousel.Item>
             <ElectronicBookCarouselItem url='https://live-production.wcms.abc-cdn.net.au/62706759bcebd2cfd0718314aea48806?src'
@@ -106,7 +104,7 @@ function Rental() {
           </Carousel>
         </div>
         <div className='flex flex-col my-5'>
-        <h1 className='text-2xl font-semibold mx-5 my-5'>Najczęściej wypożyczane</h1>
+        <h1 className='text-2xl font-semibold mx-5 mt-3 mb-5 lg:mt-5'>Najczęściej wypożyczane</h1>
           <Carousel cols={5} rows={1} gap={20}>
             <Carousel.Item>
             <ElectronicBookCarouselItem url='https://live-production.wcms.abc-cdn.net.au/62706759bcebd2cfd0718314aea48806?src'

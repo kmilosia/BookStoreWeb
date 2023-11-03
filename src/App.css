@@ -19,10 +19,10 @@
         @apply min-h-screen max-w-full bg-sunrise-200 dark:bg-midnight-950 text-midnight-950 dark:text-midnight-50;
     }
     .scrolled-navbar-bg{
-        @apply bg-midday-semitransparent dark:bg-midnight-semitransparent;
+        @apply bg-midday-semitransparent dark:bg-midnight-900 lg:dark:bg-midnight-semitransparent;
     }
     .default-navbar-bg{
-        @apply bg-midnight-50 dark:bg-midnight-950;
+        @apply bg-midnight-50 dark:bg-midnight-900 lg:dark:bg-midnight-950;
     }
     .default-text{
         @apply text-midnight-950 dark:text-midnight-50;
@@ -50,6 +50,7 @@
     .footer-layout-lg{
         @apply grid grid-cols-4 gap-12 items-start;
     }
+    
 }
 *{
     font-family: 'Poppins', sans-serif;
@@ -63,4 +64,11 @@ html{
 }
 .shadow-book{
     box-shadow: -10px 10px 25px 5px rgba(0, 0, 0, 0.75), -10px 10px 25px -10px rgba(0, 0, 0, 0.75);
+}
+.bottom-gradient{
+    background: rgb(0,0,0);
+background: -moz-linear-gradient(0deg, rgba(0,0,0,0.8969712885154062) 0%, rgba(0,0,0,0) 100%);
+background: -webkit-linear-gradient(0deg, rgba(0,0,0,0.8969712885154062) 0%, rgba(0,0,0,0) 100%);
+background: linear-gradient(0deg, rgba(0,0,0,0.8969712885154062) 0%, rgba(0,0,0,0) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
 }

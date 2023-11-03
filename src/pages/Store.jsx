@@ -24,9 +24,9 @@ import { Link } from 'react-router-dom'
 
 function Store() {
   return (
-    <div className='default-page-wrapper flex flex-col px-4 py-4 overflow-hidden'>
-        <div className='max-w-full px-2 py-2'>
-        <div className='grid grid-cols-2 gap-5 mb-5 mx-5'>
+    <div className='default-page-wrapper flex flex-col px-1 lg:px-4 py-4 overflow-hidden'>
+        <div className='max-w-full px-1 lg:px-2 py-2'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5 mx-5'>
         <Link to='/ksiazki' className='flex flex-col items-center bg-sunrise-300 cursor-pointer rounded-md px-3 py-5 text-midnight-900 dark:bg-midnight-700 dark:text-midnight-200 hover:bg-sunrise-400 dark:hover:bg-midnight-800'>
           <img src={book} className='w-2/5 my-2'/>
           <h1 className='font-semibold text-xl my-2'>Przeglądaj nasze książki</h1>
@@ -37,8 +37,8 @@ function Store() {
         </Link>
         </div>
         <div className='my-5 flex flex-col'>
-        <h1 className='text-2xl font-semibold mx-5 my-5'>Popularne kategorie</h1>
-        <Carousel cols={5} rows={1} gap={30}>
+        <h1 className='text-2xl font-semibold mx-5 mt-3 mb-5 lg:mt-5'>Popularne kategorie</h1>
+        <Carousel cols={5} rows={1} gap={20}>
           <Carousel.Item>
             <CategoryCarouselItem src={fantasy} title="Fantasy" />
           </Carousel.Item>
@@ -87,7 +87,7 @@ function Store() {
         </Carousel>
         </div>
         <div className='flex flex-col my-5'>
-        <h1 className='text-2xl font-semibold mx-5 my-5'>Popularne książki</h1>
+        <h1 className='text-2xl font-semibold mx-5 mt-3 mb-5 lg:mt-5'>Popularne książki</h1>
           <Carousel cols={5} rows={1} gap={20}>
             <Carousel.Item>
             <BookCarouselItem url='https://live-production.wcms.abc-cdn.net.au/62706759bcebd2cfd0718314aea48806?src'
@@ -117,7 +117,7 @@ function Store() {
           </Carousel>
         </div>
         <div className='flex flex-col my-5'>
-        <h1 className='text-2xl font-semibold mx-5 my-5'>Bestsellery 2023</h1>
+        <h1 className='text-2xl font-semibold mx-5 mt-3 mb-5 lg:mt-5'>Bestsellery</h1>
           <Carousel cols={5} rows={1} gap={20}>
             <Carousel.Item>
             <BookCarouselItem url='https://live-production.wcms.abc-cdn.net.au/62706759bcebd2cfd0718314aea48806?src'
