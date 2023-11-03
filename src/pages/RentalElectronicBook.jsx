@@ -14,9 +14,7 @@ function RentalElectronicBook() {
     <div className='flex flex-col px-12 py-5 bg-sunrise-300 min-h-screen dark:bg-midnight-950'>
     <div className='h-96 w-full relative'>
     <div className='grid grid-cols-[5fr_5fr] gap-20 h-[28rem] w-full top-[1.5rem] absolute'>
-
       <img src='https://i2-prod.walesonline.co.uk/incoming/article6890072.ece/ALTERNATES/s615b/hp1.jpg' className='h-[28rem] w-auto object-contain justify-self-end shadow-book' />
-      {/* <CarouselBook /> */}
       <div className='flex flex-col mr-5 w-3/4 relative border-b-[1px] border-sunrise-300 dark:border-midnight-700'>
       <h1 className='text-4xl font-semibold my-3 cursor-default dark:text-white'>Harry Potter and Philosopher's Stone</h1>
            <h2 className='font-[500] my-2 text-lg cursor-default dark:text-white'>J.K. Rowling</h2>
@@ -25,17 +23,16 @@ function RentalElectronicBook() {
             <p className='opacity-0 mx-2 text-yellow-400 text-xs transition duration-500 ease-in-out group-hover:opacity-100'>Przejdź do recenzji..</p>
            </a>
           <p className='font-light my-2 cursor-default dark:text-white'>E-Book PDF</p>
-          <h3 className='text-3xl font-[600] my-2 cursor-default dark:text-white'>39.99 zł</h3>
           <div className='grid grid-cols-3 gap-2'>
-          <Link className='h-auto w-full my-1 flex flex-col items-center text-white justify-center bg-sunrise-100 px-1 py-2 rounded-md border-sunrise-100 border-2 hover:border-orange-400 dark:bg-midnight-800 dark:border-midnight-600 dark:hover:border-orange-400'>
+          <Link className='h-auto w-full my-1 flex flex-col items-center text-midnight-950 justify-center bg-sunrise-100 px-1 py-2 rounded-md border-sunrise-100 border-2 hover:border-orange-400 dark:bg-midnight-800 dark:border-midnight-600 dark:hover:border-orange-400'>
           <h1 className='text-sm'>Książka</h1>
             <h2 className='text-sm font-semibold'>32.99zł</h2>
           </Link>
-          <Link className='h-auto w-full my-1 flex flex-col items-center text-white justify-center bg-sunrise-100 px-1 py-2 rounded-md border-sunrise-100 border-2 hover:border-orange-400 dark:bg-midnight-800 dark:border-midnight-600 dark:hover:border-orange-400'>
+          <Link className='h-auto w-full my-1 flex flex-col items-center text-midnight-950 justify-center bg-sunrise-100 px-1 py-2 rounded-md border-sunrise-100 border-2 hover:border-orange-400 dark:bg-midnight-800 dark:border-midnight-600 dark:hover:border-orange-400'>
             <h1 className='text-sm'>E-Book</h1>
             <h2 className='text-sm font-semibold'>25.99zł</h2>
           </Link>
-          <Link className='h-auto w-full my-1 flex flex-col items-center text-white justify-center bg-sunrise-100 px-1 py-2 rounded-md border-sunrise-100 border-2 hover:border-orange-400 dark:bg-midnight-800 dark:border-midnight-600 dark:hover:border-orange-400'>
+          <Link className='h-auto w-full my-1 flex flex-col items-center text-midnight-950 justify-center bg-sunrise-100 px-1 py-2 rounded-md border-sunrise-100 border-2 hover:border-orange-400 dark:bg-midnight-800 dark:border-midnight-600 dark:hover:border-orange-400'>
           <h1 className='text-sm'>Wypożycz</h1>
             <h2 className='text-sm font-semibold'>od 3.99zł</h2>
           </Link>

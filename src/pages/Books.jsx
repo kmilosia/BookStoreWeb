@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import Select from 'react-select'
-import {BsFillGridFill,BsFillGrid3X3GapFill, BsDot} from 'react-icons/bs'
+import {BsFillGridFill,BsFillGrid3X3GapFill} from 'react-icons/bs'
 import {PiRowsFill} from 'react-icons/pi'
 import {GoDotFill} from 'react-icons/go'
 import {IoIosArrowDown,IoIosArrowUp} from 'react-icons/io'
+import {IoFilter} from 'react-icons/io5'
 import {FaHeart} from 'react-icons/fa'
-import {RiShoppingCart2Fill,RiShoppingCart2Line} from 'react-icons/ri'
+import {RiShoppingCart2Fill} from 'react-icons/ri'
 import { books } from '../utils/objects/books';
 import Stars from '../components/elements/Stars';
 
 
 function Books() {
+  const [filtersOpenMobile, setFiltersOpenMobile] = useState(false)
   const [propositionsFilter, setPropositionsFilter] = useState(false)
   const [dateFilter, setDateFilter] = useState(false)
   const [priceFilter, setPriceFilter] = useState(false)
@@ -20,11 +22,28 @@ function Books() {
   const [authorFilter, setAuthorFilter] = useState(false)
   const [scoreFilter, setScoreFilter] = useState(false)
   const [stockFilter, setStockFilter] = useState(false)
+  const handleFilterButtonMobile = () => {
+    setFiltersOpenMobile(!filtersOpenMobile)
+  }
   return (
-    <div className='default-page-wrapper flex flex-col px-0 py-4 overflow-hidden'>
-      <div className='grid grid-cols-[1fr_3fr] gap-3 min-h-screen'>
-        <div className='bg-white rounded-md h-full px-6 py-5 dark:bg-midnight-900'>
-          <h1 className='text-2xl font-bold text-midnight-950 dark:text-white'>Filtruj</h1>
+    <div className='default-page-wrapper flex flex-col px-0 py-0 lg:py-4 overflow-hidden'>
+      <div className='grid grid-cols-1 lg:grid-cols-[1fr_3fr] gap-0 lg:gap-3 min-h-screen'>
+        <div className='bg-white rounded-md h-full px-6 py-3 lg:py-5 dark:bg-midnight-900'>
+          <h1 className='text-2xl font-bold text-midnight-950 dark:text-white hidden lg:inline-block'>Filtruj</h1>
+          <div className='flex flex-row justify-between lg:hidden'>
+          <h1 className='text-2xl font-bold text-midnight-950 dark:text-white'>Książki</h1>
+          <div className='flex flex-row'>
+          <select name="cars" id="cars" required className='rounded-md mx-2 text-xs pl-3 pr-7 py-2 text-midnight-950 dark:text-midnight-100 bg-white border-[1px] border-sunrise-300 dark:border-midnight-700 dark:bg-midnight-700 no-ring'>
+              <option value="" disabled selected hidden>Sortuj..</option>
+              <option value="volvo">Volvo</option>
+            </select>
+            <button onClick={handleFilterButtonMobile} className='flex flex-row items-center border-[1px] border-sunrise-300 rounded-md px-2 py-1'>
+            <IoFilter className='mx-1'/>
+            <span className='mx-1 font-semibold'>Filtry</span>
+          </button>
+          </div>
+          </div>      
+          {filtersOpenMobile &&
           <div className='flex flex-col my-2'>
 
             <div className='flex flex-col rounded-md border-[1px] bg-white border-sunrise-300 dark:bg-midnight-900 dark:border-midnight-700 py-2 my-1'>
@@ -295,10 +314,12 @@ function Books() {
             <button className='text-base rounded-md py-2 my-2 bg-orange-400 font-[500] text-white hover:bg-orange-500'>Szukaj wyników</button>
 
           </div>
+          }
+          
         </div>
-        <div className='bg-white rounded-md h-full py-5 px-6 dark:bg-midnight-900'>
-          <h1 className='text-2xl font-bold text-midnight-950 dark:text-white'>Książki</h1>
-          <div className='flex flex-row justify-between items-center'>
+        <div className='bg-white rounded-md h-full py-0 lg:py-5 px-6 dark:bg-midnight-900'>
+          <h1 className='text-2xl font-bold text-midnight-950 dark:text-white hidden lg:inline-block'>Książki</h1>
+          <div className='lg:flex flex-row justify-between items-center hidden'>
           <h1>Wyniki wyszukiwania:</h1>
             <div className='flex flex-row items-center my-2'>
             <div className='flex flex-row items-center'>
@@ -312,26 +333,27 @@ function Books() {
             </select>
             </div>
           </div>
-          <div className='divider'/>
-          <div className='grid grid-cols-4 gap-2'>
+          {/* <div className='divider'/> */}
+          <div className='grid grid-cols-1 lg:grid-cols-4 gap-1 lg:gap-2'>
             {books.map(item => (
-              <Link to='/ksiazka' className='bg-white flex flex-col px-4 py-4 my-2 rounded-md items-center dark:bg-midnight-900 dark:hover:bg-midnight-950 group hover:bg-sunrise-200 hover:shadow-md'>
+              <Link to='/ksiazka' className='bg-sunrise-200 lg:bg-white flex flex-col px-4 py-4 my-2 rounded-md items-center dark:bg-midnight-900 dark:hover:bg-midnight-950 group hover:bg-sunrise-200 hover:shadow-md'>
                 <div className='flex flex-row items-center w-full'>
                   <GoDotFill className={`${item.available ? "text-green-500" : "text-gray-500"} text-xs`}/>
                   {item.available === true ? <p className='text-green-500 text-xs mx-1'>Dostępna</p> : <p className='text-gray-500 text-xs mx-1'>Niedostępna</p>}
                 </div>
                 <div className='relative w-full flex items-center justify-center'>
-                  <img src={item.imgURL} className='w-[95%] h-auto object-cover aspect-[2/3] rounded-md my-1'/>
+                  <img src={item.imgURL} className='w-full object-cover aspect-[3/4] rounded-md my-1'/>
                   {item.wishlisted ?
                     <button className='absolute top-0 right-0 rounded-lg p-2 bg-white text-orange-400'><FaHeart /></button>
                   : <button className='absolute top-0 right-0 rounded-lg p-2 bg-sunrise-400 text-white hover:text-orange-400'><FaHeart /></button>
                   }
                 </div>
-                <h1 className='w-full font-semibold text-blue-950 dark:text-midnight-100 text-sm text-center truncated-text'>{item.title}</h1>
-                <p className='text-xs font-light my-1 text-midnight-400
-                '>{item.author}</p>
+                <div className='flex flex-col items-start w-full'>
+                <h1 className='w-full font-semibold text-blue-950 dark:text-midnight-100 text-sm truncated-text'>{item.title}</h1>
+                <p className='text-xs font-light my-1 text-midnight-400'>{item.author}</p>
                 <Stars score={item.score} />
-                <p className='font-semibold text-blue-950 dark:text-midnight-100 my-1'>{item.price}zł</p>
+                <h2 className='font-semibold text-blue-950 dark:text-midnight-100 my-1'>{item.price}zł</h2>
+                </div>
                 <button className='w-full bg-orange-400 text-white rounded-md px-3 py-2 my-0 flex flex-row items-center text-xs justify-center transition-all hover:bg-orange-500'>
                   <RiShoppingCart2Fill className='mx-1'/>
                   <span>Dodaj do koszyka</span>

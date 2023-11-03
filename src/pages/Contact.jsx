@@ -30,7 +30,7 @@ function Contact() {
         <h1 id='contactform' className='text-2xl lg:text-xl scroll-mt-40'>Formularz kontaktowy</h1>
         <p className='text-sm my-2 font-light text-center'>Masz do nas pytanie? Wyślij do nas zapytanie używając formularza kontaktowego a odezwiemy się do Ciebie w przeciągu doby!</p>
         <form className='my-3 w-full lg:w-3/4 flex flex-col'>
-            <div className='grid grid-rows-3 lg:grid-cols-3 gap-5 lg:gap-2'>
+            <div className='grid grid-rows-3 lg:grid-rows-1 lg:grid-cols-3 gap-2'>
                 <div className='flex flex-row items-center border-[2px] bg-white border-sunrise-300 focus-within:border-sunrise-400 dark:bg-midnight-900 dark:border-midnight-700 px-3 rounded-md dark:focus-within:border-midnight-600'>
                     <BsFillPersonFill />
                     <input type='text' placeholder='Twoje imię' className='bg-white dark:bg-midnight-900 text-sm border-0 no-ring focus:border-0'/>
@@ -62,7 +62,7 @@ function Contact() {
         <div className='flex flex-col items-center my-5 py-0 lg:py-10 px-5'>
         <h1 className='text-2xl lg:text-xl'>Kontakt</h1>
         <p className='text-sm my-2 font-light text-center'>Jeżeli potrzebujesz skontaktować się z nami jak najszybciej, wybierz jedną z naszych form kontaktowych!</p>
-        <div className='grid grid-rows-3 lg:grid-cols-3 gap-10 lg:gap-5 mt-5'>
+        <div className='grid grid-rows-3 lg:grid-rows-1 lg:grid-cols-3 gap-10 lg:gap-5 mt-5'>
           <div className='flex flex-col items-center'>
             <img src={call} className={contactimagestyle} />
             <h1 className='my-1'>Zadzwoń do nas</h1>
