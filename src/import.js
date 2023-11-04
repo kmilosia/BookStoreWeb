@@ -1,5 +1,10 @@
 //pages
+export {default as PageNotFound} from './pages/PageNotFound'
+export {default as Search} from './pages/Search'
 export {default as Home} from './pages/Home'
+export {default as Login} from './pages/Login'
+export {default as Register} from './pages/Register'
+export {default as Account} from './pages/account-pages/Account'
 export {default as Cart} from './pages/Cart'
 export {default as Store} from './pages/Store'
 export {default as Rental} from './pages/Rental'
@@ -13,6 +18,10 @@ export {default as Contact} from './pages/Contact'
 export {default as News} from './pages/News'
 export {default as AllNews} from './pages/AllNews'
 export {default as NewsItem} from './pages/NewsItem'
+export {default as AccountOrders} from './pages/account-pages/AccountOrders'
+export {default as AccountPersonalData} from './pages/account-pages/AccountPersonalData'
+export {default as AccountLibrary} from './pages/account-pages/AccountLibrary'
+export {default as AccountRentals} from './pages/account-pages/AccountRentals'
 
 //components
 export {default as Navbar} from './components/Navbar'

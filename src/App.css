@@ -6,6 +6,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 @layer components{
+    /* forms */
+    .form-input{
+        @apply rounded-md dark:bg-midnight-900 border-2 no-ring border-midnight-100 dark:border-midnight-700 disabled:opacity-50;
+    }
+    .label-input{
+        @apply my-1 text-sm font-medium;
+    }
+    /* forms */
+    /* buttons */
+    .orange-button{
+        @apply bg-orange-400 rounded-md py-2.5 text-sm my-1 text-white hover:bg-orange-500 font-semibold;
+    }
+    /* buttons */
+
     .no-ring{
         @apply focus:ring-0 focus:ring-offset-0;
     }
@@ -16,7 +30,7 @@
         @apply border-t-[1px] my-2 border-midnight-200 dark:border-midnight-800;
       }
     .default-page-wrapper{
-        @apply min-h-screen max-w-full bg-white dark:bg-midnight-950 text-midnight-950 dark:text-midnight-50;
+        @apply min-h-[80vh] max-w-full bg-white dark:bg-midnight-950 text-midnight-950 dark:text-midnight-50;
     }
     .scrolled-navbar-bg{
         @apply bg-midday-semitransparent dark:bg-midnight-900 lg:dark:bg-midnight-semitransparent;

@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import {checkTheme} from '../utils/theme'
+import {checkTheme} from '../pages/theme'
 import { Link } from 'react-router-dom'
 import {GiSecretBook} from 'react-icons/gi'
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
