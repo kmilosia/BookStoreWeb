@@ -1,6 +1,6 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
-import {Book, Books, ElectronicBook, ElectronicBooks, Home, Search,PageNotFound, Rental, RentalElectronicBook, Store, RentalBooks, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders, AccountLibrary, AccountRentals} from './import'
+import {Book, Books, ElectronicBook, ElectronicBooks, Home, Search,PageNotFound, Rental, RentalElectronicBook, Store, RentalBooks, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders, Library, AccountRentals} from './import'
 import MainLayout from './MainLayout';
 
 function App() {
@@ -26,11 +26,11 @@ function App() {
           <Route path='e-book' element={<ElectronicBook />}/>
           <Route path='wypozycz-e-book' element={<RentalElectronicBook />}/>
           <Route path='wypozycz-e-booki' element={<RentalBooks />}/>
+          <Route path='biblioteka' element={<Library />}/>
           <Route path='konto' element={<Account />}>
             <Route index element={<AccountPersonalData />} />
             <Route path='dane-osobowe' element={<AccountPersonalData />} />
             <Route path='zamowienia' element={<AccountOrders />} />
-            <Route path='biblioteka' element={<AccountLibrary />} />
             <Route path='wypozyczenia' element={<AccountRentals />} />
           </Route>
         </Route>

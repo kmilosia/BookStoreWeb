@@ -2,22 +2,25 @@ import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 
 function Account() {
-  const linkStyle = 'border-b border-slate-200 dark:border-midnight-700 py-4 px-4 hover:bg-orange-400 hover:text-white'
+  const linkStyle = 'px-5 py-2 hover:font-semibold'
   return (
     <div className='default-page-wrapper'>
-      <div className='grid grid-cols-[1fr_4fr] min-h-[80vh] gap-5'>
-        <div className='flex flex-col'>
-          <div className='flex flex-col bg-slate-50 dark:bg-midnight-900 h-full'>
-            <Link to='dane-osobowe' className={linkStyle}>Informacje personalne</Link>
-            <Link to='zamowienia' className={linkStyle}>Moje zamówienia</Link>
-            <Link to='wypozyczenia' className={linkStyle}>Moje wypożyczenia</Link>
-            <Link to='biblioteka' className={linkStyle}>Moja biblioteka</Link>
+      <div className='flex flex-col px-10 pt-3 pb-5'>
+        <h1 className='text-3xl my-4 font-medium'>Konto</h1>
+        <div className='grid grid-cols-[1fr_4fr] min-h-[80vh] gap-5'>
+          <div className='flex flex-col py-3 rounded-md h-auto bg-white dark:bg-midnight-800'>
+            <Link to='dane-osobowe' className={linkStyle}>Profil</Link>
+            <Link to='zamowienia' className={linkStyle}>Zamówienia</Link>
+            <Link to='wypozyczenia' className={linkStyle}>Wypożyczenia</Link>
+            <Link to='biblioteka' className={linkStyle}>Biblioteka</Link>
+            <Link to='biblioteka' className={`${linkStyle} text-red-500`}>Wyloguj się</Link>
           </div>
+          <Outlet />
         </div>
-        <Outlet />
       </div>
     </div>
   )
 }
 
 export default Account
+
