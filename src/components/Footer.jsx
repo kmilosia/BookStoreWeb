@@ -11,12 +11,12 @@ import appStoreLogo from '../assets/logos/app-badge.svg'
 
 function Footer() {
   return (
-    <footer className='flex flex-col items-center justify-center w-full transition-all bg-midnight-50 dark:bg-midnight-950'>
-      <div className='flex flex-col items-center justify-center w-full py-20 md:py-12 px-2 md:px-0 transition-all footer-bg footer-bg-light dark:footer-bg-dark'>
-        <h1 className='text-2xl default-text my-4'>Zapisz się do newslettera</h1>
+    <footer className='flex flex-col items-center justify-center w-full bg-midnight-50 dark:bg-midnight-950'>
+      <div className='flex flex-col items-center justify-center w-full py-10 md:py-12 px-2 md:px-0 footer-bg footer-bg-light dark:footer-bg-dark'>
+        <h1 className='text-2xl default-text my-4 font-medium'>Zapisz się do newslettera</h1>
         <div className='px-5 md:px-0 w-full flex flex-col items-center justify-center mb-4'>
         <input type='text' placeholder='Twój adres e-mail..' className='w-full md:w-1/2 lg:w-1/3 border-0 no-ring rounded-md my-2 px-3 py-2'/>
-        <button className='w-full md:w-1/2 lg:w-1/3 px-3 py-2 my-2 rounded-md text-midnight-50 bg-orange-400 hover:bg-orange-500'>Zapisz się</button>
+        <button className='w-full md:w-1/2 lg:w-1/3 orange-button'>Zapisz się</button>
         </div>
       </div>
       <div className='w-full flex flex-col px-2 md:px-10 lg:px-16 pb-10 pt-5'>      

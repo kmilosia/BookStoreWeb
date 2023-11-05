@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Cart() {
+function Wishlist() {
   return (
     <div className='default-page-wrapper'>
-      <h1>Koszyk</h1>
+      <h1>Wishlista</h1>
     </div>
   )
 }
 
-export default Cart
+export default Wishlist

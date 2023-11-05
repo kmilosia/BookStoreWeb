@@ -5,11 +5,12 @@ import {GiSecretBook} from 'react-icons/gi'
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
 import {HiOutlineSearch} from 'react-icons/hi'
 import {LuBookMarked} from 'react-icons/lu'
-import {FiSun, FiMoon} from 'react-icons/fi'
+import {FiSun, FiMoon, FiArrowUp} from 'react-icons/fi'
 import {BiShoppingBag, BiHeart, BiUser} from 'react-icons/bi'
 
 function Navbar() {
-    const ref = useRef(null)
+  const tooltipStyle = 'absolute bottom-[-2rem] left-1/2 transform -translate-x-1/2 rounded-md items-center justify-center text-xs px-2 py-1 text-midnight-800 bg-white whitespace-nowrap dark:bg-midnight-700 dark:text-white hidden group-hover:flex';
+  const ref = useRef(null)
     const [isDarkTheme, setIsDarkTheme] = useState(checkTheme())
     const [isNavbarOpened, setIsNavbarOpened] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
@@ -21,6 +22,9 @@ function Navbar() {
       }else{
         setIsScrolled(false)
       }
+    }
+    const scrollToTop = () => {
+      window.scrollTo(0,0)
     }
     const toggleTheme = () => {
         setIsDarkTheme((prevTheme) => {
@@ -41,33 +45,48 @@ function Navbar() {
     window.addEventListener('scroll', changeNavbarBackground)
     return (
       <>
-    <nav ref={ref} className={`flex flex-col sticky w-full py-1 px-2 lg:px-4 top-0 backdrop-blur-sm z-[100] lg:shadow-lg transition-colors ${isScrolled ? 'scrolled-navbar-bg' : 'default-navbar-bg'}`}>
+    <nav ref={ref} className={`flex flex-col sticky w-full py-1 px-2 lg:px-4 top-0 backdrop-blur-sm z-[100] lg:shadow-lg ${isScrolled ? 'scrolled-navbar-bg' : 'default-navbar-bg'}`}>
       <div className='grid grid-cols-2 lg:grid-cols-3 px-4 my-4 items-center'>    
         <Link to='/' className='flex flex-row items-center p-1 transition-all text-orange-400 hover:text-orange-500'>
           <GiSecretBook className='text-3xl mx-1'/>
           <h1 className='text-lg font-semibold font-delius self-end'>Spellarium</h1>
         </Link> 
       <div className='relative w-full hidden lg:inline-block justify-center'>
-        <input className={`w-full rounded-md pl-4 pr-8 py-2 text-sm transition-colors text-midnight-950 border-0 no-ring dark:text-midnight-50 ${isScrolled ? 'bg-midnight-150 dark:bg-midnight-950' : 'bg-midnight-100 dark:bg-midnight-900'}`} placeholder='Szukaj książek...' type='text'/>
+        <input className={`w-full rounded-md pl-4 pr-8 py-2 text-sm text-midnight-950 border-0 no-ring dark:text-midnight-50 ${isScrolled ? 'bg-midnight-150 dark:bg-midnight-950' : 'bg-midnight-100 dark:bg-midnight-900'}`} placeholder='Szukaj książek...' type='text'/>
         <Link to='/szukaj' className='absolute top-1/2 right-[10px] translate-y-[-50%] text-lg cursor-pointer text-midnight-400 hover:text-midnight-700 dark:hover:text-midnight-200'><HiOutlineSearch /></Link>
       </div>
       <div className='flex flex-row items-center justify-end'>
         <div className='hidden lg:flex flex-row items-center justify-end'>
-        <button className='mx-2 text-xl text-midnight-950 transition-all dark:text-midnight-50 hover:text-orange-400 dark:hover:text-orange-500' onClick={toggleTheme}>
+        <button className='mx-2 text-xl text-midnight-950 transition-all dark:text-midnight-50 hover:text-orange-400 dark:hover:text-orange-500 relative group' onClick={toggleTheme}>
+          <div className={tooltipStyle}>
+          {isDarkTheme ? <span>Tryb nocny</span> : <span>Tryb dzienny</span>}
+          </div>
         {isDarkTheme ? <FiMoon /> : <FiSun />}
         </button>
-        <button className='mx-2 text-xl text-midnight-950  transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>
+        <Link to='/konto' className='mx-2 text-xl text-midnight-950  transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500 relative group'>
+          <div className={tooltipStyle}>
+            <span>Konto</span>
+          </div>
           <BiUser />
-        </button>
-        <button className='mx-2 text-xl text-midnight-950  transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>
+        </Link>
+        <Link to='/ulubione' className='mx-2 text-xl text-midnight-950  transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500 relative group'>
+          <div className={tooltipStyle}>
+            <span>Ulubione</span>
+          </div>
           <BiHeart />
-        </button>
-        <button className='mx-2 text-xl text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>
+        </Link>
+        <Link to='/koszyk' className='mx-2 text-xl text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500 relative group'>
+          <div className={tooltipStyle}>
+            <span>Koszyk</span>
+          </div>
           <BiShoppingBag/>
-        </button>
-        <button className='mx-2 text-xl text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>
+        </Link>
+        <Link to='/biblioteka' className='mx-2 text-xl text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500 relative group'>
+          <div className={tooltipStyle}>
+            <span>Bilbioteka</span>
+          </div>
           <LuBookMarked/>
-        </button>
+        </Link>
         </div>
         <button className='mx-2 text-xl text-midnight-950  transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500' onClick={toggleNavbar}>
           {isNavbarOpened ? <AiOutlineClose/> : <AiOutlineMenu />}        
@@ -91,22 +110,27 @@ function Navbar() {
         <button className='mx-2 text-2xl text-midnight-950 transition-all dark:text-midnight-50 hover:text-orange-400 dark:hover:text-orange-500' onClick={toggleTheme}>
         {isDarkTheme ? <FiMoon /> : <FiSun />}
         </button>
-        <button className='mx-2 text-2xl text-midnight-950  transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>
+        <Link to='/konto' className='mx-2 text-2xl text-midnight-950  transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>
           <BiUser />
-        </button>
-        <button className='mx-2 text-2xl text-midnight-950  transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>
+        </Link>
+        <Link to='/ulubione' className='mx-2 text-2xl text-midnight-950  transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>
           <BiHeart />
-        </button>
-        <button className='mx-2 text-2xl text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>
+        </Link>
+        <Link to='/koszyk' className='mx-2 text-2xl text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>
           <BiShoppingBag/>
-        </button>
-        <button className='mx-2 text-2xl text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>
+        </Link>
+        <Link to='/biblioteka' className='mx-2 text-2xl text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500'>
           <LuBookMarked/>
-        </button>
+        </Link>
         </div>
       </div>
       }
     </nav>
+    {isScrolled &&
+    <button onClick={scrollToTop} className='fixed bottom-3 right-3 flex items-center justify-center rounded-3xl p-2 text-xl z-[100] bg-midnight-950/50 text-white hover:bg-midnight-950 dark:bg-orange-400/30 dark:hover:bg-orange-400'>
+      <FiArrowUp />
+    </button>
+    }
       </>
   )
 }

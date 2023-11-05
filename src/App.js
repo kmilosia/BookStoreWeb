@@ -1,6 +1,6 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
-import {Book, Books, ElectronicBook, ElectronicBooks, Home, Search,PageNotFound, Rental, RentalElectronicBook, Store, RentalBooks, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders, Library, AccountRentals} from './import'
+import {Book, Books, ElectronicBook, ElectronicBooks, Home, Search,PageNotFound, Rental, RentalElectronicBook, Store, RentalBooks, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders, Library, AccountRentals, Cart, Wishlist} from './import'
 import MainLayout from './MainLayout';
 
 function App() {
@@ -15,6 +15,8 @@ function App() {
           <Route path='home' element={<Home />} />
           <Route path='sklep' element={<Store />} />
           <Route path='szukaj' element={<Search />} />
+          <Route path='koszyk' element={<Cart />} />
+          <Route path='ulubione' element={<Wishlist />} />
           <Route path='kontakt' element={<Contact />} />
           <Route path='wiadomosci' element={<News />} />
           <Route path='wiadomosc' element={<NewsItem />} />

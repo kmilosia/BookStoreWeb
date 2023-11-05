@@ -16,10 +16,10 @@
     /* forms */
     /* buttons */
     .orange-button{
-        @apply bg-orange-400 rounded-md py-2.5 text-sm my-1 text-white hover:bg-orange-500 font-semibold;
+        @apply bg-orange-400 rounded-md py-2.5 text-base lg:text-sm my-1 text-white hover:bg-orange-500 font-semibold;
     }
     .delete-button{
-        @apply bg-white border-2 border-red-500 rounded-md py-2.5 text-sm my-1 text-red-500 hover:bg-red-500 hover:text-white font-semibold;
+        @apply bg-white dark:bg-midnight-900 border-2 border-red-500 rounded-md py-2.5 text-sm my-1 text-red-500 hover:bg-red-500 dark:hover:bg-red-500 hover:text-white font-semibold;
     }
     /* buttons */
 
@@ -67,6 +67,11 @@
     .footer-layout-lg{
         @apply grid grid-cols-4 gap-12 items-start;
     }
+    /* animations */
+    .underline-hover{
+        @apply relative before:content-[''] before:absolute before:block before:w-full before:h-[1px] before:bottom-[-1px] before:left-0 before:bg-white before:scale-x-0 before:transition-all hover:before:scale-x-100;
+    }
+    /* animations */
     
 }
 *{
@@ -88,36 +93,4 @@ background: -moz-linear-gradient(0deg, rgba(0,0,0,0.8969712885154062) 0%, rgba(0
 background: -webkit-linear-gradient(0deg, rgba(0,0,0,0.8969712885154062) 0%, rgba(0,0,0,0) 100%);
 background: linear-gradient(0deg, rgba(0,0,0,0.8969712885154062) 0%, rgba(0,0,0,0) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
-}
-.hover-underline{
-    position: relative;
-}
-.hover-underline::before{
-    content: "";
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #aaa;
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
-.hover-underline:hover::before{
-    transform: scaleX(1);
-}
-.active-underline{
-    position: relative;
-    font-weight: 500;
-}
-.active-underline::before{
-    content: "";
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #aaa;
 }
