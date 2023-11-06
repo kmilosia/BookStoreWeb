@@ -18,8 +18,14 @@
     .orange-button{
         @apply bg-orange-400 rounded-md py-2.5 text-base lg:text-sm my-1 text-white hover:bg-orange-500 font-semibold;
     }
+    .purple-button{
+        @apply bg-purple-500 rounded-md py-2.5 text-base lg:text-sm my-1 text-white hover:bg-purple-600 font-semibold;
+    }
     .delete-button{
         @apply bg-white dark:bg-midnight-900 border-2 border-red-500 rounded-md py-2.5 text-sm my-1 text-red-500 hover:bg-red-500 dark:hover:bg-red-500 hover:text-white font-semibold;
+    }
+    .rounded-purple-button{
+        @apply rounded-3xl text-white font-medium px-4 py-2 text-sm bg-purple-500 hover:bg-purple-600;
     }
     /* buttons */
 
@@ -39,7 +45,7 @@
         @apply bg-midday-semitransparent dark:bg-midnight-900 lg:dark:bg-midnight-semitransparent;
     }
     .default-navbar-bg{
-        @apply bg-midnight-50 dark:bg-midnight-900 lg:dark:bg-midnight-950;
+        @apply bg-white dark:bg-midnight-900 lg:dark:bg-midnight-950;
     }
     .default-text{
         @apply text-midnight-950 dark:text-midnight-50;
@@ -69,10 +75,13 @@
     }
     /* animations */
     .underline-hover{
-        @apply relative before:content-[''] before:absolute before:block before:w-full before:h-[1px] before:bottom-[-1px] before:left-0 before:bg-white before:scale-x-0 before:transition-all hover:before:scale-x-100;
+        @apply relative before:content-[''] before:absolute before:block before:w-full before:h-[2px] before:bottom-[-1px] before:left-0 before:bg-white before:scale-x-0 before:transition-all hover:before:scale-x-100;
     }
     .underline-hover-dark{
         @apply underline-hover before:bg-midnight-950;
+    }
+    .underline-hover-purple{
+        @apply underline-hover before:bg-purple-400;
     }
     /* animations */
     
