@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import Select from 'react-select'
 import {BsFillGridFill,BsFillGrid3X3GapFill} from 'react-icons/bs'
 import {PiRowsFill} from 'react-icons/pi'
 import {GoDotFill} from 'react-icons/go'

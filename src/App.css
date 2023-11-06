@@ -71,6 +71,9 @@
     .underline-hover{
         @apply relative before:content-[''] before:absolute before:block before:w-full before:h-[1px] before:bottom-[-1px] before:left-0 before:bg-white before:scale-x-0 before:transition-all hover:before:scale-x-100;
     }
+    .underline-hover-dark{
+        @apply underline-hover before:bg-midnight-950;
+    }
     /* animations */
     
 }

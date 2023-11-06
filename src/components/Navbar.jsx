@@ -7,10 +7,13 @@ import {HiOutlineSearch} from 'react-icons/hi'
 import {LuBookMarked} from 'react-icons/lu'
 import {FiSun, FiMoon, FiArrowUp} from 'react-icons/fi'
 import {BiShoppingBag, BiHeart, BiUser} from 'react-icons/bi'
+import AccessModal from '../pages/modals/AccessModal'
 
 function Navbar() {
   const tooltipStyle = 'absolute bottom-[-2rem] left-1/2 transform -translate-x-1/2 rounded-md items-center justify-center text-xs px-2 py-1 text-midnight-800 bg-white whitespace-nowrap dark:bg-midnight-700 dark:text-white hidden group-hover:flex';
   const ref = useRef(null)
+    const [isLogged, setIsLogged] = useState(false)
+    const [isModal, setIsModal] = useState(false)
     const [isDarkTheme, setIsDarkTheme] = useState(checkTheme())
     const [isNavbarOpened, setIsNavbarOpened] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
@@ -63,19 +66,28 @@ function Navbar() {
           </div>
         {isDarkTheme ? <FiMoon /> : <FiSun />}
         </button>
+        {isLogged ?
         <Link to='/konto' className='mx-2 text-xl text-midnight-950  transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500 relative group'>
           <div className={tooltipStyle}>
             <span>Konto</span>
           </div>
           <BiUser />
         </Link>
+        :
+        <button onClick={() => {setIsModal(true)}} className='mx-2 text-xl text-midnight-950  transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500 relative group'>
+          <div className={tooltipStyle}>
+            <span>Konto</span>
+          </div>
+          <BiUser />
+        </button>
+        }
         <Link to='/ulubione' className='mx-2 text-xl text-midnight-950  transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500 relative group'>
           <div className={tooltipStyle}>
             <span>Ulubione</span>
           </div>
           <BiHeart />
         </Link>
-        <Link to='/koszyk' className='mx-2 text-xl text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500 relative group'>
+        <Link to='/zamowienie/koszyk' className='mx-2 text-xl text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500 relative group'>
           <div className={tooltipStyle}>
             <span>Koszyk</span>
           </div>
@@ -131,6 +143,7 @@ function Navbar() {
       <FiArrowUp />
     </button>
     }
+    {isModal && <AccessModal setIsModal={setIsModal}/>}
       </>
   )
 }

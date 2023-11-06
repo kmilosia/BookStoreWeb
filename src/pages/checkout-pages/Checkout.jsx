@@ -1,11 +1,12 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
 
-function Cart() {
+function Order() {
   return (
     <div className='default-page-wrapper'>
-      <h1>Koszyk</h1>
+      <Outlet />
     </div>
   )
 }
 
-export default Cart
+export default Order
