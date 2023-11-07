@@ -1,6 +1,6 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
-import {Book, Books, ElectronicBook, ElectronicBooks, Home, Search,PageNotFound, Rental, RentalElectronicBook, Store, RentalBooks, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders, Library, AccountRentals, Cart, Wishlist,Checkout, CheckoutDelivery, CheckoutPayment, CheckoutConfirmation, CheckoutLogin} from './import'
+import {Book, Books, ElectronicBook, ElectronicBooks, Home, Search,PageNotFound, Rental, RentalElectronicBook, Store, RentalBooks, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders, Library, AccountRentals, Cart, Wishlist,Checkout, CheckoutDelivery, CheckoutPayment, CheckoutConfirmation, CheckoutLogin, RegisterFirstStep, RegisterSecondStep, RegisterLastStep, Access, RecoverPassword, RecoverPasswordFirstStep, RecoverPasswordSecondStep, RecoverPasswordThirdStep} from './import'
 import MainLayout from './MainLayout';
 
 function App() {
@@ -8,8 +8,20 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Navigate to={'/home'}/>} />
-        <Route path='/logowanie' element={<Login />} />
-        <Route path='/rejestracja' element={<Register />} />
+        <Route path='/dostep' element={<Access />}>
+          <Route index element={<Navigate to='logowanie' />} />
+          <Route path='logowanie' element={<Login />} />
+          <Route path='rejestracja' element={<Register />}>
+            <Route index element={<RegisterFirstStep />} />
+            <Route path='dane-osobowe' element={<RegisterSecondStep />} />
+            <Route path='potwierdzenie' element={<RegisterLastStep />} />
+          </Route>
+          <Route path='odzyskiwanie-hasla' element={<RecoverPassword />}>
+            <Route index element={<RecoverPasswordFirstStep />} />
+            <Route path='resetuj-haslo' element={<RecoverPasswordSecondStep />} />
+            <Route path='potwierdzenie' element={<RecoverPasswordThirdStep />} />
+          </Route>
+        </Route>
         <Route element={<MainLayout />}>
           <Route path='*' element={<PageNotFound />} />
           <Route path='home' element={<Home />} />

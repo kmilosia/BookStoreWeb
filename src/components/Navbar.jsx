@@ -1,15 +1,16 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import {checkTheme} from '../pages/theme'
+import {checkTheme} from '../utils/theme'
 import { Link } from 'react-router-dom'
 import {GiSecretBook} from 'react-icons/gi'
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
 import {HiOutlineSearch} from 'react-icons/hi'
 import {LuBookMarked} from 'react-icons/lu'
-import {FiSun, FiMoon, FiArrowUp} from 'react-icons/fi'
+import {FiSun, FiMoon} from 'react-icons/fi'
 import {BiShoppingBag, BiHeart, BiUser} from 'react-icons/bi'
+import AccessModal from '../modals/AccessModal'
+import PageTopScrollButton from '../components/buttons/PageTopScrollButton'
 
 function Navbar() {
-  const tooltipStyle = 'absolute bottom-[-2rem] left-1/2 transform -translate-x-1/2 rounded-md items-center justify-center text-xs px-2 py-1 text-midnight-800 bg-white whitespace-nowrap dark:bg-midnight-700 dark:text-white hidden group-hover:flex';
   const ref = useRef(null)
     const [isLogged, setIsLogged] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -60,40 +61,40 @@ function Navbar() {
       <div className='flex flex-row items-center justify-end'>
         <div className='hidden lg:flex flex-row items-center justify-end'>
         <button className='mx-2 text-xl text-midnight-950 transition-all dark:text-midnight-50 hover:text-orange-400 dark:hover:text-orange-500 relative group' onClick={toggleTheme}>
-          <div className={tooltipStyle}>
+          <div className='tooltip-button'>
           {isDarkTheme ? <span>Tryb nocny</span> : <span>Tryb dzienny</span>}
           </div>
         {isDarkTheme ? <FiMoon /> : <FiSun />}
         </button>
         {isLogged ?
         <Link to='/konto' className='mx-2 text-xl text-midnight-950  transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500 relative group'>
-          <div className={tooltipStyle}>
+          <div className='tooltip-button'>
             <span>Konto</span>
           </div>         
           <BiUser />
         </Link>
         :
         <button onClick={() => {setIsModalOpen(!isModalOpen)}} className='mx-2 text-xl text-midnight-950 hover:text-purple-600  transition-all dark:text-midnight-50 relative group'>
-          <div className={tooltipStyle}>
+          <div className='tooltip-button'>
             <span>Konto</span>
           </div>       
           <BiUser />
         </button>
         }
         <Link to='/ulubione' className='mx-2 text-xl text-midnight-950  transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500 relative group'>
-          <div className={tooltipStyle}>
+          <div className='tooltip-button'>
             <span>Ulubione</span>
           </div>
           <BiHeart />
         </Link>
         <Link to='/zamowienie/koszyk' className='mx-2 text-xl text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500 relative group'>
-          <div className={tooltipStyle}>
+          <div className='tooltip-button'>
             <span>Koszyk</span>
           </div>
           <BiShoppingBag/>
         </Link>
         <Link to='/biblioteka' className='mx-2 text-xl text-midnight-950 transition-all hover:text-orange-500 dark:text-midnight-50 dark:hover:text-orange-500 relative group'>
-          <div className={tooltipStyle}>
+          <div className='tooltip-button'>
             <span>Bilbioteka</span>
           </div>
           <LuBookMarked/>
@@ -137,17 +138,11 @@ function Navbar() {
       </div>
       }
       {isModalOpen &&
-      <div className='absolute z-50 w-max bottom-[-8rem] right-24 px-5 py-5 rounded-md flex flex-col items-center justify-center shadow-lg bg-white dark:bg-midnight-900'>
-        <Link to='/logowanie' className='bg-purple-400 hover:bg-purple-500 text-white text-sm px-5 py-2 rounded-3xl'>Zaloguj się</Link>
-        <p className='text-xs mt-2'>Nie masz jeszcze konta?</p>
-        <Link to='/rejestracja' className='text-xs font-medium text-purple-500 underline-hover-purple'>Utwórz nowe konto</Link>
-      </div>
+      <AccessModal />
       }
     </nav>
     {isScrolled &&
-    <button onClick={scrollToTop} className='fixed bottom-3 right-3 flex items-center justify-center rounded-3xl p-2 text-xl z-[100] bg-midnight-950/50 text-white hover:bg-midnight-950 dark:bg-orange-400/30 dark:hover:bg-orange-400'>
-      <FiArrowUp />
-    </button>
+    <PageTopScrollButton scrollToTop={scrollToTop}/>
     }
       </>
   )

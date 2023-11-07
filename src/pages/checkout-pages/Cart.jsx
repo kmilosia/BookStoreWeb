@@ -1,10 +1,11 @@
 import React from 'react'
-import { HiPlusSm, HiMinusSm} from 'react-icons/hi'
-import {BsDot,BsArrowLeftShort} from 'react-icons/bs'
-import {TbTrash} from 'react-icons/tb'
 import {BiSolidLock} from 'react-icons/bi'
 import { Link, useNavigate } from 'react-router-dom'
 import OrderProgressBar from '../../components/page-elements/OrderProgressBar'
+import CartElement from '../../components/products/CartElement'
+import ReturnShoppingButton from '../../components/buttons/ReturnShoppingButton'
+import { BsDot } from 'react-icons/bs'
+import { TbTrash } from 'react-icons/tb'
 
 
 function Cart() {
@@ -13,98 +14,28 @@ function Cart() {
     <div className='default-page-wrapper'>
       <div className='grid grid-cols-1 lg:grid-cols-[3fr_1fr]'>
         <div className='flex flex-col px-5 lg:px-10 py-5 lg:py-10'>
-          <OrderProgressBar step={1} />
-          <h1 className='text-2xl font-bold my-2 text-midnight-900 dark:text-white'>Koszyk</h1>
-          <div className='flex flex-col'>
-            <div className='grid grid-cols-[4fr_2fr_2fr_1fr] gap-5 py-2'>
-                <p className='text-sm font-semibold'>Produkt</p>
-                <p className='text-sm font-semibold text-center'>Ilość</p>
-                <p className='text-sm font-semibold text-center'>Cena całkowita</p>
-                <p></p>
+          <div className='flex justify-between'>
+              <h1 className='text-3xl font-semibold'>Koszyk</h1>
+              <button className='rounded-bordered-purple-button'>Opróżnij koszyk<TbTrash className='mx-1'/></button>
             </div>
-
-            <div className='flex flex-col border-y border-gray-200 dark:border-midnight-800'>
-            <div className='grid grid-cols-[4fr_2fr_2fr_1fr] py-5 gap-5'>
-              <div className='flex flex-row'>
-                <img src='https://media1.popsugar-assets.com/files/thumbor/UgV02HB6zL2ZLaY2ebOzunGwEAE=/fit-in/1280x1916/filters:format_auto():extract_cover():upscale()/2014/07/30/942/n/1922507/198283eaf80d7804_tumblr_n9inhbOoSO1qb0j8no3_1280.jpg'
-                className='h-32 w-24 object-cover rounded-md' />
-                <div className='flex flex-col mx-2 justify-center'>
-                  <h1 className='font-semibold'>Harry Potter i Więzień Azkabanu</h1>
-                  <div className='my-1 flex flex-row items-center text-gray-400'>
-                  <p className='text-xs'>Książka</p>
-                  <BsDot />
-                  <p className='text-xs'>Okładka miękka</p>
-                  </div>
-                </div>
-              </div>
-              <div className='flex flex-row items-center justify-center'>
-                <button className=''><HiMinusSm /></button>
-                <p className='mx-2 cursor-pointer'>2</p>
-                <button className=''><HiPlusSm  /></button>
-              </div>
-              <div className='flex items-center justify-center'>
-              <p className='font-semibold cursor-pointer'>39.99zł</p>
-              </div>
-              <div className='flex items-center justify-center'>
-                <button className='text-xl'><TbTrash/></button>
-              </div>
+            <div className='flex items-center my-2 text-sm'>
+              <span className='font-semibold mx-1'>12</span>
+              <p>produktów</p>
+              <BsDot />
+              <p>Suma całkowita</p>
+              <span className='font-semibold mx-1'>199.99zł</span>
             </div>
-
-            <div className='grid grid-cols-[4fr_2fr_2fr_1fr] py-5 gap-5'>
-              <div className='flex flex-row'>
-                <img src='https://media1.popsugar-assets.com/files/thumbor/UgV02HB6zL2ZLaY2ebOzunGwEAE=/fit-in/1280x1916/filters:format_auto():extract_cover():upscale()/2014/07/30/942/n/1922507/198283eaf80d7804_tumblr_n9inhbOoSO1qb0j8no3_1280.jpg'
-                className='h-32 w-24 object-cover rounded-md' />
-                <div className='flex flex-col mx-2 justify-center'>
-                  <h1 className='font-semibold'>Harry Potter i Więzień Azkabanu</h1>
-                  <div className='my-1 flex flex-row items-center text-gray-400'>
-                  <p className='text-xs'>Książka</p>
-                  <BsDot />
-                  <p className='text-xs'>Okładka miękka</p>
-                  </div>
-                </div>
-              </div>
-              <div className='flex flex-row items-center justify-center'>
-                <button className=''><HiMinusSm /></button>
-                <p className='mx-2 cursor-pointer'>2</p>
-                <button className=''><HiPlusSm  /></button>
-              </div>
-              <div className='flex items-center justify-center'>
-              <p className='font-semibold cursor-pointer'>39.99zł</p>
-              </div>
-              <div className='flex items-center justify-center'>
-                <button className='text-xl'><TbTrash/></button>
-              </div>
+            <div className='flex flex-col my-5'>
+            <div className='grid grid-cols-[max-content_3fr_2fr_2fr] text-sm text-gray-600 py-2 dark:text-gray-400 font-semibold gap-x-5 border-b border-gray-200 dark:border-midnight-800'>
+              <div className='w-5'></div>
+              <p>Produkt</p>
+              <p className='text-center'>Ilość</p>
+              <p className='text-center'>Cena</p>
+              <div></div>
             </div>
-
-            <div className='grid grid-cols-[4fr_2fr_2fr_1fr] py-5 gap-5'>
-              <div className='flex flex-row'>
-                <img src='https://media1.popsugar-assets.com/files/thumbor/UgV02HB6zL2ZLaY2ebOzunGwEAE=/fit-in/1280x1916/filters:format_auto():extract_cover():upscale()/2014/07/30/942/n/1922507/198283eaf80d7804_tumblr_n9inhbOoSO1qb0j8no3_1280.jpg'
-                className='h-32 w-24 object-cover rounded-md' />
-                <div className='flex flex-col mx-2 justify-center'>
-                  <h1 className='font-semibold'>Harry Potter i Więzień Azkabanu</h1>
-                  <div className='my-1 flex flex-row items-center text-gray-400'>
-                  <p className='text-xs'>Książka</p>
-                  <BsDot />
-                  <p className='text-xs'>Okładka miękka</p>
-                  </div>
-                </div>
-              </div>
-              <div className='flex flex-row items-center justify-center'>
-                <button className=''><HiMinusSm /></button>
-                <p className='mx-2 cursor-pointer'>2</p>
-                <button className=''><HiPlusSm  /></button>
-              </div>
-              <div className='flex items-center justify-center'>
-              <p className='font-semibold cursor-pointer'>39.99zł</p>
-              </div>
-              <div className='flex items-center justify-center'>
-                <button className='text-xl'><TbTrash/></button>
-              </div>
-            </div>
-
-            </div>
-            <button onClick={() => {navigate(-1)}} className='flex flex-row items-center my-3 w-max font-semibold underline-hover-dark'><BsArrowLeftShort className='text-xl'/><span className='text-sm'>Kontynuuj zakupy</span></button>
-
+            <CartElement title="Gra o tron. Ogień i Krew" price={39.99} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author="George R.R. Martin" form="Książka"/>
+            <CartElement title="Gra o tron. Ogień i Krew" price={39.99} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author="George R.R. Martin" form="Książka"/>
+            <ReturnShoppingButton />
           </div>
         </div>
         <div className='flex flex-col px-5 lg:px-10 py-5 lg:py-10 bg-white dark:bg-midnight-900 relative'>
