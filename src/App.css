@@ -25,8 +25,26 @@
     .default-text{
         @apply text-midnight-950 dark:text-midnight-50;
     }
+    .divide-border{
+        @apply border-gray-200 dark:border-midnight-800;
+    }
+    .divide-border-top{
+        @apply divide-border border-t;
+    }
+    .divide-border-bottom{
+        @apply divide-border border-b;
+    }
     /* page utils */
     /* forms */
+    .sort-select{
+        @apply bg-white border-2 border-gray-200 text-gray-900 text-sm rounded-lg block dark:bg-midnight-800 dark:border-midnight-700 no-ring dark:placeholder-gray-400 dark:text-white dark:focus:border-purple-500 focus:border-purple-500;
+    }
+    .icons-form-input-container{
+        @apply flex flex-row items-center border-[2px] bg-white border-gray-200 focus-within:border-purple-400 dark:bg-midnight-900 dark:border-midnight-700 px-3 rounded-md dark:focus-within:border-purple-400;
+    }
+    .icons-form-input{
+        @apply bg-white dark:bg-midnight-900 text-sm border-0 no-ring focus:border-0;
+    }
     .form-input{
         @apply rounded-md dark:bg-midnight-900 border-2 no-ring border-midnight-100 dark:border-midnight-700 disabled:opacity-50;
     }
@@ -49,10 +67,10 @@
         @apply text-white text-3xl font-medium my-4 text-start;
     }
     .newsletter-input{
-        @apply floating-form-input dark:border-midnight-950 focus:border-purple-500 bg-white/20 dark:bg-midnight-950/70 text-black dark:text-white;
+        @apply floating-form-input bg-white/70 dark:bg-midnight-950/70 text-black dark:text-white;
     }
     .newsletter-input-label{
-        @apply floating-form-label text-gray-500 dark:text-gray-400;
+        @apply floating-form-label text-gray-600 dark:text-gray-400;
     }
     /* forms */
     /* buttons */
@@ -75,6 +93,25 @@
         @apply flex flex-row items-center rounded-3xl font-semibold text-xs text-purple-500 hover:bg-purple-500 hover:text-white border-2 border-purple-500 px-5 py-1;
     }
     /* buttons */
+    /* info pages */
+    .info-page-h1{
+        @apply font-semibold text-3xl lg:text-4xl text-white text-center;
+    }
+    .info-page-h1-p{
+        @apply my-2 w-full lg:w-1/2 text-center text-white;
+    }
+    .info-page-h2{
+        @apply text-2xl;
+    }
+    .info-page-h2-p{
+        @apply text-sm my-2 font-light text-center;
+    }
+    /* info pages */
+    /* news pages */
+    .news-page-h2{
+        @apply text-lg font-semibold;
+    }
+    /* news pages */
     /* navbar */
     .scrolled-navbar-bg{
         @apply bg-midday-semitransparent dark:bg-midnight-900 lg:dark:bg-midnight-semitransparent;
