@@ -48,6 +48,12 @@
     .login-header{
         @apply text-white text-3xl font-medium my-4 text-start;
     }
+    .newsletter-input{
+        @apply floating-form-input dark:border-midnight-950 focus:border-purple-500 bg-white/20 dark:bg-midnight-950/70 text-black dark:text-white;
+    }
+    .newsletter-input-label{
+        @apply floating-form-label text-gray-500 dark:text-gray-400;
+    }
     /* forms */
     /* buttons */
     .text-button-link{
