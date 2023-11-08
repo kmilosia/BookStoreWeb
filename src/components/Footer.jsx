@@ -20,17 +20,7 @@ function Footer() {
     getFooterColumns()
   },[])
   return (
-    <footer className='flex flex-col items-center justify-center w-full bg-midnight-50 dark:bg-midnight-950'>
-      <div className='flex flex-col items-center justify-center w-full py-10 md:py-12 px-2 md:px-0 footer-bg footer-bg-light dark:footer-bg-dark'>
-        <h1 className='text-2xl default-text my-4 font-medium'>Zapisz się do newslettera</h1>
-        <form className='px-5 md:px-0 w-full flex flex-col items-center justify-center mb-4'>
-        <div className="relative my-1 w-full md:w-1/2 lg:w-1/3">
-            <input type="text" id='username-input' className="newsletter-input peer" placeholder=" " />
-            <label for='username-input' className="newsletter-input-label">Nazwa użytkownika</label>
-        </div>
-        <button className='w-full md:w-1/2 lg:w-1/3 purple-button'>Zapisz się</button>
-        </form>
-      </div>
+    <footer className='flex flex-col items-center justify-center w-full bg-midnight-50 dark:bg-midnight-950 divide-border-top'>
       <div className='w-full flex flex-col px-2 md:px-10 lg:px-16 pb-10 pt-5'>      
       <div className='w-full footer-layout-sm md:footer-layout-md lg:footer-layout-lg default-text py-0 md:py-10'>
 

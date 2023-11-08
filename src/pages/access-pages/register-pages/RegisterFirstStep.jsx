@@ -26,8 +26,8 @@ function RegisterFirstStep() {
                 <label for='password-input' className="floating-form-label">Hasło</label>
             </div>
             <div className="flex items-start justify-start w-full mt-4 mb-3">
-                <input id="newsletter-checkbox" name='checkbox' type="checkbox" value="" class="purple-checkbox mt-0.5"/>
-                <label for="newsletter-checkbox" className="checkbox-label my-0">Chcę otrzymywać informację o nowych promocjach na moją skrzynkę pocztową</label>
+                <input required id="newsletter-checkbox" name='checkbox' type="checkbox" value="" class="purple-checkbox mt-0.5"/>
+                <label for="newsletter-checkbox" className="checkbox-label my-0 flex flex-row"><span>Akceptuję</span> <Link to='/dokumenty/regulamin' className='whitespace-nowrap mx-1 text-purple-400 font-medium hover:text-purple-300'>regulamin sklepu</Link><span>internetowego</span></label>
             </div>
             <button className='purple-button w-full'>Zarejestruj się</button>
         </form>

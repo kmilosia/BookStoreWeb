@@ -2,7 +2,7 @@ import React from 'react';
 import {MdEmail} from 'react-icons/md'
 import {TbMessageCircle2Filled} from 'react-icons/tb'
 import {BsFillPersonFill,BsFillTelephoneFill} from 'react-icons/bs'
-import librarycontact from '../../assets/library-contact-page.jpg';
+import librarycontact from '../../assets/backgrounds/library-contact-page.jpg';
 import ElementScrollButton from '../../components/buttons/ElementScrollButton';
 import ContactElement from '../../components/info-page-elements/ContactElement';
 

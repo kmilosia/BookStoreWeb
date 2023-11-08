@@ -116,6 +116,17 @@
         @apply text-lg font-semibold;
     }
     /* news pages */
+    /* documents */
+    .document-header{
+        @apply text-3xl font-semibold;
+    }
+    .document-list-header{
+        @apply text-xl font-medium my-4 ml-5;
+    }
+    .document-list-item{
+        @apply text-base font-normal my-2;
+    }
+    /* documents */
     /* navbar */
     .scrolled-navbar-bg{
         @apply bg-midday-semitransparent dark:bg-midnight-900 lg:dark:bg-midnight-semitransparent;
@@ -171,6 +182,27 @@
 html{
     scroll-behavior: smooth;
 }
+ol{
+    counter-reset: item;
+}
+ol > li {
+    counter-increment: item;
+    list-style: decimal;
+}
+
+ol ol > li {
+    display: block;
+}
+
+ol ol > li:before {
+    content: counters(item, ".") ". ";
+    margin-left: 20px;
+}
+/* ol li {
+    list-style: decimal;
+    list-style-position: inside;
+    display: list-item;
+} */
 .font-delius{
     font-family: 'Delius Swash Caps', sans-serif;
 }

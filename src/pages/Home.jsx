@@ -1,15 +1,16 @@
 import React from 'react'
 import Carousel from 'react-grid-carousel'
 import BookCarouselItem from '../components/page-elements/BookCarouselItem'
-import HomeAdsCarousel from '../components/carousel/HomeAdsCarousel'
 import InfiniteCarousel from '../components/carousel/InfiniteCarousel'
 
 function Home() {
   return (
-    <div className='min-h-screen pb-3 flex flex-col transition-colors bg-midnight-50 dark:bg-midnight-950'>
+    <div className='min-h-screen flex flex-col transition-colors bg-midnight-50 dark:bg-midnight-950'>
+      <div className='flex flex-col mt-4'>
       <InfiniteCarousel />
       <InfiniteCarousel isReversed={true}/>
-      <div className='px-0 lg:px-5 py-5 flex flex-col text-midnight-950 dark:text-white'>
+      </div>
+      <div className='px-0 lg:px-5 mt-5 mb-10 flex flex-col text-midnight-950 dark:text-white'>
       <h1 className='text-2xl font-semibold mx-5 my-2 lg:my-5'>Bestsellery</h1>
         <Carousel cols={5} rows={1} gap={20}>
             <Carousel.Item>
@@ -38,6 +39,16 @@ function Home() {
               title="Kobieta we mnie" author="Britney Spears" price="49.99" score={4} />
             </Carousel.Item>
           </Carousel>
+      </div>
+      <div className='flex flex-col items-center justify-center w-full py-10 md:py-12 px-2 md:px-0 footer-bg footer-bg-light dark:footer-bg-dark'>
+        <h1 className='text-2xl default-text my-4 font-medium'>Zapisz się do newslettera</h1>
+        <form className='px-5 md:px-0 w-full flex flex-col items-center justify-center mb-4'>
+        <div className="relative my-1 w-full md:w-1/2 lg:w-1/3">
+            <input type="text" id='email-input' name='email' className="newsletter-input peer" placeholder=" " />
+            <label htmlFor='email-input' className="newsletter-input-label">Twój adres e-mail</label>
+        </div>
+        <button className='w-full md:w-1/2 lg:w-1/3 purple-button'>Zapisz się</button>
+        </form>
       </div>
     </div>
   )
