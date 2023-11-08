@@ -1,12 +1,14 @@
 import React from 'react'
 import Carousel from 'react-grid-carousel'
 import BookCarouselItem from '../components/page-elements/BookCarouselItem'
-import HomeAdsCarousel from '../components/page-elements/HomeAdsCarousel'
+import HomeAdsCarousel from '../components/carousel/HomeAdsCarousel'
+import InfiniteCarousel from '../components/carousel/InfiniteCarousel'
 
 function Home() {
   return (
     <div className='min-h-screen pb-3 flex flex-col transition-colors bg-midnight-50 dark:bg-midnight-950'>
-      <HomeAdsCarousel />
+      <InfiniteCarousel />
+      <InfiniteCarousel isReversed={true}/>
       <div className='px-0 lg:px-5 py-5 flex flex-col text-midnight-950 dark:text-white'>
       <h1 className='text-2xl font-semibold mx-5 my-2 lg:my-5'>Bestsellery</h1>
         <Carousel cols={5} rows={1} gap={20}>
