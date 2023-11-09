@@ -137,6 +137,9 @@
     .default-navbar-bg{
         @apply bg-white dark:bg-midnight-900 lg:dark:bg-midnight-950;
     }
+    .tooltip-button{
+        @apply absolute bottom-[-2rem] left-1/2 transform -translate-x-1/2 rounded-md items-center justify-center text-xs px-2 py-1 text-midnight-800 bg-white whitespace-nowrap dark:bg-midnight-700 dark:text-white hidden group-hover:lg:flex;
+    }
     /* navbar */
     /* footer */
     .footer-bg{
@@ -164,9 +167,6 @@
     }
     /* footer */
     /* animations */
-    .tooltip-button{
-        @apply absolute bottom-[-2rem] left-1/2 transform -translate-x-1/2 rounded-md items-center justify-center text-xs px-2 py-1 text-midnight-800 bg-white whitespace-nowrap dark:bg-midnight-700 dark:text-white hidden group-hover:flex;
-    }
     .underline-hover{
         @apply relative before:content-[''] before:absolute before:block before:w-full before:h-[2px] before:bottom-[-1px] before:left-0 before:bg-white before:scale-x-0 before:transition-all hover:before:scale-x-100;
     }

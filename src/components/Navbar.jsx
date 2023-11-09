@@ -22,7 +22,15 @@ function Navbar() {
     const [isNavbarOpened, setIsNavbarOpened] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
     const [navHeight, setNavHeight] = useState(0)
-    
+
+    const handleIconButton = () => {
+      if(isLoginModal){
+        setIsLoginModal(false)
+      }
+      if(isSearchModal){
+        setIsSearchModal(false)
+      }
+    }
     const handleLoginModal = () => {
       if(isLogged){
         navigate('/konto')
@@ -58,6 +66,7 @@ function Navbar() {
       window.scrollTo(0,0)
     }
     const toggleTheme = () => {
+        handleIconButton()
         setIsDarkTheme((prevTheme) => {
           const newTheme = !prevTheme;
           localStorage.setItem('color-theme', newTheme ? 'dark' : 'light');
@@ -84,48 +93,57 @@ function Navbar() {
         <NavbarMenuLinks />
        </ul>
       <div className='flex flex-row items-center justify-end'>
+        
         <div className='hidden lg:flex flex-row items-center justify-end'>
+
         <button className='navbar-menu-icon group' onClick={toggleTheme}>
           <div className='tooltip-button'>
           {isDarkTheme ? <span>Tryb nocny</span> : <span>Tryb dzienny</span>}
           </div>
         {isDarkTheme ? <FiMoon /> : <FiSun />}
         </button>
+
         <button onClick={handleLoginModal} className='navbar-menu-icon group'>
           <div className='tooltip-button'>
             <span>Konto</span>
           </div>       
           <BiUser />
         </button>
-        <Link to='/ulubione' className='navbar-menu-icon group'>
+
+        <Link onClick={handleIconButton} to='/ulubione' className='navbar-menu-icon group'>
           <div className='tooltip-button'>
             <span>Ulubione</span>
           </div>
           <BiHeart />
         </Link>
-        <Link to='/zamowienie/koszyk' className='navbar-menu-icon group'>
+
+        <Link onClick={handleIconButton} to='/zamowienie/koszyk' className='navbar-menu-icon group'>
           <div className='tooltip-button'>
             <span>Koszyk</span>
           </div>
           <BiShoppingBag/>
         </Link>
-        <Link to='/biblioteka' className='navbar-menu-icon group'>
+
+        <Link onClick={handleIconButton} to='/biblioteka' className='navbar-menu-icon group'>
           <div className='tooltip-button'>
             <span>Bilbioteka</span>
           </div>
           <LuBookMarked/>
         </Link>
+
         <button onClick={handleSearchModal} className='navbar-menu-icon group'>
           <div className='tooltip-button'>
             <span>Szukaj</span>
           </div>
           <HiOutlineSearch/>
         </button>
+        
         </div>
         <button className='navbar-menu-icon inline-block lg:hidden' onClick={toggleNavbar}>
           {isNavbarOpened ? <AiOutlineClose/> : <AiOutlineMenu />}        
         </button>      
       </div>   
+
       </div>
       {isNavbarOpened &&
       <div className='flex flex-col w-full py-2'>
@@ -134,15 +152,58 @@ function Navbar() {
        </ul>
       </div>
       }
-      {isLoginModal &&
-      <AccessModal />
+     
+    </nav>
+    {isLoginModal &&
+      <AccessModal navHeight={navHeight}/>
       }
       {isSearchModal &&
-      <SearchModal />
+      <SearchModal navHeight={navHeight}/>
       }
-    </nav>
-    <div className='fixed bottom-0 right-0 h-auto w-full bg-white z-[1000]'>
-      <div className='flex flex-row w-full'>
+    <div className='fixed bottom-0 right-0 h-auto w-full bg-white dark:bg-midnight-900 z-[1000] lg:hidden'>
+      <div className='flex flex-row w-full justify-between px-5 py-5'>
+
+        <button onClick={handleLoginModal} className='navbar-menu-icon group'>
+          <div className='tooltip-button'>
+            <span>Konto</span>
+          </div>       
+          <BiUser />
+        </button>
+
+        <Link onClick={handleIconButton} to='/zamowienie/koszyk' className='navbar-menu-icon group'>
+          <div className='tooltip-button'>
+            <span>Koszyk</span>
+          </div>
+          <BiShoppingBag/>
+        </Link>
+
+        <Link onClick={handleIconButton} to='/biblioteka' className='navbar-menu-icon group'>
+          <div className='tooltip-button'>
+            <span>Bilbioteka</span>
+          </div>
+          <LuBookMarked/>
+        </Link>
+
+        <Link onClick={handleIconButton} to='/ulubione' className='navbar-menu-icon group'>
+          <div className='tooltip-button'>
+            <span>Ulubione</span>
+          </div>
+          <BiHeart />
+        </Link>
+
+        <button onClick={handleSearchModal} className='navbar-menu-icon group'>
+          <div className='tooltip-button'>
+            <span>Szukaj</span>
+          </div>
+          <HiOutlineSearch/>
+        </button>
+
+        <button className='navbar-menu-icon group' onClick={toggleTheme}>
+          <div className='tooltip-button'>
+          {isDarkTheme ? <span>Tryb nocny</span> : <span>Tryb dzienny</span>}
+          </div>
+        {isDarkTheme ? <FiMoon /> : <FiSun />}
+        </button>
 
       </div>
     </div>
