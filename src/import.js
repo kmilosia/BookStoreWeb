@@ -33,8 +33,8 @@ export {default as CheckoutPayment} from './pages/checkout-pages/CheckoutPayment
 export {default as CheckoutConfirmation} from './pages/checkout-pages/CheckoutConfirmation'
 export {default as CheckoutLogin} from './pages/checkout-pages/CheckoutLogin'
 
-export {default as Contact} from './pages/info-pages/Contact'
-export {default as About} from './pages/info-pages/About'
+export {default as Contact} from './pages/Contact'
+export {default as About} from './pages/About'
 
 export {default as News} from './pages/news-pages/News'
 export {default as AllNews} from './pages/news-pages/AllNews'

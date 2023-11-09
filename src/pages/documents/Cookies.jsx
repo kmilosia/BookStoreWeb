@@ -3,7 +3,7 @@ import React from 'react'
 function Cookies() {
   return (
     <div className='default-page-container'>
-    <h1 class="document-header">Polityka plików Cookies w sklepie Spellarium</h1>
+    <h1 class="document-header">O Cookies</h1>
     <ol>
         <li className='document-list-header'> Wykorzystanie plików Cookies
             <ol>
