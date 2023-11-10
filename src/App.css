@@ -129,10 +129,10 @@
     /* documents */
     /* navbar */
     .navbar-menu-icon{
-        @apply mx-2 text-xl text-midnight-950  transition-all hover:text-purple-500 dark:text-midnight-50 dark:hover:text-purple-500 relative;
+        @apply mx-2 text-2xl lg:text-xl 2xl:text-2xl text-midnight-950  transition-all hover:text-purple-500 dark:text-midnight-50 dark:hover:text-purple-500 relative;
     }
     .tooltip-button{
-        @apply absolute bottom-[-2rem] left-1/2 transform -translate-x-1/2 rounded-md items-center justify-center text-xs px-2 py-1 text-midnight-800 bg-white whitespace-nowrap dark:bg-midnight-700 dark:text-white hidden group-hover:lg:flex;
+        @apply absolute bottom-[-2rem] left-1/2 transform -translate-x-1/2 rounded-md items-center justify-center text-xs 2xl:text-sm px-2 py-1 text-midnight-800 bg-white whitespace-nowrap dark:bg-midnight-700 dark:text-white hidden group-hover:lg:flex;
     }
     /* navbar */
     /* footer */ 

@@ -1,90 +1,23 @@
 import React from 'react'
 import Carousel from 'react-grid-carousel'
-import comedy from '../assets/categories/comedy.png'
-import fantasy from '../assets/categories/fantasy.png'
-import horror from '../assets/categories/horror.png'
-import kids from '../assets/categories/kids.png'
-import lifestyle from '../assets/categories/lifestyle.png'
-import poetry from '../assets/categories/poetry.png'
-import romance from '../assets/categories/romance.png'
-import science from '../assets/categories/science.png'
-import scifi from '../assets/categories/scifi.png'
-import teenagers from '../assets/categories/teenagers.png'
-import history from '../assets/categories/history.png'
-import biography from '../assets/categories/biography.png'
-import cooking from '../assets/categories/cooking.png'
-import custom from '../assets/categories/custom.png'
-import comics from '../assets/categories/comics.png'
-import school from '../assets/categories/school.png'
 import book from '../assets/categories/book.png'
 import ebook from '../assets/categories/ebook.png'
-import CategoryCarouselItem from '../components/carousel/CategoryCarouselItem'
 import BookCarouselItem from '../components/carousel/BookCarouselItem'
-import { Link } from 'react-router-dom'
+import StoreTypeLink from '../components/links/StoreTypeLink'
+import CategoryCarousel from '../components/carousel/CategoryCarousel'
 
 function Store() {
   return (
-    <div className='default-page-wrapper flex flex-col px-1 lg:px-4 py-4 overflow-hidden'>
+    <div className='default-page-wrapper'>
+      <div className='default-page-container'>
         <div className='max-w-full px-1 lg:px-2 py-2'>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5 mx-5'>
-        <Link to='/ksiazki' className='flex flex-col items-center bg-sunrise-300 cursor-pointer rounded-md px-3 py-5 text-midnight-900 dark:bg-midnight-700 dark:text-midnight-200 hover:bg-sunrise-400 dark:hover:bg-midnight-800'>
-          <img src={book} className='w-2/5 my-2'/>
-          <h1 className='font-semibold text-xl my-2'>Przeglądaj nasze książki</h1>
-        </Link>
-        <Link to='/e-booki' className='flex flex-col items-center bg-sunrise-300 cursor-pointer rounded-md px-3 py-5 text-midnight-900 dark:bg-midnight-700 dark:text-midnight-200 hover:bg-sunrise-400 dark:hover:bg-midnight-800'>
-          <img src={ebook} className='w-2/5 my-2'/>
-          <h1 className='font-semibold text-xl my-2'>Przeglądaj nasze e-booki</h1>
-        </Link>
-        </div>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
+          <StoreTypeLink src={book} path="/ksiazki" title="Przeglądaj książki" />
+          <StoreTypeLink src={ebook} path="/e-booki" title="Przeglądaj e-booki" />
+        </div>       
         <div className='my-5 flex flex-col'>
-        <h1 className='text-2xl font-semibold mx-5 mt-3 mb-5 lg:mt-5'>Popularne kategorie</h1>
-        <Carousel cols={5} rows={1} gap={20}>
-          <Carousel.Item>
-            <CategoryCarouselItem src={fantasy} title="Fantasy" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <CategoryCarouselItem src={comedy} title="Komedia" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <CategoryCarouselItem src={horror} title="Horror" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <CategoryCarouselItem src={kids} title="Dla Dzieci" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <CategoryCarouselItem src={scifi} title="Science Fiction" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <CategoryCarouselItem src={teenagers} title="Dla Młodzieży" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <CategoryCarouselItem src={science} title="Nauka" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <CategoryCarouselItem src={romance} title="Romans" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <CategoryCarouselItem src={poetry} title="Poezja" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <CategoryCarouselItem src={history} title="Historia" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <CategoryCarouselItem src={school} title="Podręczniki" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <CategoryCarouselItem src={custom} title="Obyczajowe" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <CategoryCarouselItem src={comics} title="Komiks" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <CategoryCarouselItem src={cooking} title="Kulinarne" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <CategoryCarouselItem src={biography} title="Biografia" />
-          </Carousel.Item>
-        </Carousel>
+        <h1 className='text-2xl font-semibold mt-3 mb-5 lg:mt-5'>Popularne kategorie</h1>
+        <CategoryCarousel />
         </div>
         <div className='flex flex-col my-5'>
         <h1 className='text-2xl font-semibold mx-5 mt-3 mb-5 lg:mt-5'>Popularne książki</h1>
@@ -145,6 +78,7 @@ function Store() {
               title="Kobieta we mnie" author="Britney Spears" price="49.99" score={4} />
             </Carousel.Item>
           </Carousel>
+        </div>
         </div>
         </div>
     </div>

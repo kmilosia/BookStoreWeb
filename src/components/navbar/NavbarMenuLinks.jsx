@@ -1,15 +1,15 @@
 import React from 'react'
 import NavbarMenuLink from './NavbarMenuLink'
 
-function NavbarMenuLinks() {
+function NavbarMenuLinks({toggleNavbar}) {
   return (
     <>
-    <NavbarMenuLink path="/sklep" title="Sklep" />
-    <NavbarMenuLink path="/wypozyczalnia" title="Wypożyczalnia" />
-    <NavbarMenuLink path="/ksiazki" title="Książki" />
-    <NavbarMenuLink path="/e-booki" title="E-Booki" />
-    <NavbarMenuLink path="/kategorie" title="Kategorie" />
-    <NavbarMenuLink path="/wiadomosci" title="Wiadomości" />
+    <NavbarMenuLink toggleNavbar={toggleNavbar} path="/sklep" title="Sklep" />
+    <NavbarMenuLink toggleNavbar={toggleNavbar} path="/wypozyczalnia" title="Wypożyczalnia" />
+    <NavbarMenuLink toggleNavbar={toggleNavbar} path="/ksiazki" title="Książki" />
+    <NavbarMenuLink toggleNavbar={toggleNavbar} path="/e-booki" title="E-Booki" />
+    <NavbarMenuLink toggleNavbar={toggleNavbar} path="/kategorie" title="Kategorie" />
+    <NavbarMenuLink toggleNavbar={toggleNavbar} path="/wiadomosci" title="Wiadomości" />
   </>
   )
 }
