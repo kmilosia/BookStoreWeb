@@ -11,6 +11,7 @@ import SearchModal from '../modals/SearchModal'
 import PageTopScrollButton from '../components/buttons/PageTopScrollButton'
 import LogoButton from './buttons/LogoButton'
 import NavbarMenuLinks from './navbar/NavbarMenuLinks'
+import NavbarMenuIcons from './navbar/NavbarMenuIcons'
 
 function Navbar() {
     const navigate = useNavigate()
@@ -92,53 +93,10 @@ function Navbar() {
        <ul className='flex-row justify-center hidden lg:flex'>
         <NavbarMenuLinks />
        </ul>
-      <div className='flex flex-row items-center justify-end'>
-        
-        <div className='hidden lg:flex flex-row items-center justify-end'>
-
-        <button className='navbar-menu-icon group' onClick={toggleTheme}>
-          <div className='tooltip-button'>
-          {isDarkTheme ? <span>Tryb nocny</span> : <span>Tryb dzienny</span>}
-          </div>
-        {isDarkTheme ? <FiMoon /> : <FiSun />}
-        </button>
-
-        <button onClick={handleLoginModal} className='navbar-menu-icon group'>
-          <div className='tooltip-button'>
-            <span>Konto</span>
-          </div>       
-          <BiUser />
-        </button>
-
-        <Link onClick={handleIconButton} to='/ulubione' className='navbar-menu-icon group'>
-          <div className='tooltip-button'>
-            <span>Ulubione</span>
-          </div>
-          <BiHeart />
-        </Link>
-
-        <Link onClick={handleIconButton} to='/zamowienie/koszyk' className='navbar-menu-icon group'>
-          <div className='tooltip-button'>
-            <span>Koszyk</span>
-          </div>
-          <BiShoppingBag/>
-        </Link>
-
-        <Link onClick={handleIconButton} to='/biblioteka' className='navbar-menu-icon group'>
-          <div className='tooltip-button'>
-            <span>Bilbioteka</span>
-          </div>
-          <LuBookMarked/>
-        </Link>
-
-        <button onClick={handleSearchModal} className='navbar-menu-icon group'>
-          <div className='tooltip-button'>
-            <span>Szukaj</span>
-          </div>
-          <HiOutlineSearch/>
-        </button>
-        
-        </div>
+      <div className='flex flex-row items-center justify-end'>   
+      <div className='hidden lg:flex flex-row items-center justify-end'> 
+        <NavbarMenuIcons toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} handleIconButton={handleIconButton} handleLoginModal={handleLoginModal} handleSearchModal={handleSearchModal} />
+      </div> 
         <button className='navbar-menu-icon inline-block lg:hidden' onClick={toggleNavbar}>
           {isNavbarOpened ? <AiOutlineClose/> : <AiOutlineMenu />}        
         </button>      
@@ -162,49 +120,7 @@ function Navbar() {
       }
     <div className='fixed bottom-0 right-0 h-auto w-full bg-white dark:bg-midnight-900 z-[1000] lg:hidden'>
       <div className='flex flex-row w-full justify-between px-5 py-5'>
-
-        <button onClick={handleLoginModal} className='navbar-menu-icon group'>
-          <div className='tooltip-button'>
-            <span>Konto</span>
-          </div>       
-          <BiUser />
-        </button>
-
-        <Link onClick={handleIconButton} to='/zamowienie/koszyk' className='navbar-menu-icon group'>
-          <div className='tooltip-button'>
-            <span>Koszyk</span>
-          </div>
-          <BiShoppingBag/>
-        </Link>
-
-        <Link onClick={handleIconButton} to='/biblioteka' className='navbar-menu-icon group'>
-          <div className='tooltip-button'>
-            <span>Bilbioteka</span>
-          </div>
-          <LuBookMarked/>
-        </Link>
-
-        <Link onClick={handleIconButton} to='/ulubione' className='navbar-menu-icon group'>
-          <div className='tooltip-button'>
-            <span>Ulubione</span>
-          </div>
-          <BiHeart />
-        </Link>
-
-        <button onClick={handleSearchModal} className='navbar-menu-icon group'>
-          <div className='tooltip-button'>
-            <span>Szukaj</span>
-          </div>
-          <HiOutlineSearch/>
-        </button>
-
-        <button className='navbar-menu-icon group' onClick={toggleTheme}>
-          <div className='tooltip-button'>
-          {isDarkTheme ? <span>Tryb nocny</span> : <span>Tryb dzienny</span>}
-          </div>
-        {isDarkTheme ? <FiMoon /> : <FiSun />}
-        </button>
-
+      <NavbarMenuIcons toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} handleIconButton={handleIconButton} handleLoginModal={handleLoginModal} handleSearchModal={handleSearchModal} />
       </div>
     </div>
     {isScrolled &&

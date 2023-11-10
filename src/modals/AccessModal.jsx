@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 function AccessModal({isScrolled}) {
   return (
-    <div className={`fixed z-50 w-full lg:w-max bottom-12 lg:top-20 lg:bottom-auto right-24 px-5 py-5 rounded-none lg:rounded-md flex
+    <div className={`fixed z-50 w-full lg:w-max bottom-12 lg:top-20 lg:bottom-auto right-32 px-5 py-5 rounded-none lg:rounded-md flex
      flex-col items-center justify-center lg:shadow-lg ${isScrolled ? 'scrolled-bg' : 'default-bg'} `}>
         <Link to='/dostep/logowanie' className='rounded-purple-button'>Zaloguj się</Link>
         <p className='text-xs mt-2 dark:text-white'>Nie masz jeszcze konta?</p>

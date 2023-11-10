@@ -11,14 +11,12 @@ function FooterColumn(props) {
     try{
         const response = await axiosClient.get(`/FooterLinks/column-id/${props.columnId}`)
         setFooterLinks(response.data)
-        console.log(response.data);
       }catch(err){
         console.error(err)
     }  
   }
   useEffect(() => {
-    console.log(props.columnId);
-    getFooterLinks()
+    // getFooterLinks()
   },[])
   return (
     <div className='flex flex-col items-center md:items-start my-3 md:my-0'>

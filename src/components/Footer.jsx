@@ -17,7 +17,7 @@ function Footer() {
     }  
   }
   useEffect(() => {
-    getFooterColumns()
+    // getFooterColumns()
   },[])
   return (
     <footer className='flex flex-col items-center justify-center w-full bg-midnight-50 dark:bg-midnight-900 divide-border-top'>
