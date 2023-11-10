@@ -1,6 +1,6 @@
 import React from 'react'
 import Select from '../components/elements/Select'
-import BookElement from '../components/page-elements/BookElement'
+import BookElement from '../components/products/BookElement'
 import search from '../assets/search.png'
 import {HiOutlineSearch} from 'react-icons/hi'
 

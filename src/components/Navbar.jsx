@@ -85,7 +85,7 @@ function Navbar() {
     window.addEventListener('scroll', changeNavbarBackground)
     return (
       <>
-    <nav ref={ref} className={`flex flex-col sticky w-full py-1 px-2 lg:px-4 top-0 backdrop-blur-sm z-[100] lg:shadow-lg ${isScrolled ? 'scrolled-navbar-bg' : 'default-navbar-bg'}`}>
+    <nav ref={ref} className={`flex flex-col sticky w-full py-1 px-2 lg:px-4 top-0 backdrop-blur-sm z-[100] lg:shadow-lg ${isScrolled ? 'scrolled-bg' : 'default-bg'}`}>
 
       <div className='grid grid-cols-2 lg:grid-cols-[1fr_auto_1fr] gap-10 px-4 my-4 items-center'>    
        <LogoButton />
@@ -155,10 +155,10 @@ function Navbar() {
      
     </nav>
     {isLoginModal &&
-      <AccessModal navHeight={navHeight}/>
+      <AccessModal isScrolled={isScrolled}/>
       }
       {isSearchModal &&
-      <SearchModal navHeight={navHeight}/>
+      <SearchModal isScrolled={isScrolled}/>
       }
     <div className='fixed bottom-0 right-0 h-auto w-full bg-white dark:bg-midnight-900 z-[1000] lg:hidden'>
       <div className='flex flex-row w-full justify-between px-5 py-5'>

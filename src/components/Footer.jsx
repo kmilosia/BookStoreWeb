@@ -20,7 +20,7 @@ function Footer() {
     getFooterColumns()
   },[])
   return (
-    <footer className='flex flex-col items-center justify-center w-full bg-midnight-50 dark:bg-midnight-950 divide-border-top'>
+    <footer className='flex flex-col items-center justify-center w-full bg-midnight-50 dark:bg-midnight-900 divide-border-top'>
       <div className='w-full flex flex-col px-2 md:px-10 lg:px-16 pb-10 pt-5'>      
       <div className='w-full footer-layout-sm md:footer-layout-md lg:footer-layout-lg default-text py-0 md:py-10'>
 

@@ -18,8 +18,8 @@ import comics from '../assets/categories/comics.png'
 import school from '../assets/categories/school.png'
 import book from '../assets/categories/book.png'
 import ebook from '../assets/categories/ebook.png'
-import CategoryCarouselItem from '../components/page-elements/CategoryCarouselItem'
-import BookCarouselItem from '../components/page-elements/BookCarouselItem'
+import CategoryCarouselItem from '../components/carousel/CategoryCarouselItem'
+import BookCarouselItem from '../components/carousel/BookCarouselItem'
 import { Link } from 'react-router-dom'
 
 function Store() {

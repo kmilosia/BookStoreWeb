@@ -4,7 +4,7 @@ import {BsShareFill,BsArrowDownShort,BsArrowUpShort} from 'react-icons/bs'
 import Stars from '../components/elements/Stars'
 import Carousel from 'react-grid-carousel'
 import Review from '../components/page-elements/Review';
-import BookItemCarousel from '../components/page-elements/BookItemCarousel';
+import BookItemCarousel from '../components/carousel/BookItemCarousel';
 
 
 

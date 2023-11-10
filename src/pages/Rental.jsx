@@ -16,8 +16,8 @@ import cooking from '../assets/categories/cooking.png'
 import custom from '../assets/categories/custom.png'
 import comics from '../assets/categories/comics.png'
 import school from '../assets/categories/school.png'
-import CategoryCarouselItem from '../components/page-elements/CategoryCarouselItem'
-import ElectronicBookCarouselItem from '../components/page-elements/ElectronicBookCarouselItem'
+import CategoryCarouselItem from '../components/carousel/CategoryCarouselItem'
+import ElectronicBookCarouselItem from '../components/carousel/ElectronicBookCarouselItem'
 
 function Rental() {
   return (

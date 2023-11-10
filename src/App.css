@@ -131,31 +131,11 @@
     .navbar-menu-icon{
         @apply mx-2 text-xl text-midnight-950  transition-all hover:text-purple-500 dark:text-midnight-50 dark:hover:text-purple-500 relative;
     }
-    .scrolled-navbar-bg{
-        @apply bg-midday-semitransparent dark:bg-midnight-900 lg:dark:bg-midnight-semitransparent;
-    }
-    .default-navbar-bg{
-        @apply bg-white dark:bg-midnight-900 lg:dark:bg-midnight-950;
-    }
     .tooltip-button{
         @apply absolute bottom-[-2rem] left-1/2 transform -translate-x-1/2 rounded-md items-center justify-center text-xs px-2 py-1 text-midnight-800 bg-white whitespace-nowrap dark:bg-midnight-700 dark:text-white hidden group-hover:lg:flex;
     }
     /* navbar */
-    /* footer */
-    .footer-bg{
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    .footer-bg-dark{
-        background-position: center;
-        background-image: url("assets/magic-forest.jpg");
-        box-shadow: inset 0 0 0 2000px rgba(24, 24, 38, 0.8);
-    }
-    .footer-bg-light{
-        background-position: bottom;
-        background-image: url("assets/clouds-peach.jpg");
-        box-shadow: inset 0 0 0 2000px rgba(246, 246, 249, 0.5);
-    }  
+    /* footer */ 
     .footer-layout-sm{
         @apply flex flex-col items-center;
     }
@@ -177,6 +157,24 @@
         @apply underline-hover before:bg-purple-500;
     }
     /* animations */ 
+    /* background */
+    .default-bg{
+        @apply bg-white dark:bg-midnight-900;
+    }
+    .scrolled-bg{
+        @apply bg-white/80 dark:bg-midnight-900/80;
+    }
+    .newsletter-bg-dark{
+        background-position: center;
+        background-image: url("assets/backgrounds/magic-forest.jpg");
+        box-shadow: inset 0 0 0 2000px rgba(24, 24, 38, 0.8);
+    }
+    .newsletter-bg-light{
+        background-position: bottom;
+        background-image: url("assets/backgrounds/clouds-peach.jpg");
+        box-shadow: inset 0 0 0 2000px rgba(246, 246, 249, 0.5);
+    } 
+    /* background */
 }
 *{
     font-family: 'Poppins', sans-serif;

@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import {FiArrowUpRight} from 'react-icons/fi'
 import Carousel from 'react-grid-carousel'
-import LibraryBookCarouselItem from '../components/page-elements/LibraryBookCarouselItem'
+import LibraryBookCarouselItem from '../components/carousel/LibraryBookCarouselItem'
 import { Link } from 'react-router-dom'
 
 function Library() {
