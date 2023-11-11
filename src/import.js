@@ -13,6 +13,9 @@ export {default as ElectronicBooks} from './pages/ElectronicBooks'
 export {default as RentalElectronicBook} from './pages/RentalElectronicBook'
 export {default as RentalBooks} from './pages/RentalBooks'
 
+export {default as Categories} from './pages/categories/Categories'
+export {default as Category} from './pages/categories/Category'
+
 export {default as Access} from './pages/access-pages/Access'
 export {default as Login} from './pages/access-pages/Login'
 
