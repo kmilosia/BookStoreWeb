@@ -1,5 +1,5 @@
 import React from 'react'
-import Stars from '../elements/Stars'
+import Stars from '../../elements/Stars'
 
 function BookItemCarousel(props) {
   return (

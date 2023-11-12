@@ -2,23 +2,20 @@ import React from 'react'
 import Carousel from 'react-grid-carousel'
 import book from '../assets/categories/book.png'
 import ebook from '../assets/categories/ebook.png'
-import BookCarouselItem from '../components/carousel/BookCarouselItem'
+import categories from '../assets/categories/categories.png'
+import BookCarouselItem from '../components/carousel/books-carousel/BookCarouselItem'
 import StoreTypeLink from '../components/links/StoreTypeLink'
-import CategoryCarousel from '../components/carousel/CategoryCarousel'
 
 function Store() {
   return (
     <div className='default-page-wrapper'>
       <div className='default-page-container'>
         <div className='max-w-full px-1 lg:px-2 py-2'>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
           <StoreTypeLink src={book} path="/ksiazki" title="Przeglądaj książki" />
           <StoreTypeLink src={ebook} path="/e-booki" title="Przeglądaj e-booki" />
+          <StoreTypeLink src={categories} path="/kategorie" title="Przeglądaj kategorie" />
         </div>       
-        <div className='my-5 flex flex-col'>
-        <h1 className='text-2xl font-semibold mt-3 mb-5 lg:mt-5'>Popularne kategorie</h1>
-        <CategoryCarousel />
-        </div>
         <div className='flex flex-col my-5'>
         <h1 className='text-2xl font-semibold mx-5 mt-3 mb-5 lg:mt-5'>Popularne książki</h1>
           <Carousel cols={5} rows={1} gap={20}>

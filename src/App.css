@@ -101,6 +101,9 @@
     .carousel-header{
         @apply text-2xl font-semibold mt-3 mb-5 lg:mt-5;
     }
+    .carousel-element{
+        @apply flex flex-col my-2;
+    }
     /* pages */
     /* info pages */
     .info-page-h1{

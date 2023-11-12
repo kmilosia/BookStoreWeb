@@ -4,9 +4,13 @@ import { HiOutlineChevronLeft } from 'react-icons/hi'
 function LeftArrowCarousel(props) {
   const { className, style, onClick } = props;
   return (
-    <button onClick={onClick} className='absolute text-3xl flex justify-center rounded-es-md rounded-ss-md items-center bg-white/50 dark:bg-midnight-950/50 dark:hover:bg-midnight-950/80 text-midnight-900/50 dark:text-white px-1 top-0 left-0 h-full w-max z-[10000] hover:bg-white/80' style={{ ...style }}>
+    <>
+    {onClick &&
+    <button onClick={onClick} className='absolute text-xl flex justify-center rounded-3xl items-center bg-midnight-900/20 hover:bg-midnight-950/50 dark:bg-white/20 dark:hover:bg-white/50 text-white p-2 top-1/2 transform -translate-y-1/2 -left-2 h-max w-max z-[10000]' style={{ ...style }}>
         <HiOutlineChevronLeft />
     </button>
+    }
+    </>
   )
 }
 

@@ -2,15 +2,15 @@ import React from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import RightArrowCarousel from '../elements/RightArrowCarousel';
-import LeftArrowCarousel from '../elements/LeftArrowCarousel';
-import { booksData } from '../../utils/data';
+import RightArrowCarousel from '../../elements/RightArrowCarousel';
+import LeftArrowCarousel from '../../elements/LeftArrowCarousel';
+import { booksData } from '../../../utils/data';
 import BookCarouselItem from './BookCarouselItem';
 
-function BooksCarousel() {
+function BooksCarousel(props) {
     const settings = {
         dots: false,
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToShow: 5,
         slidesToScroll: 5,
@@ -24,7 +24,6 @@ function BooksCarousel() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          infinite: true,
         },
       },
       {
@@ -40,7 +39,7 @@ function BooksCarousel() {
       <Slider {...settings}>
         {booksData.map((item, index) => {
             return (
-                <BookCarouselItem key={index} title={item.title} url={item.url} score={item.score} price={item.price} author={item.author}/>
+                <BookCarouselItem key={index} title={item.title} url={item.url} score={item.score} price={item.price} author={item.author} ebook={props.ebook}/>
             )
         })}
   </Slider>

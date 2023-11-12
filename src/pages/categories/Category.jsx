@@ -3,7 +3,7 @@ import { scrollTop } from '../../utils/functions/scrollTop'
 import { useParams } from 'react-router-dom'
 import PageHeader from '../../components/page-elements/PageHeader'
 import {categoryData} from '../../utils/data'
-import BooksCarousel from '../../components/carousel/BooksCarousel'
+import BooksCarousel from '../../components/carousel/books-carousel/BooksCarousel'
 
 function Category() {
     const { title } = useParams()
@@ -23,6 +23,8 @@ function Category() {
         <h1 className='carousel-header'>Najpopularniejsze</h1>
         <BooksCarousel />
         <h1 className='carousel-header'>Najnowsze</h1>
+        <BooksCarousel />
+        <h1 className='carousel-header'>Najlepiej oceniane</h1>
         <BooksCarousel />
       </div>
       </div>

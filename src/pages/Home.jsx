@@ -1,8 +1,8 @@
 import React from 'react'
 import Carousel from 'react-grid-carousel'
-import BookCarouselItem from '../components/carousel/BookCarouselItem'
-import InfiniteCarousel from '../components/carousel/InfiniteCarousel'
+import BookCarouselItem from '../components/carousel/books-carousel/BookCarouselItem'
 import NewsletterForm from '../components/page-elements/NewsletterForm'
+import InfiniteCarousel from '../components/carousel/infinite-carousel/InfiniteCarousel'
 
 function Home() {
   return (
