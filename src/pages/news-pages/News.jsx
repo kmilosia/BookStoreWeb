@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom'
 import LatestNewsElement from '../../components/news-elements/LatestNewsElement'
 import NewsElement from '../../components/news-elements/NewsElement'
 import PopularNewsColumn from '../../components/news-elements/PopularNewsColumn'
+import { useEffect } from 'react'
+import { scrollTop } from '../../utils/functions/scrollTop'
 
 function News() {
+    useEffect(() => {
+        scrollTop()
+    },[])
   return (
     <div className='default-page-wrapper'>
         <div className='flex flex-col'>

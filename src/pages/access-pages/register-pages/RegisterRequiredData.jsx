@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import ReturnButton from '../../../components/buttons/ReturnButton'
 import ShowPasswordButton from '../../../components/buttons/ShowPasswordButton'
 
-function RegisterFirstStep() {
+function RegisterRequiredData() {
     const [isHiddenPassword, setIsHiddenPassword] = useState(true)
   return (
     <>
@@ -27,17 +27,17 @@ function RegisterFirstStep() {
             </div>
             <div className="flex items-start justify-start w-full mt-4 mb-3">
                 <input required id="newsletter-checkbox" name='checkbox' type="checkbox" value="" class="purple-checkbox mt-0.5"/>
-                <label for="newsletter-checkbox" className="checkbox-label my-0 flex flex-row"><span>Akceptuję</span> <Link to='/dokumenty/regulamin' className='whitespace-nowrap mx-1 text-purple-400 font-medium hover:text-purple-300'>regulamin sklepu</Link><span>internetowego</span></label>
+                <label for="newsletter-checkbox" className="checkbox-label my-0 flex flex-row"><span>Akceptuję</span> <Link to='/dokumenty/regulamin' className='whitespace-nowrap mx-1 login-page-text-button'>regulamin sklepu</Link><span>internetowego</span></label>
             </div>
             <button className='purple-button w-full'>Zarejestruj się</button>
         </form>
-        <div className='flex flex-row justify-center my-1'>
-            <p className='text-xs text-white'>Posiadasz już konto?</p>
-            <Link to='/dostep/logowanie' className='text-button-link mx-1'>Zaloguj się</Link>
+        <div className='flex items-center justify-center my-2'>
+            <p className='login-text w-max mr-1 font-normal text-xs'>Posiadasz już konto?</p>
+            <Link to='/dostep/logowanie' className='login-page-text-button'>Zaloguj się</Link>
         </div>
     </div>
   </>
   )
 }
 
-export default RegisterFirstStep
+export default RegisterRequiredData

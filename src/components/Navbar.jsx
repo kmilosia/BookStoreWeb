@@ -94,7 +94,7 @@ function Navbar() {
         </button>      
       </div>   
       </div>
-      <div className={`flex-col flex lg:hidden justify-center items-center h-max fixed top-0 right-0 w-screen z-[300] default-bg px-5 py-5 transition-all duration-500
+      <div className={`flex-col flex lg:hidden justify-center items-center h-max fixed top-0 right-0 w-screen z-[10000] default-bg px-5 py-5 transition-all duration-500
         ${isNavbarOpened ? 'top-0' : 'top-[-1000px]'}`}>
         <div className='w-full flex justify-end'>
           <button onClick={toggleNavbar} className='text-2xl px-2 text-midnight-950 dark:text-white'><AiOutlineClose /></button>
@@ -110,7 +110,7 @@ function Navbar() {
       {isSearchModal &&
       <SearchModal />
       }
-    <div className='fixed bottom-0 right-0 h-auto w-full bg-white dark:bg-midnight-900 z-[1000] lg:hidden'>
+    <div className='fixed bottom-0 right-0 h-auto w-full bg-white dark:bg-midnight-900 z-[10000] lg:hidden'>
       <div className='flex flex-row w-full justify-between px-5 py-5'>
         <NavbarMenuIcons handleLoginModal={handleLoginModal} handleSearchModal={handleSearchModal} handleIconButton={handleIconButton} toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} isLogged={isLogged} />
       </div>

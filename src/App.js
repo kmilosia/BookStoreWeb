@@ -1,8 +1,8 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
 import {Book, Books, ElectronicBook, ElectronicBooks, Home, Search,PageNotFound, Rental, RentalElectronicBook, Store, RentalBooks, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders,
-   Library, AccountRentals, Cart, Wishlist,Checkout, CheckoutDelivery, CheckoutPayment, CheckoutConfirmation, CheckoutLogin, RegisterFirstStep, RegisterSecondStep, RegisterLastStep, Access, RecoverPassword, RecoverPasswordFirstStep, RecoverPasswordSecondStep, RecoverPasswordThirdStep,
-    Documents, Terms, Privacy, Cookies, About, Categories, Category} from './import'
+   Library, AccountRentals, Cart, Wishlist,Checkout, CheckoutDelivery, CheckoutPayment, CheckoutConfirmation, CheckoutLogin, Access, RecoverPassword,
+    Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword, RecoverPasswordConfirmation, RegisterRequiredData, RegisterPersonalInfo, RegisterAddress, RegisterConfirmation} from './import'
 import MainLayout from './MainLayout';
 
 function App() {
@@ -16,15 +16,17 @@ function App() {
           <Route path='logowanie' element={<Login />} />
 
           <Route path='rejestracja' element={<Register />}>
-            <Route index element={<RegisterFirstStep />} />
-            <Route path='dane-osobowe' element={<RegisterSecondStep />} />
-            <Route path='potwierdzenie' element={<RegisterLastStep />} />
+            <Route index element={<RegisterRequiredData />} />
+            <Route path='dane-osobowe' element={<RegisterPersonalInfo />} />
+            <Route path='adres' element={<RegisterAddress />} />
+            <Route path='potwierdzenie' element={<RegisterConfirmation />} />
           </Route>
 
-          <Route path='odzyskiwanie-hasla' element={<RecoverPassword />}>
-            <Route index element={<RecoverPasswordFirstStep />} />
-            <Route path='resetuj-haslo' element={<RecoverPasswordSecondStep />} />
-            <Route path='potwierdzenie' element={<RecoverPasswordThirdStep />} />
+          <Route path='odzyskaj-konto' element={<RecoverPassword />}>
+            <Route index element={<RecoverPasswordEmail />} />
+            <Route path='email' element={<RecoverPasswordResetLink />} />
+            <Route path='resetuj-haslo' element={<RecoverPasswordNewPassword />} />
+            <Route path='potwierdzenie' element={<RecoverPasswordConfirmation />} />
           </Route>
         </Route>
 

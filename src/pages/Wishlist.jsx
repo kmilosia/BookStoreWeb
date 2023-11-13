@@ -6,8 +6,13 @@ import { BsDot} from 'react-icons/bs'
 import { BiSolidShoppingBag } from 'react-icons/bi'
 import ReturnShoppingButton from '../components/buttons/ReturnShoppingButton'
 import WishlistElement from '../components/products/WishlistElement'
+import { useEffect } from 'react'
+import { scrollTop } from '../utils/functions/scrollTop'
 
 function Wishlist() {
+  useEffect(() => {
+    scrollTop()
+  },[])
   const [isEmpty, setIsEmpty] = useState(false)
   return (
     <div className='default-page-wrapper'>

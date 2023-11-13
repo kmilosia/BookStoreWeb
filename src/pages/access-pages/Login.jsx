@@ -27,7 +27,7 @@ function Login() {
           </div>
           <button className='purple-button w-full'>Zaloguj się</button>
           </form>
-          <button className='text-button-link my-2 w-full'>Zapomniałeś hasła?</button>
+          <Link to='/dostep/odzyskaj-konto' className='text-button-link my-2 w-max'>Zapomniałeś hasła?</Link>
           <div className='flex flex-row justify-center my-1'>
             <p className='text-xs text-white'>Nie masz jeszcze konta?</p>
             <Link to='/dostep/rejestracja' className='text-button-link mx-1'>Zarejestruj się</Link>

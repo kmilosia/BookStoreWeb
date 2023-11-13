@@ -6,8 +6,13 @@ import bookshelfImage from '../assets/pages/bookshelf.png';
 import audiobookImage from '../assets/pages/audiobook.png';
 import ElementScrollButton from '../components/buttons/ElementScrollButton';
 import AboutElement from '../components/page-elements/AboutElement';
+import { useEffect } from 'react';
+import { scrollTop } from '../utils/functions/scrollTop';
 
 function About() {
+  useEffect(() => {
+    scrollTop()
+},[])
   return (
     <div className='default-page-wrapper'>
       <div className='relative'>

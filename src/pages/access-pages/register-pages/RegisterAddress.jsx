@@ -1,6 +1,6 @@
 import React from 'react'
 
-function RegisterSecondStep() {
+function RegisterAddress() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function RegisterSecondStep() {
   )
 }
 
-export default RegisterSecondStep
+export default RegisterAddress

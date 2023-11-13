@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {categoryData} from '../../utils/data'
 import categoryImage from '../../assets/pages/categories-image.png'
 import PageHeader from '../../components/page-elements/PageHeader'
+import { scrollTop } from '../../utils/functions/scrollTop'
 
 
 function Categories() {
+  useEffect(() => {
+    scrollTop()
+  },[])
   return (
     <div className='default-page-wrapper'>
       <div className='default-page-container'>

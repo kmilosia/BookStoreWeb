@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {MdEmail} from 'react-icons/md'
 import {TbMessageCircle2Filled} from 'react-icons/tb'
 import {BsFillPersonFill,BsFillTelephoneFill} from 'react-icons/bs'
 import librarycontact from '../assets/backgrounds/library-contact-page.jpg';
 import ElementScrollButton from '../components/buttons/ElementScrollButton';
 import ContactElement from '../components/page-elements/ContactElement';
+import {scrollTop} from '../utils/functions/scrollTop'
 
 function Contact() {
+  useEffect(() => {
+    scrollTop()
+  },[])
   return (
     <div className='default-page-wrapper'>
       <div className='relative'>

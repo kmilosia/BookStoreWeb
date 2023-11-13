@@ -3,8 +3,13 @@ import BannerCarousel from '../components/carousel/banner-carousel/BannerCarouse
 import BooksCarousel from '../components/carousel/books-carousel/BooksCarousel'
 import ExploreAllElement from '../components/page-elements/ExploreAllElement'
 import InstallAppElement from '../components/page-elements/InstallAppElement'
+import { useEffect } from 'react'
+import { scrollTop } from '../utils/functions/scrollTop'
 
 function Rental() {
+  useEffect(() => {
+    scrollTop()
+  },[])
   return (
     <div className='default-page-wrapper'>
         <div className='default-page-container'>

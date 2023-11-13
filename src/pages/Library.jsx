@@ -4,8 +4,13 @@ import {FiArrowUpRight} from 'react-icons/fi'
 import Carousel from 'react-grid-carousel'
 import LibraryBookCarouselItem from '../components/carousel/LibraryBookCarouselItem'
 import { Link } from 'react-router-dom'
+import { scrollTop } from '../utils/functions/scrollTop'
+import { useEffect } from 'react'
 
 function Library() {
+    useEffect(() => {
+        scrollTop()
+    },[])
   const [isRented, setIsRented] = useState(true)
   return (
     <div className='default-page-wrapper'>

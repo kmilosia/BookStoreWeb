@@ -1,7 +1,12 @@
 import React from 'react'
 import NewsElement from '../../components/news-elements/NewsElement'
+import { scrollTop } from '../../utils/functions/scrollTop'
+import { useEffect } from 'react'
 
 function AllNews() {
+  useEffect(() => {
+    scrollTop()
+},[])
   return (
     <div className='default-page-wrapper'>
       <div className='default-page-container'>
