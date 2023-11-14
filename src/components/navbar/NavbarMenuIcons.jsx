@@ -20,7 +20,7 @@ function NavbarMenuIcons({toggleTheme, isDarkTheme, handleIconButton,handleLogin
       </div>
       <BiHeart />
     </Link>
-    <Link onClick={handleIconButton} to='/zamowienie/koszyk' className='navbar-menu-icon group'>
+    <Link onClick={handleIconButton} to='/koszyk' className='navbar-menu-icon group'>
       <div className='tooltip-button'>
         <span>Koszyk</span>
       </div>

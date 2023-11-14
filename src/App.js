@@ -35,13 +35,13 @@ function App() {
           <Route path='home' element={<Home />} />
           <Route path='sklep' element={<Store />} />
           <Route path='szukaj' element={<Search />} />
+          <Route path='koszyk' element={<Cart />} />
 
           <Route path='kategorie' element={<Categories />} />
           <Route path='kategorie/:title' element={<Category />} />
 
           <Route path='zamowienie' element={<Checkout />}>
-            <Route index element={<Navigate to='koszyk' />} />
-            <Route path='koszyk' element={<Cart />} />
+            <Route index element={<Navigate to='dostawa' />} />
             <Route path='dostawa' element={<CheckoutDelivery />} />
             <Route path='platnosc' element={<CheckoutPayment />} />
             <Route path='potwierdzenie' element={<CheckoutConfirmation />} />

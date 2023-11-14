@@ -31,7 +31,7 @@ export {default as RegisterPersonalInfo} from './pages/access-pages/register-pag
 export {default as RegisterAddress} from './pages/access-pages/register-pages/RegisterAddress'
 export {default as RegisterConfirmation} from './pages/access-pages/register-pages/RegisterConfirmation'
 
-export {default as Cart} from './pages/checkout-pages/Cart'
+export {default as Cart} from './pages/Cart'
 export {default as Checkout} from './pages/checkout-pages/Checkout'
 export {default as CheckoutDelivery} from './pages/checkout-pages/CheckoutDelivery'
 export {default as CheckoutPayment} from './pages/checkout-pages/CheckoutPayment'

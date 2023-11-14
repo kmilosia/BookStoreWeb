@@ -1,11 +1,16 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ReturnButton from '../../../components/buttons/ReturnButton'
 import ShowPasswordButton from '../../../components/buttons/ShowPasswordButton'
 
 function RegisterRequiredData() {
+    const navigate = useNavigate()
     const [isHiddenPassword, setIsHiddenPassword] = useState(true)
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        navigate('/dostep/rejestracja/dane-osobowe')
+    }
   return (
     <>
     <ReturnButton />
@@ -29,7 +34,7 @@ function RegisterRequiredData() {
                 <input required id="newsletter-checkbox" name='checkbox' type="checkbox" value="" class="purple-checkbox mt-0.5"/>
                 <label for="newsletter-checkbox" className="checkbox-label my-0 flex flex-row"><span>Akceptuję</span> <Link to='/dokumenty/regulamin' className='whitespace-nowrap mx-1 login-page-text-button'>regulamin sklepu</Link><span>internetowego</span></label>
             </div>
-            <button className='purple-button w-full'>Zarejestruj się</button>
+            <button onClick={handleSubmit} type='submit' className='purple-button w-full'>Zarejestruj się</button>
         </form>
         <div className='flex items-center justify-center my-2'>
             <p className='login-text w-max mr-1 font-normal text-xs'>Posiadasz już konto?</p>

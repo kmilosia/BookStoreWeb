@@ -5,10 +5,8 @@ import { HiMinusSm, HiPlusSm } from 'react-icons/hi'
 
 function CartElement(props) {
   return (
-    <div className='grid grid-cols-[max-content_3fr_2fr_2fr] py-5 gap-5 border-b border-gray-200 dark:border-midnight-800'>
-    <div className='flex items-center justify-center'>
-      <TrashButton />
-      </div>
+    // <div className='grid grid-cols-[max-content_3fr_2fr_2fr] py-5 gap-5 rounded-md border-gray-200 dark:border-midnight-800'>
+    <div className='flex justify-between px-5 py-3 border border-gray-200 dark:border-midnight-800 rounded-md'>
       <div className='flex flex-row'>
         <img src={props.imgURL}
         className='h-32 w-24 object-cover rounded-md' />
@@ -31,6 +29,7 @@ function CartElement(props) {
       <p className='font-semibold cursor-default'>{props.price} zł</p>
       </div>
     </div>
+
   )
 }
 

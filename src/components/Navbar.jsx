@@ -73,6 +73,7 @@ function Navbar() {
     useLayoutEffect(() => {
       setNavHeight(ref.current.clientHeight)
     },[navHeight])
+    
     useEffect(() => {
       document.documentElement.classList.toggle('dark', isDarkTheme);
     },[isDarkTheme])
