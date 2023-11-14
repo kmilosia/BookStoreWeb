@@ -4,6 +4,7 @@ import {Book, Books, ElectronicBook, ElectronicBooks, Home, Search,PageNotFound,
    Library, AccountRentals, Cart, Wishlist,Checkout, CheckoutDelivery, CheckoutPayment, CheckoutConfirmation, CheckoutLogin, Access, RecoverPassword,
     Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword, RecoverPasswordConfirmation, RegisterRequiredData, RegisterPersonalInfo, RegisterAddress, RegisterConfirmation} from './import'
 import MainLayout from './MainLayout';
+import BooksList from './pages/BooksList';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path='sklep' element={<Store />} />
           <Route path='szukaj' element={<Search />} />
           <Route path='koszyk' element={<Cart />} />
+          <Route path='k' element={<BooksList />} />
 
           <Route path='kategorie' element={<Categories />} />
           <Route path='kategorie/:title' element={<Category />} />

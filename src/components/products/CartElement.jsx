@@ -1,33 +1,41 @@
 import React from 'react'
 import TrashButton from '../buttons/TrashButton'
+import AddToWishlist from '../buttons/AddToWishlist'
 import { BsDot } from 'react-icons/bs'
-import { HiMinusSm, HiPlusSm } from 'react-icons/hi'
+import QuantityChanger from '../elements/QuantityChanger'
 
 function CartElement(props) {
   return (
-    // <div className='grid grid-cols-[max-content_3fr_2fr_2fr] py-5 gap-5 rounded-md border-gray-200 dark:border-midnight-800'>
-    <div className='flex justify-between px-5 py-3 border border-gray-200 dark:border-midnight-800 rounded-md'>
-      <div className='flex flex-row'>
-        <img src={props.imgURL}
-        className='h-32 w-24 object-cover rounded-md' />
-        <div className='flex flex-col flex-[1] mx-4 justify-start'>
-          <h1 className='font-semibold text-lg'>{props.title}</h1>
-          <h1 className='font-semibold text-xs my-2'>{props.author}</h1>
-          <div className='mt-auto mb-1 flex flex-row items-center text-gray-600 dark:text-gray-400'>
-          <p className='text-xs'>{props.form}</p>
-          <BsDot />
-          <p className='text-xs'>{props.edition}</p>
+    <div className='flex flex-col px-3 lg:px-5 py-3 border border-gray-200 dark:border-midnight-800 rounded-md'>
+    <div className='flex justify-between'>
+      <div className='flex w-full'>
+        <img src={props.imgURL} className=' h-36 w-24 object-cover rounded-md' />
+        <div className='flex flex-col flex-[1] ml-4 justify-start'>
+          <div className='flex justify-between w-full'>
+            <div className='flex flex-col'>
+            <h1 className='font-semibold text-lg cursor-default'>{props.title}</h1>
+            <h1 className='font-semibold text-xs my-2 cursor-default'>{props.author}</h1>
+            </div>
+            <div className='lg:my-2 my-1 h-full'>
+              <AddToWishlist />
+            </div>
           </div>
+          <div className='mt-auto lg:hidden'>
+          <h1 className='text-2xl font-semibold cursor-default'>{props.price} zł</h1>
+          </div>
+          <div className='mt-auto flex justify-between items-end mb-1 cursor-default'>
+            <div className='flex items-start text-gray-600 dark:text-gray-400'>
+                <p className='text-xs'>{props.form}</p>
+                <BsDot />
+                <p className='text-xs'>{props.edition}</p>
+              </div> 
+                <QuantityChanger />
+              <h1 className='text-2xl font-semibold hidden lg:inline-block cursor-default'>{props.price} zł</h1>
+            </div>
         </div>
       </div>       
-      <div className='flex flex-row items-center justify-center'>
-        <button className=''><HiMinusSm /></button>
-        <p className='mx-2 cursor-pointer'>1</p>
-        <button className=''><HiPlusSm  /></button>
-      </div>
-      <div className='flex items-center justify-center'>
-      <p className='font-semibold cursor-default'>{props.price} zł</p>
-      </div>
+    </div>
+    
     </div>
 
   )
