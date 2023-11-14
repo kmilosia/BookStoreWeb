@@ -44,7 +44,6 @@ function Footer() {
                   <FooterIconAnchor path='www.tiktok.com' url='fa-brands fa-pinterest' />
                 </div>
             </div>
-
             <div className='flex flex-col py-2 md:py-5 items-center md:items-start'>
             <h2 className='text-2xl md:text-lg font-semibold my-4 md:my-2 cursor-default'>Aplikacje Mobilne</h2>
                 <div className='flex flex-col lg:flex-row items-center md:items-start lg:items-center my-2 md:my-0'>
@@ -52,9 +51,7 @@ function Footer() {
                   <FooterAnchor path='www.play.google.com/' url='https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg' />
                 </div>
             </div>
-
         </div>
-
       </div>
       <div className='flex flex-col md:flex-row justify-between items-start lg:items-center w-full pt-10 border-t-[1px] border-midnight-200 dark:border-midnight-800'>
         <div className='flex flex-row flex-wrap justify-center md:justify-normal'>
