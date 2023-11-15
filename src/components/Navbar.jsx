@@ -82,7 +82,7 @@ function Navbar() {
       <>
     <nav ref={ref} className={`flex flex-col sticky w-full py-1 lg:py-2 px-2 lg:px-4 top-0 backdrop-blur-sm z-[100] lg:shadow-lg ${isScrolled ? 'scrolled-bg' : 'default-bg'}`}>
       <div className='grid grid-cols-2 lg:grid-cols-[1fr_auto_1fr] gap-10 px-4 my-4 items-center'>    
-       <LogoButton />
+       <LogoButton color="purple"/>
        <div className='flex-row justify-center hidden lg:flex'>
         <NavbarMenuLinks />
         </div>
