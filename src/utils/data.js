@@ -29,3 +29,19 @@ export const bannersData = [
     {id: 2, title: 'Some banner', src: 'https://static.vecteezy.com/system/resources/thumbnails/001/937/856/small/paper-art-shopping-online-on-smartphone-sale-promotion-backgroud-banner-for-market-ecommerce-free-vector.jpg'},
     {id: 3, title: 'Some banner', src: 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/grocery-sale-retail-or-e-commerce-banner-ad-design-template-67720435bb809be27f46dfb1dd44c6fa_screen.jpg?ts=1606113265'},
 ]
+
+export const productsData = [
+    {id: 1, form: 'ebook', file: "EPUB", title: "Harry Potter i Więzień Azkabanu",price: 59.99, score: 5, author: 'J.K. Rowling', url: 'https://images.ctfassets.net/usf1vwtuqyxm/24YWmI4UcyoMwj7wdKrEcL/374de1941927db12bd844fb197eab11f/English_Harry_Potter_3_Epub_9781781100233.jpg?w=914&q=70&fm=jpg'},
+    {id: 2, form: 'ebook', file: "MOBI", title: "Wiedźmin. Sezon Burz",price: 39.99, score: 4, author: 'Andrzej Sapkowski', url: 'https://smakliter.pl/Photos/10/LARGE/000025/wiedzmin-sezon-burz.jpg'},
+    {id: 3, form: 'ebook', file: "PDF", title: "Ogień i Krew. Gra o Tron. Część 1",price: 59.99, score: 4, author: 'George R.R. Martin', url: 'https://image.ceneostatic.pl/data/article_picture/f9/8e/fca2-c9c4-4c76-94f5-0799189bdcff_large.jpg'},
+    {id: 4, form: 'ebook', file: "EPUB", title: "Harry Potter i Więzień Azkabanu",price: 59.99, score: 5, author: 'J.K. Rowling', url: 'https://images.ctfassets.net/usf1vwtuqyxm/24YWmI4UcyoMwj7wdKrEcL/374de1941927db12bd844fb197eab11f/English_Harry_Potter_3_Epub_9781781100233.jpg?w=914&q=70&fm=jpg'},
+    {id: 5, form: 'ebook', file: "PDF", title: "Wiedźmin. Sezon Burz",price: 39.99, score: 4, author: 'Andrzej Sapkowski', url: 'https://smakliter.pl/Photos/10/LARGE/000025/wiedzmin-sezon-burz.jpg'},
+    {id: 6, form: 'ebook', file: "PDF", title: "Ogień i Krew. Gra o Tron. Część 1",price: 59.99, score: 4, author: 'George R.R. Martin', url: 'https://image.ceneostatic.pl/data/article_picture/f9/8e/fca2-c9c4-4c76-94f5-0799189bdcff_large.jpg'},
+    {id: 7, form: 'book', edition: "Okładka miękka", title: "Harry Potter i Więzień Azkabanu",price: 59.99, score: 5, author: 'J.K. Rowling', url: 'https://images.ctfassets.net/usf1vwtuqyxm/24YWmI4UcyoMwj7wdKrEcL/374de1941927db12bd844fb197eab11f/English_Harry_Potter_3_Epub_9781781100233.jpg?w=914&q=70&fm=jpg'},
+    {id: 8, form: 'book', edition: "Okładka twarda", title: "Wiedźmin. Sezon Burz",price: 39.99, score: 4, author: 'Andrzej Sapkowski', url: 'https://smakliter.pl/Photos/10/LARGE/000025/wiedzmin-sezon-burz.jpg'},
+    {id: 9, form: 'book', edition: "Okładka miękka", title: "Ogień i Krew. Gra o Tron. Część 1",price: 59.99, score: 4, author: 'George R.R. Martin', url: 'https://image.ceneostatic.pl/data/article_picture/f9/8e/fca2-c9c4-4c76-94f5-0799189bdcff_large.jpg'},
+    {id: 10, form: 'book', edition: "Okładka miękka", title: "Harry Potter i Więzień Azkabanu",price: 59.99, score: 5, author: 'J.K. Rowling', url: 'https://images.ctfassets.net/usf1vwtuqyxm/24YWmI4UcyoMwj7wdKrEcL/374de1941927db12bd844fb197eab11f/English_Harry_Potter_3_Epub_9781781100233.jpg?w=914&q=70&fm=jpg'},
+    {id: 11, form: 'book', edition: "Okładka twarda", title: "Wiedźmin. Sezon Burz",price: 39.99, score: 4, author: 'Andrzej Sapkowski', url: 'https://smakliter.pl/Photos/10/LARGE/000025/wiedzmin-sezon-burz.jpg'},
+    {id: 12, form: 'book', edition: "Okładka twarda", title: "Ogień i Krew. Gra o Tron. Część 1",price: 59.99, score: 4, author: 'George R.R. Martin', url: 'https://image.ceneostatic.pl/data/article_picture/f9/8e/fca2-c9c4-4c76-94f5-0799189bdcff_large.jpg'},
+
+]

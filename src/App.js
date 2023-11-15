@@ -1,10 +1,9 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
-import {Book, Books, ElectronicBook, ElectronicBooks, Home, Search,PageNotFound, Rental, RentalElectronicBook, Store, RentalBooks, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders,
+import {Home, Search,PageNotFound, Rental, RentalElectronicBook, Store, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders,
    Library, AccountRentals, Cart, Wishlist,Checkout, CheckoutDelivery, CheckoutPayment, CheckoutConfirmation, CheckoutLogin, Access, RecoverPassword,
-    Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword, RecoverPasswordConfirmation, RegisterRequiredData, RegisterPersonalInfo, RegisterAddress, RegisterConfirmation} from './import'
+    Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword, RecoverPasswordConfirmation, RegisterRequiredData, RegisterPersonalInfo, RegisterAddress, RegisterConfirmation, ProductsList, Product} from './import'
 import MainLayout from './MainLayout';
-import BooksList from './pages/BooksList';
 
 function App() {
   return (
@@ -37,7 +36,6 @@ function App() {
           <Route path='sklep' element={<Store />} />
           <Route path='szukaj' element={<Search />} />
           <Route path='koszyk' element={<Cart />} />
-          <Route path='k' element={<BooksList />} />
 
           <Route path='kategorie' element={<Categories />} />
           <Route path='kategorie/:title' element={<Category />} />
@@ -57,12 +55,9 @@ function App() {
           <Route path='wiadomosc' element={<NewsItem />} />
           <Route path='wszystkie-wiadomosci' element={<AllNews />}/>
           <Route path='wypozyczalnia' element={<Rental />}/>
-          <Route path='ksiazki' element={<Books />}/>
-          <Route path='ksiazka' element={<Book />}/>
-          <Route path='e-booki' element={<ElectronicBooks />}/>
-          <Route path='e-book' element={<ElectronicBook />}/>
+          <Route path='ksiazki' element={<ProductsList />}/>
+          <Route path='ksiazka/:id' element={<Product />}/>
           <Route path='wypozycz-e-book' element={<RentalElectronicBook />}/>
-          <Route path='wypozycz-e-booki' element={<RentalBooks />}/>
           <Route path='biblioteka' element={<Library />}/>
 
           <Route path='konto' element={<Account />}>

@@ -1,9 +1,8 @@
 import React from 'react'
-import { FaKey } from 'react-icons/fa'
 
 function RentButton() {
   return (
-    <button className='purple-button flex items-center justify-center'><FaKey className='mr-1 text-xs'/>Wypożycz</button>
+    <button className='rounded-bordered-purple-button rounded-md items-center justify-center my-1'>Wypożycz</button>
   )
 }
 
