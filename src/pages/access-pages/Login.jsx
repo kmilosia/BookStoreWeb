@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import {loginValidate} from '../../utils/validation/loginValidation'
 import { useEffect } from 'react'
-import { RiKey2Fill } from 'react-icons/ri'
 import AccessIconElement from '../../components/elements/AccessIconElement'
 
 function Login() {

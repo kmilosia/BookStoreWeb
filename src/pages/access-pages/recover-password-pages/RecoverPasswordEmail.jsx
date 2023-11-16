@@ -34,7 +34,7 @@ function RecoverPasswordEmail() {
     <AccessIconElement icon="lock" />  
     <h1 className='login-header'>Odzyskaj hasło</h1>
     <p className='login-text'>Wprowadź swój email aby otrzymać kod resetujący hasło.</p>
-    <form className='lg:w-[20rem] w-full'>
+    <form onSubmit={handleSubmit} className='lg:w-[20rem] w-full'>
     <div className='my-2'>
       <div className="relative">
         <input value={email} onChange={handleChange} type="text" id='login' name='login' className="floating-form-input peer" placeholder=" " />
