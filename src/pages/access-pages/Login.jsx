@@ -1,41 +1,69 @@
 import React from 'react'
-import ReturnButton from '../../components/buttons/ReturnButton'
 import ShowPasswordButton from '../../components/buttons/ShowPasswordButton'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import {loginValidate} from '../../utils/validation/loginValidation'
+import { useEffect } from 'react'
+import { RiKey2Fill } from 'react-icons/ri'
+import AccessIconElement from '../../components/elements/AccessIconElement'
 
 function Login() {
   const [isHiddenPassword, setIsHiddenPassword] = useState(true)
-  const intialValues = {
-     email: '',
-    password: '' 
+  const [inputValues, setInputValues] = useState({
+    login: "",
+    password: "",
+    remember: false,
+  })
+  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    const inputValue = type === 'checkbox' ? checked : value;
+    setInputValues({ ...inputValues, [name]: inputValue });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setErrors(loginValidate(inputValues))
+    setSubmitting(true)
   }
-  const [formValues, setFormValues] = useState(intialValues);
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  return (
+  const finishSubmit = () => {
+    console.log(inputValues);
+  }
+  useEffect(() => {
+    if (Object.keys(errors).length === 0 && submitting) {
+      finishSubmit();
+    }
+  }, [errors])
+   return (
     <>
-        <div className='flex flex-col items-center justify-center'>
+        <div className='login-container'>
+          <AccessIconElement icon="key" />
           <h1 className='login-header'>Zaloguj się</h1>
-          <form className='w-[20rem]' onSubmit={e => {e.preventDefault()}}>
-          <div className="relative my-1">
-            <input type="text" id='login' name='login' className="floating-form-input peer" placeholder=" " />
-            <label for='login' className="floating-form-label">Email lub nazwa użytkownika</label>
-          </div>
-          <div className="relative my-1">
-            <ShowPasswordButton setIsHiddenPassword={setIsHiddenPassword} isHiddenPassword={isHiddenPassword} />
-            <input type={`${isHiddenPassword ? 'password' : 'text'}`} id='password' name='password' className="floating-form-input peer" placeholder=" " />
-            <label for='password' className="floating-form-label">Hasło</label>
+          <form onSubmit={handleSubmit} className='w-full lg:w-[20rem]'>
+            <div className='my-2'>
+            <div className="relative">
+              <input value={inputValues.login} onChange={handleChange} type="text" id='login' name='login' className="floating-form-input peer" placeholder=" " />
+              <label htmlFor='login' className="floating-form-label">Email lub nazwa użytkownika</label>
+            </div>
+            {errors.login && <span className='error-text'>{errors.login}</span>}
+            </div>
+          <div className="my-2">
+            <div className="relative">
+              <ShowPasswordButton setIsHiddenPassword={setIsHiddenPassword} isHiddenPassword={isHiddenPassword} />
+              <input value={inputValues.password} onChange={handleChange} type={`${isHiddenPassword ? 'password' : 'text'}`} id='password' name='password' className="floating-form-input peer" placeholder=" " />
+              <label htmlFor='password' className="floating-form-label">Hasło</label>
+            </div>
+            {errors.password && <span className='error-text'>{errors.password}</span>}
           </div>
           <div className="flex items-center justify-start w-full my-2">
-            <input id="save-checkbox" name='sav' type="checkbox" value="" class="purple-checkbox"/>
-            <label for="save-checkbox" className="checkbox-label">Zapamiętaj mnie</label>
+            <input onChange={handleChange} id="remember" name='remember' type="checkbox" checked={inputValues.remember} className="purple-checkbox"/>
+            <label htmlFor="remember" className="checkbox-label">Zapamiętaj mnie</label>
           </div>
-          <button className='purple-button w-full'>Zaloguj się</button>
+          <button type='submit' className='purple-button w-full'>Zaloguj się</button>
           </form>
           <Link to='/dostep/odzyskaj-konto' className='text-button-link my-2 w-max'>Zapomniałeś hasła?</Link>
-          <div className='flex flex-row justify-center my-1'>
-            <p className='text-xs text-white'>Nie masz jeszcze konta?</p>
+          <div className='flex flex-row justify-center my-2 lg:my-1'>
+            <p className='lg:text-xs text-base text-white'>Nie masz jeszcze konta?</p>
             <Link to='/dostep/rejestracja' className='text-button-link mx-1'>Zarejestruj się</Link>
           </div>
         </div>    

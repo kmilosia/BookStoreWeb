@@ -5,7 +5,7 @@ import LogoButton from '../../components/buttons/LogoButton'
 
 function Access() {
   return (
-    <div className='forest-bg w-screen h-screen relative'>
+    <div className='forest-bg w-screen h-screen relative overflow-x-hidden'>
       <div className='w-full h-full flex flex-col justify-center items-center bg-black/50 backdrop-blur-md'>
         <Outlet />
       </div>
