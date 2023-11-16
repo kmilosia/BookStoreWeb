@@ -6,7 +6,7 @@ export const loginUser = createAsyncThunk(
     async(userCredentials) => {
         const request = await axiosClient.post('/user/login', userCredentials)
         const response = await request.data.data
-        localStorage.setItem('user',JSON.stringify(response))
+        localStorage.setItem('token',JSON.stringify(response)) //token for all the API post calls so no user only token for each component call
         return response
     }
 )

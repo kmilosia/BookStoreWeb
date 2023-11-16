@@ -12,7 +12,8 @@ function RecoverPasswordNewPassword() {
   const [inputValues, setInputValues] = useState({
     password: "",
     repeatPassword: "",
-  })
+  }) // only email
+  
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false); 
   const [isHiddenPassword, setIsHiddenPassword] = useState(true)

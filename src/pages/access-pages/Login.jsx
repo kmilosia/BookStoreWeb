@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import AccessIconElement from '../../components/elements/AccessIconElement'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../../store/userSlice'
+import { Oval } from 'react-loader-spinner'
 
 function Login() {
   const {loading,error} = useSelector((state) => state.user)
@@ -16,7 +17,7 @@ function Login() {
   const [inputValues, setInputValues] = useState({
     login: "",
     password: "",
-    remember: false,
+    remember: false, //email
   })
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
@@ -35,6 +36,7 @@ function Login() {
     let userCredentials = {
       login: inputValues.login, 
       password: inputValues.password,
+      audience: 'www',
     }
     dispatch(loginUser(userCredentials)).then((result)=>{
       if(result.payload){
@@ -72,8 +74,28 @@ function Login() {
             <input onChange={handleChange} id="remember" name='remember' type="checkbox" checked={inputValues.remember} className="purple-checkbox"/>
             <label htmlFor="remember" className="checkbox-label">Zapamiętaj mnie</label>
           </div>
-          <button type='submit' className='purple-button w-full'>Zaloguj się</button>
+          <button type='submit' className='purple-button w-full flex items-center justify-center'>
+            {loading ?
+          <Oval
+            height={20}
+            width={20}
+            color="#ccc"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+            ariaLabel='oval-loading'
+            secondaryColor="#fff"
+            strokeWidth={5}
+            strokeWidthSecondary={5}
+            />
+            :
+            <span>Zaloguj się</span>
+            }
+          </button>
           </form>
+          {error &&
+          <p className='error-text'>{error}</p>
+          }
           <Link to='/dostep/odzyskaj-konto' className='text-button-link my-2 w-max'>Zapomniałeś hasła?</Link>
           <div className='flex flex-row justify-center my-2 lg:my-1'>
             <p className='lg:text-xs text-base text-white'>Nie masz jeszcze konta?</p>
