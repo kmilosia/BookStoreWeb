@@ -1,15 +1,17 @@
 import React from 'react'
 import ShowPasswordButton from '../../components/buttons/ShowPasswordButton'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import {loginValidate} from '../../utils/validation/loginValidation'
 import { useEffect } from 'react'
 import AccessIconElement from '../../components/elements/AccessIconElement'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../../store/userSlice'
 
 function Login() {
+  const {loading,error} = useSelector((state) => state.user)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [isHiddenPassword, setIsHiddenPassword] = useState(true)
   const [inputValues, setInputValues] = useState({
     login: "",
@@ -25,16 +27,20 @@ function Login() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    let userCredentials = {
-      login: inputValues.login, 
-      password: inputValues.password,
-    }
-    dispatch(loginUser())
-    setErrors(loginValidate(userCredentials))
+    setErrors(loginValidate(inputValues))
     setSubmitting(true)
   }
   const finishSubmit = () => {
     console.log(inputValues);
+    let userCredentials = {
+      login: inputValues.login, 
+      password: inputValues.password,
+    }
+    dispatch(loginUser(userCredentials)).then((result)=>{
+      if(result.payload){
+        navigate('/')
+      }
+    })
   }
   useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
