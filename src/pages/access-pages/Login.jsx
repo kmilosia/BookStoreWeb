@@ -5,8 +5,11 @@ import { useState } from 'react'
 import {loginValidate} from '../../utils/validation/loginValidation'
 import { useEffect } from 'react'
 import AccessIconElement from '../../components/elements/AccessIconElement'
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../../store/userSlice'
 
 function Login() {
+  const dispatch = useDispatch()
   const [isHiddenPassword, setIsHiddenPassword] = useState(true)
   const [inputValues, setInputValues] = useState({
     login: "",
@@ -22,7 +25,12 @@ function Login() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors(loginValidate(inputValues))
+    let userCredentials = {
+      login: inputValues.login, 
+      password: inputValues.password,
+    }
+    dispatch(loginUser())
+    setErrors(loginValidate(userCredentials))
     setSubmitting(true)
   }
   const finishSubmit = () => {
