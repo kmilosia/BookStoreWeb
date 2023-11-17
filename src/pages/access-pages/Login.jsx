@@ -15,7 +15,7 @@ function Login() {
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false)
   const [isHiddenPassword, setIsHiddenPassword] = useState(true)
-  const {loading,error,auth} = useSelector((state) => state.user)
+  const {loading,error,isAuth} = useSelector((state) => state.user)
   const [inputValues, setInputValues] = useState({
     email: "",
     password: "",
@@ -34,16 +34,13 @@ function Login() {
       password: inputValues.password,
       audience: 'www',
     }
-    console.log(userCredentials);
-    dispatch(loginUser(userCredentials)).then(() => {
-      navigate('/')
-    })
+    dispatch(loginUser(userCredentials))
   }
   useEffect(() => {
-    if (auth) {
+    if (isAuth) {
       navigate('/');
     }
-  }, [auth, navigate]);
+  }, [isAuth, navigate]);
   useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
       finishSubmit();
@@ -73,10 +70,10 @@ function Login() {
           <SubmitLoadingButton title="Zaloguj się" loading={loading} />
           </form>
           {error &&
-          <p className='error-text'>{error}</p>
+          <p className='error-text my-1'>{error}</p>
           }
           <Link to='/dostep/odzyskaj-konto' className='text-button-link my-2 w-max'>Zapomniałeś hasła?</Link>
-          <div className='flex flex-row justify-center my-2 lg:my-1'>
+          <div className='flex flex-row justify-center my-1'>
             <p className='lg:text-xs text-base text-white'>Nie masz jeszcze konta?</p>
             <Link to='/dostep/rejestracja' className='text-button-link mx-1'>Zarejestruj się</Link>
           </div>

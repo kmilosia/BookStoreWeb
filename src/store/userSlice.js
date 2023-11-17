@@ -5,7 +5,7 @@ const initialState = {
     loading:false,
     token:null,
     error:null,
-    auth: false,
+    isAuth: false,
 }
 
 export const loginUser = createAsyncThunk(
@@ -15,21 +15,24 @@ export const loginUser = createAsyncThunk(
         return request.data
     }
 )
+export const authMiddleware = (store) => (next) => (action) => {
+    if (action.type === 'user/logout') {
+      localStorage.removeItem('token')
+    } else if (loginUser.fulfilled.match(action)) {
+      const token = action.payload;
+      localStorage.setItem('token', JSON.stringify(token));
+    }
+  
+    return next(action);
+  }
 
 const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
         logout: (state,action) => {
-            state.auth = false
+            state.isAuth = false
             state.token = null
-            localStorage.removeItem('token')
-        },
-        addToken: (state, action) => {
-            const storedToken = localStorage.getItem('token');
-            if (storedToken) {
-                state.token = JSON.parse(storedToken);
-            }
         },
     },
     extraReducers:(builder) => {
@@ -37,21 +40,15 @@ const userSlice = createSlice({
             state.loading = true
         })
         .addCase(loginUser.fulfilled,(state,action)=>{
-            state.auth = true
+            state.isAuth = true
             state.loading = false
             state.token = action.payload
-            console.log(action.payload);
-            localStorage.setItem('token',JSON.stringify(action.payload))
         })
         .addCase(loginUser.rejected,(state,action)=>{
             state.loading = false
-            if(state.error === 'Request failed with status code 400'){
-                state.error = 'Nieprawidłowe dane logowania!'
-            }else{
-            state.error = action.error.message        
-            }    
+            state.error = 'Nieprawidłowe dane logowania!' 
         })
     }
 })
-
+export const { logout } = userSlice.actions;
 export default userSlice.reducer

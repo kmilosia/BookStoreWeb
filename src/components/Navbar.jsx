@@ -8,12 +8,14 @@ import NavbarMenuLinks from './navbar/NavbarMenuLinks'
 import NavbarMenuIcons from './navbar/NavbarMenuIcons'
 import SearchModal from '../modals/SearchModal'
 import AccessModal from '../modals/AccessModal'
+import AccountModal from '../modals/AccountModal'
+import { useSelector } from 'react-redux'
 
 function Navbar() {
     const navigate = useNavigate()
+    const {isAuth} = useSelector((state) => state.user)
     const ref = useRef(null)
-    const [isLogged, setIsLogged] = useState(false)
-    const [isLoginModal, setIsLoginModal] = useState(false)
+    const [isUserModal, setIsUserModal] = useState(false)
     const [isSearchModal, setIsSearchModal] = useState(false)  
     const [isDarkTheme, setIsDarkTheme] = useState(checkTheme())
     const [isNavbarOpened, setIsNavbarOpened] = useState(false)
@@ -28,33 +30,29 @@ function Navbar() {
       }
     }
     const handleIconButton = () => {
-      if(isLoginModal){
-        setIsLoginModal(false)
+      if(isUserModal){
+        setIsUserModal(false)
       }
       if(isSearchModal){
         setIsSearchModal(false)
       }
     }
-    const handleLoginModal = () => {
-      if(isLogged){
-        navigate('/konto')
-      }else{
-      if(isLoginModal){
-        setIsLoginModal(false)
-      }else{
-        if(isSearchModal){
-          setIsSearchModal(false)
-        }
-        setIsLoginModal(true)
+    const handleUserModal = () => {
+      if(isSearchModal){
+        setIsSearchModal(false)
       }
-    }
+      if(isUserModal){
+        setIsUserModal(false)
+      }else{
+        setIsUserModal(true)
+      }
     }
     const handleSearchModal = () => {
       if(isSearchModal){
         setIsSearchModal(false)
       }else{
-        if(isLoginModal){
-          setIsLoginModal(false)
+        if(isUserModal){
+          setIsUserModal(false)
         }
         setIsSearchModal(true)
       }
@@ -88,7 +86,7 @@ function Navbar() {
         </div>
       <div className='flex flex-row items-center justify-end'>   
       <div className='hidden lg:flex flex-row items-center justify-end'> 
-        <NavbarMenuIcons handleLoginModal={handleLoginModal} handleSearchModal={handleSearchModal} handleIconButton={handleIconButton} toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} isLogged={isLogged} />
+        <NavbarMenuIcons handleUserModal={handleUserModal} handleSearchModal={handleSearchModal} handleIconButton={handleIconButton} toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
       </div> 
         <button className='navbar-menu-icon inline-block lg:hidden' onClick={toggleNavbar}>
           <AiOutlineMenu />
@@ -105,15 +103,11 @@ function Navbar() {
         </div>
        </div>
     </nav>
-    {isLoginModal &&
-      <AccessModal />
-      }
-      {isSearchModal &&
-      <SearchModal />
-      }
+    {isUserModal && (isAuth ? <AccountModal /> : <AccessModal />)}
+    {isSearchModal && <SearchModal />}
     <div className='fixed bottom-0 right-0 h-auto w-full bg-white dark:bg-midnight-900 z-[10000] lg:hidden'>
       <div className='flex flex-row w-full justify-between px-5 py-5'>
-        <NavbarMenuIcons handleLoginModal={handleLoginModal} handleSearchModal={handleSearchModal} handleIconButton={handleIconButton} toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} isLogged={isLogged} />
+        <NavbarMenuIcons handleUserModal={handleUserModal} handleSearchModal={handleSearchModal} handleIconButton={handleIconButton} toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
       </div>
     </div>
     {isScrolled &&

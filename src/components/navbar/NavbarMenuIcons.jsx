@@ -5,10 +5,10 @@ import { HiOutlineSearch } from 'react-icons/hi'
 import { LuBookMarked } from 'react-icons/lu'
 import { Link } from 'react-router-dom'
 
-function NavbarMenuIcons({toggleTheme, isDarkTheme, handleIconButton,handleLoginModal,handleSearchModal}) {
+function NavbarMenuIcons({toggleTheme, isDarkTheme, handleIconButton,handleUserModal,handleSearchModal}) {
   return (
     <>
-    <button onClick={handleLoginModal} className='navbar-menu-icon group'>
+    <button onClick={handleUserModal} className='navbar-menu-icon group'>
       <div className='tooltip-button'>
         <span>Konto</span>
       </div>       
