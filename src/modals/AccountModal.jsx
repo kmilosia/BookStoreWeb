@@ -8,7 +8,6 @@ function AccountModal() {
     const navigate = useNavigate()
     const handleLogout = () => {
         dispatch(logout())
-        localStorage.removeItem('token')
         navigate(0)
     }
   return (

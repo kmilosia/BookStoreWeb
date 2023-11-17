@@ -5,8 +5,7 @@ const store = configureStore({
     reducer:{
         user: userSlice,
     },
-    middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authMiddleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authMiddleware),
 })
 
 export default store

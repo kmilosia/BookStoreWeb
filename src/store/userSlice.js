@@ -18,11 +18,12 @@ export const loginUser = createAsyncThunk(
 export const authMiddleware = (store) => (next) => (action) => {
     if (action.type === 'user/logout') {
       localStorage.removeItem('token')
+      localStorage.setItem('isAuth', 'false')
     } else if (loginUser.fulfilled.match(action)) {
       const token = action.payload;
       localStorage.setItem('token', JSON.stringify(token));
+      localStorage.setItem('isAuth', 'true');
     }
-  
     return next(action);
   }
 
