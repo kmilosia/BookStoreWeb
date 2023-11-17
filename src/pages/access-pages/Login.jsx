@@ -8,7 +8,6 @@ import { useEffect } from 'react'
 import AccessIconElement from '../../components/elements/AccessIconElement'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../../store/userSlice'
-import axiosClient from '../../utils/api/axiosClient'
 
 function Login() {
   const dispatch = useDispatch()
@@ -16,7 +15,7 @@ function Login() {
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false)
   const [isHiddenPassword, setIsHiddenPassword] = useState(true)
-  const {loading,error} = useSelector((state) => state.user)
+  const {loading,error,auth} = useSelector((state) => state.user)
   const [inputValues, setInputValues] = useState({
     email: "",
     password: "",
@@ -29,31 +28,22 @@ function Login() {
     setErrors(loginValidate(inputValues))
     setSubmitting(true)
   }
-  const sendPutRequest = async (input) => {
-    try {
-      console.log('Request Payload:', input);
-        const response = await axiosClient.post('/Account/login', input);
-        console.log('Response' + response.data);
-    } catch (err) {
-      console.error('error' + err.response.data.message);
-    }
-}
   const finishSubmit = () => {
     let userCredentials = {
       email: inputValues.email, 
       password: inputValues.password,
       audience: 'www',
     }
-
     console.log(userCredentials);
-    sendPutRequest(userCredentials)
-    // dispatch(loginUser(userCredentials))
-    // .then((result)=>{
-    //   if(result.payload){
-    //     navigate('/')
-    //   }
-    // })
+    dispatch(loginUser(userCredentials)).then(() => {
+      navigate('/')
+    })
   }
+  useEffect(() => {
+    if (auth) {
+      navigate('/');
+    }
+  }, [auth, navigate]);
   useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
       finishSubmit();

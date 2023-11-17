@@ -12,8 +12,7 @@ export const loginUser = createAsyncThunk(
     'user/login',
     async(userCredentials) => {
         const request = await axiosClient.post('/Account/login', userCredentials)
-        const response = await request.data.data
-        return response
+        return request.data
     }
 )
 
@@ -22,11 +21,15 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         logout: (state,action) => {
+            state.auth = false
             state.token = null
-            localStorage.clear()
+            localStorage.removeItem('token')
         },
-        addToken:(state,action) => {
-            state.token = localStorage.getItem('token')
+        addToken: (state, action) => {
+            const storedToken = localStorage.getItem('token');
+            if (storedToken) {
+                state.token = JSON.parse(storedToken);
+            }
         },
     },
     extraReducers:(builder) => {
@@ -34,13 +37,19 @@ const userSlice = createSlice({
             state.loading = true
         })
         .addCase(loginUser.fulfilled,(state,action)=>{
+            state.auth = true
             state.loading = false
             state.token = action.payload
+            console.log(action.payload);
             localStorage.setItem('token',JSON.stringify(action.payload))
         })
         .addCase(loginUser.rejected,(state,action)=>{
             state.loading = false
-            state.error = action.error.message            
+            if(state.error === 'Request failed with status code 400'){
+                state.error = 'Nieprawidłowe dane logowania!'
+            }else{
+            state.error = action.error.message        
+            }    
         })
     }
 })
