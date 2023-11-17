@@ -1,5 +1,6 @@
 import React from 'react'
 import ShowPasswordButton from '../../components/buttons/ShowPasswordButton'
+import SubmitLoadingButton from '../../components/buttons/SubmitLoadingButton'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import {loginValidate} from '../../utils/validation/loginValidation'
@@ -7,42 +8,51 @@ import { useEffect } from 'react'
 import AccessIconElement from '../../components/elements/AccessIconElement'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../../store/userSlice'
-import { Oval } from 'react-loader-spinner'
+import axiosClient from '../../utils/api/axiosClient'
 
 function Login() {
-  const {loading,error} = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [isHiddenPassword, setIsHiddenPassword] = useState(true)
-  const [inputValues, setInputValues] = useState({
-    login: "",
-    password: "",
-    remember: false, //email
-  })
   const [errors, setErrors] = useState({});
-  const [submitting, setSubmitting] = useState(false);
+  const [submitting, setSubmitting] = useState(false)
+  const [isHiddenPassword, setIsHiddenPassword] = useState(true)
+  const {loading,error} = useSelector((state) => state.user)
+  const [inputValues, setInputValues] = useState({
+    email: "",
+    password: "",
+  })
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const inputValue = type === 'checkbox' ? checked : value;
-    setInputValues({ ...inputValues, [name]: inputValue });
-  };
+    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors(loginValidate(inputValues))
     setSubmitting(true)
   }
+  const sendPutRequest = async (input) => {
+    try {
+      console.log('Request Payload:', input);
+        const response = await axiosClient.post('/Account/login', input);
+        console.log('Response' + response.data);
+    } catch (err) {
+      console.error('error' + err.response.data.message);
+    }
+}
   const finishSubmit = () => {
-    console.log(inputValues);
     let userCredentials = {
-      login: inputValues.login, 
+      email: inputValues.email, 
       password: inputValues.password,
       audience: 'www',
     }
-    dispatch(loginUser(userCredentials)).then((result)=>{
-      if(result.payload){
-        navigate('/')
-      }
-    })
+
+    console.log(userCredentials);
+    sendPutRequest(userCredentials)
+    // dispatch(loginUser(userCredentials))
+    // .then((result)=>{
+    //   if(result.payload){
+    //     navigate('/')
+    //   }
+    // })
   }
   useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
@@ -57,41 +67,20 @@ function Login() {
           <form onSubmit={handleSubmit} className='w-full lg:w-[20rem]'>
             <div className='my-2'>
             <div className="relative">
-              <input value={inputValues.login} onChange={handleChange} type="text" id='login' name='login' className="floating-form-input peer" placeholder=" " />
-              <label htmlFor='login' className="floating-form-label">Email lub nazwa użytkownika</label>
+              <input value={inputValues.login} onChange={handleChange} type="text" id='email' name='email' className="floating-form-input peer" placeholder=" " />
+              <label htmlFor='email' className="floating-form-label">Wprowadź email</label>
             </div>
-            {errors.login && <span className='error-text'>{errors.login}</span>}
+            {errors.email && <span className='error-text'>{errors.email}</span>}
             </div>
           <div className="my-2">
             <div className="relative">
               <ShowPasswordButton setIsHiddenPassword={setIsHiddenPassword} isHiddenPassword={isHiddenPassword} />
               <input value={inputValues.password} onChange={handleChange} type={`${isHiddenPassword ? 'password' : 'text'}`} id='password' name='password' className="floating-form-input peer" placeholder=" " />
-              <label htmlFor='password' className="floating-form-label">Hasło</label>
+              <label htmlFor='password' className="floating-form-label">Wprowadź hasło</label>
             </div>
             {errors.password && <span className='error-text'>{errors.password}</span>}
           </div>
-          <div className="flex items-center justify-start w-full my-2">
-            <input onChange={handleChange} id="remember" name='remember' type="checkbox" checked={inputValues.remember} className="purple-checkbox"/>
-            <label htmlFor="remember" className="checkbox-label">Zapamiętaj mnie</label>
-          </div>
-          <button type='submit' className='purple-button w-full flex items-center justify-center'>
-            {loading ?
-          <Oval
-            height={20}
-            width={20}
-            color="#ccc"
-            wrapperStyle={{}}
-            wrapperClass=""
-            visible={true}
-            ariaLabel='oval-loading'
-            secondaryColor="#fff"
-            strokeWidth={5}
-            strokeWidthSecondary={5}
-            />
-            :
-            <span>Zaloguj się</span>
-            }
-          </button>
+          <SubmitLoadingButton title="Zaloguj się" loading={loading} />
           </form>
           {error &&
           <p className='error-text'>{error}</p>

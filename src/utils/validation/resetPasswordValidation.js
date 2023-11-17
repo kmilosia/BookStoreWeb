@@ -1,9 +1,9 @@
 export const resetPasswordValidate = (inputValues) => {
     let errors = {}
-    if (inputValues.password === "" || inputValues.password === null) {
+    if (!inputValues.password) {
       errors.password = "Wprowadź hasło!"
     }
-    if (inputValues.repeatPassword === "" || inputValues.repeatPassword === null) {
+    if (!inputValues.repeatPassword) {
         errors.repeatPassword = "Powtórz hasło!"
     }
     if(inputValues.password !== inputValues.repeatPassword){

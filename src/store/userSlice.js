@@ -1,44 +1,48 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosClient from "../utils/api/axiosClient";
 
+const initialState = {
+    loading:false,
+    token:null,
+    error:null,
+    auth: false,
+}
+
 export const loginUser = createAsyncThunk(
-    'user/loginUser',
+    'user/login',
     async(userCredentials) => {
-        const request = await axiosClient.post('/user/login', userCredentials)
+        const request = await axiosClient.post('/Account/login', userCredentials)
         const response = await request.data.data
-        localStorage.setItem('token',JSON.stringify(response)) //token for all the API post calls so no user only token for each component call
         return response
     }
 )
 
-export const userSlice = createSlice({
+const userSlice = createSlice({
     name: 'user',
-    initialState:{
-        loading:false,
-        user:null,
-        error:null,
+    initialState,
+    reducers: {
+        logout: (state,action) => {
+            state.token = null
+            localStorage.clear()
+        },
+        addToken:(state,action) => {
+            state.token = localStorage.getItem('token')
+        },
     },
     extraReducers:(builder) => {
         builder.addCase(loginUser.pending,(state)=>{
             state.loading = true
-            state.user = null
-            state.error = null
         })
         .addCase(loginUser.fulfilled,(state,action)=>{
             state.loading = false
-            state.user = action.payload
-            state.error = null
+            state.token = action.payload
+            localStorage.setItem('token',JSON.stringify(action.payload))
         })
         .addCase(loginUser.rejected,(state,action)=>{
             state.loading = false
-            state.user = null
-            console.log(action.error.message);
-            if(action.error.message === "Request failed with status code 401"){
-                state.error = "Nieprawidłowe dane logowania!"
-            }else{
-                state.error = action.error.message
-            }
-            state.error = null
+            state.error = action.error.message            
         })
     }
 })
+
+export default userSlice.reducer

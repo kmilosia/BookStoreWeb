@@ -1,11 +1,11 @@
 export const loginValidate = (inputValues) => {
     let errors = {};
-    if (inputValues.email === "" || inputValues.email === null) {
+    if (!inputValues.email) {
       errors.email = "Wprowadź swój email"
-    }    if (inputValues.login === "" || inputValues.login === null) {
-      errors.login = "Wprowadź swój email lub nazwę użytkownika"
+    } else if (!/\S+@\S+\.\S+/.test(inputValues.email)) {
+      errors.email = "Nieprawidłowy format"
     }
-    if (inputValues.password === "" || inputValues.password === null) {
+    if (!inputValues.password) {
         errors.password = "Hasło jest obowiązkowe";
     }
     return errors
