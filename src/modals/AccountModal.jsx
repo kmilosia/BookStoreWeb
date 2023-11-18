@@ -11,7 +11,7 @@ function AccountModal() {
         navigate(0)
     }
   return (
-    <div className='fixed z-50 w-full lg:w-52 bottom-12 lg:top-20 lg:bottom-auto right-0 lg:right-32 px-10 py-7 lg:py-5 rounded-none lg:rounded-md flex
+    <div className='fixed z-[10000] w-full lg:w-48 bottom-12 lg:top-20 lg:bottom-auto right-0 lg:right-32 px-5 py-7 lg:py-5 rounded-none lg:rounded-md flex
      flex-col lg:shadow-lg default-bg' >
         <Link to='/konto' className='dark:text-white py-1 font-medium hover:font-semibold'>Konto</Link>
         <Link to='/konto/zamowienia' className='dark:text-white py-1 font-medium hover:font-semibold'>Zamówienia</Link>

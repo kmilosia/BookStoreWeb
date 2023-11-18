@@ -1,12 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosClient from "../utils/api/axiosClient";
+import axiosTokenClient from "../utils/api/axiosTokenClient";
 
 const initialState = {
     loading:false,
     token:null,
     error:null,
     isAuth: false,
-    success: false
+    success: false,
+    userData: null,
 }
 
 export const loginUser = createAsyncThunk(
@@ -21,6 +23,13 @@ export const registerUser = createAsyncThunk(
     async(userCredentials) => {
         const request = await axiosClient.post('Account/registration',userCredentials)
         return request.data
+    }
+)
+export const fetchUserData = createAsyncThunk(
+    'user/info',
+    async() => {
+        const response = await axiosTokenClient.get('User/info')
+        return response.data
     }
 )
 export const authMiddleware = (store) => (next) => (action) => {
@@ -42,6 +51,7 @@ const userSlice = createSlice({
         logout: (state,action) => {
             state.isAuth = false
             state.token = null
+            state.userData = null
         },
     },
     extraReducers:(builder) => {
@@ -58,6 +68,7 @@ const userSlice = createSlice({
             state.error = 'Nieprawidłowe dane logowania!' 
         }) .addCase(registerUser.pending,(state)=>{
             state.loading = true
+            state.success = false
         }) .addCase(registerUser.fulfilled,(state,action)=>{
             state.loading = false
             state.success = true
@@ -65,6 +76,19 @@ const userSlice = createSlice({
         .addCase(registerUser.rejected,(state,action)=>{
             state.loading = false
             state.error = 'Nieudana rejestracja! Sprawdź czy wpisane dane są prawidłowe!' 
+        })
+        .addCase(fetchUserData.pending,(state)=>{
+            state.loading = true
+            state.success = false
+        })
+        .addCase(fetchUserData.fulfilled,(state,action)=>{
+            state.loading = false
+            state.success = true
+            state.userData = action.payload
+        })
+        .addCase(fetchUserData.rejected,(state,action)=>{
+            state.loading = false
+            state.error = 'Nie można pobrać danych użytkownika!' 
         })
     }
 })

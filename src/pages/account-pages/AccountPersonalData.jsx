@@ -1,7 +1,12 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
+import { fetchUserData } from '../../store/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 function AccountPersonalData() {
+  const dispatch = useDispatch()
+  const {userData} = useSelector((state) => state.user)
   const [deleteModule, setDeleteModule] = useState(false)
   const [isEdited, setIsEdited] = useState(false)
   const handleSaveClick = (e) => {
@@ -15,10 +20,16 @@ function AccountPersonalData() {
     e.preventDefault()
     setDeleteModule(true)
   }
+  useEffect(() => {
+    dispatch(fetchUserData())
+  },[])
+  useEffect(() => {
+    console.log(userData);
+  },[userData])
   return (
     <>
     <div className='flex flex-col px-5 py-5 bg-white rounded-md dark:bg-midnight-900'>
-      <h1 className='text-xl mb-3 font-semibold text-center lg:text-start'>Konto użytkownika</h1>
+      <h1 className='text-xl mb-3 font-semibold text-center lg:text-start'>Dane użytkownika</h1>
       <form>
       <div className='w-full lg:w-3/4 lg:grid flex flex-col lg:grid-cols-2 gap-5'>
         <div className='flex flex-col'>

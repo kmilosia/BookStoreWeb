@@ -1,7 +1,22 @@
-import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
+import {isAuthorised} from '../../utils/functions/isAuthorised'
+import { useDispatch } from 'react-redux'
+import { logout } from '../../store/userSlice'
 
 function Account() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  useEffect(() => {
+    const auth = isAuthorised()
+    if(!auth){
+      navigate('/')
+    }
+  },[])
+  const handleLogout = () => {
+    dispatch(logout())
+    navigate('/')
+}
   const linkStyle = 'px-5 py-2 hover:font-semibold'
   return (
     <div className='default-page-wrapper'>
@@ -9,11 +24,11 @@ function Account() {
         <h1 className='text-3xl my-4 font-medium mx-1 text-start hidden lg:inline-block'>Konto</h1>
         <div className='grid grid-cols-1 lg:grid-cols-[1fr_4fr] min-h-[80vh] gap-3 lg:gap-5'>
           <div className='flex flex-col py-3 mt-3 lg:mt-0 items-center lg:items-start rounded-md h-auto bg-white dark:bg-midnight-900'>
-            <Link to='dane-osobowe' className={linkStyle}>Konto użytkownika</Link>
+            <Link to='dane-osobowe' className={linkStyle}>Dane użytkownika</Link>
             <Link to='zamowienia' className={linkStyle}>Zamówienia</Link>
             <Link to='wypozyczenia' className={linkStyle}>Wypożyczenia</Link>
             <Link to='/biblioteka' className={linkStyle}>Biblioteka</Link>
-            <Link to='biblioteka' className={`${linkStyle} text-red-500`}>Wyloguj się</Link>
+            <button onClick={handleLogout} className={`${linkStyle} text-red-500`}>Wyloguj się</button>
           </div>
           <Outlet />
         </div>
