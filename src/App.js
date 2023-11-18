@@ -2,7 +2,7 @@ import './App.css';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
 import {Home, Search,PageNotFound, Rental, RentalElectronicBook, Store, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders,
    Library, AccountRentals, Cart, Wishlist,Checkout, CheckoutDelivery, CheckoutPayment, CheckoutConfirmation, CheckoutLogin, Access, RecoverPassword,
-    Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword, RecoverPasswordConfirmation, RegisterRequiredData, RegisterPersonalInfo, RegisterAddress, RegisterConfirmation, ProductsList, Product} from './import'
+    Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword, RecoverPasswordConfirmation, RegisterRequiredData, RegisterConfirmation, RegisterAccountInfo, ProductsList, Product, RegisterConfirmEmail} from './import'
 import MainLayout from './MainLayout';
 
 function App() {
@@ -17,9 +17,9 @@ function App() {
 
           <Route path='rejestracja' element={<Register />}>
             <Route index element={<RegisterRequiredData />} />
-            <Route path='dane-osobowe' element={<RegisterPersonalInfo />} />
-            <Route path='adres' element={<RegisterAddress />} />
+            <Route path='potwierdz-email' element={<RegisterConfirmEmail />} />
             <Route path='potwierdzenie' element={<RegisterConfirmation />} />
+            <Route path='dokoncz-rejestracje' element={<RegisterAccountInfo />} />
           </Route>
 
           <Route path='odzyskaj-konto' element={<RecoverPassword />}>

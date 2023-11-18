@@ -24,9 +24,9 @@ export {default as RecoverPasswordConfirmation} from './pages/access-pages/recov
 
 export {default as Register} from './pages/access-pages/register-pages/Register'
 export {default as RegisterRequiredData} from './pages/access-pages/register-pages/RegisterRequiredData'
-export {default as RegisterPersonalInfo} from './pages/access-pages/register-pages/RegisterPersonalInfo'
-export {default as RegisterAddress} from './pages/access-pages/register-pages/RegisterAddress'
+export {default as RegisterAccountInfo} from './pages/access-pages/register-pages/RegisterAccountInfo'
 export {default as RegisterConfirmation} from './pages/access-pages/register-pages/RegisterConfirmation'
+export {default as RegisterConfirmEmail} from './pages/access-pages/register-pages/RegisterConfirmEmail'
 
 export {default as Cart} from './pages/Cart'
 export {default as Checkout} from './pages/checkout-pages/Checkout'

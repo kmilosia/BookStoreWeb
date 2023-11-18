@@ -6,12 +6,20 @@ const initialState = {
     token:null,
     error:null,
     isAuth: false,
+    success: false
 }
 
 export const loginUser = createAsyncThunk(
     'user/login',
     async(userCredentials) => {
         const request = await axiosClient.post('/Account/login', userCredentials)
+        return request.data
+    }
+)
+export const registerUser = createAsyncThunk(
+    'user/register',
+    async(userCredentials) => {
+        const request = await axiosClient.post('Account/registration',userCredentials)
         return request.data
     }
 )
@@ -48,6 +56,15 @@ const userSlice = createSlice({
         .addCase(loginUser.rejected,(state,action)=>{
             state.loading = false
             state.error = 'Nieprawidłowe dane logowania!' 
+        }) .addCase(registerUser.pending,(state)=>{
+            state.loading = true
+        }) .addCase(registerUser.fulfilled,(state,action)=>{
+            state.loading = false
+            state.success = true
+        })
+        .addCase(registerUser.rejected,(state,action)=>{
+            state.loading = false
+            state.error = 'Nieudana rejestracja! Sprawdź czy wpisane dane są prawidłowe!' 
         })
     }
 })

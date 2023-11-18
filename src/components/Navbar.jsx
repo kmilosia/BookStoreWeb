@@ -9,10 +9,10 @@ import NavbarMenuIcons from './navbar/NavbarMenuIcons'
 import SearchModal from '../modals/SearchModal'
 import AccessModal from '../modals/AccessModal'
 import AccountModal from '../modals/AccountModal'
-import { isAuth } from '../utils/functions/isAuth'
+import { isAuthorised } from '../utils/functions/isAuthorised'
 
 function Navbar() {
-    const isLogged = isAuth()
+    const isLogged = isAuthorised()
     const navigate = useNavigate()
     const ref = useRef(null)
     const [isUserModal, setIsUserModal] = useState(false)

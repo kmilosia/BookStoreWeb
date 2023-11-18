@@ -54,7 +54,7 @@ function Login() {
           <form onSubmit={handleSubmit} className='w-full lg:w-[20rem]'>
             <div className='my-2'>
             <div className="relative">
-              <input value={inputValues.login} onChange={handleChange} type="text" id='email' name='email' className="floating-form-input peer" placeholder=" " />
+              <input value={inputValues.email} onChange={handleChange} type="text" id='email' name='email' className="floating-form-input peer" placeholder=" " />
               <label htmlFor='email' className="floating-form-label">Wprowadź email</label>
             </div>
             {errors.email && <span className='error-text'>{errors.email}</span>}
