@@ -23,7 +23,7 @@ function BannerCarousel() {
     <Slider className='mb-2' {...settings}>
     {bannersData.map((item, index) => {
         return (
-          <BannerCarouselItem key={index} src={item.src} title={item.title} />
+          <BannerCarouselItem key={index} path={item.path} src={item.src} title={item.title} />
         )
     })}
     </Slider>

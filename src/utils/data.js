@@ -25,10 +25,8 @@ export const booksData = [
 ]
 
 export const bannersData = [
-    {id: 1, title: 'Some banner', src: 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/grocery-sale-retail-or-e-commerce-banner-ad-design-template-67720435bb809be27f46dfb1dd44c6fa_screen.jpg?ts=1606113265'},
-    {id: 2, title: 'Some banner', src: 'https://static.vecteezy.com/system/resources/thumbnails/001/937/856/small/paper-art-shopping-online-on-smartphone-sale-promotion-backgroud-banner-for-market-ecommerce-free-vector.jpg'},
-    {id: 3, title: 'Some banner', src: 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/grocery-sale-retail-or-e-commerce-banner-ad-design-template-67720435bb809be27f46dfb1dd44c6fa_screen.jpg?ts=1606113265'},
-]
+    {id: 1,path: '/ksiazka/1', title: 'Britney Spears', src: 'https://iili.io/JnwKYmP.jpg'},
+    {id: 2,path: '/ksiazki', title: 'Świąteczne promocje', src: 'https://iili.io/JnwKcI1.jpg'},]
 
 export const productsData = [
     {id: 1, form: 'ebook', file: "EPUB", title: "Harry Potter i Więzień Azkabanu",price: 59.99, score: 5, author: 'J.K. Rowling', url: 'https://images.ctfassets.net/usf1vwtuqyxm/24YWmI4UcyoMwj7wdKrEcL/374de1941927db12bd844fb197eab11f/English_Harry_Potter_3_Epub_9781781100233.jpg?w=914&q=70&fm=jpg'},
