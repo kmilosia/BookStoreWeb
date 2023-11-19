@@ -16,30 +16,32 @@ function FooterColumn(props) {
     }  
   }
   useEffect(() => {
-    // getFooterLinks()
+    getFooterLinks()
   },[])
   return (
     <div className='flex flex-col items-center md:items-start my-3 md:my-0'>
         <h2 className='text-2xl md:text-lg font-semibold my-4 md:my-2 cursor-default'>{props.name}</h2>
-        {footerLinks && footerLinks.map(item => {
+        <div className={`flex flex-${props.direction}`}>
+        {footerLinks && footerLinks.map((item,index) => {
           if(item.htmlObject === 'Link'){
             return (
-              <FooterLink key={item.id} name={item.name} path={item.path}/>
+              <FooterLink key={index} name={item.name} path={item.path}/>
             )
           }else if(item.htmlObject === 'Anchor'){
             return (
-              <FooterAnchor key={item.id} path={item.path} url={item.url}/>
+              <FooterAnchor key={index} path={item.path} url={item.url}/>
             )
           }else if(item.htmlObject === 'Image'){
             return(
-              <FooterImage key={item.id} url={item.url}/>
+              <FooterImage key={index} url={item.url}/>
             )
           }else{
             return(
-              <FooterIconAnchor key={item.id} path={item.path} url={item.url}/>
+              <FooterIconAnchor key={index} path={item.path} url={item.url}/>
             )
           }
         })}
+      </div> 
     </div> 
   )
 }
