@@ -5,8 +5,13 @@ import AccessIconElement from '../../../components/elements/AccessIconElement'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { emailValidate } from '../../../utils/validation/emailValidation'
+import { resetPasswordEmail, resetState } from '../../../store/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import SubmitLoadingButton from '../../../components/buttons/SubmitLoadingButton'
 
 function RecoverPasswordEmail() {
+  const dispatch = useDispatch()
+  const {success,loading} = useSelector((state) => state.user)
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false);
   const [email, setEmail] = useState('');
@@ -21,9 +26,17 @@ function RecoverPasswordEmail() {
     setSubmitting(true)
   }
   const finishSubmit = () => {
-    console.log(email);
-    navigate('/dostep/odzyskaj-konto/email')
+    let data = {
+      email: email, 
+    }
+    dispatch(resetPasswordEmail(data))
   }
+  useEffect(() => {
+    if(success){
+      navigate('/dostep/odzyskaj-konto/email')
+      dispatch(resetState())
+    }
+  },[success])
   useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
       finishSubmit();
@@ -37,12 +50,12 @@ function RecoverPasswordEmail() {
     <form onSubmit={handleSubmit} className='lg:w-[20rem] w-full'>
     <div className='my-2'>
       <div className="relative">
-        <input value={email} onChange={handleChange} type="text" id='login' name='login' className="floating-form-input peer" placeholder=" " />
-        <label htmlFor='login' className="floating-form-label">Email lub nazwa użytkownika</label>
+        <input value={email} onChange={handleChange} type="text" id='email' name='email' className="floating-form-input peer" placeholder=" " />
+        <label htmlFor='email' className="floating-form-label">Adres email</label>
       </div>
       {errors.email && <span className='error-text'>{errors.email}</span>}
     </div>
-    <button onClick={handleSubmit} type='submit' className='purple-button w-full my-2'>Dalej</button>
+    <SubmitLoadingButton title="Dalej" loading={loading} />
     <ReturnToLoginButton />
     </form>
   </div> 

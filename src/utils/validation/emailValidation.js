@@ -1,9 +1,9 @@
 export const emailValidate = (email) => {
     let errors = {}
     if (!email) {
-      errors.email = "Wprowadź swój email"
+      errors.email = "Wprowadź swój email!"
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      errors.email = "Nieprawidłowy format"
+      errors.email = "Nieprawidłowy format!"
     }
     return errors
   }

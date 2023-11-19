@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import ShowPasswordButton from '../../../components/buttons/ShowPasswordButton'
 import AccessIconElement from '../../../components/elements/AccessIconElement'
 import { useDispatch, useSelector } from 'react-redux'
-import { registerUser } from '../../../store/userSlice'
+import { registerUser, resetState } from '../../../store/userSlice'
 import { useEffect } from 'react'
 import { registerValidate } from '../../../utils/validation/registerValidation'
 import SubmitLoadingButton from '../../../components/buttons/SubmitLoadingButton'
@@ -46,10 +46,7 @@ function RegisterRequiredData() {
     dispatch(registerUser(userCredentials))
   }
   useEffect(() => {
-    const auth = isAuthorised()
-    if(auth){
-      navigate('/')
-    }
+    dispatch(resetState())
   },[])
   useEffect(() => {
     if (success) {

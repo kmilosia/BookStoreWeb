@@ -156,7 +156,7 @@ function RegisterCarousel() {
     <button type="button" onClick={handleNextSlide} className={`purple-button w-[20rem] text-base ${activeSlide === 2 ? 'hidden' : 'block'}`}>
       <span>Dalej</span>
     </button>
-    <button type="button" onClick={handlePrevSlide} className={`text-button-link w-max text-base my-1 ${activeSlide === 0 ? 'hidden' : 'block'}`}>
+    <button type="button" onClick={handlePrevSlide} className={`text-button-link w-max text-base my-1 ${activeSlide === 0 ? 'opacity-0' : 'opacity-100'}`}>
       <span>Wstecz</span>
     </button>
   </div>

@@ -7,7 +7,7 @@ import {loginValidate} from '../../utils/validation/loginValidation'
 import { useEffect } from 'react'
 import AccessIconElement from '../../components/elements/AccessIconElement'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginUser } from '../../store/userSlice'
+import { loginUser, resetState } from '../../store/userSlice'
 
 function Login() {
   const dispatch = useDispatch()
@@ -36,6 +36,9 @@ function Login() {
     }
     dispatch(loginUser(userCredentials))
   }
+  useEffect(() => {
+    dispatch(resetState())
+  },[])
   useEffect(() => {
     if (isAuth) {
       navigate('/');

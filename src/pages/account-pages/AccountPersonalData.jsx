@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { fetchUserData } from '../../store/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import DeleteAccountModal from '../../modals/DeleteAccountModal'
 
 function AccountPersonalData() {
   const dispatch = useDispatch()
@@ -55,12 +56,16 @@ function AccountPersonalData() {
           : <input disabled={!isEdited} id='gender-input' type='text' className='form-input' value='Kobieta'/>}
         </div>
         <div className='flex flex-col'>
-          <label htmlFor='email-input' className='label-input'>Email</label>
-          <input disabled={!isEdited} id='email-input' type='text' className='form-input' value='nowaka@gmail.com'/>
+          <label htmlFor='email' className='label-input'>Email</label>
+          <input disabled={!isEdited} name='email' id='email' type='text' className='form-input' value='nowaka@gmail.com'/>
         </div>
         <div className='flex flex-col'>
-          <label htmlFor='phone-input' className='label-input'>Numer telefonu</label>
-          <input disabled={!isEdited} id='phone-input' type='text' className='form-input' value='+48736267667'/>
+          <label htmlFor='username' className='label-input'>Nazwa użytkownika</label>
+          <input disabled={!isEdited} name='username' id='username' type='text' className='form-input' value='jannaanna'/>
+        </div>
+        <div className='flex flex-col col-span-2'>
+          <label htmlFor='phonenumber' className='label-input'>Numer telefonu</label>
+          <input disabled={!isEdited} name='phonenumber' id='phonenumber' type='text' className='form-input' value='+48736267667'/>
         </div>
         {isEdited ? 
         <div className='flex flex-col col-span-2'>
@@ -136,23 +141,14 @@ function AccountPersonalData() {
         </div>
         }
         {isEdited ? <button onClick={() => {setIsEdited(false)}} className='orange-button'>Zapisz</button>
-        :  <button onClick={handleEditClick} className='orange-button'>Edytuj</button>
+        :  <button onClick={handleEditClick} className='purple-button'>Edytuj</button>
         }
         <button onClick={handleDeleteClick} className='delete-button'>Usuń konto</button>
       </div>
       </form>
     </div>
     {deleteModule &&
-    <div className='fixed flex justify-center items-center top-0 right-0 w-full h-full z-100 bg-black/50'>
-        <div className='bg-white px-10 py-10 rounded-md w-auto h-auto flex flex-col items-center justify-center dark:bg-midnight-800 mx-3 lg:mx-0'>
-          <h1 className='text-xl font-semibold my-2 text-center lg:text-start'>Czy napewno chcesz usunąć konto?</h1>
-          <p className='my-2 text-center w-full lg:w-3/4'>Konto zostanie dezaktywowane na 30 dni, a następnie zostanie permanentnie usunięte.</p>
-          <div className='grid grid-cols-2 gap-3 my-2 w-full'>
-            <button className='delete-button'>Usuń konto</button>
-            <button onClick={() => setDeleteModule(false)} className='orange-button'>Anuluj</button>
-          </div>
-        </div>
-      </div>
+    <DeleteAccountModal setDeleteModule={setDeleteModule} />
     }
     </>
   )

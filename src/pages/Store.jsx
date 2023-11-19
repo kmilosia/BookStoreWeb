@@ -1,7 +1,4 @@
 import React from 'react'
-import book from '../assets/categories/book.png'
-import ebook from '../assets/categories/ebook.png'
-import categories from '../assets/categories/categories.png'
 import StoreTypeLink from '../components/links/StoreTypeLink'
 import BooksCarousel from '../components/carousel/books-carousel/BooksCarousel'
 import BannerCarousel from '../components/carousel/banner-carousel/BannerCarousel'
@@ -19,9 +16,9 @@ function Store() {
     <div className='default-page-container'>
       <BannerCarousel />
       <div className='grid grid-cols-1 mt-5 mb-3 lg:grid-cols-3 gap-5'>
-          <StoreTypeLink src={book} path="/ksiazki" title="Przeglądaj książki" />
-          <StoreTypeLink src={ebook} path="/e-booki" title="Przeglądaj e-booki" />
-          <StoreTypeLink src={categories} path="/kategorie" title="Przeglądaj kategorie" />
+          <StoreTypeLink src='https://iili.io/JBf7uNp.png' path="/ksiazki" title="Przeglądaj książki" />
+          <StoreTypeLink src='https://iili.io/JBf7lls.png' path="/e-booki" title="Przeglądaj ebooki" />
+          <StoreTypeLink src='https://iili.io/JCnBzCl.png' path="/kategorie" title="Przeglądaj kategorie" />
         </div>  
       <div className='carousel-element'>
         <h1 className='carousel-header'>Promocyjne książki</h1>

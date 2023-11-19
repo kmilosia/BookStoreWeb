@@ -1,6 +1,7 @@
 export const getValidToken = () => {
-    const token = localStorage.getItem('token')
-    if(token){
+    const rawToken = localStorage.getItem('token')
+    if(rawToken){
+        const token = rawToken.replace(/^"|"$/g, '');
         return token
     }
 }
