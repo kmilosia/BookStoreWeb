@@ -21,6 +21,18 @@ function RegisterAccountInfo() {
   const [birthday, setBirthday] = useState('')
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
+  const [street, setStreet] = useState('')
+  const [streetNumber, setStreetNumber] = useState('')
+  const [houseNumber, setHouseNumber] = useState('')
+  const [postcode, setPostcode] = useState('')
+  const [selectedCity, setSelectedCity] = useState('')
+  const [selectedCountry, setSelectedCountry] = useState('')
+  const [mailingStreet, setMailingStreet] = useState('')
+  const [mailingStreetNumber, setMailingStreetNumber] = useState('')
+  const [mailingHouseNumber, setMailingHouseNumber] = useState('')
+  const [mailingPostcode, setMailingPostcode] = useState('')
+  const [mailingSelectedCity, setMailingSelectedCity] = useState('')
+  const [mailingSelectedCountry, setMailingSelectedCountry] = useState('')
 
 
   const handleSkip = () => {
@@ -69,10 +81,10 @@ function RegisterAccountInfo() {
         <PersonalInfo selectedGender={selectedGender} setSelectedGender={setSelectedGender} birthday={birthday} setBirthday={setBirthday} name={name} surname={surname} setName={setName} setSurname={setSurname}/>
       </div>
       <div className="carousel-slide">
-        <Address />
+        <Address street={street} setStreet={setStreet} streetNumber={streetNumber} setStreetNumber={setStreetNumber} houseNumber={houseNumber} setHouseNumber={setHouseNumber} postcode={postcode} setPostcode={setPostcode} selectedCity={selectedCity} setSelectedCity={setSelectedCity} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry}/>
       </div>
       <div className="carousel-slide">
-        <MailingAddress />
+      <MailingAddress mailingStreet={mailingStreet} setMailingStreet={setMailingStreet} mailingStreetNumber={mailingStreetNumber} setMailingStreetNumber={setMailingStreetNumber} mailingHouseNumber={mailingHouseNumber} setMailingHouseNumber={setMailingHouseNumber} mailingPostcode={mailingPostcode} setMailingPostcode={setMailingPostcode} mailingSelectedCity={mailingSelectedCity} setMailingSelectedCity={setMailingSelectedCity} mailingSelectedCountry={mailingSelectedCountry} setMailingSelectedCountry={setMailingSelectedCountry}/>
       </div>
     </div>
     <div className='flex flex-col justify-center items-center lg:my-2'>

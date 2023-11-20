@@ -6,9 +6,8 @@ const initialState = {
     loading:false,
     error:null,
     isAuth: false,
-    success: null,
+    success: false,
     userData: null,
-    email: null,
 }
 export const checkTokenValidity = async (token) => {
     try {
@@ -58,7 +57,7 @@ export const resetPasswordEmail = createAsyncThunk(
     'user/resetPasswordEmail',
     async(data) => {
         const request = await axiosClient.post('/Account/ForgotPassword', data)
-        return {email: data.email, responseData: request.data}
+        return request.data
     }
 )
 export const resetPassword = createAsyncThunk(
@@ -96,7 +95,7 @@ const userSlice = createSlice({
             state.error = null
         },
         resetState: (state,action) => {
-            state.success = null
+            state.success = false
             state.error = null
         }
     },
