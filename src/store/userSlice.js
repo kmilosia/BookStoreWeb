@@ -56,8 +56,8 @@ export const fetchUserData = createAsyncThunk(
 export const resetPasswordEmail = createAsyncThunk(
     'user/resetPasswordEmail',
     async(data) => {
-        const request = await axiosClient.post('/Account/ForgotPassword', data)
-        return request.data
+        const response = await axiosClient.post('/Account/ForgotPassword', data)
+        return response.data
     }
 )
 export const resetPassword = createAsyncThunk(

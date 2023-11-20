@@ -21,6 +21,7 @@ function RegisterAccountInfo() {
   const [birthday, setBirthday] = useState('')
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
   const [street, setStreet] = useState('')
   const [streetNumber, setStreetNumber] = useState('')
   const [houseNumber, setHouseNumber] = useState('')
@@ -54,15 +55,39 @@ function RegisterAccountInfo() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // setErrors(loginValidate(inputValues))
-    setSubmitting(true)
-  }
-  const finishSubmit = () => {
-    let data = {
+    // setSubmitting(true)
+    const data = {
+      name: name,
+      surname: surname,
       genderID: selectedGender,
-
+      dateOfBirth: birthday,
+      phoneNumber: phoneNumber,
+      address: {
+        street: street,
+        streetNumber: streetNumber,
+        houseNumber: houseNumber,
+        postcode: postcode,
+        cityID: selectedCity,
+        countryID: selectedCountry
+      },
+      mailingAddress: {
+        street: mailingStreet,
+        streetNumber: mailingStreetNumber,
+        houseNumber: mailingHouseNumber,
+        postcode: mailingPostcode,
+        cityID: mailingSelectedCity,
+        countryID: mailingSelectedCountry
+      },
     }
-    dispatch(createCustomer(data,userId))
+    console.log(data);
   }
+  // const finishSubmit = () => {
+  //   let data = {
+  //     genderID: selectedGender,
+
+  //   }
+  //   dispatch(createCustomer(data,userId))
+  // }
   useEffect(() => {
     dispatch(resetState())
   }, [])
@@ -78,7 +103,7 @@ function RegisterAccountInfo() {
     <div id="indicators-carousel" className="relative w-full" data-carousel="static">
     <div className="carousel-container" style={{ transform: `translateX(-${activeSlide * 100}%)` }}>
       <div className="carousel-slide">
-        <PersonalInfo selectedGender={selectedGender} setSelectedGender={setSelectedGender} birthday={birthday} setBirthday={setBirthday} name={name} surname={surname} setName={setName} setSurname={setSurname}/>
+        <PersonalInfo phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} selectedGender={selectedGender} setSelectedGender={setSelectedGender} birthday={birthday} setBirthday={setBirthday} name={name} surname={surname} setName={setName} setSurname={setSurname}/>
       </div>
       <div className="carousel-slide">
         <Address street={street} setStreet={setStreet} streetNumber={streetNumber} setStreetNumber={setStreetNumber} houseNumber={houseNumber} setHouseNumber={setHouseNumber} postcode={postcode} setPostcode={setPostcode} selectedCity={selectedCity} setSelectedCity={setSelectedCity} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry}/>

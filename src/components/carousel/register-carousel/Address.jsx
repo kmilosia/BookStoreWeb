@@ -55,28 +55,28 @@ fetchCountries()
     <h2 className='col-span-2 text-white text-xl font-light mb-3'>Adres zamieszkania</h2>
     <div className='grid grid-cols-1 lg:grid-cols-4 gap-3 w-full lg:w-[40rem]'>
       <div className="relative col-span-2">
-        <input value={street} type="text" id='street' name='street' className="floating-form-input peer" placeholder=" " />
+        <input value={street} onChange={handleStreetChange} type="text" id='street' name='street' className="floating-form-input peer" placeholder=" " />
         <label htmlFor='street' className="floating-form-label">Ulica</label>
       </div>
       <div className="relative">
-        <input type="text" id='street-number' name='street-number' className="floating-form-input peer" placeholder=" " />
+        <input value={streetNumber} onChange={handleStreetNumberChange} type="text" id='street-number' name='street-number' className="floating-form-input peer" placeholder=" " />
         <label htmlFor='street-number' className="floating-form-label">Numer ulicy</label>
       </div>
       <div className="relative">
-        <input type="text" id='house-number' name='house-number' className="floating-form-input peer" placeholder=" " />
+        <input value={houseNumber} onChange={handleHouseNumberChange} type="text" id='house-number' name='house-number' className="floating-form-input peer" placeholder=" " />
         <label htmlFor='house-number' className="floating-form-label">Numer domu</label>
       </div>
     </div>
     <div className='grid grid-cols-1 lg:grid-cols-3 gap-3 my-3 w-full lg:w-[40rem]'>
       <div className="relative">
-        <input type="text" id='postcode' name='postcode' className="floating-form-input peer" placeholder=" " />
+        <input value={postcode} onChange={handlePostcodeChange} type="text" id='postcode' name='postcode' className="floating-form-input peer" placeholder=" " />
         <label htmlFor='postcode' className="floating-form-label">Kod pocztowy</label>
       </div>
       <div className="relative">
-        <select id='city' name='city' className="floating-form-input peer" placeholder=" ">
-        <option value=''>Wybierz miasto</option>
+        <select value={selectedCity} onChange={handleCityChange} id='city' name='city' className="floating-form-input peer" placeholder=" ">
+        <option className='option-select' value=''>Wybierz miasto</option>
         {cities.map((city) => (
-            <option key={city.value} value={city.value}>
+            <option className='option-select' key={city.value} value={city.value}>
                 {city.label}
             </option>
         ))}
@@ -84,10 +84,10 @@ fetchCountries()
         <label htmlFor='city' className="floating-form-label">Miasto</label>
       </div>
       <div className="relative">
-        <select id='country' name='country' className="floating-form-input peer" placeholder=" ">
-        <option value=''>Wybierz kraj</option>
+        <select value={selectedCountry} onChange={handleCountryChange} id='country' name='country' className="floating-form-input peer" placeholder=" ">
+        <option className='option-select' value=''>Wybierz kraj</option>
         {countries.map((country) => (
-            <option key={country.value} value={country.value}>
+            <option className='option-select' key={country.value} value={country.value}>
                 {country.label}
             </option>
         ))}

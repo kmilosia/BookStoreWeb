@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axiosClient from '../../../utils/api/axiosClient'
 
-function PersonalInfo({selectedGender,setSelectedGender,birthday,setBirthday,name,setName,surname,setSurname}) {
+function PersonalInfo({selectedGender,setSelectedGender,birthday,setBirthday,name,setName,surname,setSurname,phoneNumber,setPhoneNumber}) {
     const fetchGenders = async () => {
         try{
           const response = await axiosClient.get(`/Gender`)
@@ -27,6 +27,9 @@ function PersonalInfo({selectedGender,setSelectedGender,birthday,setBirthday,nam
     const handleBirthdayChange = (event) => {
         setBirthday(event.target.value)
     }
+    const handlePhoneChange = (event) => {
+      setPhoneNumber(event.target.value)
+  }
     useEffect(() => {
         fetchGenders()
     },[])
@@ -42,11 +45,15 @@ function PersonalInfo({selectedGender,setSelectedGender,birthday,setBirthday,nam
         <input onChange={handleSurnameChange} value={surname} type="text" id='surname' name='surname' className="floating-form-input peer" placeholder=" " />
         <label htmlFor='surname' className="floating-form-label">Nazwisko</label>
       </div>
+      <div className="relative col-span-2">
+        <input onChange={handlePhoneChange} value={phoneNumber} type="text" id='phone-number' name='phone-number' className="floating-form-input peer" placeholder=" " />
+        <label htmlFor='phone-number' className="floating-form-label">Numer telefonu</label>
+      </div>
       <div className="relative">
         <select value={selectedGender} onChange={handleGenderChange} id='gender' name='gender' className="floating-form-input peer" placeholder=" ">
-        <option value=''>Wybierz płeć</option>
+        <option className='option-select' value=''>Wybierz płeć</option>
         {genders.map((gender) => (
-            <option key={gender.value} value={gender.value}>
+            <option className='option-select' key={gender.value} value={gender.value}>
                 {gender.label}
             </option>
         ))}

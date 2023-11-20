@@ -63,11 +63,14 @@
     }
     /* filters */
     /* forms */
+    .option-select{
+        @apply bg-midnight-800 text-white;
+    }
     .sort-select{
         @apply bg-white border-2 border-gray-200 text-gray-900 text-sm rounded-lg block dark:bg-midnight-800 dark:border-midnight-700 no-ring dark:placeholder-gray-400 dark:text-white dark:focus:border-purple-500 focus:border-purple-500;
     }
     .icons-form-input-container{
-        @apply flex flex-row items-center border-[2px] bg-white border-gray-200 focus-within:border-purple-400 dark:bg-midnight-900 dark:border-midnight-700 px-3 rounded-md dark:focus-within:border-purple-400;
+        @apply flex flex-row items-center border-2 bg-white border-gray-200 focus-within:border-purple-400 dark:bg-midnight-900 dark:border-midnight-700 px-3 rounded-md dark:focus-within:border-purple-400;
     }
     .icons-form-input{
         @apply bg-white dark:bg-midnight-900 text-sm border-0 no-ring focus:border-0;
