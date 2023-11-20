@@ -12,8 +12,12 @@ function RegisterConfirmation() {
   useEffect(() => {
     if(userId && token){
       const confirmEmail = async () => {
+        try{
         const request = await axiosClient.get(`/Account/ConfirmEmail?userId=${userId}&token=${token}`)
         return request.data
+        }catch(err){
+          console.log(err)
+        }
       }
       confirmEmail()
     }
@@ -24,7 +28,7 @@ function RegisterConfirmation() {
     <h1 className='login-header text-center'>Konto zostało utworzone</h1>
     <p className='login-text'>Możesz teraz dokończyć rejestrację i wprowadzić swoje dane osobowe.</p>
     <div className='lg:w-[20rem] w-full flex flex-col'>
-    <Link to='/dostep/rejestracja/dokoncz-rejestracje' className='purple-button w-full mb-1 mt-3'>Dokończ rejestrację</Link>
+    <Link to={`/dostep/rejestracja/dokoncz-rejestracje?userId=${userId}`} className='purple-button w-full mb-1 mt-3'>Dokończ rejestrację</Link>
     <ReturnToLoginButton />
     </div>
   </div> 

@@ -1,8 +1,21 @@
 import React from 'react'
 import ReturnToLoginButton from '../../../components/buttons/ReturnToLoginButton'
 import AccessIconElement from '../../../components/elements/AccessIconElement'
+import { useSearchParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { resetPasswordEmail } from '../../../store/userSlice'
 
 function RecoverPasswordResetLink() {
+  const dispatch = useDispatch()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const email = searchParams.get('email')
+  const submitEmail = () => {
+    let data = {
+      email: email, 
+    }
+    console.log(data);
+    dispatch(resetPasswordEmail(data))
+  }
   return (
     <div className='login-container'>
     <AccessIconElement icon="mail" />

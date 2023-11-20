@@ -2,26 +2,31 @@ import './App.css';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
 import {Home, Search,PageNotFound, Rental, RentalElectronicBook, Store, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders,
    Library, AccountRentals, Cart, Wishlist,Checkout, CheckoutDelivery, CheckoutPayment, CheckoutConfirmation, CheckoutLogin, Access, RecoverPassword,
-    Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword, RecoverPasswordConfirmation, RegisterRequiredData, RegisterConfirmation, RegisterAccountInfo, ProductsList, Product, RegisterConfirmEmail} from './import'
+    Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword, RecoverPasswordConfirmation, RegisterRequiredData, RegisterConfirmation, RegisterAccountInfo, ProductsList, Product, RegisterConfirmEmail, LibraryBookPanel, LibraryBookElement} from './import'
 import MainLayout from './MainLayout';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { checkUserLogin } from './store/userSlice';
 function App() {
+  const dispatch = useDispatch()
+  const isAuth = useSelector((state) => state.user.isAuth)
+  useEffect(() => {
+    dispatch(checkUserLogin()) 
+  },[isAuth])
   return (
     <Router>
       <Routes>
         <Route path='/' element={<Navigate to={'/'}/>} />
 
-        <Route path='/dostep' element={<Access />}>
+        <Route path='/dostep' element={isAuth ? <Navigate to="/" /> : <Access />}>
           <Route index element={<Navigate to='logowanie' />} />
           <Route path='logowanie' element={<Login />} />
-
           <Route path='rejestracja' element={<Register />}>
             <Route index element={<RegisterRequiredData />} />
             <Route path='potwierdz-email' element={<RegisterConfirmEmail />} />
             <Route path='potwierdzenie' element={<RegisterConfirmation />} />
             <Route path='dokoncz-rejestracje' element={<RegisterAccountInfo />} />
           </Route>
-
           <Route path='odzyskaj-konto' element={<RecoverPassword />}>
             <Route index element={<RecoverPasswordEmail />} />
             <Route path='email' element={<RecoverPasswordResetLink />} />
@@ -57,14 +62,18 @@ function App() {
           <Route path='wypozyczalnia' element={<Rental />}/>
           <Route path='ksiazki' element={<ProductsList />}/>
           <Route path='ksiazka/:id' element={<Product />}/>
-          <Route path='wypozycz-e-book' element={<RentalElectronicBook />}/>
-          <Route path='biblioteka' element={<Library />}/>
+          <Route path='wypozycz-e-book' element={<RentalElectronicBook />}/>  
 
           <Route path='konto' element={<Account />}>
             <Route index element={<AccountPersonalData />} />
             <Route path='dane-osobowe' element={<AccountPersonalData />} />
             <Route path='zamowienia' element={<AccountOrders />} />
             <Route path='wypozyczenia' element={<AccountRentals />} />
+          </Route>
+
+          <Route path='biblioteka' element={<Library />}>
+            <Route index element={<LibraryBookPanel />}/>
+            <Route path=':id' element={<LibraryBookElement />}/>
           </Route>
 
           <Route path='dokumenty' element={<Documents />}>

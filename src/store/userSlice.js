@@ -4,23 +4,45 @@ import axiosTokenClient from "../utils/api/axiosTokenClient";
 
 const initialState = {
     loading:false,
-    token:null,
     error:null,
     isAuth: false,
-    success: false,
+    success: null,
     userData: null,
     email: null,
 }
+export const checkTokenValidity = async (token) => {
+    try {
+        const request = await axiosClient.post(`Account/CheckTokenValidity?token=${token}`);
+        return request.data.message === 'Valid';
+    } catch (error) {
+      console.error('Błąd przy uwierzytelnianiu użytkownika!');
+      return false;
+    }
+  };
+export const checkUserLogin = createAsyncThunk(
+    'user/auth',
+    async () => {
+      const rawToken = localStorage.getItem('token');
+      if (rawToken) {
+        const token = rawToken.replace(/^"|"$/g, '');
+        const isLogged = await checkTokenValidity(token);
+        return isLogged;
+      } else {
+        return false;
+      }
+    }
+  );
 export const loginUser = createAsyncThunk(
     'user/login',
     async(userCredentials) => {
-        const request = await axiosClient.post('/Account/login', userCredentials)
-        return request.data
+        const response = await axiosClient.post('/Account/login', userCredentials)
+        return response.data
     }
 )
 export const registerUser = createAsyncThunk(
     'user/register',
     async(userCredentials) => {
+        console.log("Dispatching register user");
         const request = await axiosClient.post('Account/registration',userCredentials)
         return request.data
     }
@@ -46,14 +68,19 @@ export const resetPassword = createAsyncThunk(
         return request.data
     }
 )
+export const createCustomer = createAsyncThunk(
+    'user/createCustomer',
+    async({data,id}) => {
+        const request = await axiosClient.post(`/Account/CreateCustomerData?userId=${id}`, data)
+        return request.data
+    }
+)
 export const authMiddleware = (store) => (next) => (action) => {
     if (action.type === 'user/logout') {
       localStorage.removeItem('token')
-      localStorage.setItem('isAuth', 'false')
     } else if (loginUser.fulfilled.match(action)) {
       const token = action.payload;
       localStorage.setItem('token', JSON.stringify(token));
-      localStorage.setItem('isAuth', 'true');
     }
     return next(action);
   }
@@ -65,14 +92,12 @@ const userSlice = createSlice({
         logout: (state,action) => {
             state.isAuth = false
             state.success = false
-            state.token = null
             state.userData = null
             state.error = null
         },
         resetState: (state,action) => {
-            state.success = false
-            state.error = false
-            state.isAuth = false
+            state.success = null
+            state.error = null
         }
     },
     extraReducers:(builder) => {
@@ -81,10 +106,9 @@ const userSlice = createSlice({
         }).addCase(loginUser.fulfilled,(state,action)=>{
             state.isAuth = true
             state.loading = false
-            state.token = action.payload
         }).addCase(loginUser.rejected,(state,action)=>{
             state.loading = false
-            state.error = action.error.message
+            state.error = 'Nieudane logowanie!' 
         }).addCase(registerUser.pending,(state)=>{
             state.loading = true
             state.success = false
@@ -93,7 +117,7 @@ const userSlice = createSlice({
             state.success = true
         }).addCase(registerUser.rejected,(state,action)=>{
             state.loading = false
-            state.error = action.error.message
+            state.error = 'Podane dane już istnieją w naszej bazie!' 
         }).addCase(fetchUserData.pending,(state)=>{
             state.loading = true
             state.success = false
@@ -122,8 +146,18 @@ const userSlice = createSlice({
         }).addCase(resetPassword.rejected,(state,action)=>{
             state.loading = false
             state.error = 'Nie udało się odzyskać hasła!' 
+        }).addCase(checkUserLogin.fulfilled, (state, action) => {
+            state.isAuth = action.payload;
+        }).addCase(createCustomer.pending,(state)=>{
+            state.loading = true
+            state.success = false
+        }).addCase(createCustomer.fulfilled,(state,action)=>{
+            state.loading = false
+            state.success = true
+        }).addCase(createCustomer.rejected,(state,action)=>{
+            state.loading = false
+            state.error = 'Nie udało się zapisać danych!' 
         })
-
     }
 })
 export const { logout, resetState } = userSlice.actions

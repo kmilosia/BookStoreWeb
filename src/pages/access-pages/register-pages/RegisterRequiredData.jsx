@@ -8,7 +8,6 @@ import { registerUser, resetState } from '../../../store/userSlice'
 import { useEffect } from 'react'
 import { registerValidate } from '../../../utils/validation/registerValidation'
 import SubmitLoadingButton from '../../../components/buttons/SubmitLoadingButton'
-import { isAuthorised } from '../../../utils/functions/isAuthorised'
 
 
 function RegisterRequiredData() {
@@ -42,7 +41,6 @@ function RegisterRequiredData() {
         email: inputValues.email, 
         password: inputValues.password,
       }
-      console.log(userCredentials);
     dispatch(registerUser(userCredentials))
   }
   useEffect(() => {

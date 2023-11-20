@@ -9,12 +9,12 @@ import NavbarMenuIcons from './navbar/NavbarMenuIcons'
 import SearchModal from '../modals/SearchModal'
 import AccessModal from '../modals/AccessModal'
 import AccountModal from '../modals/AccountModal'
-import { isAuthorised } from '../utils/functions/isAuthorised'
+import { useSelector } from 'react-redux'
 
 function Navbar() {
-    const isLogged = isAuthorised()
     const navigate = useNavigate()
     const ref = useRef(null)
+    const {isAuth} = useSelector((state) => state.user)
     const [isUserModal, setIsUserModal] = useState(false)
     const [isSearchModal, setIsSearchModal] = useState(false)  
     const [isDarkTheme, setIsDarkTheme] = useState(checkTheme())
@@ -103,7 +103,7 @@ function Navbar() {
         </div>
        </div>
     </nav>
-    {isUserModal && (isLogged ? <AccountModal /> : <AccessModal />)}
+    {isUserModal && (isAuth ? <AccountModal /> : <AccessModal />)}
     {isSearchModal && <SearchModal />}
     <div className='fixed bottom-0 right-0 h-auto w-full bg-white dark:bg-midnight-900 z-[10000] lg:hidden'>
       <div className='flex flex-row w-full justify-between px-5 py-5'>

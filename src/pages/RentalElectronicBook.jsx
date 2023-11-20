@@ -1,13 +1,10 @@
 import React from 'react'
 import {FaHeart} from 'react-icons/fa'
-import {BsShareFill,BsArrowDownShort,BsArrowUpShort} from 'react-icons/bs'
+import {BsShareFill} from 'react-icons/bs'
 import Stars from '../components/elements/Stars'
-import Carousel from 'react-grid-carousel'
 import Review from '../components/page-elements/Review';
-import BookItemCarousel from '../components/carousel/books-carousel/BookItemCarousel';
 import { Link } from 'react-router-dom'
-
-
+import BooksCarousel from '../components/carousel/books-carousel/BooksCarousel'
 
 function RentalElectronicBook() {
   return (
@@ -114,63 +111,7 @@ function RentalElectronicBook() {
       <div className='flex flex-col px-5 py-8 my-5 bg-sunrise-100 dark:bg-midnight-800 dark:text-white'>
         <h1 className='text-2xl font-semibold mx-5 my-3'>Podobne produkty</h1>
           <div className='flex flex-col max-w-full'>
-          <Carousel cols={5} rows={1} gap={30}>
-              <Carousel.Item>
-              <BookItemCarousel 
-              title="Harry Potter and Goblet of Fire"
-              author="J.K. Rowling"
-              price="34.99"
-              score={4}
-              url="https://images.ctfassets.net/usf1vwtuqyxm/3d9kpFpwHyjACq8H3EU6ra/85673f9e660407e5e4481b1825968043/English_Harry_Potter_4_Epub_9781781105672.jpg?w=914&q=70&fm=jpg"
-              />
-              </Carousel.Item>
-              <Carousel.Item>
-              <BookItemCarousel 
-              title="Harry Potter and Goblet of Fire"
-              author="J.K. Rowling"
-              price="34.99"
-              score={4}
-              url="https://images.ctfassets.net/usf1vwtuqyxm/3d9kpFpwHyjACq8H3EU6ra/85673f9e660407e5e4481b1825968043/English_Harry_Potter_4_Epub_9781781105672.jpg?w=914&q=70&fm=jpg"
-              />
-              </Carousel.Item>
-              <Carousel.Item>
-              <BookItemCarousel 
-              title="Harry Potter and Goblet of Fire"
-              author="J.K. Rowling"
-              price="34.99"
-              score={4}
-              url="https://images.ctfassets.net/usf1vwtuqyxm/3d9kpFpwHyjACq8H3EU6ra/85673f9e660407e5e4481b1825968043/English_Harry_Potter_4_Epub_9781781105672.jpg?w=914&q=70&fm=jpg"
-              />
-              </Carousel.Item>
-              <Carousel.Item>
-              <BookItemCarousel 
-              title="Harry Potter and Goblet of Fire"
-              author="J.K. Rowling"
-              price="34.99"
-              score={4}
-              url="https://images.ctfassets.net/usf1vwtuqyxm/3d9kpFpwHyjACq8H3EU6ra/85673f9e660407e5e4481b1825968043/English_Harry_Potter_4_Epub_9781781105672.jpg?w=914&q=70&fm=jpg"
-              />
-              </Carousel.Item>
-              <Carousel.Item>
-              <BookItemCarousel 
-              title="Harry Potter and Goblet of Fire"
-              author="J.K. Rowling"
-              price="34.99"
-              score={4}
-              url="https://images.ctfassets.net/usf1vwtuqyxm/3d9kpFpwHyjACq8H3EU6ra/85673f9e660407e5e4481b1825968043/English_Harry_Potter_4_Epub_9781781105672.jpg?w=914&q=70&fm=jpg"
-              />
-              </Carousel.Item>
-              <Carousel.Item>
-              <BookItemCarousel 
-              title="Harry Potter and Goblet of Fire"
-              author="J.K. Rowling"
-              price="34.99"
-              score={4}
-              url="https://images.ctfassets.net/usf1vwtuqyxm/3d9kpFpwHyjACq8H3EU6ra/85673f9e660407e5e4481b1825968043/English_Harry_Potter_4_Epub_9781781105672.jpg?w=914&q=70&fm=jpg"
-              />
-              </Carousel.Item>
-             
-            </Carousel>
+          <BooksCarousel />
           </div>
       </div>
       <div id='reviews' className='flex flex-col px-5 py-8 my-5 bg-sunrise-100 scroll-mt-32 dark:bg-midnight-800 dark:text-white'>
@@ -243,63 +184,7 @@ function RentalElectronicBook() {
       <div className='flex flex-col px-5 py-8 my-5 bg-sunrise-100 dark:bg-midnight-800 dark:text-white'>
         <h1 className='text-2xl font-semibold mx-5 my-2'>Polecane produkty</h1>
         <div className='flex flex-col max-w-full my-2'>
-            <Carousel cols={5} rows={1} gap={30}>
-              <Carousel.Item>
-              <BookItemCarousel 
-              title="Harry Potter and Goblet of Fire"
-              author="J.K. Rowling"
-              price="34.99"
-              score={4}
-              url="https://images.ctfassets.net/usf1vwtuqyxm/3d9kpFpwHyjACq8H3EU6ra/85673f9e660407e5e4481b1825968043/English_Harry_Potter_4_Epub_9781781105672.jpg?w=914&q=70&fm=jpg"
-              />
-              </Carousel.Item>
-              <Carousel.Item>
-              <BookItemCarousel 
-              title="Harry Potter and Goblet of Fire"
-              author="J.K. Rowling"
-              price="34.99"
-              score={4}
-              url="https://images.ctfassets.net/usf1vwtuqyxm/3d9kpFpwHyjACq8H3EU6ra/85673f9e660407e5e4481b1825968043/English_Harry_Potter_4_Epub_9781781105672.jpg?w=914&q=70&fm=jpg"
-              />
-              </Carousel.Item>
-              <Carousel.Item>
-              <BookItemCarousel 
-              title="Harry Potter and Goblet of Fire"
-              author="J.K. Rowling"
-              price="34.99"
-              score={4}
-              url="https://images.ctfassets.net/usf1vwtuqyxm/3d9kpFpwHyjACq8H3EU6ra/85673f9e660407e5e4481b1825968043/English_Harry_Potter_4_Epub_9781781105672.jpg?w=914&q=70&fm=jpg"
-              />
-              </Carousel.Item>
-              <Carousel.Item>
-              <BookItemCarousel 
-              title="Harry Potter and Goblet of Fire"
-              author="J.K. Rowling"
-              price="34.99"
-              score={4}
-              url="https://images.ctfassets.net/usf1vwtuqyxm/3d9kpFpwHyjACq8H3EU6ra/85673f9e660407e5e4481b1825968043/English_Harry_Potter_4_Epub_9781781105672.jpg?w=914&q=70&fm=jpg"
-              />
-              </Carousel.Item>
-              <Carousel.Item>
-              <BookItemCarousel 
-              title="Harry Potter and Goblet of Fire"
-              author="J.K. Rowling"
-              price="34.99"
-              score={4}
-              url="https://images.ctfassets.net/usf1vwtuqyxm/3d9kpFpwHyjACq8H3EU6ra/85673f9e660407e5e4481b1825968043/English_Harry_Potter_4_Epub_9781781105672.jpg?w=914&q=70&fm=jpg"
-              />
-              </Carousel.Item>
-              <Carousel.Item>
-              <BookItemCarousel 
-              title="Harry Potter and Goblet of Fire"
-              author="J.K. Rowling"
-              price="34.99"
-              score={4}
-              url="https://images.ctfassets.net/usf1vwtuqyxm/3d9kpFpwHyjACq8H3EU6ra/85673f9e660407e5e4481b1825968043/English_Harry_Potter_4_Epub_9781781105672.jpg?w=914&q=70&fm=jpg"
-              />
-              </Carousel.Item>
-             
-            </Carousel>
+           <BooksCarousel />
         </div>
       </div>
   </div>

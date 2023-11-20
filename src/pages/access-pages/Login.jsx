@@ -37,13 +37,11 @@ function Login() {
     dispatch(loginUser(userCredentials))
   }
   useEffect(() => {
-    dispatch(resetState())
-  },[])
-  useEffect(() => {
     if (isAuth) {
-      navigate('/');
+      navigate('/')
+      dispatch(resetState())
     }
-  }, [isAuth, navigate]);
+  }, [isAuth])
   useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
       finishSubmit();

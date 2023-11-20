@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
-import {isAuthorised} from '../../utils/functions/isAuthorised'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../store/userSlice'
 
@@ -8,10 +7,7 @@ function Account() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   useEffect(() => {
-    const auth = isAuthorised()
-    if(!auth){
-      navigate('/')
-    }
+    
   },[])
   const handleLogout = () => {
     dispatch(logout())

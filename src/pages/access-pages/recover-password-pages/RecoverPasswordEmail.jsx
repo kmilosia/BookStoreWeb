@@ -11,7 +11,7 @@ import SubmitLoadingButton from '../../../components/buttons/SubmitLoadingButton
 
 function RecoverPasswordEmail() {
   const dispatch = useDispatch()
-  const {success,loading} = useSelector((state) => state.user)
+  const {success,loading,error} = useSelector((state) => state.user)
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false);
   const [email, setEmail] = useState('');
@@ -34,7 +34,7 @@ function RecoverPasswordEmail() {
   }
   useEffect(() => {
     if(success){
-      navigate('/dostep/odzyskaj-konto/email')
+      navigate(`/dostep/odzyskaj-konto/email?email=${email}`)
       dispatch(resetState())
     }
   },[success])
@@ -57,6 +57,7 @@ function RecoverPasswordEmail() {
       {errors.email && <span className='error-text'>{errors.email}</span>}
     </div>
     <SubmitLoadingButton title="Dalej" loading={loading} />
+    {error && <p className='error-text my-1'>{error}</p>}
     <ReturnToLoginButton />
     </form>
   </div> 
