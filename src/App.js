@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Navigate to={'/home'}/>} />
+        <Route path='/' element={<Navigate to={'/'}/>} />
 
         <Route path='/dostep' element={<Access />}>
           <Route index element={<Navigate to='logowanie' />} />
@@ -30,9 +30,9 @@ function App() {
           </Route>
         </Route>
 
-        <Route element={<MainLayout />}>
+        <Route path='/' element={<MainLayout />}>
           <Route path='*' element={<PageNotFound />} />
-          <Route path='home' element={<Home />} />
+          <Route index element={<Home />} />
           <Route path='sklep' element={<Store />} />
           <Route path='szukaj' element={<Search />} />
           <Route path='koszyk' element={<Cart />} />
