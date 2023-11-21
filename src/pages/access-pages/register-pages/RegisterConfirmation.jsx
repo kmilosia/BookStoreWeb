@@ -6,7 +6,7 @@ import axiosClient from '../../../utils/api/axiosClient'
 
 function RegisterConfirmation() {
   const [searchParams, setSearchParams] = useSearchParams()
-  const [error, setError] = useState(null)
+  const [message, setMessage] = useState(null)
   const userId = searchParams.get('userId')
   const token = searchParams.get('token')
   useEffect(() => {
@@ -25,7 +25,7 @@ function RegisterConfirmation() {
   return (
     <div className='login-container'>
     <AccessIconElement />
-   <h1 className='login-header text-center'>Konto zostało utworzone</h1> //tutaj response.data.message
+   <h1 className='login-header text-center'>Konto zostało utworzone</h1>
     <p className='login-text'>Możesz teraz przejść do logowania.</p>
     <div className='lg:w-[20rem] w-full flex flex-col'>
     <Link to='/dostep/logowanie' className='purple-button w-full mb-1 mt-3'>Zaloguj się</Link>

@@ -12,9 +12,9 @@ const initialState = {
 export const checkTokenValidity = async (token) => {
     try {
         const request = await axiosClient.post(`Account/CheckTokenValidity?token=${token}`);
-        return request.data.message === 'Valid';
+        return request.data === 'Valid';
     } catch (error) {
-      console.error('Błąd przy uwierzytelnianiu użytkownika!');
+      console.error('Błąd przy uwierzytelnianiu użytkownika - token jest przeterminowany!');
       return false;
     }
   };
@@ -46,9 +46,9 @@ export const registerUser = createAsyncThunk(
     }
 )
 export const fetchUserData = createAsyncThunk(
-    'user/info',
+    'user/data',
     async() => {
-        const response = await axiosTokenClient.get('User/info')
+        const response = await axiosTokenClient.get('User/Data')
         return response.data
     }
 )
@@ -73,12 +73,28 @@ export const createCustomer = createAsyncThunk(
         return request.data
     }
 )
+export const editUserData = createAsyncThunk(
+    'user/editData',
+    async(data) => {
+        const request = await axiosTokenClient.put('/User/Edit-Data', data)
+        return request.data
+    }
+)
+export const deleteAccount = createAsyncThunk(
+    'user/delete',
+    async() => {
+        const request = await axiosTokenClient.delete('/User/Deactivate')
+        return request.data
+    }
+)
 export const authMiddleware = (store) => (next) => (action) => {
     if (action.type === 'user/logout') {
       localStorage.removeItem('token')
     } else if (loginUser.fulfilled.match(action)) {
       const token = action.payload;
       localStorage.setItem('token', JSON.stringify(token));
+    }else if (deleteAccount.fulfilled.match(action)) {
+        localStorage.removeItem('token')
     }
     return next(action);
   }
@@ -118,10 +134,8 @@ const userSlice = createSlice({
             state.error = 'Podane dane już istnieją w naszej bazie!' 
         }).addCase(fetchUserData.pending,(state)=>{
             state.loading = true
-            state.success = false
         }).addCase(fetchUserData.fulfilled,(state,action)=>{
             state.loading = false
-            state.success = true
             state.userData = action.payload
         }).addCase(fetchUserData.rejected,(state,action)=>{
             state.loading = false
@@ -155,6 +169,27 @@ const userSlice = createSlice({
         }).addCase(createCustomer.rejected,(state,action)=>{
             state.loading = false
             state.error = 'Nie udało się zapisać danych!' 
+        }).addCase(deleteAccount.pending,(state)=>{
+            state.loading = true
+            state.success = false
+        }).addCase(deleteAccount.fulfilled,(state,action)=>{
+            state.loading = false
+            state.success = true
+            state.isAuth = false
+            state.userData = null
+            state.error = null
+        }).addCase(deleteAccount.rejected,(state,action)=>{
+            state.loading = false
+            state.error = 'Nie udało się usunąć konta!' 
+        }).addCase(editUserData.pending,(state)=>{
+            state.loading = true
+            state.success = false
+        }).addCase(editUserData.fulfilled,(state,action)=>{
+            state.loading = false
+            state.success = true
+        }).addCase(editUserData.rejected,(state,action)=>{
+            state.loading = false
+            state.error = 'Nie udało się zmienić danych!' 
         })
     }
 })

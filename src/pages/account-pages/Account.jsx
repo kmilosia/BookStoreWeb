@@ -12,7 +12,7 @@ function Account() {
   },[])
   const handleLogout = () => {
     dispatch(logout())
-    navigate('/')
+    navigate('/dostep/logowanie')
 }
   const linkStyle = 'px-5 py-2 hover:font-semibold'
   return (
