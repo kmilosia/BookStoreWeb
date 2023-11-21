@@ -2,7 +2,7 @@ import './App.css';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
 import {Home, Search,PageNotFound, Rental, RentalElectronicBook, Store, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders,
    Library, AccountRentals, Cart, Wishlist,Checkout, CheckoutDelivery, CheckoutPayment, CheckoutConfirmation, CheckoutLogin, Access, RecoverPassword,
-    Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword, RecoverPasswordConfirmation, RegisterRequiredData, RegisterConfirmation, RegisterAccountInfo, ProductsList, Product, RegisterConfirmEmail, LibraryBookPanel, LibraryBookElement} from './import'
+    Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword, RecoverPasswordConfirmation, RegisterRequiredData, RegisterConfirmation, ProductsList, Product, RegisterConfirmEmail, LibraryBookPanel, LibraryBookElement, AccountAddress} from './import'
 import MainLayout from './MainLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -25,7 +25,6 @@ function App() {
             <Route index element={<RegisterRequiredData />} />
             <Route path='potwierdz-email' element={<RegisterConfirmEmail />} />
             <Route path='potwierdzenie' element={<RegisterConfirmation />} />
-            <Route path='dokoncz-rejestracje' element={<RegisterAccountInfo />} />
           </Route>
           <Route path='odzyskaj-konto' element={<RecoverPassword />}>
             <Route index element={<RecoverPasswordEmail />} />
@@ -64,9 +63,9 @@ function App() {
           <Route path='ksiazka/:id' element={<Product />}/>
           <Route path='wypozycz-e-book' element={<RentalElectronicBook />}/>  
 
-          <Route path='konto' element={<Account />}>
+          <Route path='konto' element={!isAuth ? <Navigate to="/dostep/logowanie" /> : <Account />}>
             <Route index element={<AccountPersonalData />} />
-            <Route path='dane-osobowe' element={<AccountPersonalData />} />
+            <Route path='adres' element={<AccountAddress />} />
             <Route path='zamowienia' element={<AccountOrders />} />
             <Route path='wypozyczenia' element={<AccountRentals />} />
           </Route>

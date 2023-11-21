@@ -2,12 +2,13 @@ import React, { useEffect } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../store/userSlice'
+import { scrollTop } from '../../utils/functions/scrollTop'
 
 function Account() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   useEffect(() => {
-    
+    scrollTop()
   },[])
   const handleLogout = () => {
     dispatch(logout())
@@ -20,7 +21,8 @@ function Account() {
         <h1 className='text-3xl my-4 font-medium mx-1 text-start hidden lg:inline-block'>Konto</h1>
         <div className='grid grid-cols-1 lg:grid-cols-[1fr_4fr] min-h-[80vh] gap-3 lg:gap-5'>
           <div className='flex flex-col py-3 mt-3 lg:mt-0 items-center lg:items-start rounded-md h-auto bg-white dark:bg-midnight-900'>
-            <Link to='dane-osobowe' className={linkStyle}>Dane użytkownika</Link>
+            <Link to='' className={linkStyle}>Dane użytkownika</Link>
+            <Link to='adres' className={linkStyle}>Adres dostawy</Link>
             <Link to='zamowienia' className={linkStyle}>Zamówienia</Link>
             <Link to='wypozyczenia' className={linkStyle}>Wypożyczenia</Link>
             <Link to='/biblioteka' className={linkStyle}>Biblioteka</Link>

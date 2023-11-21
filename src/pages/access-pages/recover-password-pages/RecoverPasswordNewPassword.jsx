@@ -1,19 +1,28 @@
 import React from 'react'
 import ReturnToLoginButton from '../../../components/buttons/ReturnToLoginButton'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import ShowPasswordButton from '../../../components/buttons/ShowPasswordButton'
 import { useState } from 'react'
 import AccessIconElement from '../../../components/elements/AccessIconElement'
 import { useEffect } from 'react'
 import { resetPasswordValidate } from '../../../utils/validation/resetPasswordValidation'
+import { useDispatch, useSelector } from 'react-redux'
+import { resetPassword, resetState } from '../../../store/userSlice'
+import SubmitLoadingButton from '../../../components/buttons/SubmitLoadingButton'
 
 function RecoverPasswordNewPassword() {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const userId = searchParams.get('userId')
+  const token = searchParams.get('token')
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [inputValues, setInputValues] = useState({
+    userId: userId,
+    token: token,
     password: "",
-    repeatPassword: "",
-  }) // only email
-  
+    confirmPassword: "",
+  })
+  const {loading,error,success} = useSelector((state) => state.user)
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false); 
   const [isHiddenPassword, setIsHiddenPassword] = useState(true)
@@ -27,9 +36,14 @@ function RecoverPasswordNewPassword() {
     setSubmitting(true)
   }
   const finishSubmit = () => {
-    console.log(inputValues);
-    navigate('/dostep/odzyskaj-konto/potwierdzenie')
+    dispatch(resetPassword(inputValues))
   }
+  useEffect(() => {
+    if (success) {
+      navigate('/dostep/odzyskaj-konto/potwierdzenie')
+      dispatch(resetState())
+    }
+  }, [success, navigate]);
   useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
       finishSubmit();
@@ -52,13 +66,14 @@ function RecoverPasswordNewPassword() {
     <div className="my-2">
       <div className="relative">
         <ShowPasswordButton setIsHiddenPassword={setIsHiddenRepeatPassword} isHiddenPassword={isHiddenRepeatPassword} />
-        <input value={inputValues.repeatPassword} onChange={handleChange} type={`${isHiddenRepeatPassword ? 'password' : 'text'}`} id='repeatPassword' name='repeatPassword' className="floating-form-input peer" placeholder=" " />
-        <label htmlFor='repeatPassword' className="floating-form-label">Powtórz hasło</label>
+        <input value={inputValues.confirmPassword} onChange={handleChange} type={`${isHiddenRepeatPassword ? 'password' : 'text'}`} id='confirmPassword' name='confirmPassword' className="floating-form-input peer" placeholder=" " />
+        <label htmlFor='confirmPassword' className="floating-form-label">Powtórz hasło</label>
       </div>
-      {errors.repeatPassword && <span className='error-text'>{errors.repeatPassword}</span>}
+      {errors.confirmPassword && <span className='error-text'>{errors.confirmPassword}</span>}
     </div>
-    <button type='submit' className='purple-button w-full'>Resetuj hasło</button>
+    <SubmitLoadingButton title="Resetuj hasło" loading={loading} />
     {errors.submit && <span className='error-text'>{errors.submit}</span>}
+    {error && <span className='error-text'>{error}</span>}
     <ReturnToLoginButton />
     </form>
   </div> 

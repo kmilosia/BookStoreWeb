@@ -26,7 +26,6 @@ export {default as RecoverPasswordConfirmation} from './pages/access-pages/recov
 
 export {default as Register} from './pages/access-pages/register-pages/Register'
 export {default as RegisterRequiredData} from './pages/access-pages/register-pages/RegisterRequiredData'
-export {default as RegisterAccountInfo} from './pages/access-pages/register-pages/RegisterAccountInfo'
 export {default as RegisterConfirmation} from './pages/access-pages/register-pages/RegisterConfirmation'
 export {default as RegisterConfirmEmail} from './pages/access-pages/register-pages/RegisterConfirmEmail'
 
@@ -45,6 +44,7 @@ export {default as AllNews} from './pages/news-pages/AllNews'
 export {default as NewsItem} from './pages/news-pages/NewsItem'
 
 export {default as Account} from './pages/account-pages/Account'
+export {default as AccountAddress} from './pages/account-pages/AccountAddress'
 export {default as AccountOrders} from './pages/account-pages/AccountOrders'
 export {default as AccountPersonalData} from './pages/account-pages/AccountPersonalData'
 export {default as AccountRentals} from './pages/account-pages/AccountRentals'

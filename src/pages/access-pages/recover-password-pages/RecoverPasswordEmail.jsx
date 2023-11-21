@@ -29,7 +29,6 @@ function RecoverPasswordEmail() {
     let data = {
       email: email, 
     }
-    console.log(data);
     dispatch(resetPasswordEmail(data))
   }
   useEffect(() => {
