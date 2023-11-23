@@ -87,6 +87,12 @@
     .floating-form-label{
         @apply absolute text-base lg:text-sm text-midnight-200 duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-purple-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-2 left-1;
     }
+    .floating-form-input-colors{
+        @apply block px-2.5 pb-2.5 pt-4 w-full text-base lg:text-sm border-black/10 text-white bg-black/20 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-purple-400;
+    }
+    .floating-form-label-colors{
+        @apply absolute text-base lg:text-sm text-midnight-200 duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-purple-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-2 left-1;
+    }
     .purple-checkbox{
         @apply w-4 h-4 lg:w-3 lg:h-3 ml-1 text-purple-400 bg-gray-100 border-gray-300 rounded no-ring;
     }
@@ -117,7 +123,10 @@
         @apply bg-purple-400 rounded-md py-2.5 px-5 text-xl lg:text-sm my-1 text-center text-white hover:bg-purple-500 font-semibold;
     }
     .delete-button{
-        @apply bg-white dark:bg-midnight-900 border-2 border-red-500 rounded-md py-2.5 text-sm my-1 text-red-500 hover:bg-red-500 dark:hover:bg-red-500 hover:text-white font-semibold;
+        @apply bg-white dark:bg-midnight-900 border-2 flex justify-center border-red-500 rounded-md py-2.5 px-5 text-sm my-1 text-red-500 hover:bg-red-500 dark:hover:bg-red-500 hover:text-white font-semibold;
+    }
+    .bordered-purple-button{
+        @apply bg-white dark:bg-midnight-900 border-2 flex justify-center border-purple-400 rounded-md py-2.5 px-5 text-sm my-1 text-purple-400 hover:bg-purple-400 dark:hover:bg-purple-400 hover:text-white font-semibold;
     }
     .rounded-purple-button{
         @apply rounded-3xl text-white font-medium px-5 py-2.5 text-xl lg:text-sm bg-purple-400 hover:bg-purple-500;
@@ -131,7 +140,7 @@
         @apply flex flex-col items-center justify-center w-full lg:w-auto px-5 lg:px-0;
     }
     .login-header{
-        @apply text-white text-4xl font-medium my-3 text-start;
+        @apply text-white text-4xl font-medium my-3 text-center lg:text-start;
     }
     .login-text{
         @apply text-gray-300 font-light lg:text-sm lg:w-[20rem] text-center mb-2;

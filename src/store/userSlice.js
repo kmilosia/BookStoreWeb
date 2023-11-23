@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosClient from "../utils/api/axiosClient";
-import axiosTokenClient from "../utils/api/axiosTokenClient";
+import { getValidToken } from "../utils/functions/getValidToken";
 
 const initialState = {
     loading:false,
@@ -48,7 +48,12 @@ export const registerUser = createAsyncThunk(
 export const fetchUserData = createAsyncThunk(
     'user/data',
     async() => {
-        const response = await axiosTokenClient.get('User/Data')
+        const token = getValidToken()
+        const response = await axiosClient.get('User/Data',{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+        }})
         return response.data
     }
 )
@@ -76,14 +81,39 @@ export const createCustomer = createAsyncThunk(
 export const editUserData = createAsyncThunk(
     'user/editData',
     async(data) => {
-        const request = await axiosTokenClient.put('/User/Edit-Data', data)
+        const token = getValidToken()
+        const request = await axiosClient.put('/User/Edit-Data', data, {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          })
+        return request.data
+    }
+)
+export const changePassword = createAsyncThunk(
+    'user/changePassword',
+    async(data) => {
+        const token = getValidToken()
+        const request = await axiosClient.put('/User/Edit-Password', data,{
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          })
         return request.data
     }
 )
 export const deleteAccount = createAsyncThunk(
     'user/delete',
     async() => {
-        const request = await axiosTokenClient.delete('/User/Deactivate')
+        const token = getValidToken()
+        const request = await axiosClient.delete('/User/Deactivate',{
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          })
         return request.data
     }
 )
@@ -190,6 +220,15 @@ const userSlice = createSlice({
         }).addCase(editUserData.rejected,(state,action)=>{
             state.loading = false
             state.error = 'Nie udało się zmienić danych!' 
+        }).addCase(changePassword.pending,(state)=>{
+            state.loading = true
+            state.success = false
+        }).addCase(changePassword.fulfilled,(state,action)=>{
+            state.loading = false
+            state.success = true
+        }).addCase(changePassword.rejected,(state,action)=>{
+            state.loading = false
+            state.error = 'Nie udało się zmienić hasła!' 
         })
     }
 })
