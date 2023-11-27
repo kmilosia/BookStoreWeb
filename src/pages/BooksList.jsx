@@ -3,7 +3,6 @@ import StockFilter from '../components/filters/StockFilter'
 import ScoreFilter from '../components/filters/ScoreFilter'
 import AuthorFilter from '../components/filters/AuthorFilter'
 import PublisherFilter from '../components/filters/PublisherFilter'
-import TypeFilter from '../components/filters/TypeFilter'
 import CategoryFilter from '../components/filters/CategoryFilter'
 import LanguageFilter from '../components/filters/LanguageFilter'
 import PriceFilter from '../components/filters/PriceFilter'
@@ -12,9 +11,9 @@ import FilterButton from '../components/buttons/FilterButton'
 import { useState } from 'react'
 import ToggleFilterMenuButton from '../components/buttons/ToggleFilterMenuButton'
 import { productsData } from '../utils/data'
-import ProductElement from '../components/products/ProductElement'
+import BookListElement from '../components/products/BookListElement'
 
-function ProductsList() {
+function BooksList() {
     const [isFilterOpen, setIsFilterOpen] = useState(false)
     const toggleFilterMenu = () => {
         setIsFilterOpen(!isFilterOpen)
@@ -27,7 +26,6 @@ function ProductsList() {
                     <div className='flex flex-col'>
                         <h1 className='text-3xl font-semibold hidden lg:inline-block'>Filtrowanie</h1>
                         <div className='flex flex-col my-2'>
-                            <TypeFilter />
                             <PriceFilter />
                             <AuthorFilter />
                             <PublisherFilter />
@@ -54,7 +52,7 @@ function ProductsList() {
                     <div className='grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-5 gap-5 my-5'>
                         {productsData.map((item,index) => {
                             return (
-                                <ProductElement key={index} id={item.id} form={item.form} imgURL={item.url} author={item.author} score={item.score} title={item.title} price={item.price}/>
+                                <BookListElement key={index} id={item.id} imgURL={item.url} author={item.author} score={item.score} title={item.title} price={item.price}/>
                             )
                         })}
                     </div>
@@ -65,4 +63,4 @@ function ProductsList() {
   )
 }
 
-export default ProductsList
+export default BooksList

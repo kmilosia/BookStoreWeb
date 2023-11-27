@@ -6,6 +6,7 @@ import InstallAppElement from '../components/page-elements/InstallAppElement'
 import ExploreAllElement from '../components/page-elements/ExploreAllElement'
 import { useEffect } from 'react'
 import { scrollTop } from '../utils/functions/scrollTop'
+import EbooksCarousel from '../components/carousel/ebooks-carousel/EbooksCarousel'
 
 function Store() {
   useEffect(() => {
@@ -21,17 +22,30 @@ function Store() {
           <StoreTypeLink src='https://iili.io/JCnBzCl.png' path="/kategorie" title="Przeglądaj kategorie" />
         </div>  
       <div className='carousel-element'>
-        <h1 className='carousel-header'>Promocyjne książki</h1>
-        <BooksCarousel ebook={false}/>
+        <h1 className='carousel-header'>Najpopularniejsze książki</h1>
+        <BooksCarousel/>
+      </div>
+      <div className='carousel-element'>
+        <h1 className='carousel-header'>Najlepiej oceniane książki</h1>
+        <BooksCarousel/>
+      </div>
+      <div className='carousel-element'>
+        <h1 className='carousel-header'>Nowo dodane książki</h1>
+        <BooksCarousel/>
       </div>
       <ExploreAllElement path="/ksiazki" title="Przeglądaj wszystkie dostępne książki" />
       <div className='carousel-element'>
-        <h1 className='carousel-header'>Nowo dodane</h1>
-        <BooksCarousel ebook={false}/>
+        <h1 className='carousel-header'>Najnowsze ebooki</h1>
+        <EbooksCarousel rental={false}/>
       </div>
       <div className='carousel-element'>
-        <h1 className='carousel-header'>Najpopularniejsze</h1>
-        <BooksCarousel ebook={false}/>
+        <h1 className='carousel-header'>Najpopularniejsze ebooki</h1>
+        <EbooksCarousel rental={false}/>
+      </div>
+      <ExploreAllElement path="/ebooki" title="Przeglądaj wszystkie dostępne ebooki" />
+      <div className='carousel-element'>
+        <h1 className='carousel-header'>Najlepiej oceniane ebooki</h1>
+        <EbooksCarousel rental={false}/>
       </div>
       <InstallAppElement />
     </div>

@@ -5,6 +5,7 @@ import ExploreAllElement from '../components/page-elements/ExploreAllElement'
 import InstallAppElement from '../components/page-elements/InstallAppElement'
 import { useEffect } from 'react'
 import { scrollTop } from '../utils/functions/scrollTop'
+import EbooksCarousel from '../components/carousel/ebooks-carousel/EbooksCarousel'
 
 function Rental() {
   useEffect(() => {
@@ -15,17 +16,17 @@ function Rental() {
         <div className='default-page-container'>
           <BannerCarousel />
           <div className='carousel-element'>
-            <h1 className='carousel-header'>Wypożycz już teraz</h1>
-            <BooksCarousel ebook={true}/>
+            <h1 className='carousel-header'>Najczęściej wypożyczane ebooki</h1>
+            <EbooksCarousel rental={true}/>
+          </div>
+          <div className='carousel-element'>
+            <h1 className='carousel-header'>Nowo dodane ebooki</h1>
+            <EbooksCarousel rental={true}/>
           </div>
           <ExploreAllElement path="/e-booki" title="Przeglądaj wszystkie dostępne ebooki" />
           <div className='carousel-element'>
-            <h1 className='carousel-header'>Nowo dodane</h1>
-            <BooksCarousel ebook={true}/>
-          </div>
-          <div className='carousel-element'>
-            <h1 className='carousel-header'>Najpopularniejsze</h1>
-            <BooksCarousel ebook={true}/>
+            <h1 className='carousel-header'>Najlepiej oceniane ebooki</h1>
+            <EbooksCarousel rental={true}/>
           </div>
           <InstallAppElement />
         </div>

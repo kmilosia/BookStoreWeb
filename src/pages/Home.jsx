@@ -7,6 +7,7 @@ import EventDiscountElement from '../components/page-elements/EventDiscountEleme
 import HomeNewsSegment from '../components/news-elements/HomeNewsSegment'
 import { useEffect } from 'react'
 import { scrollTop } from '../utils/functions/scrollTop'
+import EbooksCarousel from '../components/carousel/ebooks-carousel/EbooksCarousel'
 
 function Home() {
   useEffect(() => {
@@ -20,18 +21,22 @@ function Home() {
       </div>
       <div className='default-page-container pt-0'>
         <div className='carousel-element mb-5'>
-          <h1 className='carousel-header'>Bestsellery</h1>
-          <BooksCarousel ebook={false}/>
+          <h1 className='carousel-header'>Książkowe Bestsellery</h1>
+          <BooksCarousel/>
         </div>
         <BannerCarousel />
         <div className='carousel-element'>
-          <h1 className='carousel-header'>Nowo dodane</h1>
-          <BooksCarousel ebook={false}/>
+          <h1 className='carousel-header'>Nowo dodane książki</h1>
+          <BooksCarousel/>
         </div>
         <EventDiscountElement />
         <div className='carousel-element'>
-          <h1 className='carousel-header'>Top 10 Wybór Spellarium</h1>
-          <BooksCarousel ebook={false}/>
+          <h1 className='carousel-header'>Bestsellery ebooki</h1>
+          <EbooksCarousel/>
+        </div>
+        <div className='carousel-element'>
+          <h1 className='carousel-header'>Nowo dodane ebooki</h1>
+          <EbooksCarousel/>
         </div>
        <HomeNewsSegment />
       </div>

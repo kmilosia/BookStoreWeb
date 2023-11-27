@@ -8,12 +8,12 @@ import { settings } from '../../../utils/objects/carousel-settings';
 
 function BooksCarousel(props) {
   return (
-      <Slider {...settings}>
-        {booksData.map((item, index) => {
-            return (
-                <BookCarouselItem key={index} title={item.title} url={item.url} score={item.score} price={item.price} author={item.author} ebook={props.ebook}/>
-            )
-        })}
+  <Slider {...settings}>
+    {booksData.map((item, index) => {
+      return (
+        <BookCarouselItem key={index} title={item.title} url={item.url} score={item.score} price={item.price} author={item.author}/>
+      )
+    })}
   </Slider>
   )
 }

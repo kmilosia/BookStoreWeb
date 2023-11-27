@@ -64,8 +64,8 @@ function PasswordChangeModal(props) {
       <div className="col-span-2">
       <div className="relative">
         <ShowPasswordButton setIsHiddenPassword={setIsHiddenOldPassword} isHiddenPassword={isHiddenOldPassword} />
-        <input value={inputValues.oldPassword} onChange={handleChange} type={`${isHiddenOldPassword ? 'password' : 'text'}`} id='oldPassword' name='oldPassword' className="floating-form-input peer" placeholder=" " />
-        <label htmlFor='oldPassword' className="floating-form-label">Stare hasło</label>
+        <input value={inputValues.oldPassword} onChange={handleChange} type={`${isHiddenOldPassword ? 'password' : 'text'}`} id='oldPassword' name='oldPassword' className="floating-form-input-colors peer" placeholder=" " />
+        <label htmlFor='oldPassword' className="floating-form-label-colors">Stare hasło</label>
       </div>
       {errors.oldPassword && <span className='error-text'>{errors.oldPassword}</span>}
     </div>
@@ -73,7 +73,7 @@ function PasswordChangeModal(props) {
       <div className="col-span-2">
       <div className="relative">
         <ShowPasswordButton setIsHiddenPassword={setIsHiddenPassword} isHiddenPassword={isHiddenPassword} />
-        <input value={inputValues.password} onChange={handleChange} type={`${isHiddenPassword ? 'password' : 'text'}`} id='password' name='password' className="floating-form-input peer" placeholder=" " />
+        <input value={inputValues.password} onChange={handleChange} type={`${isHiddenPassword ? 'password' : 'text'}`} id='password' name='password' className="floating-form-input-colors peer" placeholder=" " />
         <label htmlFor='password' className="floating-form-label">Nowe hasło</label>
       </div>
       {errors.password && <span className='error-text'>{errors.password}</span>}
@@ -81,7 +81,7 @@ function PasswordChangeModal(props) {
     <div className="col-span-2">
       <div className="relative">
         <ShowPasswordButton setIsHiddenPassword={setIsHiddenRepeatPassword} isHiddenPassword={isHiddenRepeatPassword} />
-        <input value={inputValues.confirmPassword} onChange={handleChange} type={`${isHiddenRepeatPassword ? 'password' : 'text'}`} id='confirmPassword' name='confirmPassword' className="floating-form-input peer" placeholder=" " />
+        <input value={inputValues.confirmPassword} onChange={handleChange} type={`${isHiddenRepeatPassword ? 'password' : 'text'}`} id='confirmPassword' name='confirmPassword' className="floating-form-input-colors peer" placeholder=" " />
         <label htmlFor='confirmPassword' className="floating-form-label">Powtórz nowe hasło</label>
       </div>
       {errors.confirmPassword && <span className='error-text'>{errors.confirmPassword}</span>}

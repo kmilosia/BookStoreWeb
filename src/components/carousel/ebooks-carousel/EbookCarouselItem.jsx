@@ -2,10 +2,11 @@ import React from 'react';
 import Stars from '../../elements/Stars';
 import { Link } from 'react-router-dom';
 import AddToCartButton from '../../buttons/AddToCartButton'
+import RentButton from '../../buttons/RentButton'
 
-function BookCarouselItem(props) {
+function EbookCarouselItem(props) {
   return (
-    <Link to='/ksiazka' className='flex flex-col cursor-pointer lg:mx-2 lg:my-2 shadow-md bg-gray-100 hover:bg-gray-200 dark:bg-midnight-900 dark:hover:bg-midnight-800 rounded-md px-7 py-7 lg:px-5 lg:py-4 group'>
+    <Link to='/ebook' className='flex flex-col cursor-pointer lg:mx-2 lg:my-2 shadow-md bg-gray-100 hover:bg-gray-200 dark:bg-midnight-900 dark:hover:bg-midnight-800 rounded-md px-7 py-7 lg:px-5 lg:py-4 group'>
       {/* <Link to='/ksiazka' className='flex flex-col cursor-pointer my-2 hover:scale-105 rounded-md px-7 py-7 lg:px-5 lg:py-4 group'> */}
       <img src={props.url} className='w-full aspect-[3/4] object-cover rounded-md' />
       <div className="text-container">
@@ -16,9 +17,10 @@ function BookCarouselItem(props) {
       </div>
       <Stars score={props.score} />
       <h2 className='font-semibold text-lg my-1'>{props.price}zł</h2>
-      <AddToCartButton />
+      {!props.rental && <AddToCartButton />}
+      {props.rental && <RentButton />}
     </Link>
   );
 }
 
-export default BookCarouselItem;
+export default EbookCarouselItem;

@@ -1,15 +1,15 @@
 import React from 'react'
-import { BsDot } from 'react-icons/bs'
 import AddToCartButton from '../buttons/AddToCartButton'
 import RentButton from '../buttons/RentButton'
 import { Link } from 'react-router-dom'
 import Stars from '../elements/Stars'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import { scrollTop } from '../../utils/functions/scrollTop'
 
-function ProductElement(props) {
+function EbookListElement(props) {
   useEffect(() => {
-    console.log(props.id);
+    scrollTop()
   },[])
   return (
     <Link to={`/ksiazka/${props.id}`} className='flex flex-col group cursor-pointer relative'>
@@ -17,18 +17,15 @@ function ProductElement(props) {
         <img src={props.imgURL} className='w-full aspect-[3/4] object-cover rounded-md' />
         <h1 className='font-semibold my-1 w-full truncated-text group-hover:whitespace-normal'>{props.title}</h1>
         <p className='font-light text-sm'>{props.author}</p>
-        <p>{props.form}</p>
         <Stars score={props.score} />
         <h2 className='font-semibold text-lg my-1'>{props.price}zł</h2>
         <div className='hidden group-hover:flex group-hover:flex-col'>
             <AddToCartButton />  
-            {props.form === 'ebook' &&
             <RentButton />
-            } 
         </div>
     </div>
   </Link>
   )
 }
 
-export default ProductElement
+export default EbookListElement
