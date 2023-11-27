@@ -3,14 +3,8 @@ import AddToCartButton from '../buttons/AddToCartButton'
 import RentButton from '../buttons/RentButton'
 import { Link } from 'react-router-dom'
 import Stars from '../elements/Stars'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { scrollTop } from '../../utils/functions/scrollTop'
 
 function EbookListElement(props) {
-  useEffect(() => {
-    scrollTop()
-  },[])
   return (
     <Link to={`/ksiazka/${props.id}`} className='flex flex-col group cursor-pointer relative'>
     <div className='group-hover:z-20 group-hover:absolute group-hover:top-0 group-hover:right-0 w-full shadow-md bg-gray-100 hover:bg-gray-200 dark:bg-midnight-900 dark:hover:bg-midnight-800 rounded-md px-7 py-7 lg:px-5 lg:py-4'>

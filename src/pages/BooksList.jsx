@@ -6,12 +6,12 @@ import PublisherFilter from '../components/filters/PublisherFilter'
 import CategoryFilter from '../components/filters/CategoryFilter'
 import LanguageFilter from '../components/filters/LanguageFilter'
 import PriceFilter from '../components/filters/PriceFilter'
-import ProductSelect from '../components/forms/ProductSelect'
 import FilterButton from '../components/buttons/FilterButton'
 import { useState } from 'react'
 import ToggleFilterMenuButton from '../components/buttons/ToggleFilterMenuButton'
-import { productsData } from '../utils/data'
+import { productsData, sortOptions } from '../utils/data'
 import BookListElement from '../components/products/BookListElement'
+import Select from '../components/forms/Select'
 
 function BooksList() {
     const [isFilterOpen, setIsFilterOpen] = useState(false)
@@ -46,7 +46,7 @@ function BooksList() {
                         </div>
                         <div className='flex my-2 lg:my-0'>
                             <FilterButton toggleFilterMenu={toggleFilterMenu}/>
-                            <ProductSelect />
+                            <Select sortOptions={sortOptions} />
                         </div>
                     </div>
                     <div className='grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-5 gap-5 my-5'>

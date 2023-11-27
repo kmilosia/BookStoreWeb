@@ -1,29 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Stars from '../elements/Stars'
-import { RiShoppingCart2Fill } from 'react-icons/ri'
-import { FaHeart } from 'react-icons/fa'
+import AddToCartButton from '../buttons/AddToCartButton'
+import RentButton from '../buttons/RentButton'
 
 function BookElement(props) {
   return (
-    <Link to='/ksiazka' className='bg-sunrise-200 flex flex-col px-4 py-4 my-2 rounded-md items-center dark:bg-midnight-900 dark:hover:bg-midnight-950 group hover:bg-sunrise-200 hover:shadow-md'>
-    <div className='relative w-full flex items-center justify-center'>
-      <img src={props.imgURL} className='w-full object-cover aspect-[3/4] rounded-md my-1'/>
-      {props.wishlisted ?
-        <button className='absolute top-0 right-0 rounded-lg p-2 bg-white text-orange-400'><FaHeart /></button>
-      : <button className='absolute top-0 right-0 rounded-lg p-2 bg-sunrise-400 text-white hover:text-orange-400'><FaHeart /></button>
-      }
+    <Link to={`/ksiazka/${props.id}`} className='flex flex-col group cursor-pointer relative'>
+    <div className='group-hover:z-20 group-hover:absolute group-hover:top-0 group-hover:right-0 w-full shadow-md bg-gray-100 hover:bg-gray-200 dark:bg-midnight-900 dark:hover:bg-midnight-800 rounded-md px-7 py-7 lg:px-5 lg:py-4'>
+        <img src={props.imgURL} className='w-full aspect-[3/4] object-cover rounded-md' />
+        <h1 className='font-semibold my-1 w-full truncated-text group-hover:whitespace-normal'>{props.title}</h1>
+        <p className='font-light text-sm my-1'>{props.author}</p>
+        <p className='text-xs font-light my-1'>{props.form}</p>
+        <Stars score={props.score} />
+        <h2 className='font-semibold text-lg my-1'>{props.price}zł</h2>
+        <div className='hidden group-hover:flex group-hover:flex-col'>
+            <AddToCartButton />  
+            {props.form === 'ebook' && <RentButton />}
+        </div>
     </div>
-    <div className='flex flex-col items-start w-full'>
-    <h1 className='w-full font-semibold text-blue-950 dark:text-midnight-100 text-sm truncated-text'>{props.title}</h1>
-    <p className='text-xs font-light my-1 text-midnight-400'>{props.author}</p>
-    <Stars score={props.score} />
-    <h2 className='font-semibold text-blue-950 dark:text-midnight-100 my-1'>{props.price}zł</h2>
-    </div>
-    <button className='w-full bg-orange-400 text-white rounded-md px-3 py-2 my-0 flex flex-row items-center text-sm justify-center transition-all hover:bg-orange-500'>
-      <RiShoppingCart2Fill className='mx-1'/>
-      <span>Dodaj do koszyka</span>
-    </button>
   </Link>
   )
 }

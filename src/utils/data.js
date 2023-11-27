@@ -1,3 +1,16 @@
+export const searchSortOptions = [
+    {value: 'default', label: 'Domyślne'},
+    {value: 'az', label: 'Od A do Z'},
+    {value: 'za', label: 'Od Z do A'},
+]
+export const sortOptions = [
+    {value: 'default', label: 'Domyślne'},
+    {value: 'az', label: 'Od A do Z'},
+    {value: 'za', label: 'Od Z do A'},
+    {value: 'cheap', label: 'Cena rosnąco'},
+    {value: 'expensive', label: 'Cena malejąco'},
+]
+
 export const categoryData = [
     { title: "Science Fiction", logo: 'https://iili.io/JBf7eUb.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi. Wejdź do świata literatury i słuchaj bądź czytaj ponad 400 000 audiobooków i ebooków - zawsze i gdziekolwiek masz ochotę.', src: 'https://iili.io/JCJgR9e.png' },
     { title: "Poezja", logo: 'https://iili.io/JBf7EJf.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi. Wejdź do świata literatury i słuchaj bądź czytaj ponad 400 000 audiobooków i ebooków - zawsze i gdziekolwiek masz ochotę.',  src: 'https://iili.io/JCJgTc7.png'  },
