@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import StockFilter from '../components/filters/StockFilter'
 import ScoreFilter from '../components/filters/ScoreFilter'
 import AuthorFilter from '../components/filters/AuthorFilter'
@@ -12,17 +12,21 @@ import ToggleFilterMenuButton from '../components/buttons/ToggleFilterMenuButton
 import { productsData, sortOptions } from '../utils/data'
 import EbookListElement from '../components/products/EbookListElement'
 import Select from '../components/forms/Select'
+import { scrollTop } from '../utils/functions/scrollTop'
 
 function EbooksList() {
     const [isFilterOpen, setIsFilterOpen] = useState(false)
     const toggleFilterMenu = () => {
         setIsFilterOpen(!isFilterOpen)
     }
+    useEffect(() => {
+        scrollTop()
+    },[])
   return (
     <div className='default-page-wrapper'>
         <div className='default-page-container'>
             <div className='grid grid-cols-1 lg:grid-cols-[2fr_5fr] lg:gap-10'>
-                <div className={`flex flex-col fixed w-full lg:relative lg:top-auto right-0 lg:right-auto transition-all duration-500 ${isFilterOpen ? 'top-10' : 'top-[-1000px]'}`}>
+                <div className={`flex flex-col bg-gray-100 dark:bg-midnight-900 py-5 lg:py-0 px-5 lg:px-0 lg:bg-transparent absolute z-[1000000] w-full lg:relative lg:top-auto right-0 lg:right-auto transition-all duration-500 ${isFilterOpen ? 'top-0 overflow-y-auto' : 'top-[-1000px]'}`}>
                     <div className='flex flex-col'>
                         <h1 className='text-3xl font-semibold hidden lg:inline-block'>Filtrowanie</h1>
                         <div className='flex flex-col my-2'>

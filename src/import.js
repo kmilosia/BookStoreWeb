@@ -13,6 +13,8 @@ export {default as BooksList} from './pages/BooksList'
 export {default as EbooksList} from './pages/EbooksList'
 export {default as Discounts} from './pages/Discounts'
 export {default as Product} from './pages/Product'
+export {default as Book} from './pages/Book'
+export {default as Ebook} from './pages/Ebook'
 
 export {default as Categories} from './pages/categories/Categories'
 export {default as Category} from './pages/categories/Category'
