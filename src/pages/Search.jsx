@@ -4,12 +4,18 @@ import BookElement from '../components/products/BookElement'
 import { scrollTop } from '../utils/functions/scrollTop'
 import SearchInput from '../components/forms/SearchInput'
 import { productsData, searchSortOptions } from '../utils/data'
+import { useSearchParams } from 'react-router-dom'
 
 function Search() {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const search = searchParams.get('search')
   const [results, setResults] = useState(true)
   useEffect(() => {
     scrollTop()
   },[])
+  useEffect(() => {
+    console.log(search);
+  },[search])
   return (
     <div className='default-page-wrapper'>
       <div className='default-page-container'>

@@ -5,23 +5,23 @@ import FilterLabelElement from './FilterLabelElement';
 import axiosClient from '../../utils/api/axiosClient';
 
 function AuthorFilter() {
-  const [showFilter, setShowFilter] = useState(false);
-  const [authors, setAuthors] = useState([]);
+  const [showFilter, setShowFilter] = useState(false)
+  const [authors, setAuthors] = useState([])
   const [displayedFields, setDisplayedFields] = useState(5)
 
   const getAuthors = async () => {
     try {
-      const response = await axiosClient.get(`/Author`);
-      setAuthors(response.data);
+      const response = await axiosClient.get(`/Author`)
+      setAuthors(response.data)
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
   }
   useEffect(() => {
-    getAuthors();
+    getAuthors()
   }, [])
   const handleShowMore = () => {
-    setDisplayedFields((prevCount) => (prevCount === 5 ? authors.length : 5));
+    setDisplayedFields((prevCount) => (prevCount === 6 ? authors.length : 6));
   }
 
   return (
@@ -37,7 +37,7 @@ function AuthorFilter() {
                   return <FilterLabelElement key={index} title={title} />;
                 })}
             </div>
-            {authors.length > 5 && <ShowMoreButton onClick={handleShowMore} displayedFields={displayedFields} />}
+            {authors.length > 6 && <ShowMoreButton onClick={handleShowMore} displayedFields={displayedFields} />}
           </div>
         </>
       )}

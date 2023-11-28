@@ -7,7 +7,7 @@ const FilterElement = (props) => {
     return (
         <div class="filter-element-wrapper">
             <input id='' type="checkbox" value="" class="filter-checkbox"/>
-            <label for='' class="ml-2 text-xs"><Stars score={props.score} /></label>
+            <label htmlFor='' class="ml-2 text-xs"><Stars score={props.score} /></label>
         </div>
     )
 }

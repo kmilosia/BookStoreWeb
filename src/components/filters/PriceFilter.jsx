@@ -1,10 +1,17 @@
 import React from 'react'
 import FilterHeader from './FilterHeader'
 import { useState } from 'react'
-import { FaSearch  } from 'react-icons/fa'
 
 function PriceFilter() {
 const [showFilter, setShowFilter] = useState(false)
+const [minPrice, setMinPrice] = useState('');
+const [maxPrice, setMaxPrice] = useState('');
+const handleMinPriceChange = (event) => {
+  setMinPrice(event.target.value);
+}
+const handleMaxPriceChange = (event) => {
+  setMaxPrice(event.target.value);
+}
   return (
     <div className='filter-wrapper'>
         <FilterHeader showFilter={showFilter} setShowFilter={setShowFilter} title="Cena" />
@@ -12,10 +19,15 @@ const [showFilter, setShowFilter] = useState(false)
         <>
         <div className='filter-list-wrapper'>
             <div className='py-2 px-3 grid grid-cols-2 gap-2'>
-                <input type='number' value={10} className='filter-number-input'/>
-                <input type='number' value={100} className='filter-number-input'/>
+                <div className='flex flex-col'>
+                  <label className='text-xs font-light mb-1'>Min.</label>
+                  <input type='number' value={minPrice} onChange={handleMinPriceChange} className='filter-number-input'/>
+                </div>
+                <div className='flex flex-col'>
+                  <label className='text-xs font-light mb-1'>Max.</label>
+                  <input type='number' value={maxPrice} onChange={handleMaxPriceChange} className='filter-number-input'/>
+                </div>
             </div>
-            {/* <button className='bg-purple-500/80 hover:bg-purple-600/80 rounded-md text-white p-2'><FaSearch  /></button> */}
         </div>
         </>
     }

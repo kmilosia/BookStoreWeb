@@ -1,11 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import FilterHeader from './FilterHeader'
 import FilterLabelElement from './FilterLabelElement'
 import ShowMoreButton from '../buttons/ShowMoreButton'
 import { useState } from 'react'
+import axiosClient from '../../utils/api/axiosClient'
 
 function LanguageFilter() {
 const [showFilter, setShowFilter] = useState(false)
+const [languages, setLanguages] = useState([])
+const [displayedFields, setDisplayedFields] = useState(6)
+
+const getLanguages = async () => {
+  try {
+    const response = await axiosClient.get(`/Language`)
+    setLanguages(response.data)
+  } catch (err) {
+    console.error(err)
+  }
+}
+useEffect(() => {
+  getLanguages()
+}, [])
+const handleShowMore = () => {
+  setDisplayedFields((prevCount) => (prevCount === 6 ? languages.length : 6));
+}
+
   return (
     <div className='filter-wrapper'>
         <FilterHeader showFilter={showFilter} setShowFilter={setShowFilter} title="Język" />
@@ -13,13 +32,12 @@ const [showFilter, setShowFilter] = useState(false)
         <>
         <div className='filter-list-wrapper'>
             <div className='filter-list-container'>
-                <FilterLabelElement title='Angielski' />
-                <FilterLabelElement title='Polski' />
-                <FilterLabelElement title='Niemiecki' />
-                <FilterLabelElement title='Hiszpański' />
-                <FilterLabelElement title='Rosyjski' />
+              {languages &&
+                languages.slice(0, displayedFields).map((item, index) => {
+                  return <FilterLabelElement key={index} title={item.name} />;
+                })}
             </div>
-            <ShowMoreButton />
+            {languages.length > 6 && <ShowMoreButton onClick={handleShowMore} displayedFields={displayedFields} />}
         </div>
         </>
     }

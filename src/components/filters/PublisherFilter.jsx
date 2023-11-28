@@ -1,11 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import FilterHeader from './FilterHeader'
 import ShowMoreButton from '../buttons/ShowMoreButton'
 import { useState } from 'react'
 import FilterLabelElement from './FilterLabelElement'
+import axiosClient from '../../utils/api/axiosClient'
 
 function PublisherFilter() {
 const [showFilter, setShowFilter] = useState(false)
+const [publishers, setPublishers] = useState([]);
+const [displayedFields, setDisplayedFields] = useState(6)
+const getPublishers = async () => {
+  try {
+    const response = await axiosClient.get(`/Publisher`);
+    setPublishers(response.data);
+  } catch (err) {
+    console.error(err)
+  }
+}
+const handleShowMore = () => {
+  setDisplayedFields((prevCount) => (prevCount === 6 ? publishers.length : 6));
+}
+useEffect(() => {
+  getPublishers()
+}, [])
   return (
     <div className='filter-wrapper'>
         <FilterHeader showFilter={showFilter} setShowFilter={setShowFilter} title="Wydawnictwo" />
@@ -13,13 +30,12 @@ const [showFilter, setShowFilter] = useState(false)
         <>
         <div className='filter-list-wrapper'>
             <div className='filter-list-container'>
-                <FilterLabelElement title='Nasza Księgarnia' />
-                <FilterLabelElement title='Wydawnictwo Czarne' />
-                <FilterLabelElement title='SuperNova' />
-                <FilterLabelElement title='Wydawnictwo Znak' />
-                <FilterLabelElement title='Zysk i S-ka' />
+            {publishers &&
+                publishers.slice(0, displayedFields).map((item, index) => {
+                  return <FilterLabelElement key={index} title={item.name} />;
+                })}
             </div>
-            <ShowMoreButton />
+            {publishers.length > 6 && <ShowMoreButton onClick={handleShowMore} displayedFields={displayedFields} />}
         </div>
         </>
     }

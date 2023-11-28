@@ -7,18 +7,17 @@ import LogoButton from './buttons/LogoButton'
 import NavbarMenuLinks from './navbar/NavbarMenuLinks'
 import NavbarMenuIcons from './navbar/NavbarMenuIcons'
 import SearchModal from '../modals/SearchModal'
-import AccessModal from '../modals/AccessModal'
 import AccountModal from '../modals/AccountModal'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { hideAll, showNavbar } from '../store/navSlice'
 
 function Navbar() {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const ref = useRef(null)
     const {isAuth} = useSelector((state) => state.user)
-    const [isUserModal, setIsUserModal] = useState(false)
-    const [isSearchModal, setIsSearchModal] = useState(false)  
+    const {accountModal, searchModal, navbar} = useSelector((state) => state.nav)
     const [isDarkTheme, setIsDarkTheme] = useState(checkTheme())
-    const [isNavbarOpened, setIsNavbarOpened] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
     const [navHeight, setNavHeight] = useState(0)
 
@@ -29,36 +28,11 @@ function Navbar() {
         setIsScrolled(false)
       }
     }
-    const handleIconButton = () => {
-      if(isUserModal){
-        setIsUserModal(false)
-      }
-      if(isSearchModal){
-        setIsSearchModal(false)
-      }
-    }
-    const handleUserModal = () => {
-      if(isSearchModal){
-        setIsSearchModal(false)
-      }
-      if(isUserModal){
-        setIsUserModal(false)
-      }else{
-        setIsUserModal(true)
-      }
-    }
-    const handleSearchModal = () => {
-      if(isSearchModal){
-        setIsSearchModal(false)
-      }else{
-        if(isUserModal){
-          setIsUserModal(false)
-        }
-        setIsSearchModal(true)
-      }
+    const handleCloseModals = () => {
+      dispatch(hideAll())
     }
     const toggleTheme = () => {
-        handleIconButton()
+        handleCloseModals()
         setIsDarkTheme((prevTheme) => {
           const newTheme = !prevTheme;
           localStorage.setItem('color-theme', newTheme ? 'dark' : 'light');
@@ -66,7 +40,8 @@ function Navbar() {
         })
       }
     const toggleNavbar = () => {
-      setIsNavbarOpened(!isNavbarOpened)
+      handleCloseModals()
+      dispatch(showNavbar())
     }
     useLayoutEffect(() => {
       setNavHeight(ref.current.clientHeight)
@@ -80,34 +55,34 @@ function Navbar() {
       <>
     <nav ref={ref} className={`flex flex-col sticky w-full py-1 lg:py-2 px-2 lg:px-4 top-0 backdrop-blur-sm z-[100] lg:shadow-lg ${isScrolled ? 'scrolled-bg' : 'default-bg'}`}>
       <div className='grid grid-cols-2 lg:grid-cols-[1fr_auto_1fr] gap-10 px-4 my-4 items-center'>    
-       <LogoButton color="purple"/>
+       <LogoButton color="purple" onClick={handleCloseModals}/>
        <div className='flex-row justify-center hidden lg:flex'>
-        <NavbarMenuLinks />
+        <NavbarMenuLinks onClick={handleCloseModals}/>
         </div>
       <div className='flex flex-row items-center justify-end'>   
       <div className='hidden lg:flex flex-row items-center justify-end'> 
-        <NavbarMenuIcons handleUserModal={handleUserModal} handleSearchModal={handleSearchModal} handleIconButton={handleIconButton} toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
+        <NavbarMenuIcons toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
       </div> 
-        <button className='navbar-menu-icon inline-block lg:hidden' onClick={toggleNavbar}>
-          <AiOutlineMenu />
-        </button>      
+      <button className='navbar-menu-icon inline-block lg:hidden' onClick={toggleNavbar}>
+        <AiOutlineMenu />
+      </button>      
       </div>   
       </div>
       <div className={`flex-col flex lg:hidden justify-center items-center h-max fixed top-0 right-0 w-screen z-[10000] default-bg px-5 py-5 transition-all duration-500
-        ${isNavbarOpened ? 'top-0' : 'top-[-1000px]'}`}>
+        ${navbar ? 'top-0' : 'top-[-1000px]'}`}>
         <div className='w-full flex justify-end'>
           <button onClick={toggleNavbar} className='text-2xl px-2 text-midnight-950 dark:text-white'><AiOutlineClose /></button>
         </div>
         <div className='w-full h-full flex justify-center flex-col'>
-        <NavbarMenuLinks toggleNavbar={toggleNavbar}/>
+        <NavbarMenuLinks onClick={toggleNavbar}/>
         </div>
        </div>
     </nav>
-    {isUserModal && (isAuth ? <AccountModal setIsUserModal={setIsUserModal}/> : <AccessModal setIsUserModal={setIsUserModal}/>)}
-    {isSearchModal && <SearchModal />}
+    {accountModal && <AccountModal />}
+    {searchModal && <SearchModal />}
     <div className='fixed bottom-0 right-0 h-auto w-full bg-white dark:bg-midnight-900 z-[10000] lg:hidden'>
       <div className='flex flex-row w-full justify-between px-5 py-5'>
-        <NavbarMenuIcons handleUserModal={handleUserModal} handleSearchModal={handleSearchModal} handleIconButton={handleIconButton} toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
+        <NavbarMenuIcons toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
       </div>
     </div>
     {isScrolled &&
