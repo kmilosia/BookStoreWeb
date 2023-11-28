@@ -5,7 +5,6 @@ import CartElement from '../components/products/CartElement'
 import ReturnShoppingButton from '../components/buttons/ReturnShoppingButton'
 import { BsDot } from 'react-icons/bs'
 import { TbTrash } from 'react-icons/tb'
-import emptyCart from '../assets/pages/empty-cart.png'
 import { useEffect } from 'react'
 import { scrollTop } from '../utils/functions/scrollTop'
 import { FiChevronDown } from "react-icons/fi";
@@ -23,7 +22,7 @@ function Cart() {
       {
         isEmpty ?
         <div className='flex flex-col items-center justify-center'>
-          <img src={emptyCart} className='w-full lg:w-1/4 h-auto object-contain' />
+          <img src='https://iili.io/JCJhie2.png' className='w-full lg:w-1/4 h-auto object-contain' />
           <h1 className='text-2xl font-semibold my-2'>Twój koszyk jest pusty</h1>
           <p className='text-sm font-light'>Wypełnij swój koszyk ulubionymi książkami</p>
           <Link to='/sklep' className='rounded-purple-button my-5'>Przejdź do sklepu</Link>

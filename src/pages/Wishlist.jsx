@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState } from 'react'
-import emptyWishlist from '../assets/pages/empty-wishlist.png'
 import { Link } from 'react-router-dom'
 import { BsDot} from 'react-icons/bs'
 import { BiSolidShoppingBag } from 'react-icons/bi'
@@ -20,7 +19,7 @@ function Wishlist() {
         {
           isEmpty ?
           <div className='flex flex-col items-center justify-center'>
-            <img src={emptyWishlist} className='w-full lg:w-1/4 h-auto object-contain' />
+            <img src='https://iili.io/JCJhsbS.png' className='w-full lg:w-1/4 h-auto object-contain' />
             <h1 className='text-2xl font-semibold my-2'>Twoja lista życzeń jest pusta</h1>
             <p className='text-sm font-light'>Dodaj do swojej listy życzeń wymarzone książki</p>
             <Link to='/sklep' className='rounded-purple-button my-5'>Przejdź do sklepu</Link>

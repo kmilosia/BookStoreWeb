@@ -38,8 +38,12 @@ export const booksData = [
 ]
 
 export const bannersData = [
-    {id: 1,path: '/ksiazka/1', title: 'Britney Spears', src: 'https://iili.io/JnwKYmP.jpg'},
-    {id: 2,path: '/ksiazki', title: 'Świąteczne promocje', src: 'https://iili.io/JnwKcI1.jpg'},]
+    {id: 1,path: '/', title: 'Powitanie', src: 'https://iili.io/Jxo3RLB.png'},
+    {id: 2,path: '/promocje', title: 'Świąteczne promocje', src: 'https://iili.io/Jxo37qP.png'},
+    {id: 3,path: '/', title: 'Newsletter', src: 'https://iili.io/Jxo3Imx.png'},
+    {id: 4,path: '/promocje', title: 'Black Friday', src: 'https://iili.io/Jxo3uzQ.png'},
+    {id: 5,path: '/ebooki', title: 'Ebooki', src: 'https://iili.io/Jxo3AXV.png'},
+]
 
 export const productsData = [
     {id: 1, form: 'ebook', file: "EPUB", title: "Harry Potter i Więzień Azkabanu",price: 59.99, score: 5, author: 'J.K. Rowling', url: 'https://images.ctfassets.net/usf1vwtuqyxm/24YWmI4UcyoMwj7wdKrEcL/374de1941927db12bd844fb197eab11f/English_Harry_Potter_3_Epub_9781781100233.jpg?w=914&q=70&fm=jpg'},

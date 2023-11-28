@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {categoryData} from '../../utils/data'
-import categoryImage from '../../assets/pages/categories-image.png'
 import PageHeader from '../../components/page-elements/PageHeader'
 import { scrollTop } from '../../utils/functions/scrollTop'
-
 
 function Categories() {
   useEffect(() => {
@@ -13,7 +11,7 @@ function Categories() {
   return (
     <div className='default-page-wrapper'>
       <div className='default-page-container'>
-        <PageHeader src={categoryImage} title="Kategorie" content="Odkrywaj nowe lub swoje ulubione kategorie i najbardziej polecane książki, a napewno znajdziesz coś co chcesz czytać." />
+        <PageHeader src='https://iili.io/JCJhvWX.png' title="Kategorie" content="Odkrywaj nowe lub swoje ulubione kategorie i najbardziej polecane książki, a napewno znajdziesz coś co chcesz czytać." />
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-5 my-5'>
         {categoryData.map((item,index) => {
           let title = item.title

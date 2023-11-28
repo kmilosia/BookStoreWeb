@@ -16,7 +16,7 @@ function News() {
         <Link className='relative w-full h-48 lg:h-96 rounded-md'>
             <img src='https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/newscms/2021_41/1787296/britney-jamie-lynn-spears-mc-main1-211013.jpg' className='w-full h-full object-cover' />
             <div className='absolute flex items-end justify-start w-full h-full top-0 right-0 z-20 px-3 py-5'>
-                <h1 className='text-white text-3xl'>Britney Spears wali farmazony na temat swojej siostry i w sumie dobrze bo ta siostra to też jakaś psychiczna</h1>
+                <h1 className='text-white lg:text-3xl'>Britney Spears wali farmazony na temat swojej siostry i w sumie dobrze bo ta siostra to też jakaś psychiczna</h1>
             </div>
             <div className='absolute w-full h-full bottom-gradient top-0 right-0 z-10'/>
         </Link>

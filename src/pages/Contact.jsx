@@ -1,13 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {MdEmail} from 'react-icons/md'
 import {TbMessageCircle2Filled} from 'react-icons/tb'
-import {BsFillPersonFill,BsFillTelephoneFill} from 'react-icons/bs'
-import librarycontact from '../assets/backgrounds/library-contact-page.jpg';
+import {BsFillPersonFill} from 'react-icons/bs'
 import ElementScrollButton from '../components/buttons/ElementScrollButton';
+import SubmitLoadingButton from '../components/buttons/SubmitLoadingButton';
 import ContactElement from '../components/page-elements/ContactElement';
 import {scrollTop} from '../utils/functions/scrollTop'
+import { useDispatch, useSelector } from 'react-redux';
+import {contactformValidate} from '../utils/validation/contactformValidation'
 
 function Contact() {
+  const dispatch = useDispatch()
+  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false)
+  const {loading,error,isAuth} = useSelector((state) => state.user)
+  const [values, setValues] = useState({
+    name: '',
+    email: '',
+    message: '',
+  })
+  const handleChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setErrors(contactformValidate(values))
+    setSubmitting(true)
+  }
+  const finishSubmit = () => {
+    console.log(values);
+  }
+  useEffect(() => {
+    if (Object.keys(errors).length === 0 && submitting) {
+      finishSubmit();
+    }
+  }, [errors])
+
   useEffect(() => {
     scrollTop()
   },[])
@@ -17,9 +45,9 @@ function Contact() {
         <div className='w-full absolute bottom-[-1.2rem] z-20 flex items-center justify-center'>
           <ElementScrollButton elementID='#contactform'/>
         </div>
-        <img src={librarycontact} className='w-full h-96 object-cover object-center' />
-        <div className='w-full h-96 bg-midnight-950/70 top-0 absolute z-0' />
-        <div className='w-full h-96 flex flex-col items-center justify-center absolute top-0 z-10 px-5 lg:px-0'>
+        <img src='https://iili.io/JCJNZXI.jpg' alt='Library' className='w-full h-48 lg:h-96 object-cover object-center' />
+        <div className='w-full h-48 lg:h-96 bg-midnight-950/70 top-0 absolute z-0' />
+        <div className='w-full h-48 lg:h-96 flex flex-col items-center justify-center absolute top-0 z-10 px-5 lg:px-0'>
             <h1 className='info-page-h1'>Skontaktuj się z nami</h1>
             <p className='info-page-h1-p'>Jeśli chcesz dowiedzieć się więcej o swojej przesyłce lub masz jakiekolwiek inne pytania, skontaktuj się z nami.</p>
         </div>
@@ -27,32 +55,29 @@ function Contact() {
       <div className='py-12 lg:py-20 px-5 flex flex-col items-center'>
         <h2 id='contactform' className='info-page-h2 scroll-mt-40'>Formularz kontaktowy</h2>
         <p className='info-page-h2-p'>Masz do nas pytanie? Wyślij do nas zapytanie używając formularza kontaktowego a odezwiemy się do Ciebie w przeciągu doby!</p>
-        <form className='my-3 w-full lg:w-3/4 flex flex-col'>
-            <div className='grid grid-rows-3 lg:grid-rows-1 lg:grid-cols-3 gap-2'>
+        <form onSubmit={handleSubmit} className='my-3 w-full lg:w-3/4 flex flex-col'>
+            <div className='grid grid-rows-1 lg:grid-cols-2 gap-2'>
                 <div className='icons-form-input-container'>
                     <BsFillPersonFill />
-                    <input type='text' placeholder='Twoje imię' name='name' className='icons-form-input'/>
+                    <input type='text' placeholder='Twoje imię' name='name' id='name' onChange={handleChange} className='icons-form-input'/>
                 </div>
-                <div className='icons-form-input-container'>
-                    <BsFillTelephoneFill />
-                    <input type='text' placeholder='Numer telefonu' name='phone number' className='icons-form-input'/>
-                </div>
+                {errors.name && <p className='error-text'>{errors.name}</p>}
                 <div className='icons-form-input-container'>
                     <MdEmail />
-                    <input type='text' placeholder='Adres e-mail' name='email' className='icons-form-input'/>
+                    <input type='text' placeholder='Adres e-mail' name='email' id='email' onChange={handleChange} className='icons-form-input'/>
                 </div>
+                {errors.email && <p className='error-text'>{errors.email}</p>}
             </div>    
-            <div className='flex w-full my-5 lg:my-2'>
+            <div className='flex flex-col w-full my-2'>
             <div className='icons-form-input-container w-full items-start'>
                 <TbMessageCircle2Filled className='my-[0.65rem]'/>
-                <textarea rows={6} placeholder='Twoja wiadomość' name='message' className='icons-form-input w-full resize-none'/>
+                <textarea rows={6} placeholder='Twoja wiadomość' name='message' id='message' onChange={handleChange} className='icons-form-input w-full resize-none'/>
             </div>
+            {errors.message && <p className='error-text'>{errors.message}</p>}
             </div>
-            <div className='grid grid-cols-1 lg:grid-cols-3 my-0 lg:my-1'>
-              <div></div>
-              <div></div>
-              <div>
-                <button className='purple-button w-full'>Wyślij</button>
+            <div className='flex justify-end'>
+              <div className='w-1/3'>
+                <SubmitLoadingButton title="Wyślij" loading={loading} />
               </div>
             </div>
         </form>
