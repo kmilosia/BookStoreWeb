@@ -1,8 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-function ShowMoreButton() {
+function ShowMoreButton(props) {
+  const label = props.displayedFields === 5 ? 'Pokaż więcej' : 'Pokaż mniej'
+
   return (
-    <button className='text-xs w-max mx-3 font-light text-purple-400 hover:text-purple-500'>Pokaż więcej</button>
+    <button onClick={props.onClick} className='text-xs w-max mx-3 font-light text-purple-400 hover:text-purple-500'>
+      {label}
+    </button>
   )
 }
 
