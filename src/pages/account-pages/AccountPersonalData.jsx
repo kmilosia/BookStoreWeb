@@ -82,7 +82,7 @@ function AccountPersonalData() {
           <label htmlFor='phoneNumber' className='label-input'>Numer telefonu</label>
           <input disabled={!isEdited} onChange={handleChange} name='phoneNumber' id='phoneNumber' type='text' className='form-input' value={userDetails.phoneNumber}/>
         </div>
-        <div className='col-span-2 grid grid-cols-[3fr_1fr] gap-2 items-end'>
+        <div className='col-span-2 grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-2 items-end'>
         <div className='flex flex-col w-full'>
           <label htmlFor='password-mockup' className='label-input'>Hasło</label>
           <input disabled onChange={handleChange} name='password-mockup' id='password-mockup' type='text' className='form-input' value='***'/>
@@ -91,7 +91,7 @@ function AccountPersonalData() {
         </div>
         {error && <p className='error-text my-1 col-span-2'>{error}</p>}
         {isEdited ? <SubmitLoadingButton loading={loading} title="Zapisz zmiany" />
-        :  <button onClick={handleEditClick} className='purple-button'>Edytuj</button>
+        :  <button onClick={handleEditClick} className='purple-button'>Edytuj dane</button>
         }
         <button onClick={handleDeleteClick} className='delete-button'>Usuń konto</button>
       </div>

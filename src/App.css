@@ -21,7 +21,7 @@
         @apply border-t-[1px] my-2 border-midnight-200 dark:border-midnight-800;
       }
     .default-page-wrapper{
-        @apply min-h-[80vh] max-w-full bg-gray-50 dark:bg-midnight-950 text-midnight-950 dark:text-midnight-50;
+        @apply min-h-[80vh] max-w-full bg-gray-100 dark:bg-midnight-950 text-midnight-950 dark:text-midnight-50;
     }
     .default-page-container{
         @apply flex flex-col px-5 py-5 lg:py-10 lg:px-10;
@@ -76,7 +76,7 @@
         @apply w-full bg-white dark:bg-midnight-900 text-sm border-0 no-ring focus:border-0;
     }
     .form-input{
-        @apply rounded-md dark:bg-midnight-900 border-2 no-ring border-midnight-100 dark:border-midnight-700 disabled:opacity-50;
+        @apply rounded-md dark:bg-midnight-900 border-2 no-ring border-midnight-100 dark:border-midnight-700 focus-within:border-purple-400 disabled:opacity-50;
     }
     .label-input{
         @apply my-1 text-sm font-medium;

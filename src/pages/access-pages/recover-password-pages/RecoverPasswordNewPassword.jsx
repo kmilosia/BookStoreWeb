@@ -5,10 +5,10 @@ import ShowPasswordButton from '../../../components/buttons/ShowPasswordButton'
 import { useState } from 'react'
 import AccessIconElement from '../../../components/elements/AccessIconElement'
 import { useEffect } from 'react'
-import { resetPasswordValidate } from '../../../utils/validation/resetPasswordValidation'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetPassword, resetState } from '../../../store/userSlice'
 import SubmitLoadingButton from '../../../components/buttons/SubmitLoadingButton'
+import { recoverPasswordValidate } from '../../../utils/validation/recoverPasswordValidation'
 
 function RecoverPasswordNewPassword() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -32,7 +32,7 @@ function RecoverPasswordNewPassword() {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors(resetPasswordValidate(inputValues))
+    setErrors(recoverPasswordValidate(inputValues))
     setSubmitting(true)
   }
   const finishSubmit = () => {

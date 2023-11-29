@@ -3,8 +3,8 @@ import Stars from '../elements/Stars'
 
 function ReviewSummary() {
   return (
-    <div className='flex my-2 py-10 justify-around items-center bg-white dark:bg-midnight-900'>
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col lg:flex-row my-2 py-10 justify-around items-center bg-white dark:bg-midnight-900'>
+    <div className='flex flex-col items-center mb-5 lg:mb-0'>
       <h1 className='font-bold text-5xl'>4,2</h1>
       <Stars score={4} />
       <p className='text-sm'>Średnia ocena z 200 recenzji</p>

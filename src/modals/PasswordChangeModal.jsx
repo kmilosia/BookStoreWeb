@@ -56,14 +56,14 @@ function PasswordChangeModal(props) {
 
   return (
     <div className='fixed flex justify-center items-center top-0 left-0 w-screen h-full z-100 bg-black/50'>
-    <div className='bg-white px-10 py-10 rounded-md w-auto h-auto flex flex-col items-center justify-center dark:bg-midnight-800 mx-3 lg:mx-0'>
+    <div className='bg-gray-100 px-10 py-10 rounded-md w-auto h-auto flex flex-col items-center justify-center dark:bg-midnight-800 mx-3 lg:mx-0'>
       <h1 className='text-2xl font-semibold my-2 text-center lg:text-start'>Zmień hasło</h1>
       <form onSubmit={handleSubmit} className='lg:w-[30rem]'>
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-3 my-2 w-full'>
 
       <div className="col-span-2">
       <div className="relative">
-        <ShowPasswordButton setIsHiddenPassword={setIsHiddenOldPassword} isHiddenPassword={isHiddenOldPassword} />
+        <ShowPasswordButton setIsHiddenPassword={setIsHiddenOldPassword} isHiddenPassword={isHiddenOldPassword}/>
         <input value={inputValues.oldPassword} onChange={handleChange} type={`${isHiddenOldPassword ? 'password' : 'text'}`} id='oldPassword' name='oldPassword' className="floating-form-input-colors peer" placeholder=" " />
         <label htmlFor='oldPassword' className="floating-form-label-colors">Stare hasło</label>
       </div>

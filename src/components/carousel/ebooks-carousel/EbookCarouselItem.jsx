@@ -6,7 +6,7 @@ import RentButton from '../../buttons/RentButton'
 
 function EbookCarouselItem(props) {
   return (
-    <Link to='/ebook' className='flex flex-col cursor-pointer lg:mx-2 lg:my-2 shadow-md bg-gray-100 hover:bg-gray-200 dark:bg-midnight-900 dark:hover:bg-midnight-800 rounded-md px-7 py-7 lg:px-5 lg:py-4 group'>
+    <Link to={`/produkt/${props.id}`} className='flex flex-col cursor-pointer lg:mx-2 lg:my-2 shadow-md bg-gray-100 hover:bg-gray-200 dark:bg-midnight-900 dark:hover:bg-midnight-800 rounded-md px-7 py-7 lg:px-5 lg:py-4 group'>
       <img src={props.url} className='w-full aspect-[3/4] object-cover rounded-md' />
       <div className="text-container">
         <h1 className='font-semibold mt-2 w-full h-6 overflow-hidden overflow-ellipsis'>

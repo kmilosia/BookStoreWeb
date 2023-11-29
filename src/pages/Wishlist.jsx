@@ -39,7 +39,6 @@ function Wishlist() {
               </div>
               <button className='rounded-bordered-purple-button h-max w-max mt-2 lg:mt-0'>Dodaj wszystko do koszyka<BiSolidShoppingBag className='mx-1'/></button>
             </div>
-            
           <div className='grid grid-cols-1 lg:grid-cols-4 2xl:grid-cols-6 gap-3 lg:gap-5 mt-5 mb-3'>
             <WishlistElement title="Gra o tron. Ogień i Krew" price={39.99} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author="George R.R. Martin" form="Książka"/>
             <WishlistElement title="Gra o tron. Ogień i Krew" price={39.99} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author="George R.R. Martin" form="Książka"/>
