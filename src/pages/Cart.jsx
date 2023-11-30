@@ -8,19 +8,26 @@ import { TbTrash } from 'react-icons/tb'
 import { useEffect } from 'react'
 import { scrollTop } from '../utils/functions/scrollTop'
 import { FiChevronDown } from "react-icons/fi";
+import { useSelector } from 'react-redux'
 
 function Cart() {
+  
+  const navigate = useNavigate()
+  const {cart} = useSelector((state) => state.cart)
+  const {totalPrice, setTotalPrice} = useState(0)
+  const [cartElements, setCartElements] = useState([])
+  const [isPromoOpen, setIsPromoOpen] = useState(false)
   useEffect(() => {
+    if(cart){
+      setCartElements(cart)
+    }
     scrollTop()
   },[])
-  const navigate = useNavigate()
-  const [isEmpty, setIsEmpty] = useState(false)
-  const [isPromoOpen, setIsPromoOpen] = useState(false)
   return (
     <div className='default-page-wrapper'>
       <div className='default-page-container'>
       {
-        isEmpty ?
+        cartElements.length <= 0 ?
         <div className='flex flex-col items-center justify-center'>
           <img src='https://iili.io/JCJhie2.png' className='w-full lg:w-1/4 h-auto object-contain' />
           <h1 className='text-2xl font-semibold my-2'>Twój koszyk jest pusty</h1>
@@ -34,7 +41,7 @@ function Cart() {
               <div className='flex flex-col'>
                 <h1 className='text-3xl font-semibold'>Koszyk</h1>
                 <div className='flex items-center my-2 text-sm'>
-                  <span className='font-semibold mx-1'>5</span>
+                  <span className='font-semibold mx-1'>{cartElements.length}</span>
                   <p>produktów</p>
                   <BsDot />
                   <p>Suma całkowita</p>
@@ -44,10 +51,16 @@ function Cart() {
               <button className='rounded-bordered-purple-button h-max w-max mt-2 lg:mt-0'>Opróżnij koszyk<TbTrash className='mx-1'/></button>
             </div>
             <div className='grid grid-cols-1 gap-5 lg:gap-3 mt-5'>
+              {cartElements.map((item,index) => {
+                setTotalPrice()
+                return (
+                  <CartElement key={index} title={item.title} price={item.price} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author={item.author} form="Książka"/>
+                )
+              })}
+            {/* <CartElement title="Gra o tron. Ogień i Krew" price={39.99} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author="George R.R. Martin" form="Książka"/>
             <CartElement title="Gra o tron. Ogień i Krew" price={39.99} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author="George R.R. Martin" form="Książka"/>
             <CartElement title="Gra o tron. Ogień i Krew" price={39.99} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author="George R.R. Martin" form="Książka"/>
-            <CartElement title="Gra o tron. Ogień i Krew" price={39.99} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author="George R.R. Martin" form="Książka"/>
-            <CartElement title="Gra o tron. Ogień i Krew" price={39.99} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author="George R.R. Martin" form="Książka"/>
+            <CartElement title="Gra o tron. Ogień i Krew" price={39.99} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author="George R.R. Martin" form="Książka"/> */}
           </div>
           <ReturnShoppingButton />
         </div>

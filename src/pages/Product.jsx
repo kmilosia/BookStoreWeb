@@ -19,7 +19,7 @@ function Product() {
   return (
     <div className='default-page-wrapper'>
       <div className='flex flex-col relative w-full'>
-        <img src={product.url} className='absolute  h-[40rem] lg:h-96 w-full z-10 object-cover blur-sm' />
+        <img src={product.url} className='absolute  h-[40rem] lg:h-[40rem] w-full z-10 object-cover blur-sm' />
         <div className='w-full z-20 py-10 lg:py-20 px-5 lg:px-10 2xl:px-48'>
             <div className='grid grid-cols-1 lg:grid-cols-[1fr_3fr] gap-5 lg:gap-10'>
                 <div className='h-auto w-full flex items-center justify-end'>
