@@ -48,13 +48,7 @@ function App() {
           <Route path='kategorie' element={<Categories />} />
           <Route path='kategorie/:title' element={<Category />} />
 
-          <Route path='zamowienie' element={<Checkout />}>
-            <Route index element={<Navigate to='dostawa' />} />
-            <Route path='dostawa' element={<CheckoutDelivery />} />
-            <Route path='platnosc' element={<CheckoutPayment />} />
-            <Route path='potwierdzenie' element={<CheckoutConfirmation />} />
-            <Route path='logowanie' element={<CheckoutLogin />} />
-          </Route>
+          <Route path='zamowienie' element={<Checkout />}/>
 
           <Route path='ulubione' element={<Wishlist />} />
           <Route path='kontakt' element={<Contact />} />

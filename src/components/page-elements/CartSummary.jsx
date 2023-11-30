@@ -53,7 +53,7 @@ function CartSummary() {
       <p>Kwota do zapłaty</p>
       <p>{summary && summary.toFixed(2)}zł</p>
     </div>
-    <Link to='/zamowienie/dostawa' className='purple-button flex items-center justify-center shadow-md'><BiSolidLock className='mr-2'/>Złóż zamówienie</Link>
+    <Link to='/zamowienie' className='purple-button flex items-center justify-center shadow-md'><BiSolidLock className='mr-2'/>Złóż zamówienie</Link>
   </div>
   </div>
   )

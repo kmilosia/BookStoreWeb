@@ -31,11 +31,7 @@ export {default as RegisterConfirmation} from './pages/access-pages/register-pag
 export {default as RegisterConfirmEmail} from './pages/access-pages/register-pages/RegisterConfirmEmail'
 
 export {default as Cart} from './pages/Cart'
-export {default as Checkout} from './pages/checkout-pages/Checkout'
-export {default as CheckoutDelivery} from './pages/checkout-pages/CheckoutDelivery'
-export {default as CheckoutPayment} from './pages/checkout-pages/CheckoutPayment'
-export {default as CheckoutConfirmation} from './pages/checkout-pages/CheckoutConfirmation'
-export {default as CheckoutLogin} from './pages/checkout-pages/CheckoutLogin'
+export {default as Checkout} from './pages/Checkout'
 
 export {default as Contact} from './pages/Contact'
 export {default as About} from './pages/About'
