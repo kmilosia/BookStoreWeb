@@ -117,7 +117,7 @@
         @apply lg:text-xs text-base text-purple-400 hover:text-purple-500 font-semibold;
     }
     .purple-button{
-        @apply bg-purple-400 rounded-md py-2.5 px-5 text-lg lg:text-sm my-1 text-center text-white hover:bg-purple-500 font-semibold;
+        @apply bg-purple-400 rounded-md py-2.5 px-5 text-lg lg:text-sm my-1 text-center text-white hover:bg-purple-500 font-semibold flex items-center justify-center;
     }
     .delete-button{
         @apply bg-white dark:bg-midnight-900 border-2 flex justify-center border-red-500 rounded-md py-2.5 px-5 text-lg lg:text-sm my-1 text-red-500 hover:bg-red-500 dark:hover:bg-red-500 hover:text-white font-semibold;

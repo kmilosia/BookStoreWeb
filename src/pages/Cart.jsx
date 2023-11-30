@@ -52,7 +52,7 @@ function Cart() {
             </div>
             <div className='grid grid-cols-1 gap-5 lg:gap-3 mt-5'>
               {cartElements.map((item,index) => {
-                setTotalPrice()
+                // setTotalPrice()
                 return (
                   <CartElement key={index} title={item.title} price={item.price} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author={item.author} form="Książka"/>
                 )

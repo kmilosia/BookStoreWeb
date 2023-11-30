@@ -7,6 +7,7 @@ import MainLayout from './MainLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { checkUserLogin } from './store/userSlice';
+import CartPopup from './modals/CartPopup';
 function App() {
   const dispatch = useDispatch()
   const isAuth = useSelector((state) => state.user.isAuth)
@@ -14,10 +15,11 @@ function App() {
     dispatch(checkUserLogin()) 
   },[isAuth])
   return (
+    <>
     <Router>
+    <CartPopup />
       <Routes>
         <Route path='/' element={<Navigate to={'/'}/>} />
-
         <Route path='/dostep' element={isAuth ? <Navigate to="/" /> : <Access />}>
           <Route index element={<Navigate to='logowanie' />} />
           <Route path='logowanie' element={<Login />} />
@@ -90,6 +92,7 @@ function App() {
         </Route>
       </Routes>
     </Router>
+    </>
   );
 }
 
