@@ -7,17 +7,34 @@ import ReturnShoppingButton from '../components/buttons/ReturnShoppingButton'
 import WishlistElement from '../components/products/WishlistElement'
 import { useEffect } from 'react'
 import { scrollTop } from '../utils/functions/scrollTop'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart } from '../store/cartSlice'
+import { emptyWishlist } from '../store/wishlistSlice'
 
 function Wishlist() {
+  const dispatch = useDispatch()
+  const {wishlist, totalPrice, quantity} = useSelector((state) => state.wishlist)
+  const [wishlistElements, setWishlistElements] = useState([])
+  useEffect(() => {
+    if(wishlist){
+      setWishlistElements(wishlist)
+    }
+  },[wishlist])
   useEffect(() => {
     scrollTop()
   },[])
-  const [isEmpty, setIsEmpty] = useState(false)
+  const moveAllToCart = () => {
+    {wishlistElements.map((item) => {
+      dispatch(addToCart(item))
+
+    })}
+    dispatch(emptyWishlist())
+  }
   return (
     <div className='default-page-wrapper'>
       <div className='default-page-container'>
         {
-          isEmpty ?
+          wishlistElements.length <= 0 ?
           <div className='flex flex-col items-center justify-center'>
             <img src='https://iili.io/JCJhsbS.png' className='w-full lg:w-1/4 h-auto object-contain' />
             <h1 className='text-2xl font-semibold my-2'>Twoja lista życzeń jest pusta</h1>
@@ -30,23 +47,21 @@ function Wishlist() {
               <div className='flex flex-col'>
                 <h1 className='text-3xl font-semibold'>Moja lista życzeń</h1>
                 <div className='flex items-center my-2 text-sm'>
-                  <span className='font-semibold mx-1'>12</span>
+                  <span className='font-semibold mx-1'>{quantity}</span>
                   <p>produktów</p>
                   <BsDot />
                   <p>Suma całkowita</p>
-                  <span className='font-semibold mx-1'>199.99zł</span>
+                  <span className='font-semibold mx-1'>{totalPrice && totalPrice.toFixed(2)}zł</span>
                 </div>
               </div>
-              <button className='rounded-bordered-purple-button h-max w-max mt-2 lg:mt-0'>Dodaj wszystko do koszyka<BiSolidShoppingBag className='mx-1'/></button>
+              <button onClick={moveAllToCart} className='rounded-bordered-purple-button h-max w-max mt-2 lg:mt-0'>Dodaj wszystko do koszyka<BiSolidShoppingBag className='mx-1'/></button>
             </div>
-          <div className='grid grid-cols-1 lg:grid-cols-4 2xl:grid-cols-6 gap-3 lg:gap-5 mt-5 mb-3'>
-            <WishlistElement title="Gra o tron. Ogień i Krew" price={39.99} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author="George R.R. Martin" form="Książka"/>
-            <WishlistElement title="Gra o tron. Ogień i Krew" price={39.99} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author="George R.R. Martin" form="Książka"/>
-            <WishlistElement title="Gra o tron. Ogień i Krew. Część 1" price={39.99} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author="George R.R. Martin" form="Książka"/>
-            <WishlistElement title="Gra o tron. Ogień i Krew. Część 1" price={39.99} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author="George R.R. Martin" form="Książka"/>
-            <WishlistElement title="Gra o tron. Ogień i Krew. Część 1" price={39.99} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author="George R.R. Martin" form="Książka"/>
-            <WishlistElement title="Gra o tron. Ogień i Krew. Część 1" price={39.99} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author="George R.R. Martin" form="Książka"/>
-            <WishlistElement title="Gra o tron. Ogień i Krew. Część 1" price={39.99} imgURL="https://images.penguinrandomhouse.com/cover/9780593598009" availability={true} edition='Okładka twarda' author="George R.R. Martin" form="Książka"/>
+          <div className='grid grid-cols-1 lg:grid-cols-4 2xl:grid-cols-5 gap-3 lg:gap-5 mt-5 mb-3'>
+              {wishlistElements.map((item,index) => {
+                return (
+                  <WishlistElement key={index} item={item}/>
+                )
+              })}
           </div>
           <ReturnShoppingButton />
           </div>

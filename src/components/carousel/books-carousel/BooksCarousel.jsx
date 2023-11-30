@@ -6,12 +6,12 @@ import { booksData } from '../../../utils/data';
 import BookCarouselItem from './BookCarouselItem';
 import { settings } from '../../../utils/objects/carousel-settings';
 
-function BooksCarousel(props) {
+function BooksCarousel() {
   return (
   <Slider {...settings}>
     {booksData.map((item, index) => {
       return (
-        <BookCarouselItem key={index} id={item.id} title={item.title} url={item.url} score={item.score} price={item.price} author={item.author}/>
+        <BookCarouselItem key={index} item={item}/>
       )
     })}
   </Slider>
