@@ -54,7 +54,7 @@ function App() {
           <Route path='kontakt' element={<Contact />} />
           <Route path='o-nas' element={<About />} />
           <Route path='wiadomosci' element={<News />} />
-          <Route path='wiadomosc' element={<NewsItem />} />
+          <Route path='wiadomosc/:id' element={<NewsItem />} />
           <Route path='wszystkie-wiadomosci' element={<AllNews />}/>
 
 

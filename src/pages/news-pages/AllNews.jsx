@@ -1,31 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import NewsElement from '../../components/news-elements/NewsElement'
 import { scrollTop } from '../../utils/functions/scrollTop'
 import { useEffect } from 'react'
+import axiosClient from '../../utils/api/axiosClient'
 
 function AllNews() {
+  const [news, setNews] = useState([])
+  const getNews = async () => {
+    try{
+        const response = await axiosClient.get(`/News`)
+        setNews(response.data)
+    }catch(err){
+        console.error(err)
+    }
+  }
   useEffect(() => {
-    scrollTop()
-},[])
+      scrollTop()
+      getNews()
+  },[])
   return (
     <div className='default-page-wrapper'>
       <div className='default-page-container'>
-        <div className='flex flex-col lg:flex-row justify-between'>
-          <h1 className='text-3xl font-semibold'>Wiadomości</h1>
-            <select className='sort-select'>
-              <option value='default' selected>Domyślne</option>
-              <option value="latest">Najnowsze</option>
-              <option value="oldest">Najstarsze</option>
-              <option value="popular">Najpopularniejsze</option>
-            </select>
-        </div>
+        <h1 className='text-3xl font-semibold cursor-default'>Wiadomości</h1>
         <div className='grid grid-cols-1 lg:grid-cols-4 gap-3 my-5'>
-            <NewsElement title="George mówi że wyda książke a nadal cisza" imgURL='https://static.polityka.pl/_resource/res/path/aa/af/aaafa18f-574d-46b8-a40a-24e69375ab9d_f1400x900'/>
-            <NewsElement title="George mówi że wyda książke a nadal cisza" imgURL='https://static.polityka.pl/_resource/res/path/aa/af/aaafa18f-574d-46b8-a40a-24e69375ab9d_f1400x900'/>
-            <NewsElement title="George mówi że wyda książke a nadal cisza" imgURL='https://static.polityka.pl/_resource/res/path/aa/af/aaafa18f-574d-46b8-a40a-24e69375ab9d_f1400x900'/>
-            <NewsElement title="George mówi że wyda książke a nadal cisza" imgURL='https://static.polityka.pl/_resource/res/path/aa/af/aaafa18f-574d-46b8-a40a-24e69375ab9d_f1400x900'/>
-            <NewsElement title="George mówi że wyda książke a nadal cisza" imgURL='https://static.polityka.pl/_resource/res/path/aa/af/aaafa18f-574d-46b8-a40a-24e69375ab9d_f1400x900'/>
-            <NewsElement title="George mówi że wyda książke a nadal cisza" imgURL='https://static.polityka.pl/_resource/res/path/aa/af/aaafa18f-574d-46b8-a40a-24e69375ab9d_f1400x900'/>
+          {news.map((item,index)=>{
+            return(
+              <NewsElement key={index} item={item} />
+            )
+          })}
         </div>
       </div>
     </div>

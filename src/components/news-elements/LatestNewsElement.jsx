@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function LatestNewsElement(props) {
+function LatestNewsElement({item}) {
   return (
-    <Link to='/wiadomosc' className='w-full h-auto flex flex-col my-2 hover:scale-105'>
-        <img src={props.imgURL} className='rounded-md w-full h-auto object-cover' />
-        <h1 className='my-2 mx-2 font-medium'>{props.title}</h1>
+    <Link to={`/wiadomosc/${item.id}`} className='w-full h-auto flex flex-col my-2 hover:scale-105'>
+        <img src={item.imageURL} className='rounded-md w-full h-auto object-cover' />
+        <h1 className='my-2 mx-2 font-medium'>{item.topic}</h1>
     </Link>
   )
 }

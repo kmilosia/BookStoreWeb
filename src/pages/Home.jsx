@@ -16,13 +16,13 @@ function Home() {
   return (
     <div className='default-page-wrapper'>
       <div className='flex flex-col pt-5'>
-      <InfiniteCarousel />
-      <InfiniteCarousel isReversed={true}/>
+      <InfiniteCarousel form="book"/>
+      <InfiniteCarousel form="ebook" isReversed={true}/>
       </div>
       <div className='default-page-container pt-0'>
         <div className='carousel-element mb-5'>
           <h1 className='carousel-header'>Książkowe Bestsellery</h1>
-          <BooksCarousel/>
+          <BooksCarousel filter='numberOfElements=10&sortBy="popular"&formIds=1'/>
         </div>
         <BannerCarousel />
         <div className='carousel-element'>

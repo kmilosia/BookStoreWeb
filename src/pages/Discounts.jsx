@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PriceFilter from '../components/filters/PriceFilter'
 import AuthorFilter from '../components/filters/AuthorFilter'
 import PublisherFilter from '../components/filters/PublisherFilter'
@@ -12,12 +12,27 @@ import FilterButton from '../components/buttons/FilterButton'
 import Select from '../components/forms/Select'
 import BookElement from '../components/products/BookElement'
 import { productsData, sortOptions } from '../utils/data'
+import { scrollTop } from '../utils/functions/scrollTop'
+import axiosClient from '../utils/api/axiosClient'
 
 function Discounts() {
     const [isFilterOpen, setIsFilterOpen] = useState(false)
+    const [books, setBooks] = useState([])
+  const getBooks = async () => {
+    try{
+        const response = await axiosClient.get(`/BookItems/All-Books?isOnSale=true`)
+        setBooks(response.data)
+        console.log(response.data);
+    }catch(err){
+        console.error(err)
+    }
+  }
     const toggleFilterMenu = () => {
         setIsFilterOpen(!isFilterOpen)
     }
+    useEffect(() => {
+        scrollTop()
+    },[])
   return (
     <div className='default-page-wrapper'>
     <div className='default-page-container'>

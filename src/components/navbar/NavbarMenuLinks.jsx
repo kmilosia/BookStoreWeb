@@ -1,15 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import NavbarMenuLink from './NavbarMenuLink'
+import axiosClient from '../../utils/api/axiosClient'
 
 function NavbarMenuLinks({onClick}) {
+  const [links, setLinks] = useState([])
+  const getLinks = async () => {
+    try{
+        const response = await axiosClient.get(`/NavBarMenuLinks`)
+        setLinks(response.data)
+
+    }catch(err){
+        console.error(err)
+    }
+  }
+  useEffect(() => {
+    getLinks()
+  },[])
   return (
     <>
-    <NavbarMenuLink onClick={onClick} path="/sklep" title="Sklep" />
-    <NavbarMenuLink onClick={onClick} path="/wypozyczalnia" title="Wypożyczalnia" />
-    <NavbarMenuLink onClick={onClick} path="/ksiazki" title="Książki" />
-    <NavbarMenuLink onClick={onClick} path="/ebooki" title="Ebooki" />
-    <NavbarMenuLink onClick={onClick} path="/kategorie" title="Kategorie" />
-    <NavbarMenuLink onClick={onClick} path="/wiadomosci" title="Wiadomości" />
+    {links && links.map((item,index)=> {
+      return (
+        <NavbarMenuLink key={index} onClick={onClick} path={item.path} title={item.name} />
+      )
+    })}
   </>
   )
 }

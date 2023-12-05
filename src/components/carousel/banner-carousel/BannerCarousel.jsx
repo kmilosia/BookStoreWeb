@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
-import { bannersData } from '../../../utils/data'
 import RightArrowCarousel from '../../elements/RightArrowCarousel';
 import LeftArrowCarousel from '../../elements/LeftArrowCarousel';
 import BannerCarouselItem from './BannerCarouselItem';
+import axiosClient from '../../../utils/api/axiosClient';
 
 function BannerCarousel() {
+  const [banners, setBanners] = useState([])
+  const getBanners = async () => {
+    try{
+        const response = await axiosClient.get(`Banner`)
+        setBanners(response.data)
+
+    }catch(err){
+        console.error(err)
+    }
+  }
+  useEffect(() => {
+    getBanners()
+  },[])
     const settings = {
         dots: false,
         infinite: true,
@@ -21,9 +34,9 @@ function BannerCarousel() {
     };
   return (
     <Slider className='mb-2' {...settings}>
-    {bannersData.map((item, index) => {
+    {banners && banners.map((item, index) => {
         return (
-          <BannerCarouselItem key={index} path={item.path} src={item.src} title={item.title} />
+          <BannerCarouselItem key={index} path={item.path} src={item.imageURL} title={item.imageTitle} alt={item.imageTitle} />
         )
     })}
     </Slider>
