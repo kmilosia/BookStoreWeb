@@ -8,14 +8,18 @@ import HomeNewsSegment from '../components/news-elements/HomeNewsSegment'
 import { useEffect } from 'react'
 import { scrollTop } from '../utils/functions/scrollTop'
 import EbooksCarousel from '../components/carousel/ebooks-carousel/EbooksCarousel'
+import { useDispatch } from 'react-redux'
+import { showMessage } from '../store/messageSlice'
 
 function Home() {
+  const dispatch = useDispatch()
   useEffect(() => {
     scrollTop()
   },[])
   return (
     <div className='default-page-wrapper'>
       <div className='flex flex-col pt-5'>
+        <button onClick={() => {dispatch(showMessage({title: 'Kliknięto'}))}}>Klik</button>
       <InfiniteCarousel form="book"/>
       <InfiniteCarousel form="ebook" isReversed={true}/>
       </div>

@@ -3,8 +3,6 @@ import { emailValidate } from '../../utils/validation/emailValidation';
 import { useDispatch, useSelector } from 'react-redux';
 import Spinner from '../elements/Spinner'
 import { resetState, signNewsletter } from '../../store/userSlice';
-import { useNavigate } from 'react-router-dom';
-import { showPopup } from '../../store/cartPopupSlice';
 import { showMessage } from '../../store/messageSlice';
 
 function NewsletterForm() {
@@ -26,9 +24,9 @@ function NewsletterForm() {
   }
   useEffect(() => {
     if(success){
+      setEmail('')
       dispatch(showMessage({title: 'Zostałeś zapisany do naszego Newslettera'}))
       dispatch(resetState())
-      setEmail('')
     }
   },[success])
   useEffect(() => {
@@ -42,7 +40,7 @@ function NewsletterForm() {
         <form onSubmit={handleSubmit} className='w-full'>
           <div className='px-5 md:px-0 w-full flex flex-col items-center justify-center mb-4'>
           <div className="relative my-1 w-full md:w-1/2 lg:w-1/3">
-              <input type="text" id='email' name='email' onChange={handleChange} className="newsletter-input peer" placeholder=" " />
+              <input type="text" id='email' name='email' value={email} onChange={handleChange} className="newsletter-input peer" placeholder=" " />
               <label htmlFor='email' className="newsletter-input-label">Twój adres e-mail</label>
           </div>
           <button type='submit' className='purple-button w-full md:w-1/2 lg:w-1/3 flex items-center justify-center'>
