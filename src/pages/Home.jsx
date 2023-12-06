@@ -21,23 +21,15 @@ function Home() {
       </div>
       <div className='default-page-container pt-0'>
         <div className='carousel-element mb-5'>
-          <h1 className='carousel-header'>Książkowe Bestsellery</h1>
+          <h1 className='carousel-header'>Najpopularniejsze książki</h1>
           <BooksCarousel filter='numberOfElements=10&sortBy="popular"&formIds=1'/>
         </div>
         <BannerCarousel />
         <div className='carousel-element'>
-          <h1 className='carousel-header'>Nowo dodane książki</h1>
-          <BooksCarousel/>
+          <h1 className='carousel-header'>Najpopularniejsze ebooki</h1>
+          <EbooksCarousel filter='numberOfElements=10&sortBy="popular"&formIds=2'/>
         </div>
         <EventDiscountElement />
-        <div className='carousel-element'>
-          <h1 className='carousel-header'>Bestsellery ebooki</h1>
-          <EbooksCarousel/>
-        </div>
-        <div className='carousel-element'>
-          <h1 className='carousel-header'>Nowo dodane ebooki</h1>
-          <EbooksCarousel/>
-        </div>
        <HomeNewsSegment />
       </div>
       <NewsletterForm />

@@ -117,6 +117,22 @@ export const deleteAccount = createAsyncThunk(
         return request.data
     }
 )
+export const signNewsletter = createAsyncThunk(
+    'user/signNewsletter',
+    async(email) => {
+        try{
+            const response = await axiosClient.post(`/Newsletter/Add-New-Subscriber?email=${email}` )
+            return response.data    
+        }catch(error){
+            if (error.response && error.response.status === 400) {
+                const errorMessage = error.response.data;
+                throw new Error(errorMessage);
+              } else {
+                throw error;
+              }
+        }
+    }
+)
 export const authMiddleware = (store) => (next) => (action) => {
     if (action.type === 'user/logout') {
       localStorage.removeItem('token')
@@ -229,6 +245,15 @@ const userSlice = createSlice({
         }).addCase(changePassword.rejected,(state,action)=>{
             state.loading = false
             state.error = 'Nie udało się zmienić hasła!' 
+        }).addCase(signNewsletter.pending,(state)=>{
+            state.loading = true
+            state.success = false
+        }).addCase(signNewsletter.fulfilled,(state,action)=>{
+            state.loading = false
+            state.success = true
+        }).addCase(signNewsletter.rejected,(state,action)=>{
+            state.loading = false
+            state.error = action.error.message
         })
     }
 })

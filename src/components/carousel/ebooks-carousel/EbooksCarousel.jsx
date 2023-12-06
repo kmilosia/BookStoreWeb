@@ -1,17 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { booksData } from '../../../utils/data';
 import { settings } from '../../../utils/objects/carousel-settings';
 import EbookCarouselItem from './EbookCarouselItem';
+import axiosClient from '../../../utils/api/axiosClient';
 
 function EbooksCarousel(props) {
+  const [books, setBooks] = useState([])
+  const getBooks = async () => {
+    try{
+        const response = await axiosClient.get(`/BookItems/All-Books?${props.filter}`)
+        setBooks(response.data)
+        console.log(response.data);
+    }catch(err){
+        console.error(err)
+    }
+  }
+  useEffect(() =>{ 
+    getBooks()
+  },[])
   return (
       <Slider {...settings}>
-        {booksData.map((item, index) => {
+        {books.map((item, index) => {
             return (
-                <EbookCarouselItem key={index} rental={props.rental} title={item.title} url={item.url} score={item.score} price={item.price} author={item.author}/>
+                <EbookCarouselItem key={index} item={item}/>
             )
         })}
   </Slider>

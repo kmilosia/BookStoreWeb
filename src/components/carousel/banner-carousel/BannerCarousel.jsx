@@ -36,7 +36,7 @@ function BannerCarousel() {
     <Slider className='mb-2' {...settings}>
     {banners && banners.map((item, index) => {
         return (
-          <BannerCarouselItem key={index} path={item.path} src={item.imageURL} title={item.imageTitle} alt={item.imageTitle} />
+          <BannerCarouselItem key={index} path={item.path} src={item.imageURL} title={item.title} alt={item.imageTitle} />
         )
     })}
     </Slider>

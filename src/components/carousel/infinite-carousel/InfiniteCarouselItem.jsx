@@ -33,7 +33,7 @@ function InfiniteCarouselItem(props) {
     <div className={`flex items-center max-h-40 justify-center md:justify-start group-hover:pause-animation ${props.isReversed ? 'animate-infinite-scroll-reverse' : 'animate-infinite-scroll'}`}>
         {books.map((item,index) => {
           return (
-            <InfiniteCarouselBook key={index} src={item.imgURL} alt={item.title} id={item.id} />
+            <InfiniteCarouselBook key={index} src={item.imageURL} alt={item.title} id={item.id} />
           )
         })} 
     </div>

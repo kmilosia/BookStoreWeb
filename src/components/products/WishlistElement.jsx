@@ -11,17 +11,6 @@ import { removeItem } from '../../store/wishlistSlice';
 function WishlistElement({item}) {
   const dispatch = useDispatch()
   const [showText, setShowText] = useState(false)
-  const [timeoutId, setTimeoutId] = useState(null);
-  const handleMouseOver = () => {
-    const id = setTimeout(() => {
-      setShowText(true)
-    }, 500)
-    setTimeoutId(id)
-  }
-  const handleMouseLeave = () => {
-    clearTimeout(timeoutId)
-    setShowText(false)
-  }
   const handleRemove = () => {
     dispatch(removeItem(item))
   }
@@ -35,7 +24,7 @@ function WishlistElement({item}) {
         <img src={item.url} className='h-auto aspect-[3/4] w-full object-cover rounded-md' />
       </div>
       <h2 className='font-semibold text-sm my-1 cursor-default'>{item.author}</h2>
-      <Link to={`/produkt/${item.id}`} className='relative' onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}><h1 className='font-semibold text-xl my-1 cursor-pointer truncated-text'>{item.title}</h1>{showText && <TitleTooltip title={item.title}/>}</Link>
+      <Link to={`/produkt/${item.id}`} className='relative' onMouseOver={() => {setShowText(true)}} onMouseLeave={() => {setShowText(false)}}><h1 className='font-semibold text-xl my-1 cursor-pointer truncated-text'>{item.title}</h1>{showText && <TitleTooltip title={item.title}/>}</Link>
       <div className='my-1 flex flex-row items-center text-gray-600 dark:text-gray-400 text-sm lg:text-xs 2xl:text-sm cursor-default'>
         <p>{item.form}</p>
         <BsDot className='text-xl'/>
