@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { checkUserLogin } from './store/userSlice';
 import CartPopup from './modals/CartPopup';
+import Message from './modals/Message';
 function App() {
   const dispatch = useDispatch()
   const isAuth = useSelector((state) => state.user.isAuth)
@@ -16,6 +17,7 @@ function App() {
   },[isAuth])
   return (
     <>
+    <Message />
     <Router>
     <CartPopup />
       <Routes>
