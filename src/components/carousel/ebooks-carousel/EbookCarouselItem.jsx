@@ -5,7 +5,7 @@ import AddToCartButton from '../../buttons/AddToCartButton'
 import RentButton from '../../buttons/RentButton'
 import TitleTooltip from '../../elements/TitleTooltip';
 
-function EbookCarouselItem({item}) {
+function EbookCarouselItem({item,rental}) {
   const [showText, setShowText] = useState(false)
   return (
     <Link to={`/produkt/${item.id}`} className='flex flex-col cursor-pointer lg:mx-2 lg:my-2 shadow-md bg-gray-100 hover:bg-gray-200 dark:bg-midnight-900 dark:hover:bg-midnight-800 rounded-md px-7 py-7 lg:px-5 lg:py-4 group'>
@@ -19,8 +19,7 @@ function EbookCarouselItem({item}) {
       </div>
       <Stars score={item.score} />
       <h2 className='font-semibold text-lg my-1'>{item.price.toFixed(2)}zł</h2>
-      <AddToCartButton />
-      <RentButton />
+      {rental ? <RentButton /> : <AddToCartButton />}
     </Link>
   );
 }

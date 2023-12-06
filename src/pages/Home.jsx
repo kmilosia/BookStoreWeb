@@ -30,11 +30,19 @@ function Home() {
         </div>
         <BannerCarousel />
         <div className='carousel-element'>
+          <h1 className='carousel-header'>Ostatnio dodane książki</h1>
+          <BooksCarousel filter='numberOfElements=10&sortOrder="desc"&formIds=1'/>
+        </div>
+        <EventDiscountElement />
+        <div className='carousel-element'>
           <h1 className='carousel-header'>Najpopularniejsze ebooki</h1>
           <EbooksCarousel filter='numberOfElements=10&sortBy="popular"&formIds=2'/>
         </div>
-        <EventDiscountElement />
        <HomeNewsSegment />
+       <div className='carousel-element'>
+          <h1 className='carousel-header'>Ostatnio dodane ebooki</h1>
+          <EbooksCarousel filter='numberOfElements=10&sortOrder="desc"&formIds=2'/>
+        </div>
       </div>
       <NewsletterForm />
     </div>

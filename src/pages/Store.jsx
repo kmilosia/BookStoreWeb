@@ -18,12 +18,12 @@ function Store() {
       <BannerCarousel />
       <div className='grid grid-cols-1 mt-5 mb-3 lg:grid-cols-3 gap-5'>
           <StoreTypeLink src='https://iili.io/JBf7uNp.png' path="/ksiazki" title="Przeglądaj książki" />
-          <StoreTypeLink src='https://iili.io/JBf7lls.png' path="/e-booki" title="Przeglądaj ebooki" />
+          <StoreTypeLink src='https://iili.io/JBf7lls.png' path="/ebooki" title="Przeglądaj ebooki" />
           <StoreTypeLink src='https://iili.io/JCnBzCl.png' path="/kategorie" title="Przeglądaj kategorie" />
         </div>  
       <div className='carousel-element'>
         <h1 className='carousel-header'>Najpopularniejsze książki</h1>
-        <BooksCarousel/>
+        <BooksCarousel filter='numberOfElements=10&sortBy="popular"&formIds=1'/>
       </div>
       <div className='carousel-element'>
         <h1 className='carousel-header'>Najlepiej oceniane książki</h1>
@@ -31,16 +31,16 @@ function Store() {
       </div>
       <div className='carousel-element'>
         <h1 className='carousel-header'>Nowo dodane książki</h1>
-        <BooksCarousel/>
+        <BooksCarousel filter='numberOfElements=10&formIds=1&sortOrder="desc"'/>
       </div>
       <ExploreAllElement path="/ksiazki" title="Przeglądaj wszystkie dostępne książki" />
       <div className='carousel-element'>
         <h1 className='carousel-header'>Najnowsze ebooki</h1>
-        <EbooksCarousel rental={false}/>
+        <EbooksCarousel rental={false} filter='numberOfElements=10&formIds=2&sortOrder="desc"'/>
       </div>
       <div className='carousel-element'>
         <h1 className='carousel-header'>Najpopularniejsze ebooki</h1>
-        <EbooksCarousel rental={false}/>
+        <EbooksCarousel rental={false} filter='numberOfElements=10&sortBy="popular"&formIds=2'/>
       </div>
       <ExploreAllElement path="/ebooki" title="Przeglądaj wszystkie dostępne ebooki" />
       <div className='carousel-element'>

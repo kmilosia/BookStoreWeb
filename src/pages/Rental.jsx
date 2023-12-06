@@ -1,6 +1,5 @@
 import React from 'react'
 import BannerCarousel from '../components/carousel/banner-carousel/BannerCarousel'
-import BooksCarousel from '../components/carousel/books-carousel/BooksCarousel'
 import ExploreAllElement from '../components/page-elements/ExploreAllElement'
 import InstallAppElement from '../components/page-elements/InstallAppElement'
 import { useEffect } from 'react'
@@ -17,11 +16,11 @@ function Rental() {
           <BannerCarousel />
           <div className='carousel-element'>
             <h1 className='carousel-header'>Najczęściej wypożyczane ebooki</h1>
-            <EbooksCarousel rental={true}/>
+            <EbooksCarousel rental={true} filter='numberOfElements=10&sortBy="popular"&formIds=2'/>
           </div>
           <div className='carousel-element'>
             <h1 className='carousel-header'>Nowo dodane ebooki</h1>
-            <EbooksCarousel rental={true}/>
+            <EbooksCarousel rental={true} filter='numberOfElements=10&formIds=2&sortOrder="desc"'/>
           </div>
           <ExploreAllElement path="/e-booki" title="Przeglądaj wszystkie dostępne ebooki" />
           <div className='carousel-element'>

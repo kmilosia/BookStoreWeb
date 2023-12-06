@@ -12,7 +12,6 @@ function EbooksCarousel(props) {
     try{
         const response = await axiosClient.get(`/BookItems/All-Books?${props.filter}`)
         setBooks(response.data)
-        console.log(response.data);
     }catch(err){
         console.error(err)
     }
@@ -24,7 +23,7 @@ function EbooksCarousel(props) {
       <Slider {...settings}>
         {books.map((item, index) => {
             return (
-                <EbookCarouselItem key={index} item={item}/>
+                <EbookCarouselItem key={index} item={item} rental={props.rental}/>
             )
         })}
   </Slider>
