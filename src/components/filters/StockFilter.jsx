@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import FilterLabelElement from './FilterLabelElement'
 import axiosClient from '../../utils/api/axiosClient';
 
-function StockFilter() {
+function StockFilter({setStockFilter, stockFilter}) {
 const [showFilter, setShowFilter] = useState(false)
 const [availability, setAvailability] = useState([])
 const getAvailabilities = async () => {
@@ -13,6 +13,15 @@ const getAvailabilities = async () => {
     setAvailability(response.data)
   } catch (err) {
     console.error(err)
+  }
+}
+const handleCheckboxChange = (id, isChecked) => {
+  if (isChecked) {
+    setStockFilter((prevFilter) => `${prevFilter}&availabilitiesIds=${id}`)
+  } else {
+    setStockFilter((prevFilter) =>
+      prevFilter.replace(`&availabilitiesIds=${id}`, '')
+    )
   }
 }
 useEffect(() => {
@@ -27,7 +36,7 @@ useEffect(() => {
             <div className='filter-list-container'>
               {availability &&
                 availability.map((item, index) => {
-                  return <FilterLabelElement key={index} title={item.name} />
+                  return <FilterLabelElement key={index} id={item.id} onChange={handleCheckboxChange} title={item.name} />
                 })}
               </div>
         </div>

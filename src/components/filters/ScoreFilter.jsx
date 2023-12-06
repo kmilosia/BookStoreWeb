@@ -6,8 +6,8 @@ import Stars from '../elements/Stars'
 const FilterElement = (props) => {
     return (
         <div class="filter-element-wrapper">
-            <input id='' type="checkbox" value="" class="filter-checkbox"/>
-            <label htmlFor='' class="ml-2 text-xs"><Stars score={props.score} /></label>
+            <input id='' type="checkbox" value="" className="filter-checkbox"/>
+            <label htmlFor='' className="ml-2 text-xs"><Stars score={props.score} /></label>
         </div>
     )
 }
@@ -20,6 +20,7 @@ function ScoreFilter() {
             <>
             <div className='filter-list-wrapper'>
                 <div className='filter-list-container'>
+                    <FilterElement score={0}/>
                     <FilterElement score={1}/>
                     <FilterElement score={2}/>
                     <FilterElement score={3}/>

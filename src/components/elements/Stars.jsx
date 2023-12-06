@@ -59,11 +59,11 @@ function Stars({ score }) {
           default:
             return (
               <>
-                <AiFillStar className='text-gray-400'/>
-                <AiFillStar className='text-gray-400'/>
-                <AiFillStar className='text-gray-400'/>
-                <AiFillStar className='text-gray-400'/>
-                <AiFillStar className='text-gray-400'/>
+                <AiFillStar className='text-gray-300'/>
+                <AiFillStar className='text-gray-300'/>
+                <AiFillStar className='text-gray-300'/>
+                <AiFillStar className='text-gray-300'/>
+                <AiFillStar className='text-gray-300'/>
               </>
             );
         }

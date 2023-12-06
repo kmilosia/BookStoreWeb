@@ -17,15 +17,7 @@ function Search() {
   }
   const getResults = async () => {
     try{
-        const response = await axiosClient.get(`/BookItems/All-Books?searchPhrase=${search}`)
-        setResults(response.data)
-    }catch(err){
-        console.error(err)
-    }
-  }
-  const getResultsSorted = async (value) => {
-    try{
-        const response = await axiosClient.get(`/BookItems/All-Books?searchPhrase=${search}${value}`)
+        const response = await axiosClient.get(`/BookItems/All-Books?searchPhrase=${search}&${sorting}`)
         setResults(response.data)
     }catch(err){
         console.error(err)
@@ -38,10 +30,7 @@ function Search() {
     if(search){
       getResults()
     }
-  },[search])
-  useEffect(() => {
-    getResultsSorted(sorting)
-  },[sorting])
+  },[search,sorting])
   return (
     <div className='default-page-wrapper'>
       <div className='default-page-container'>
