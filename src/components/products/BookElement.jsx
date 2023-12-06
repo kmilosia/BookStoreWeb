@@ -16,12 +16,12 @@ function BookElement({item}) {
           {showText && <TitleTooltip title={item.title}/>}
         </div>
         <p className='font-light text-xs'>{item.authors.map((item,index)=>{return(<span key={index}>{item.name} {item.surname}</span>)})}</p>
-        <p className='text-xs font-light my-1'>{item.formName}</p>
+        <p className='text-xs font-light my-1'>{item.formName === 'Book' ? 'Książka' : item.formName}</p>
         <Stars score={item.score} />
         <h2 className='font-semibold text-lg my-1'>{item.price.toFixed(2)}zł</h2>
         <div className='lg:hidden lg:group-hover:flex lg:group-hover:flex-col flex flex-col'>
             <AddToCartButton />  
-            {item.formId === 'ebook' && <RentButton />}
+            {item.formId === 2 && <RentButton />}
         </div>
     </div>
   </Link>

@@ -3,7 +3,7 @@ import Select from '../components/forms/Select'
 import BookElement from '../components/products/BookElement'
 import { scrollTop } from '../utils/functions/scrollTop'
 import SearchInput from '../components/forms/SearchInput'
-import { productsData, searchSortOptions } from '../utils/data'
+import { productSortOptions } from '../utils/data'
 import { useSearchParams } from 'react-router-dom'
 import axiosClient from '../utils/api/axiosClient';
 
@@ -11,9 +11,21 @@ function Search() {
   const [searchParams, setSearchParams] = useSearchParams()
   const search = searchParams.get('search')
   const [results, setResults] = useState([])
+  const [sorting, setSorting] = useState('')
+  const handleSortingChange = (e) => {
+    setSorting(e.target.value)
+  }
   const getResults = async () => {
     try{
         const response = await axiosClient.get(`/BookItems/All-Books?searchPhrase=${search}`)
+        setResults(response.data)
+    }catch(err){
+        console.error(err)
+    }
+  }
+  const getResultsSorted = async (value) => {
+    try{
+        const response = await axiosClient.get(`/BookItems/All-Books?searchPhrase=${search}${value}`)
         setResults(response.data)
     }catch(err){
         console.error(err)
@@ -27,6 +39,9 @@ function Search() {
       getResults()
     }
   },[search])
+  useEffect(() => {
+    getResultsSorted(sorting)
+  },[sorting])
   return (
     <div className='default-page-wrapper'>
       <div className='default-page-container'>
@@ -45,7 +60,7 @@ function Search() {
             <p className='text-lg'>{results.length} rezultatów</p>
           </div>
           <div className='w-full lg:w-1/5 mt-3 lg:mt-0'>
-            <Select sortOptions={searchSortOptions}/>
+            <Select onChange={handleSortingChange} sortOptions={productSortOptions}/>
           </div>
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-5 gap-5 my-3'>
