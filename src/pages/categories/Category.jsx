@@ -6,7 +6,7 @@ import BooksCarousel from '../../components/carousel/books-carousel/BooksCarouse
 import axiosClient from '../../utils/api/axiosClient'
 import EbooksCarousel from '../../components/carousel/ebooks-carousel/EbooksCarousel'
 
-function Category(props) {
+function Category() {
   const [params, setParams] = useSearchParams()
   const categoryID = params.get('id')
   const [category, setCategory] = useState({})
@@ -23,7 +23,6 @@ function Category(props) {
   },[])
   useEffect(() => {
     getCategory()
-    console.log(categoryID);
   },[categoryID])
   return (
     <div className='default-page-wrapper'>

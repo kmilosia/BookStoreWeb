@@ -11,7 +11,7 @@ function AddToCartButton({item}) {
     dispatch(showPopup({id: item.id}));
   }
   return (
-    <button onClick={handleClick} className='purple-button flex items-center justify-center'><FiShoppingBag className='mr-1 text-sm'/>Dodaj do koszyka</button>
+    <button onClick={handleClick} className='purple-button'><FiShoppingBag className='mr-1 text-xs'/>Dodaj do koszyka</button>
   )
 }
 
