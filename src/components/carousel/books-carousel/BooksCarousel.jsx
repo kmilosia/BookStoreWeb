@@ -12,7 +12,6 @@ function BooksCarousel(props) {
     try{
         const response = await axiosClient.get(`/BookItems/All-Books?${props.filter}`)
         setBooks(response.data)
-        console.log(response.data);
     }catch(err){
         console.error(err)
     }

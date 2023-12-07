@@ -1,31 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import { scrollTop } from '../../utils/functions/scrollTop'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import PageHeader from '../../components/page-elements/PageHeader'
-import {categoryData} from '../../utils/data'
 import BooksCarousel from '../../components/carousel/books-carousel/BooksCarousel'
+import axiosClient from '../../utils/api/axiosClient'
+import EbooksCarousel from '../../components/carousel/ebooks-carousel/EbooksCarousel'
 
-function Category() {
-    const { title } = useParams()
-    const [category, setCategory] = useState('')
-    useEffect(() => {
-        scrollTop()
-        let categoryTitle = title.replace(/-/g, ' ')
-        let object = categoryData.find(o => o.title === categoryTitle)
-        setCategory(object)
-    },[])
+function Category(props) {
+  const [params, setParams] = useSearchParams()
+  const categoryID = params.get('id')
+  const [category, setCategory] = useState({})
+  const getCategory = async () => {
+    try {
+      const response = await axiosClient.get(`/CategoryElements/${categoryID}`)
+      setCategory(response.data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+  useEffect(() => {
+    scrollTop()
+  },[])
+  useEffect(() => {
+    getCategory()
+    console.log(categoryID);
+  },[categoryID])
   return (
     <div className='default-page-wrapper'>
     {category &&
     <div className='default-page-container'>
-      <PageHeader src={category.src} title={category.title} content={category.content} />
+      <PageHeader src={category.imageURL} title={category.categoryName} content={category.content} />
       <div className='flex flex-col divide-border-top'>
-        <h1 className='carousel-header'>Najpopularniejsze</h1>
-        <BooksCarousel />
-        <h1 className='carousel-header'>Najnowsze</h1>
-        <BooksCarousel />
-        <h1 className='carousel-header'>Najlepiej oceniane</h1>
-        <BooksCarousel />
+        <h1 className='carousel-header'>Najpopularniejsze książki</h1>
+        <BooksCarousel filter={`numberOfElements=10&sortBy=popular&formIds=1&categoryIds=${categoryID}`}/>
+        <h1 className='carousel-header'>Najnowsze książki</h1>
+        <BooksCarousel filter={`numberOfElements=10&sortOrder=desc&formIds=1&categoryIds=${categoryID}`}/>
+        <h1 className='carousel-header'>Najpopularniejsze ebooki</h1>
+        <BooksCarousel filter={`numberOfElements=10&sortBy=popular&formIds=2&categoryIds=${categoryID}`}/>
+        <h1 className='carousel-header'>Najnowsze ebooki</h1>
+        <EbooksCarousel filter={`numberOfElements=10&sortOrder=desc&formIds=2&categoryIds=${categoryID}`}/>
       </div>
       </div>
     }

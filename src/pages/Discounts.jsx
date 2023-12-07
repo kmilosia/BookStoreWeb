@@ -11,45 +11,97 @@ import ToggleFilterMenuButton from '../components/buttons/ToggleFilterMenuButton
 import FilterButton from '../components/buttons/FilterButton'
 import Select from '../components/forms/Select'
 import BookElement from '../components/products/BookElement'
-import { productsData, sortOptions } from '../utils/data'
+import { productSortOptions } from '../utils/data'
 import { scrollTop } from '../utils/functions/scrollTop'
 import axiosClient from '../utils/api/axiosClient'
 
 function Discounts() {
     const [isFilterOpen, setIsFilterOpen] = useState(false)
-    const [books, setBooks] = useState([])
-  const getBooks = async () => {
-    try{
-        const response = await axiosClient.get(`/BookItems/All-Books?isOnSale=true`)
-        setBooks(response.data)
-        console.log(response.data);
-    }catch(err){
-        console.error(err)
-    }
-  }
+    const [results, setResults] = useState([])
+    const [sorting, setSorting] = useState('')
+    const [minPriceFilter, setMinPriceFilter] = useState('')
+    const [maxPriceFilter, setMaxPriceFilter] = useState('')
+    const [authorFilter, setAuthorFilter] = useState('')
+    const [typeFilter, setTypeFilter] = useState('')
+    const [publisherFilter, setPublisherFilter] = useState('')
+    const [categoryFilter, setCategoryFilter] = useState('')
+    const [languageFilter, setLanguageFilter] = useState('')
+    const [scoreFilter, setScoreFilter] = useState('')
+    const [stockFilter, setStockFilter] = useState('')
+    const [filter, setFilter] = useState('')
     const toggleFilterMenu = () => {
         setIsFilterOpen(!isFilterOpen)
     }
+    const handleSortingChange = (e) => {
+        setSorting(e.target.value)
+    }
+    const getResults = async () => {
+        try{
+            const response = await axiosClient.get(`/BookItems/All-Books?isOnSale=true&${sorting}${filter}`)
+            setResults(response.data)
+        }catch(err){
+            console.error(err)
+        }
+      }
+      const buildFilter = () => {
+        let filter = ''
+        if (minPriceFilter !== '') {
+          filter += `&priceFrom=${minPriceFilter}`
+        }
+        if (maxPriceFilter !== '') {
+          filter += `&priceTo=${maxPriceFilter}`
+        }
+        if (authorFilter !== '') {
+            filter += `${authorFilter}`
+        }
+        if (publisherFilter !== '') {
+            filter += `${publisherFilter}`
+        }
+        if (categoryFilter !== '') {
+            filter += `${categoryFilter}`
+        }
+        if (languageFilter !== '') {
+            filter += `${languageFilter}`
+        }
+        if (stockFilter !== '') {
+            filter += `${stockFilter}`
+        }
+        if (scoreFilter !== '') {
+            filter += `${scoreFilter}`
+        }
+        if (typeFilter !== '') {
+            filter += `${typeFilter}`
+        }
+        return filter
+      }
+    const applyFilters =() => {
+        const newFilter = buildFilter()
+        setFilter(newFilter)
+    }
     useEffect(() => {
         scrollTop()
+        getResults()
     },[])
+    useEffect(() => {
+        getResults()
+    },[sorting, filter])
   return (
     <div className='default-page-wrapper'>
     <div className='default-page-container'>
         <div className='grid grid-cols-1 lg:grid-cols-[2fr_5fr] lg:gap-10'>
-        <div className={`flex flex-col bg-gray-100 dark:bg-midnight-900 py-5 lg:py-0 px-5 lg:px-0 lg:bg-transparent absolute z-[1000000] w-full lg:relative lg:top-auto right-0 lg:right-auto transition-all duration-500 ${isFilterOpen ? 'top-0 overflow-y-auto' : 'top-[-1000px]'}`}>
+        <div className={`flex flex-col bg-gray-100 dark:bg-midnight-950 py-5 lg:py-0 px-5 lg:px-0 shadow-md lg:shadow-none absolute z-[1000000] lg:z-10 w-full lg:relative lg:top-auto right-0 lg:right-auto transition-all duration-500 ${isFilterOpen ? 'top-0 overflow-y-auto' : 'top-[-1000px]'}`}>
                 <div className='flex flex-col'>
                     <h1 className='text-3xl font-semibold hidden lg:inline-block'>Filtrowanie</h1>
                     <div className='flex flex-col my-2'>
-                        <TypeFilter />
-                        <PriceFilter />
-                        <AuthorFilter />
-                        <PublisherFilter />
-                        <CategoryFilter />
-                        <LanguageFilter />
-                        <ScoreFilter />
-                        <StockFilter />
-                        <button className='purple-button sticky bottom-2'>Filtruj wyniki</button>
+                            <TypeFilter setTypeFilter={setTypeFilter}/>
+                            <PriceFilter setMinPriceFilter={setMinPriceFilter} setMaxPriceFilter={setMaxPriceFilter}/>
+                            <AuthorFilter setAuthorFilter={setAuthorFilter}/>
+                            <PublisherFilter setPublisherFilter={setPublisherFilter}/>
+                            <CategoryFilter setCategoryFilter={setCategoryFilter}/>
+                            <LanguageFilter setLanguageFilter={setLanguageFilter}/>
+                            <ScoreFilter setScoreFilter={setScoreFilter}/>
+                            <StockFilter setStockFilter={setStockFilter}/>
+                        <button onClick={applyFilters} className='purple-button sticky bottom-2'>Filtruj wyniki</button>
                     </div>
                     <ToggleFilterMenuButton toggleFilterMenu={toggleFilterMenu}/>
                 </div>
@@ -58,17 +110,17 @@ function Discounts() {
                 <div className='flex flex-col lg:flex-row justify-between items-start lg:items-end'>
                     <div className='flex flex-col'>
                         <h1 className='text-3xl font-semibold'>Promocje</h1>
-                        <h2 className='flex items-center mt-2'><span className='mr-1 font-semibold'>17,340</span>wyników</h2>
+                        <h2 className='flex items-center mt-2'><span className='mr-1 font-semibold'>{results ? results.length : '0'}</span>wyników</h2>
                     </div>
                     <div className='flex my-2 lg:my-0'>
                         <FilterButton toggleFilterMenu={toggleFilterMenu}/>
-                        <Select sortOptions={sortOptions} />
+                        <Select onChange={handleSortingChange} sortOptions={productSortOptions} />
                     </div>
                 </div>
                 <div className='grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-5 gap-5 my-5'>
-                    {productsData.map((item,index) => {
+                    {results && results.map((item,index) => {
                         return (
-                            <BookElement key={index} id={item.id} imgURL={item.url} author={item.author} score={item.score} title={item.title} price={item.price} form={item.form}/>
+                            <BookElement key={index} item={item}/>
                         )
                     })}
                 </div>

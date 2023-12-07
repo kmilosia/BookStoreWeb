@@ -133,6 +133,13 @@ export const signNewsletter = createAsyncThunk(
         }
     }
 )
+export const sendContactMessage = createAsyncThunk(
+    'user/contactMessage',
+    async(data) => {
+        const request = await axiosClient.post('/Contact', data)
+        return request.data
+    }
+)
 export const authMiddleware = (store) => (next) => (action) => {
     if (action.type === 'user/logout') {
       localStorage.removeItem('token')
@@ -252,6 +259,15 @@ const userSlice = createSlice({
             state.loading = false
             state.success = true
         }).addCase(signNewsletter.rejected,(state,action)=>{
+            state.loading = false
+            state.error = action.error.message
+        }).addCase(sendContactMessage.pending,(state)=>{
+            state.loading = true
+            state.success = false
+        }).addCase(sendContactMessage.fulfilled,(state,action)=>{
+            state.loading = false
+            state.success = true
+        }).addCase(sendContactMessage.rejected,(state,action)=>{
             state.loading = false
             state.error = action.error.message
         })

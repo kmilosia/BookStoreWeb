@@ -5,7 +5,7 @@ import ShowMoreButton from '../buttons/ShowMoreButton'
 import { useState } from 'react'
 import axiosClient from '../../utils/api/axiosClient'
 
-function LanguageFilter() {
+function LanguageFilter({setLanguageFilter}) {
 const [showFilter, setShowFilter] = useState(false)
 const [languages, setLanguages] = useState([])
 const [displayedFields, setDisplayedFields] = useState(6)
@@ -24,7 +24,15 @@ useEffect(() => {
 const handleShowMore = () => {
   setDisplayedFields((prevCount) => (prevCount === 6 ? languages.length : 6));
 }
-
+const handleCheckboxChange = (value, isChecked) => {
+  if (isChecked) {
+    setLanguageFilter((prevFilter) => `${prevFilter}${value}`)
+  } else {
+    setLanguageFilter((prevFilter) =>
+      prevFilter.replace(`${value}`, '')
+    )
+  }
+}
   return (
     <div className='filter-wrapper'>
         <FilterHeader showFilter={showFilter} setShowFilter={setShowFilter} title="Język" />
@@ -34,7 +42,8 @@ const handleShowMore = () => {
             <div className='filter-list-container'>
               {languages &&
                 languages.slice(0, displayedFields).map((item, index) => {
-                  return <FilterLabelElement key={index} title={item.name} />;
+                  const value = `&languageIds=${item.id}`
+                  return <FilterLabelElement key={index} id={item.id} value={value} onChange={handleCheckboxChange} title={item.name} />
                 })}
             </div>
             {languages.length > 6 && <ShowMoreButton onClick={handleShowMore} displayedFields={displayedFields} />}

@@ -19,7 +19,8 @@ function BooksList() {
     const [isFilterOpen, setIsFilterOpen] = useState(false)
     const [results, setResults] = useState([])
     const [sorting, setSorting] = useState('')
-    const [priceFilter, setPriceFilter] = useState('')
+    const [minPriceFilter, setMinPriceFilter] = useState('')
+    const [maxPriceFilter, setMaxPriceFilter] = useState('')
     const [authorFilter, setAuthorFilter] = useState('')
     const [publisherFilter, setPublisherFilter] = useState('')
     const [categoryFilter, setCategoryFilter] = useState('')
@@ -32,44 +33,70 @@ function BooksList() {
     }
     const handleSortingChange = (e) => {
         setSorting(e.target.value)
-      }
+    }
     const getResults = async () => {
         try{
-            const response = await axiosClient.get(`/BookItems/All-Books?${sorting}${filter}`)
+            const response = await axiosClient.get(`/BookItems/All-Books?formIds=1&${sorting}${filter}`)
             setResults(response.data)
         }catch(err){
             console.error(err)
         }
       }
+      const buildFilter = () => {
+        let filter = ''
+        if (minPriceFilter !== '') {
+          filter += `&priceFrom=${minPriceFilter}`
+        }
+        if (maxPriceFilter !== '') {
+          filter += `&priceTo=${maxPriceFilter}`
+        }
+        if (authorFilter !== '') {
+            filter += `${authorFilter}`
+        }
+        if (publisherFilter !== '') {
+            filter += `${publisherFilter}`
+        }
+        if (categoryFilter !== '') {
+            filter += `${categoryFilter}`
+        }
+        if (languageFilter !== '') {
+            filter += `${languageFilter}`
+        }
+        if (stockFilter !== '') {
+            filter += `${stockFilter}`
+        }
+        if (scoreFilter !== '') {
+            filter += `${scoreFilter}`
+        }
+        return filter
+      }
+    const applyFilters =() => {
+        const newFilter = buildFilter()
+        setFilter(newFilter)
+    }
     useEffect(() => {
         scrollTop()
         getResults()
     },[])
     useEffect(() => {
-        console.log(priceFilter)
-    },[priceFilter])
-    useEffect(() => {
         getResults()
-      },[sorting])
-      useEffect(() => {
-        setFilter(stockFilter,scoreFilter, languageFilter, categoryFilter,publisherFilter,authorFilter,priceFilter)
-      },[stockFilter,scoreFilter,languageFilter,categoryFilter,publisherFilter,authorFilter,priceFilter])
+    },[sorting, filter])
   return (
     <div className='default-page-wrapper'>
         <div className='default-page-container'>
             <div className='grid grid-cols-1 lg:grid-cols-[2fr_5fr] lg:gap-10'>
-            <div className={`flex flex-col bg-gray-100 dark:bg-midnight-950 lg:bg-transparent py-5 lg:py-0 px-5 lg:px-0 absolute z-[1000000] lg:z-10 w-full lg:relative lg:top-auto right-0 lg:right-auto duration-500 ${isFilterOpen ? 'top-0 overflow-y-auto' : 'top-[-1000px]'}`}>
+            <div className={`flex flex-col bg-gray-100 dark:bg-midnight-950 shadow-md lg:shadow-none py-5 lg:py-0 px-5 lg:px-0 absolute z-[1000000] lg:z-10 w-full lg:relative lg:top-auto right-0 lg:right-auto duration-500 ${isFilterOpen ? 'top-0 overflow-y-auto' : 'top-[-1000px]'}`}>
                     <div className='flex flex-col'>
                         <h1 className='text-3xl font-semibold hidden lg:inline-block'>Filtrowanie</h1>
                         <div className='flex flex-col my-2'>
-                            <PriceFilter priceFilter={priceFilter} setPriceFilter={setPriceFilter}/>
-                            <AuthorFilter />
-                            <PublisherFilter />
-                            <CategoryFilter />
-                            <LanguageFilter />
-                            <ScoreFilter />
-                            <StockFilter stockFilter={stockFilter} setStockFilter={setStockFilter}/>
-                            <button onClick={() => {getResults()}} className='purple-button sticky bottom-2'>Filtruj wyniki</button>
+                            <PriceFilter setMinPriceFilter={setMinPriceFilter} setMaxPriceFilter={setMaxPriceFilter}/>
+                            <AuthorFilter setAuthorFilter={setAuthorFilter}/>
+                            <PublisherFilter setPublisherFilter={setPublisherFilter}/>
+                            <CategoryFilter setCategoryFilter={setCategoryFilter}/>
+                            <LanguageFilter setLanguageFilter={setLanguageFilter}/>
+                            <ScoreFilter setScoreFilter={setScoreFilter}/>
+                            <StockFilter setStockFilter={setStockFilter}/>
+                            <button onClick={applyFilters} className='purple-button sticky bottom-2'>Filtruj wyniki</button>
                         </div>
                         <ToggleFilterMenuButton toggleFilterMenu={toggleFilterMenu}/>
                     </div>

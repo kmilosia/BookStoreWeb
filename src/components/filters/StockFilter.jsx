@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import FilterLabelElement from './FilterLabelElement'
 import axiosClient from '../../utils/api/axiosClient';
 
-function StockFilter({setStockFilter, stockFilter}) {
+function StockFilter({setStockFilter}) {
 const [showFilter, setShowFilter] = useState(false)
 const [availability, setAvailability] = useState([])
 const getAvailabilities = async () => {
@@ -15,12 +15,12 @@ const getAvailabilities = async () => {
     console.error(err)
   }
 }
-const handleCheckboxChange = (id, isChecked) => {
+const handleCheckboxChange = (value, isChecked) => {
   if (isChecked) {
-    setStockFilter((prevFilter) => `${prevFilter}&availabilitiesIds=${id}`)
+    setStockFilter((prevFilter) => `${prevFilter}${value}`)
   } else {
     setStockFilter((prevFilter) =>
-      prevFilter.replace(`&availabilitiesIds=${id}`, '')
+      prevFilter.replace(`${value}`, '')
     )
   }
 }
@@ -36,7 +36,8 @@ useEffect(() => {
             <div className='filter-list-container'>
               {availability &&
                 availability.map((item, index) => {
-                  return <FilterLabelElement key={index} id={item.id} onChange={handleCheckboxChange} title={item.name} />
+                  const value = `&availabilitiesIds=${item.id}`
+                  return <FilterLabelElement key={index} id={item.id} value={value} onChange={handleCheckboxChange} title={item.name} />
                 })}
               </div>
         </div>

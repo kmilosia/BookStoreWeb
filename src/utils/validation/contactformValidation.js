@@ -1,7 +1,7 @@
 export const contactformValidate = (values) => {
     let errors = {}
-    if (!values.name) {
-        errors.name = "Wprowadź swoje imię!"
+    if (!values.clientName) {
+        errors.clientName = "Wprowadź swoje imię!"
       }
     if (!values.email) {
       errors.email = "Wprowadź swój email!"

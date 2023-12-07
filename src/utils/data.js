@@ -19,20 +19,20 @@ export const sortOptions = [
 ]
 
 export const categoryData = [
-    { title: "Science Fiction", logo: 'https://iili.io/JBf7eUb.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi. Wejdź do świata literatury i słuchaj bądź czytaj ponad 400 000 audiobooków i ebooków - zawsze i gdziekolwiek masz ochotę.', src: 'https://iili.io/JCJgR9e.png' },
-    { title: "Poezja", logo: 'https://iili.io/JBf7EJf.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi. Wejdź do świata literatury i słuchaj bądź czytaj ponad 400 000 audiobooków i ebooków - zawsze i gdziekolwiek masz ochotę.',  src: 'https://iili.io/JCJgTc7.png'  },
-    { title: "Fantasy", logo: 'https://iili.io/JBf70UG.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi. Wejdź do świata literatury i słuchaj bądź czytaj ponad 400 000 audiobooków i ebooków - zawsze i gdziekolwiek masz ochotę.',  src: 'https://iili.io/JCJguS9.png'  },
-    { title: "Kulinarne", logo: 'https://iili.io/JBf7YiX.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi. Wejdź do świata literatury i słuchaj bądź czytaj ponad 400 000 audiobooków i ebooków - zawsze i gdziekolwiek masz ochotę.',  src: 'https://iili.io/JCJgxP2.png'  },
-    { title: "Komiks", logo: 'https://iili.io/JBf77Vt.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi. Wejdź do świata literatury i słuchaj bądź czytaj ponad 400 000 audiobooków i ebooków - zawsze i gdziekolwiek masz ochotę.',  src: 'https://iili.io/JCJgK9n.png'  },
-    { title: "Biografia", logo: 'https://iili.io/JBf7ADN.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi. Wejdź do świata literatury i słuchaj bądź czytaj ponad 400 000 audiobooków i ebooków - zawsze i gdziekolwiek masz ochotę.',  src: 'https://iili.io/JCJgnn4.png'  },
-    { title: "Komedia", logo: 'https://iili.io/JBf7TRR.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi. Wejdź do świata literatury i słuchaj bądź czytaj ponad 400 000 audiobooków i ebooków - zawsze i gdziekolwiek masz ochotę.',  src: 'https://iili.io/JCJgxP2.png'  },
-    { title: "Dla dzieci", logo: 'https://iili.io/JBf7MOl.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi. Wejdź do świata literatury i słuchaj bądź czytaj ponad 400 000 audiobooków i ebooków - zawsze i gdziekolwiek masz ochotę.',  src: 'https://iili.io/JCJgK9n.png'  },
-    { title: "Lifestyle", logo: 'https://iili.io/JBf7Vb2.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi. Wejdź do świata literatury i słuchaj bądź czytaj ponad 400 000 audiobooków i ebooków - zawsze i gdziekolwiek masz ochotę.',  src: 'https://iili.io/JCJg2at.png'  },
-    { title: "Podręcznik", logo: 'https://iili.io/JBf7js9.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi. Wejdź do świata literatury i słuchaj bądź czytaj ponad 400 000 audiobooków i ebooków - zawsze i gdziekolwiek masz ochotę.',  src: 'https://iili.io/JCJgqwG.png'  },
-    { title: "Romans", logo: 'https://iili.io/JBf7Nfe.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi. Wejdź do świata literatury i słuchaj bądź czytaj ponad 400 000 audiobooków i ebooków - zawsze i gdziekolwiek masz ochotę.',  src: 'https://iili.io/JCJgBtf.png'  },
-    { title: "Nauka", logo: 'https://iili.io/JBf7O0u.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi. Wejdź do świata literatury i słuchaj bądź czytaj ponad 400 000 audiobooków i ebooków - zawsze i gdziekolwiek masz ochotę.',  src: 'https://iili.io/JCJgnn4.png'  },
-    { title: "Dla młodzieży", logo: 'https://iili.io/JBf7vJj.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi. Wejdź do świata literatury i słuchaj bądź czytaj ponad 400 000 audiobooków i ebooków - zawsze i gdziekolwiek masz ochotę.',  src: 'https://iili.io/JCJgoMl.png'  },
-    { title: "Horror", logo: 'https://iili.io/JBf7GR4.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi. Wejdź do świata literatury i słuchaj bądź czytaj ponad 400 000 audiobooków i ebooków - zawsze i gdziekolwiek masz ochotę.',  src: 'https://iili.io/JCJgIFS.png'  },
+    { title: "Science Fiction", logo: 'https://iili.io/JBf7eUb.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi.', src: 'https://iili.io/JCJgR9e.png' },
+    { title: "Poezja", logo: 'https://iili.io/JBf7EJf.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi.',  src: 'https://iili.io/JCJgTc7.png'  },
+    { title: "Fantasy", logo: 'https://iili.io/JBf70UG.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi.',  src: 'https://iili.io/JCJguS9.png'  },
+    { title: "Kulinarne", logo: 'https://iili.io/JBf7YiX.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi.',  src: 'https://iili.io/JCJgxP2.png'  },
+    { title: "Komiks", logo: 'https://iili.io/JBf77Vt.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi.',  src: 'https://iili.io/JCJgK9n.png'  },
+    { title: "Biografia", logo: 'https://iili.io/JBf7ADN.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi.',  src: 'https://iili.io/JCJgnn4.png'  },
+    { title: "Komedia", logo: 'https://iili.io/JBf7TRR.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi.',  src: 'https://iili.io/JCJgxP2.png'  },
+    { title: "Dla dzieci", logo: 'https://iili.io/JBf7MOl.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi.',  src: 'https://iili.io/JCJgK9n.png'  },
+    { title: "Lifestyle", logo: 'https://iili.io/JBf7Vb2.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi.',  src: 'https://iili.io/JCJg2at.png'  },
+    { title: "Podręcznik", logo: 'https://iili.io/JBf7js9.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi.',  src: 'https://iili.io/JCJgqwG.png'  },
+    { title: "Romans", logo: 'https://iili.io/JBf7Nfe.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi.',  src: 'https://iili.io/JCJgBtf.png'  },
+    { title: "Nauka", logo: 'https://iili.io/JBf7O0u.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi.',  src: 'https://iili.io/JCJgnn4.png'  },
+    { title: "Dla młodzieży", logo: 'https://iili.io/JBf7vJj.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi.',  src: 'https://iili.io/JCJgoMl.png'  },
+    { title: "Horror", logo: 'https://iili.io/JBf7GR4.png', content: 'Eksploruj nowe galaktyki z nieziemską fantastyką i SciFi.',  src: 'https://iili.io/JCJgIFS.png'  },
 ];
 
 export const booksData = [
@@ -42,14 +42,6 @@ export const booksData = [
     {id: 4, title: "Harry Potter i Więzień Azkabanu",price: 59.99, score: 5, author: 'J.K. Rowling', url: 'https://images.ctfassets.net/usf1vwtuqyxm/24YWmI4UcyoMwj7wdKrEcL/374de1941927db12bd844fb197eab11f/English_Harry_Potter_3_Epub_9781781100233.jpg?w=914&q=70&fm=jpg'},
     {id: 5, title: "Wiedźmin. Sezon Burz",price: 39.99, score: 4, author: 'Andrzej Sapkowski', url: 'https://smakliter.pl/Photos/10/LARGE/000025/wiedzmin-sezon-burz.jpg'},
     {id: 6, title: "Ogień i Krew. Gra o Tron. Część 1",price: 59.99, score: 4, author: 'George R.R. Martin', url: 'https://image.ceneostatic.pl/data/article_picture/f9/8e/fca2-c9c4-4c76-94f5-0799189bdcff_large.jpg'},
-]
-
-export const bannersData = [
-    {id: 1,path: '/', title: 'Powitanie', src: 'https://iili.io/Jxo3RLB.png'},
-    {id: 2,path: '/promocje', title: 'Świąteczne promocje', src: 'https://iili.io/Jxo37qP.png'},
-    {id: 3,path: '/', title: 'Newsletter', src: 'https://iili.io/Jxo3Imx.png'},
-    {id: 4,path: '/promocje', title: 'Black Friday', src: 'https://iili.io/Jxo3uzQ.png'},
-    {id: 5,path: '/ebooki', title: 'Ebooki', src: 'https://iili.io/Jxo3AXV.png'},
 ]
 
 export const productsData = [

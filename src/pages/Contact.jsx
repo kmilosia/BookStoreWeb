@@ -8,31 +8,55 @@ import ContactElement from '../components/page-elements/ContactElement';
 import {scrollTop} from '../utils/functions/scrollTop'
 import { useDispatch, useSelector } from 'react-redux';
 import {contactformValidate} from '../utils/validation/contactformValidation'
+import axiosClient from '../utils/api/axiosClient';
+import { resetState, sendContactMessage } from '../store/userSlice';
+import { showMessage } from '../store/messageSlice';
 
 function Contact() {
   const dispatch = useDispatch()
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false)
-  const {loading,error,isAuth} = useSelector((state) => state.user)
+  const {loading,error,success} = useSelector((state) => state.user)
   const [values, setValues] = useState({
-    name: '',
+    clientName: '',
     email: '',
     message: '',
   })
+  const sendMessage = async () => {
+    try{
+        const request = await axiosClient.post('/Contact')
+    }catch(err){
+        console.error(err)
+    }
+  }
+  const clearForm = () => {
+    setValues((prevValues) => {
+      const clearedValues = Object.fromEntries(Object.keys(prevValues).map(key => [key, '']))
+      return clearedValues
+    })
+  }
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   }
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     setErrors(contactformValidate(values))
     setSubmitting(true)
   }
   const finishSubmit = () => {
-    console.log(values);
+    dispatch(sendContactMessage(values))
+    console.log(values)
   }
   useEffect(() => {
+    if(success){
+      clearForm()
+      dispatch(showMessage({title: 'Formularz kontaktowy został pomyślnie wysłany!'}))
+      dispatch(resetState())
+    }
+  },[success])
+  useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
-      finishSubmit();
+      finishSubmit()
     }
   }, [errors])
 
@@ -57,16 +81,20 @@ function Contact() {
         <p className='info-page-h2-p'>Masz do nas pytanie? Wyślij do nas zapytanie używając formularza kontaktowego a odezwiemy się do Ciebie w przeciągu doby!</p>
         <form onSubmit={handleSubmit} className='my-3 w-full lg:w-3/4 flex flex-col'>
             <div className='grid grid-rows-1 lg:grid-cols-2 gap-2'>
+              <div className='flex flex-col'>
                 <div className='icons-form-input-container'>
                     <BsFillPersonFill />
-                    <input type='text' placeholder='Twoje imię' name='name' id='name' onChange={handleChange} className='icons-form-input'/>
+                    <input type='text' placeholder='Twoje imię' name='clientName' id='clientName' onChange={handleChange} className='icons-form-input'/>
                 </div>
-                {errors.name && <p className='error-text'>{errors.name}</p>}
+                {errors.clientName && <p className='error-text'>{errors.clientName}</p>}
+                </div>
+                <div className='flex flex-col'>
                 <div className='icons-form-input-container'>
                     <MdEmail />
                     <input type='text' placeholder='Adres e-mail' name='email' id='email' onChange={handleChange} className='icons-form-input'/>
                 </div>
                 {errors.email && <p className='error-text'>{errors.email}</p>}
+              </div>    
             </div>    
             <div className='flex flex-col w-full my-2'>
             <div className='icons-form-input-container w-full items-start'>
@@ -80,6 +108,7 @@ function Contact() {
                 <SubmitLoadingButton title="Wyślij" loading={loading} />
               </div>
             </div>
+            {error && <p className='error-text'>{error}</p>}
         </form>
         <div className='default-page-container items-center my-5 divide-border-top'>
         <h1 className='info-page-h2'>Kontakt</h1>
