@@ -8,7 +8,6 @@ import SubmitLoadingButton from '../../components/buttons/SubmitLoadingButton'
 import { useNavigate } from 'react-router-dom'
 import PasswordChangeModal from '../../modals/PasswordChangeModal'
 import { showMessage } from '../../store/messageSlice'
-import Spinner from '../../components/elements/Spinner'
 
 function AccountPersonalData() {
   const dispatch = useDispatch()
@@ -61,9 +60,9 @@ function AccountPersonalData() {
   }, [success])
   return (
     <>
-    <div className='flex flex-col px-5 py-5 2xl:px-10 2xl:py-10 bg-white rounded-md dark:bg-midnight-900'>
+    <div className='flex flex-col px-10 py-10 bg-white rounded-md dark:bg-midnight-900'>
       <h1 className='text-xl mb-3 font-semibold text-center lg:text-start'>Dane użytkownika</h1>
-      <div className='flex flex-col w-full lg:w-3/4'>
+      <div className='flex flex-col w-full 2xl:w-3/4'>
       <form onSubmit={handleSubmit}>
       <div className='lg:grid flex flex-col lg:grid-cols-2 gap-3'>
         <div className='flex flex-col'>
