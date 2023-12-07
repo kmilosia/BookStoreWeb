@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { fetchUserData } from '../../store/userSlice'
+import { fetchUserAddress, fetchUserData } from '../../store/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import DeleteAccountModal from '../../modals/DeleteAccountModal'
 
@@ -10,6 +10,18 @@ function AccountInfo() {
   const {userData} = useSelector((state) => state.user)
   const [deleteModule, setDeleteModule] = useState(false)
   const [isEdited, setIsEdited] = useState(false)
+  const [userAddress, setUserAddress] = useState({
+    
+    street: '',
+    streetNumber: '',
+    houseNumber: '',
+    postCode: '',
+    cityID: '',
+    countryID: '',
+    cityName: '',
+    countryName: '',
+    countryID: '',
+  })
   const handleSaveClick = (e) => {
 
   }
@@ -22,10 +34,12 @@ function AccountInfo() {
     setDeleteModule(true)
   }
   useEffect(() => {
-    dispatch(fetchUserData())
+    dispatch(fetchUserAddress())
   },[])
   useEffect(() => {
-    console.log(userData);
+    if (userData) {
+      setUserAddress(userData);
+    }
   },[userData])
   return (
     <>

@@ -8,7 +8,7 @@ function AddToCartButton({item}) {
   const dispatch = useDispatch()
   const handleClick = (e) => {
     dispatch(addToCart(item))
-    dispatch(showPopup({id: item.id}));
+    dispatch(showPopup(item))
   }
   return (
     <button onClick={handleClick} className='purple-button'><FiShoppingBag className='mr-1 text-xs'/>Dodaj do koszyka</button>

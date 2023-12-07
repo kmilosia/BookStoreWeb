@@ -57,6 +57,18 @@ export const fetchUserData = createAsyncThunk(
         return response.data
     }
 )
+export const fetchUserAddress = createAsyncThunk(
+    'user/address',
+    async() => {
+        const token = getValidToken()
+        const response = await axiosClient.get('User/Data-Address',{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+        }})
+        return response.data
+    }
+)
 export const resetPasswordEmail = createAsyncThunk(
     'user/resetPasswordEmail',
     async(data) => {
@@ -193,6 +205,14 @@ const userSlice = createSlice({
         }).addCase(fetchUserData.rejected,(state,action)=>{
             state.loading = false
             state.error = 'Nie można pobrać danych użytkownika!' 
+        }).addCase(fetchUserAddress.pending,(state)=>{
+            state.loading = true
+        }).addCase(fetchUserAddress.fulfilled,(state,action)=>{
+            state.loading = false
+            state.userData = action.payload
+        }).addCase(fetchUserAddress.rejected,(state,action)=>{
+            state.loading = false
+            state.error = 'Nie udało się pobrać adresów użytkownika!' 
         }).addCase(resetPasswordEmail.pending,(state)=>{
             state.loading = true
             state.success = false

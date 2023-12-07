@@ -21,16 +21,14 @@ function WishlistElement({item}) {
         <AvailabilityElement isAvailable={true}/>
       </div>
       <div className='my-3'>
-        <img src={item.url} className='h-auto aspect-[3/4] w-full object-cover rounded-md' />
+        <img src={item.imageURL} className='h-auto aspect-[3/4] w-full object-cover rounded-md' />
       </div>
-      <h2 className='font-semibold text-sm my-1 cursor-default'>{item.author}</h2>
-      <Link to={`/produkt/${item.id}`} className='relative' onMouseOver={() => {setShowText(true)}} onMouseLeave={() => {setShowText(false)}}><h1 className='font-semibold text-xl my-1 cursor-pointer truncated-text'>{item.title}</h1>{showText && <TitleTooltip title={item.title}/>}</Link>
+      <h2 className='font-light'>{item.authors.map((item,index)=>{return(<span key={index}>{item.name} {item.surname}</span>)})}</h2>
+      <Link to={`/produkt/${item.id}`} className='relative' onMouseOver={() => {setShowText(true)}} onMouseLeave={() => {setShowText(false)}}><h1 className='font-semibold my-1 cursor-pointer truncated-text'>{item.title}</h1>{showText && <TitleTooltip title={item.title}/>}</Link>
       <div className='my-1 flex flex-row items-center text-gray-600 dark:text-gray-400 text-sm lg:text-xs 2xl:text-sm cursor-default'>
-        <p>{item.form}</p>
-        <BsDot className='text-xl'/>
-        <p>{item.edition}</p>
+        <p>{item.formName === "Book" ? "Książka" : "Ebook"}</p>
       </div>
-      <h3 className='font-semibold cursor-default text-3xl lg:text-xl 2xl:text-3xl my-1'>{item.price} zł</h3>
+      <h3 className='font-semibold cursor-default text-xl my-1'>{item.price.toFixed(2)} zł</h3>
       <AddToCartFromWishlistButton item={item} />
     </div>
   )

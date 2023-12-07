@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { changePassword, deleteAccount, resetState } from '../store/userSlice'
+import { changePassword, resetState } from '../store/userSlice'
 import Spinner from '../components/elements/Spinner'
 import ShowPasswordButton from '../components/buttons/ShowPasswordButton'
 import { resetPasswordValidate } from '../utils/validation/resetPasswordValidation'
 
 function PasswordChangeModal(props) {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const {success,error,loading} = useSelector((state) => state.user)
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false); 
@@ -17,15 +15,11 @@ function PasswordChangeModal(props) {
   const [isHiddenOldPassword, setIsHiddenOldPassword] = useState(true)
   const [inputValues, setInputValues] = useState({
     oldPassword: "",
-    password: "",
+    newPassword: "",
     confirmPassword: "",
   })
   const handleChange = (e) => {
     setInputValues({ ...inputValues, [e.target.name]: e.target.value });
-  }
-  const handleEdit = (e) => {
-    e.preventDefault()
-    dispatch(deleteAccount())
   }
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,9 +29,10 @@ function PasswordChangeModal(props) {
   const finishSubmit = () => {
     const data = {
         oldPassword: inputValues.oldPassword,
-        newPassword: inputValues.password,
+        newPassword: inputValues.newPassword,
         repeatNewPassword: inputValues.confirmPassword,
     }
+    console.log(data);
     dispatch(changePassword(data))
   }
   useEffect(() => {
@@ -51,8 +46,16 @@ function PasswordChangeModal(props) {
       finishSubmit();
     }
   }, [errors])
-
-
+  useEffect(() => {
+    if (props.setPasswordModule) {
+        document.body.style.overflow = 'hidden'
+    } else {
+        document.body.style.overflow = 'auto'
+    }
+    return () => {
+        document.body.style.overflow = 'auto'
+    };
+}, [props.setPasswordModule])
 
   return (
     <div className='fixed flex justify-center items-center top-0 left-0 w-screen h-full z-100 bg-black/50'>
@@ -60,7 +63,6 @@ function PasswordChangeModal(props) {
       <h1 className='text-2xl font-semibold my-2 text-center lg:text-start'>Zmień hasło</h1>
       <form onSubmit={handleSubmit} className='lg:w-[30rem]'>
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-3 my-2 w-full'>
-
       <div className="col-span-2">
       <div className="relative">
         <ShowPasswordButton setIsHiddenPassword={setIsHiddenOldPassword} isHiddenPassword={isHiddenOldPassword}/>
@@ -69,12 +71,11 @@ function PasswordChangeModal(props) {
       </div>
       {errors.oldPassword && <span className='error-text'>{errors.oldPassword}</span>}
     </div>
-
       <div className="col-span-2">
       <div className="relative">
         <ShowPasswordButton setIsHiddenPassword={setIsHiddenPassword} isHiddenPassword={isHiddenPassword} />
-        <input value={inputValues.password} onChange={handleChange} type={`${isHiddenPassword ? 'password' : 'text'}`} id='password' name='password' className="floating-form-input-colors peer" placeholder=" " />
-        <label htmlFor='password' className="floating-form-label">Nowe hasło</label>
+        <input value={inputValues.newPassword} onChange={handleChange} type={`${isHiddenPassword ? 'password' : 'text'}`} id='newPassword' name='newPassword' className="floating-form-input-colors peer" placeholder=" " />
+        <label htmlFor='newPassword' className="floating-form-label">Nowe hasło</label>
       </div>
       {errors.password && <span className='error-text'>{errors.password}</span>}
     </div>
@@ -86,8 +87,8 @@ function PasswordChangeModal(props) {
       </div>
       {errors.confirmPassword && <span className='error-text'>{errors.confirmPassword}</span>}
     </div>
-        <button type='submit' className='bordered-purple-button'>{loading ? <Spinner size={6}/> : <span>Zmień hasło</span>}</button>
-        <button onClick={() => props.setPasswordModule(false)} className='purple-button'>Anuluj</button>
+        <button type='submit' className='purple-button'>{loading ? <Spinner size={6}/> : <span>Zmień hasło</span>}</button>
+        <button onClick={() => {props.setPasswordModule(false);dispatch(resetState())}} className='bordered-purple-button'>Anuluj</button>
       </div>
       </form>
       {error && <p className='my-1 error-text'>{error}</p>}

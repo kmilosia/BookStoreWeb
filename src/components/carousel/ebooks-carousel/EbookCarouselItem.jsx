@@ -13,7 +13,7 @@ function EbookCarouselItem({item,rental}) {
       <img src={item.imageURL} className='w-full aspect-[3/4] object-cover rounded-md' />
       <div className="text-container">
       <div className='relative mt-2' onMouseOver={() => {setShowText(true)}} onMouseLeave={() => {setShowText(false)}}>
-        <Link><h1 className='font-semibold text-sm cursor-pointer truncated-text'>{item.title}</h1></Link>
+        <h1 className='font-semibold text-sm cursor-pointer truncated-text'>{item.title}</h1>
         {showText && <TitleTooltip title={item.title}/>}
       </div>
         <p className='font-light text-xs'>{item.authors.map((item,index)=>{return(<span key={index}>{item.name} {item.surname}</span>)})}</p>

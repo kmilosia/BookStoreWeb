@@ -9,7 +9,7 @@ const cartPopupSlice = createSlice({
     reducers: {
         showPopup: (state, action) => {
             state.showCartPopup = true;
-            state.product = action.payload.id
+            state.product = action.payload
           },
           hidePopup: (state) => {
             state.showCartPopup = false
