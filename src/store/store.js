@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice, { authMiddleware } from './userSlice'
 import navSlice from "./navSlice";
-import  cartSlice  from "./cartSlice";
+import  cartSlice, { subscribeToStore }  from "./cartSlice";
 import cartPopupSlice from "./cartPopupSlice";
 import wishlistSlice from "./wishlistSlice";
 import messageSlice from "./messageSlice";
@@ -17,5 +17,7 @@ const store = configureStore({
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authMiddleware),
 })
+subscribeToStore(store)
+
 
 export default store
