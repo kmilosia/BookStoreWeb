@@ -39,21 +39,16 @@ function App() {
             <Route path='potwierdzenie' element={<RecoverPasswordConfirmation />} />
           </Route>
         </Route>
-
         <Route path='/' element={<MainLayout />}>
           <Route path='*' element={<PageNotFound />} />
           <Route index element={<Home />} />
           <Route path='sklep' element={<Store />} />
           <Route path='wypozyczalnia' element={<Rental />}/>
-
           <Route path='szukaj' element={<Search />} />
           <Route path='koszyk' element={<Cart />} />
-
           <Route path='kategorie' element={<Categories />} />
           <Route path='kategorie/:title' element={<Category />} />
-
           <Route path='zamowienie' element={<Checkout />}/>
-
           <Route path='ulubione' element={<Wishlist />} />
           <Route path='ulubione/:guid' element={<UserWishlist />} />
           <Route path='kontakt' element={<Contact />} />
@@ -61,33 +56,26 @@ function App() {
           <Route path='wiadomosci' element={<News />} />
           <Route path='wiadomosc/:id' element={<NewsItem />} />
           <Route path='wszystkie-wiadomosci' element={<AllNews />}/>
-
-
           <Route path='ebooki' element={<EbooksList />}/>
           <Route path='promocje' element={<Discounts />}/>
-
           <Route path='ksiazki' element={<BooksList />}/>
           <Route path='produkt/:id' element={<Product />}/>
-
           <Route path='konto' element={!isAuth ? <Navigate to="/dostep/logowanie" /> : <Account />}>
             <Route index element={<AccountPersonalData />} />
             <Route path='adres' element={<AccountAddress />} />
             <Route path='zamowienia' element={<AccountOrders />} />
             <Route path='wypozyczenia' element={<AccountRentals />} />
           </Route>
-
           <Route path='biblioteka' element={<Library />}>
             <Route index element={<LibraryBookPanel />}/>
             <Route path=':id' element={<LibraryBookElement />}/>
           </Route>
-
           <Route path='dokumenty' element={<Documents />}>
             <Route index element={<Navigate to='regulamin' />} />
             <Route path='polityka-prywatnosci' element={<Privacy />} />
             <Route path='cookies' element={<Cookies />} />
             <Route path='regulamin' element={<Terms />} />
           </Route>
-
         </Route>
       </Routes>
     </Router>

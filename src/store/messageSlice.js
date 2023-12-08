@@ -8,15 +8,14 @@ const messageSlice = createSlice({
     initialState,
     reducers: {
         showMessage: (state, action) => {
-            state.showMessage = true;
-            state.messageTitle = action.payload.title;
+            state.showMessage = true
+            state.messageTitle = action.payload.title
           },
           hideMessage: (state) => {
-            state.showMessage = false;
-            state.messageTitle = '';
+            state.showMessage = false
+            state.messageTitle = ''
           },
     },
-
 })
 export const { showMessage, hideMessage } = messageSlice.actions
 export default messageSlice.reducer

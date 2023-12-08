@@ -24,7 +24,7 @@ const navSlice = createSlice({
             state.accountModal = false
           },
     },
-
 })
+
 export const { showSearchModal, showAccountModal, hideAll, showNavbar } = navSlice.actions
 export default navSlice.reducer

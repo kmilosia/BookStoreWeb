@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { BsDot} from 'react-icons/bs'
 import { BiSolidShoppingBag } from 'react-icons/bi'
 import ReturnShoppingButton from '../components/buttons/ReturnShoppingButton'

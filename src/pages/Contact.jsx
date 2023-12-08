@@ -22,13 +22,6 @@ function Contact() {
     email: '',
     message: '',
   })
-  const sendMessage = async () => {
-    try{
-        const request = await axiosClient.post('/Contact')
-    }catch(err){
-        console.error(err)
-    }
-  }
   const clearForm = () => {
     setValues((prevValues) => {
       const clearedValues = Object.fromEntries(Object.keys(prevValues).map(key => [key, '']))
@@ -36,7 +29,7 @@ function Contact() {
     })
   }
   const handleChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+    setValues({ ...values, [e.target.name]: e.target.value })
   }
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -45,7 +38,6 @@ function Contact() {
   }
   const finishSubmit = () => {
     dispatch(sendContactMessage(values))
-    console.log(values)
   }
   useEffect(() => {
     if(success){
@@ -59,7 +51,6 @@ function Contact() {
       finishSubmit()
     }
   }, [errors])
-
   useEffect(() => {
     scrollTop()
   },[])

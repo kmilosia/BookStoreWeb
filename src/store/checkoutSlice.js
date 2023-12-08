@@ -3,8 +3,8 @@ const initialState = {
     showLoginMessage: false,
     loginMessageTitle: '',
 }
-const loginPopupSlice = createSlice({
-    name: 'loginPopup',
+const checkoutSlice = createSlice({
+    name: 'checkout',
     initialState,
     reducers: {
           showLoginMessage: (state, action) => {
@@ -17,5 +17,5 @@ const loginPopupSlice = createSlice({
           },
     },
 })
-export const { showLoginMessage, hideLoginMessage } = loginPopupSlice.actions
-export default loginPopupSlice.reducer
+export const { showLoginMessage, hideLoginMessage } = checkoutSlice.actions
+export default checkoutSlice.reducer
