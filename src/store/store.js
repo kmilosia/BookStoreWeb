@@ -5,6 +5,7 @@ import  cartSlice, { subscribeToStore }  from "./cartSlice";
 import cartPopupSlice from "./cartPopupSlice";
 import wishlistSlice from "./wishlistSlice";
 import messageSlice from "./messageSlice";
+import loginPopupSlice from "./loginPopupSlice";
 
 const store = configureStore({
     reducer:{
@@ -14,6 +15,7 @@ const store = configureStore({
         wishlist: wishlistSlice,
         cartPopup: cartPopupSlice,
         message: messageSlice,
+        loginPopup: loginPopupSlice,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authMiddleware),
 })

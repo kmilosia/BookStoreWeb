@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { checkUserLogin } from './store/userSlice';
 import CartPopup from './modals/CartPopup';
 import Message from './modals/Message';
+import LoginPopup from './modals/LoginPopup';
 function App() {
   const dispatch = useDispatch()
   const isAuth = useSelector((state) => state.user.isAuth)
@@ -20,6 +21,7 @@ function App() {
     <Message />
     <Router>
     <CartPopup />
+    <LoginPopup />
       <Routes>
         <Route path='/' element={<Navigate to={'/'}/>} />
         <Route path='/dostep' element={isAuth ? <Navigate to="/" /> : <Access />}>

@@ -4,7 +4,7 @@ import { hidePopup } from '../store/cartPopupSlice'
 import { IoClose } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 
-function CartPopup() {
+function LoginPopup() {
     const {showCartPopup,product} = useSelector((state) => state.cartPopup)
     const dispatch = useDispatch()
     const handleHidePopup = () => {
@@ -49,4 +49,4 @@ function CartPopup() {
   )
 }
 
-export default CartPopup
+export default LoginPopup
