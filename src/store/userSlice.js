@@ -152,6 +152,20 @@ export const sendContactMessage = createAsyncThunk(
         return request.data
     }
 )
+export const addUserAddress = createAsyncThunk(
+    'user/addAddress',
+    async(data) => {
+        const token = getValidToken()
+        const request = await axiosClient.post('/User/Edit-Address-Data', data, {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          })
+        return request.data
+    }
+)
+
 export const authMiddleware = (store) => (next) => (action) => {
     if (action.type === 'user/logout') {
       localStorage.removeItem('token')
@@ -272,6 +286,16 @@ const userSlice = createSlice({
         }).addCase(editUserData.rejected,(state,action)=>{
             state.loading = false
             state.error = 'Nie udało się zmienić danych!' 
+        }).addCase(addUserAddress.pending,(state)=>{
+            state.loading = true
+            state.success = false
+        }).addCase(addUserAddress.fulfilled,(state,action)=>{
+            state.loading = false
+            state.success = true
+            state.error = null
+        }).addCase(addUserAddress.rejected,(state,action)=>{
+            state.loading = false
+            state.error = 'Nie udało się dodać adresu!' 
         }).addCase(changePassword.pending,(state)=>{
             state.loading = true
             state.success = false
