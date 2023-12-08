@@ -10,16 +10,6 @@ function CartPopup() {
     const handleHidePopup = () => {
         dispatch(hidePopup())
     }
-    useEffect(() => {
-        if (showCartPopup) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
-        return () => {
-            document.body.style.overflow = 'auto';
-        };
-    }, [showCartPopup]);
   return (
     showCartPopup && (
     <div className='fixed z-[100000] top-0 left-0 w-screen h-screen bg-black/80 dark:text-white flex justify-center items-start lg:items-center'>

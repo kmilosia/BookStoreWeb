@@ -21,15 +21,6 @@ module.exports = {
         }
       },
       colors: {
-        'midnight-semitransparent': 'rgba(24,24,38,0.8)',
-        'midday-semitransparent': 'rgba(246,246,249,0.8)',
-        sunrise: {
-          100: '#FDFCF7',
-          200: '#F9F6EF',
-          300: '#F0EEE2',
-          400: '#d7d4cd',
-          500: '#C8C5BC',
-        },
         midnight: {
           50: '#F6F6F9',
           100: '#EAEAEF',

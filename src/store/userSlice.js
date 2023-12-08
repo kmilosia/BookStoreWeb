@@ -165,7 +165,6 @@ export const addUserAddress = createAsyncThunk(
         return request.data
     }
 )
-
 export const authMiddleware = (store) => (next) => (action) => {
     if (action.type === 'user/logout') {
       localStorage.removeItem('token')

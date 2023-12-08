@@ -1,22 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-    showMessage: false,
-    messageTitle: '',
+    showLoginMessage: false,
+    loginMessageTitle: '',
 }
 const loginPopupSlice = createSlice({
     name: 'loginPopup',
     initialState,
     reducers: {
-        showMessage: (state, action) => {
-            state.showMessage = true;
-            state.messageTitle = action.payload.title;
+          showLoginMessage: (state, action) => {
+            state.showLoginMessage = true;
+            state.loginMessageTitle = action.payload.title;
           },
-          hideMessage: (state) => {
-            state.showMessage = false;
-            state.messageTitle = '';
+          hideLoginMessage: (state) => {
+            state.showLoginMessage = false;
+            state.loginMessageTitle = '';
           },
     },
 
 })
-export const { showMessage, hideMessage } = loginPopupSlice.actions
+export const { showLoginMessage, hideLoginMessage } = loginPopupSlice.actions
 export default loginPopupSlice.reducer

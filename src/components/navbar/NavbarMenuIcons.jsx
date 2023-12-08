@@ -3,14 +3,26 @@ import { BiHeart, BiShoppingBag, BiUser } from 'react-icons/bi'
 import { FiMoon, FiSun } from 'react-icons/fi'
 import { HiOutlineSearch } from 'react-icons/hi'
 import { LuBookMarked } from 'react-icons/lu'
-import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import { hideAll, showAccountModal, showSearchModal } from '../../store/navSlice'
+import { showLoginMessage } from '../../store/loginPopupSlice'
 
 function NavbarMenuIcons({toggleTheme, isDarkTheme}) {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const {isAuth} = useSelector((state)=>state.user)
   const handleClose = () => {
     dispatch(hideAll())
+  }
+  const handleWishlistButton = () => {
+    if(isAuth){
+      handleClose()
+      navigate('/ulubione')
+    }else{
+      handleClose()
+      dispatch(showLoginMessage({title: "Zaloguj się do swojego konta by mieć dostęp do listy życzeń!"}))
+    }
   }
   return (
     <>
@@ -20,12 +32,12 @@ function NavbarMenuIcons({toggleTheme, isDarkTheme}) {
       </div>       
       <BiUser />
       </button>
-    <Link onClick={handleClose} to='/ulubione' className='navbar-menu-icon group'>
+    <button onClick={handleWishlistButton} className='navbar-menu-icon group'>
       <div className='tooltip-button'>
         <span>Ulubione</span>
       </div>
       <BiHeart />
-    </Link>
+    </button>
     <Link onClick={handleClose} to='/koszyk' className='navbar-menu-icon group'>
       <div className='tooltip-button'>
         <span>Koszyk</span>

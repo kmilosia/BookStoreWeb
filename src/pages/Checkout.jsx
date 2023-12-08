@@ -56,7 +56,6 @@ useEffect(() => {
       <div className='default-page-container'>
         <div className='grid grid-cols-1 lg:grid-cols-[5fr_2fr] gap-5 2xl:gap-20'>
         <div className='flex flex-col'>
-
           { !userChoice &&
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 my-2 divide-border-bottom py-2'>
               <div className='flex flex-col items-center'>
@@ -120,7 +119,6 @@ useEffect(() => {
             </div>
 
           </div>
-
           <CheckoutSummary selectedDeliveryMethod={selectedDeliveryMethod}/>
         </div>
       </div>

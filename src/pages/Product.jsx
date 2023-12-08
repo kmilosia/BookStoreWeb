@@ -9,11 +9,14 @@ import { scrollTop } from '../utils/functions/scrollTop';
 import axiosClient from '../utils/api/axiosClient';
 import { convertDateDisplay } from '../utils/functions/convertDate';
 import BooksCarousel from '../components/carousel/books-carousel/BooksCarousel';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../store/cartSlice';
 import { showPopup } from '../store/cartPopupSlice';
+import { showLoginMessage } from '../store/loginPopupSlice';
+import { showMessage } from '../store/messageSlice';
 
 function Product() {
+    const { isAuth } = useSelector((state) => state.user);
     const dispatch = useDispatch()
     const {id} = useParams()
     const productID = Number(id)
@@ -28,15 +31,9 @@ function Product() {
         }
     }
     const handleAddToCart = () => {
-        let formId
-        if(book.formName === 'Book'){
-            formId = 1
-        }else{
-            formId = 2
-        }
         const item = {
             authors: book.authors,
-            formId: formId,
+            formId: book.formId,
             formName: book.formName,
             id: book.id,
             imageURL: book.images[0].imageURL,
@@ -47,12 +44,26 @@ function Product() {
         dispatch(addToCart(item))
         dispatch(showPopup(item))
     }
+    const handleAddToWishlist = () => {
+        if(isAuth){
+            const data = {
+                id: book.id,
+                bool: true,
+            }
+            // dispatch(editWishlist(data))
+            // dispatch(showMessage({title: "Lista życzeń została zmieniona!"}))
+            // setBook(prevBook => ({...prevBook,isWishlisted: !prevBook.isWishlisted}))
+        }else{
+            dispatch(showLoginMessage({title: "Zaloguj się aby dodawać produkty do listy życzeń!"}))
+        }
+    }
     useEffect(() => {
         scrollTop()
     },[])
     useEffect(() => {
         if(productID){
             getBook()
+            console.log(book);
         }
     },[productID])
   return (
@@ -99,12 +110,12 @@ function Product() {
                     <div className='flex flex-col-reverse lg:flex-row justify-between my-2 w-full'>
                         <div className='flex flex-col lg:flex-row'>
                             <button onClick={handleAddToCart} className='rounded-purple-button my-2 lg:my-0'>Dodaj do koszyka</button>
-                            {book.formName === "Ebook" &&
+                            {book.formId === 2 &&
                             <button className='rounded-purple-button my-2 lg:my-0 lg:mx-2'>Wypożycz ebooka</button>
                             }
                         </div>
                         <div className='flex justify-end my-2 lg:my-0'>
-                            <button className='rounded-3xl bg-purple-400 h-10 w-10 flex items-center justify-center mx-1 hover:bg-purple-500'><FaHeart className={`${book.isWishlisted ? "text-purple-800" : 'text-white'}`}/></button>
+                            <button onClick={handleAddToWishlist} className='rounded-3xl bg-purple-400 h-10 w-10 flex items-center justify-center mx-1 hover:bg-purple-500'><FaHeart className={`${book.isWishlisted ? "text-purple-800" : 'text-white'}`}/></button>
                         </div>
                     </div>
                     </div>
@@ -131,7 +142,7 @@ function Product() {
                         <h4 className='font-light'>{book.translatorName}</h4>
                     </div>
                     <div className=''>
-                        {book.formName === 'Book' ?
+                        {book.formId === 1 ?
                         <>
                         <h3 className='font-medium'>Edycja okładki</h3>
                         <h4 className='font-light'>{book.editionName}</h4>
@@ -157,7 +168,7 @@ function Product() {
                     </div>
                     <div className=''>
                         <h3 className='font-medium'>Liczba stron</h3>
-                        <h4 className='font-light'>765</h4>
+                        <h4 className='font-light'>{book.pages}</h4>
                     </div>
                     <div className='col-span-2'>
                     <h3 className='font-medium'>Kategorie</h3>
@@ -197,8 +208,8 @@ function Product() {
                 </div>
                 <div className='col-span-2 flex flex-col'>
                 <h1 className='text-2xl font-semibold mb-3'>Podobne produkty</h1>
-                {book.authors &&
-                <BooksCarousel filter={`numberOfElements=10&authorIds=${book.authors[0].id}&formIds=1`}/>}
+                {book.categories &&
+                <BooksCarousel filter={`numberOfElements=10&categoryIds=${book.categories[0].id}&formIds=1`}/>}
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@ function Rental() {
             <h1 className='carousel-header'>Nowo dodane ebooki</h1>
             <EbooksCarousel rental={true} filter='numberOfElements=10&formIds=2&sortOrder="desc"'/>
           </div>
-          <ExploreAllElement path="/e-booki" title="Przeglądaj wszystkie dostępne ebooki" />
+          <ExploreAllElement path="/ebooki" title="Przeglądaj wszystkie dostępne ebooki" />
           <div className='carousel-element'>
             <h1 className='carousel-header'>Najlepiej oceniane ebooki</h1>
             <EbooksCarousel rental={true}/>

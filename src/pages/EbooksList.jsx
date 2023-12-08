@@ -72,6 +72,7 @@ function EbooksList() {
         return filter
       }
     const applyFilters =() => {
+        setIsFilterOpen(false)
         const newFilter = buildFilter()
         setFilter(newFilter)
     }

@@ -19,7 +19,7 @@ function BookListElement({item}) {
         <Stars score={item.score} />
         <h2 className='font-semibold text-lg my-1'>{item.price.toFixed(2)}zł</h2>
     </Link>
-    <div className='hidden group-hover:flex group-hover:flex-col'>
+    <div className='lg:hidden lg:group-hover:flex lg:group-hover:flex-col flex flex-col'>
       <AddToCartButton item={item}/>           
     </div>
   </div>

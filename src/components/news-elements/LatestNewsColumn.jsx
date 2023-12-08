@@ -18,8 +18,8 @@ function LatestNewsColumn() {
         getNews()
     },[])
   return (
-    <div className='flex flex-col divide-border-top lg:border-none'>
-        <h2 className='news-page-h2'>Najnowsze wiadomości</h2>
+    <div className='flex flex-col divide-border-top pt-2 lg:pt-0 lg:border-none'>
+        <h2 className='text-lg font-semibold mb-1'>Najnowsze wiadomości</h2>
         {news.map((item,index)=>{
             return(
               <LatestNewsElement key={index} item={item} />

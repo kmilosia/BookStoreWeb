@@ -8,11 +8,12 @@ import EbooksCarousel from '../../components/carousel/ebooks-carousel/EbooksCaro
 
 function Category() {
   const [params, setParams] = useSearchParams()
-  const categoryID = params.get('id')
+  const categoryID = params.get('categoryId')
+  const id = params.get('id')
   const [category, setCategory] = useState({})
   const getCategory = async () => {
     try {
-      const response = await axiosClient.get(`/CategoryElements/${categoryID}`)
+      const response = await axiosClient.get(`/CategoryElements/${id}`)
       setCategory(response.data)
     } catch (err) {
       console.error(err)

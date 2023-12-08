@@ -168,11 +168,6 @@
         @apply text-sm my-2 font-light text-center;
     }
     /* info pages */
-    /* news pages */
-    .news-page-h2{
-        @apply text-lg font-semibold;
-    }
-    /* news pages */
     /* documents */
     .document-header{
         @apply text-3xl font-semibold;
@@ -287,6 +282,13 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endCo
   
   .carousel-slide > * {
     width: 100%;
+  }
+  article p{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  article h1{
+    font-size: 1.2rem;
   }
   /* input:-webkit-autofill,
   input:-webkit-autofill:hover, 

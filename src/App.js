@@ -2,7 +2,7 @@ import './App.css';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
 import {Home, Search,PageNotFound, Rental, Store, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders,
   Library, AccountRentals, Cart, Wishlist,Checkout, CheckoutDelivery, CheckoutPayment, CheckoutConfirmation, CheckoutLogin, Access, RecoverPassword,
-  Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword, RecoverPasswordConfirmation, RegisterRequiredData, RegisterConfirmation, Product, RegisterConfirmEmail, LibraryBookPanel, LibraryBookElement, AccountAddress, BooksList, EbooksList, Discounts} from './import'
+  Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword, RecoverPasswordConfirmation, RegisterRequiredData, RegisterConfirmation, Product, RegisterConfirmEmail, LibraryBookPanel, LibraryBookElement, AccountAddress, BooksList, EbooksList, Discounts, UserWishlist} from './import'
 import MainLayout from './MainLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -55,6 +55,7 @@ function App() {
           <Route path='zamowienie' element={<Checkout />}/>
 
           <Route path='ulubione' element={<Wishlist />} />
+          <Route path='ulubione/:guid' element={<UserWishlist />} />
           <Route path='kontakt' element={<Contact />} />
           <Route path='o-nas' element={<About />} />
           <Route path='wiadomosci' element={<News />} />
