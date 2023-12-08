@@ -3,16 +3,17 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { fetchUserAddress } from '../../store/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { FaPlus } from "react-icons/fa6";
 import NewAddress from './NewAddress'
+import AddNewAddressButton from '../../components/buttons/AddNewAddressButton'
 
-function AccountInfo() {
+function AccountAddress() {
   const dispatch = useDispatch()
   const {userData} = useSelector((state) => state.user)
-  // const [isEdited, setIsEdited] = useState(false)
+  const [isEdited, setIsEdited] = useState(false)
   const [isAdding, setIsAdding] = useState(false)
   useEffect(() => { 
     dispatch(fetchUserAddress())
+    console.log(userData);
   },[])
   return (
     <>
@@ -55,21 +56,11 @@ function AccountInfo() {
       <button className='purple-button w-max'>Edytuj adres</button>
       </div>
       :
-      <>
-      {isAdding ? 
-      <NewAddress />
-      :
-      <button onClick={() => {setIsAdding(true)}} className='w-max rounded-md shadow-md bg-gray-50 hover:bg-gray-100 dark:hover:bg-midnight-800 dark:bg-midnight-700 flex justify-between items-center px-5 py-5'>
-          <FaPlus className='text-xl mx-3'/>
-          <h1 className='text-xl font-semibold mx-3'>Dodaj nowy adres</h1>
-        </button>
-      }
-      </>
-      }
+      <> {isAdding ? <NewAddress /> : <AddNewAddressButton onClick={() => setIsAdding(true)} />}</>}
       </div>
     </div>
     </>
   )
 }
 
-export default AccountInfo
+export default AccountAddress

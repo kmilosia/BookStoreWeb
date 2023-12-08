@@ -84,15 +84,6 @@ function NewAddress() {
         "cityID": userAddress.selectedCity,
         "countryID": userAddress.selectedCountry,
         "position": 1
-      },
-      "mailingAddress": {
-        "street": userAddress.street,
-        "streetNumber": userAddress.streetNumber,
-        "houseNumber": userAddress.houseNumber,
-        "postcode": userAddress.postcode,
-        "cityID": userAddress.selectedCity,
-        "countryID": userAddress.selectedCountry,
-        "position": 2
       }
     }}else{
       data = {
@@ -116,7 +107,6 @@ function NewAddress() {
         }
       }
     }
-    console.log(data);
     dispatch(addUserAddress(data))
   }
   useEffect(() => {
@@ -127,7 +117,7 @@ function NewAddress() {
   useEffect(() => {
     if (success) {
       dispatch(resetState())
-      navigate(0)
+      navigate('/konto/adres')
       dispatch(showMessage({title: "Adres został dodany!"}))
     }
   }, [success])
