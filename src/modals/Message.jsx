@@ -19,9 +19,9 @@ const Message = () => {
     showMessage && (
       <div className='fixed bottom-2 left-2 h-auto w-full z-[10000] px-5'>
         <div className='w-full h-max grid grid-cols-[max-content_auto_max-content] bg-green-400 py-5 px-10 shadow-md rounded-md'>
-        <IoMdCheckmarkCircleOutline className='text-3xl text-green-900'/>
+        <IoMdCheckmarkCircleOutline className='text-2xl text-green-900'/>
         <div className='w-full flex justify-center items-center cursor-default'>
-            <h1 className='font-semibold text-lg text-green-900'>{messageTitle}</h1>
+            <h1 className='font-semibold text-green-900'>{messageTitle}</h1>
         </div>
         <button className='flex justify-end items-center' onClick={() => dispatch(hideMessage())}><AiOutlineClose className='text-xl transition-all text-green-800 hover:text-green-900'/></button>
         </div>

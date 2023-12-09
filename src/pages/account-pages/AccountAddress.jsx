@@ -8,21 +8,21 @@ import AddNewAddressButton from '../../components/buttons/AddNewAddressButton'
 
 function AccountAddress() {
   const dispatch = useDispatch()
-  const {userData} = useSelector((state) => state.user)
+  const {userAddress} = useSelector((state) => state.user)
   const [isEdited, setIsEdited] = useState(false)
   const [isAdding, setIsAdding] = useState(false)
   useEffect(() => { 
     dispatch(fetchUserAddress())
-    console.log(userData);
+    console.log(userAddress);
   },[])
   return (
     <>
     <div className='flex flex-col px-10 py-10 bg-white rounded-md dark:bg-midnight-900'>
       <h1 className='text-xl font-semibold text-center lg:text-start'>Adres dostawy</h1>
       <div className='flex flex-col w-full 2xl:w-3/4'>
-      {userData.length > 0 ?
+      {userAddress.length > 0 ?
       <div className='flex flex-col'>
-        {userData.map((item, index) => {
+        {userAddress.map((item, index) => {
           return (
             <div key={index} className='grid grid-cols-1 lg:grid-cols-2 gap-2 my-2'>
               <h1 className='font-light text-sm text-purple-400'>{item.position === 1 ? "Adres zamieszkania" : "Adres korespondencyjny"}</h1>

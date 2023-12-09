@@ -8,7 +8,6 @@ const loadCartFromLocalStorage = () => {
     cart,
     totalPrice,
     quantity,
-    discountCode: null,
   }
 }
 
@@ -57,9 +56,6 @@ export const cartSlice = createSlice({
       state.totalPrice = calculateTotalPrice(state.cart)
       localStorage.setItem("cart", JSON.stringify(state.cart))
     },
-    addDiscount: (state, action) => {
-      state.discountCode = action.payload
-    },
     emptyCart: (state, action) => {
       state.cart = []
       state.totalPrice = null
@@ -71,7 +67,7 @@ export const cartSlice = createSlice({
 })
 
 const { actions } = cartSlice
-const { addToCart, incrementQuantity, decrementQuantity, removeItem, emptyCart, addDiscount } = actions
+const { addToCart, incrementQuantity, decrementQuantity, removeItem, emptyCart } = actions
 
 const subscribeToStore = (store) => {
   store.subscribe(() => {
@@ -80,5 +76,5 @@ const subscribeToStore = (store) => {
   })
 }
 
-export { addToCart, incrementQuantity, decrementQuantity, removeItem, emptyCart, addDiscount, subscribeToStore };
+export { addToCart, incrementQuantity, decrementQuantity, removeItem, emptyCart, subscribeToStore };
 export default cartSlice.reducer;

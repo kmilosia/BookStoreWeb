@@ -8,6 +8,7 @@ const initialState = {
     isAuth: false,
     success: false,
     userData: null,
+    userAddress: null,
 }
 export const checkTokenValidity = async (token) => {
     try {
@@ -185,6 +186,7 @@ const userSlice = createSlice({
             state.isAuth = false
             state.success = false
             state.userData = null
+            state.userAddress = null
             state.error = null
         },
         resetState: (state,action) => {
@@ -225,7 +227,7 @@ const userSlice = createSlice({
             state.loading = true
         }).addCase(fetchUserAddress.fulfilled,(state,action)=>{
             state.loading = false
-            state.userData = action.payload
+            state.userAddress = action.payload
             state.error = null
         }).addCase(fetchUserAddress.rejected,(state,action)=>{
             state.loading = false

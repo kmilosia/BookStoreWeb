@@ -1,21 +1,58 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialState = {
-    showLoginMessage: false,
-    loginMessageTitle: '',
+
+const loadCheckoutFromLocalStorage = () => {
+  const checkout = JSON.parse(localStorage.getItem("checkout")) || {};
+  return checkout;
 }
-const checkoutSlice = createSlice({
-    name: 'checkout',
-    initialState,
-    reducers: {
-          showLoginMessage: (state, action) => {
-            state.showLoginMessage = true
-            state.loginMessageTitle = action.payload.title
-          },
-          hideLoginMessage: (state) => {
-            state.showLoginMessage = false
-            state.loginMessageTitle = ''
-          },
+
+export const checkoutSlice = createSlice({
+  name: "checkout",
+  initialState: loadCheckoutFromLocalStorage(),
+  reducers: {
+    setDiscount: (state, action) => {
+      if (action.payload) {
+        state.discount = action.payload;
+      } else {
+        delete state.discount;
+      }
+      localStorage.setItem("checkout", JSON.stringify(state));
     },
+    setPayment: (state, action) => {
+      if (action.payload) {
+        state.payment = action.payload;
+      } else {
+        delete state.payment;
+      }
+      localStorage.setItem("checkout", JSON.stringify(state));
+    },
+    setDelivery: (state, action) => {
+      if (action.payload) {
+        state.delivery = action.payload;
+      } else {
+        delete state.delivery;
+      }
+      localStorage.setItem("checkout", JSON.stringify(state));
+    },
+    setUserData: (state, action) => {
+      if (action.payload) {
+        state.userData = action.payload;
+      } else {
+        delete state.userData;
+      }
+      localStorage.setItem("checkout", JSON.stringify(state));
+    },
+  },
 })
-export const { showLoginMessage, hideLoginMessage } = checkoutSlice.actions
-export default checkoutSlice.reducer
+
+const { actions } = checkoutSlice;
+const { setDiscount, setPayment, setDelivery, setUserData } = actions;
+
+const subscribeToStoreCheckout = (store) => {
+  store.subscribe(() => {
+    const state = store.getState().checkout;
+    localStorage.setItem("checkout", JSON.stringify(state));
+  });
+}
+
+export { setDiscount, setPayment, setDelivery, setUserData, subscribeToStoreCheckout };
+export default checkoutSlice.reducer;
