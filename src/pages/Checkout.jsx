@@ -1,51 +1,50 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import axiosClient from '../utils/api/axiosClient'
 import CheckoutSummary from '../components/page-elements/CheckoutSummary'
 import PaymentMethods from '../components/checkout/PaymentMethods'
 import DeliveryMethods from '../components/checkout/DeliveryMethods'
+import { setOrderAuth } from '../store/checkoutSlice'
+import AuthorisationMethods from '../components/checkout/AuthorisationMethods'
+import OrderDetails from '../components/checkout/OrderDetails'
+import {BsArrowLeftShort} from 'react-icons/bs'
 
 function Order() {
   const navigate = useNavigate()
-  const [guest, setGuest] = useState(false)
-  const [userChoice, setUserChoice] = useState(false)
+  const dispatch = useDispatch()
   const {cart} = useSelector((state) => state.cart)
+  const {orderAuth} = useSelector((state) => state.checkout)
   const {isAuth} = useSelector((state) => state.user)
+  const [submitting, setSubmitting] = useState(false)
+  const [checkoutErrors, setCheckoutErrors] = useState({})
   useEffect(() => {
     if(cart.length <= 0){
       navigate('/koszyk')
     }
   },[cart])
   useEffect(()=>{
-    if(isAuth || guest){
-      setUserChoice(true)
+    if(isAuth){
+      dispatch(setOrderAuth({orderAuth: "user"}))
     }
-  },[guest, isAuth])
+  },[isAuth])
   return (
     <div className='default-page-wrapper'>
       <div className='default-page-container'>
-        <div className='grid grid-cols-1 lg:grid-cols-[5fr_2fr] gap-5 2xl:gap-20'>
+        <div className='justify-start flex'>
+        <Link to='/koszyk' className='text-button-link text-base w-max flex flex-row items-center underline-hover-purple'><BsArrowLeftShort className='text-lg'/>Powrót do koszyka</Link>
+        </div>
+        <div className='grid grid-cols-1 lg:grid-cols-[4fr_2fr] gap-5 2xl:gap-20'>
         <div className='flex flex-col'>
-          { !userChoice &&
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 my-2 divide-border-bottom py-2'>
-              <div className='flex flex-col items-center'>
-                <h1 className='text-xl font-semibold'>Jestem już klientem sklepu</h1>
-                <p className='font-light text-center'>Zaloguj się do swojego konta aby kontynuować zakupy</p>
-                <Link to='/dostep/logowanie' className='purple-button w-full'>Zaloguj się</Link>
-              </div>
-              <div className='flex flex-col items-center'>
-                <h1 className='text-xl font-semibold'>Nowy klient</h1>
-                <p className='font-light text-center'>Kontynuuj jako gość lub zarejestruj się w naszym sklepie</p>
-                <Link to='/dostep/rejestracja' className='purple-button w-full'>Zarejestruj się</Link>
-                <button onClick={()=>{setGuest(true)}} className='bordered-purple-button w-full'>Kontynuuj jako gość</button>
-              </div>
-            </div>
+            { !orderAuth && <AuthorisationMethods />}
+            {orderAuth &&
+            <>
+            <OrderDetails submitting={submitting} checkoutErrors={checkoutErrors} setCheckoutErrors={setCheckoutErrors}/>
+            <DeliveryMethods submitting={submitting} checkoutErrors={checkoutErrors} setCheckoutErrors={setCheckoutErrors}/>
+            <PaymentMethods submitting={submitting} checkoutErrors={checkoutErrors} setCheckoutErrors={setCheckoutErrors}/>
+            </>
             }
-            <DeliveryMethods />
-            <PaymentMethods />
           </div>
-          <CheckoutSummary />
+          <CheckoutSummary submitting={submitting} setSubmitting={setSubmitting} checkoutErrors={checkoutErrors} setCheckoutErrors={setCheckoutErrors}/>
         </div>
       </div>
     </div>

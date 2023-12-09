@@ -1,8 +1,8 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
 import {Home, Search,PageNotFound, Rental, Store, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders,
-  Library, AccountRentals, Cart, Wishlist,Checkout, CheckoutDelivery, CheckoutPayment, CheckoutConfirmation, CheckoutLogin, Access, RecoverPassword,
-  Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword, RecoverPasswordConfirmation, RegisterRequiredData, RegisterConfirmation, Product, RegisterConfirmEmail, LibraryBookPanel, LibraryBookElement, AccountAddress, BooksList, EbooksList, Discounts, UserWishlist} from './import'
+  Library, AccountRentals, Cart, Wishlist,Checkout, Access, RecoverPassword,
+  Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword, RecoverPasswordConfirmation, RegisterRequiredData, RegisterConfirmation, Product, RegisterConfirmEmail, LibraryBookPanel, LibraryBookElement, AccountAddress, BooksList, EbooksList, Discounts, UserWishlist, Payment, OrderConfirmation, CheckoutReview} from './import'
 import MainLayout from './MainLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -49,6 +49,9 @@ function App() {
           <Route path='kategorie' element={<Categories />} />
           <Route path='kategorie/:title' element={<Category />} />
           <Route path='zamowienie' element={<Checkout />}/>
+          <Route path='oplac-zamowienie' element={<Payment />}/>
+          <Route path='przeglad-zamowienie' element={<CheckoutReview />}/>
+          <Route path='potwierdzenie-zamowienia' element={<OrderConfirmation />}/>
           <Route path='ulubione' element={<Wishlist />} />
           <Route path='ulubione/:guid' element={<UserWishlist />} />
           <Route path='kontakt' element={<Contact />} />

@@ -9,6 +9,14 @@ export const checkoutSlice = createSlice({
   name: "checkout",
   initialState: loadCheckoutFromLocalStorage(),
   reducers: {
+    setOrderAuth: (state,action) => {
+      if (action.payload) {
+        state.orderAuth = action.payload;
+      } else {
+        delete state.orderAuth;
+      }
+      localStorage.setItem("checkout", JSON.stringify(state));
+    },
     setDiscount: (state, action) => {
       if (action.payload) {
         state.discount = action.payload;
@@ -41,11 +49,11 @@ export const checkoutSlice = createSlice({
       }
       localStorage.setItem("checkout", JSON.stringify(state));
     },
-  },
+  }
 })
 
 const { actions } = checkoutSlice;
-const { setDiscount, setPayment, setDelivery, setUserData } = actions;
+const { setDiscount, setPayment, setDelivery, setUserData, setOrderAuth } = actions;
 
 const subscribeToStoreCheckout = (store) => {
   store.subscribe(() => {
@@ -54,5 +62,5 @@ const subscribeToStoreCheckout = (store) => {
   });
 }
 
-export { setDiscount, setPayment, setDelivery, setUserData, subscribeToStoreCheckout };
+export { setDiscount, setPayment, setDelivery, setUserData,setOrderAuth, subscribeToStoreCheckout };
 export default checkoutSlice.reducer;

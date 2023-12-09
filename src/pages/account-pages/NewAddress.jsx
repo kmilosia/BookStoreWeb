@@ -84,6 +84,14 @@ function NewAddress() {
         "cityID": userAddress.selectedCity,
         "countryID": userAddress.selectedCountry,
         "position": 1
+      },"mailingAddress": {
+        "street": userAddress.street,
+        "streetNumber": userAddress.streetNumber,
+        "houseNumber": userAddress.houseNumber,
+        "postcode": userAddress.postcode,
+        "cityID": userAddress.selectedCity,
+        "countryID": userAddress.selectedCountry,
+        "position": 2
       }
     }}else{
       data = {
