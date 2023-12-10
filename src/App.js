@@ -2,7 +2,7 @@ import './App.css';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
 import {Home, Search,PageNotFound, Rental, Store, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders,
   Library, AccountRentals, Cart, Wishlist,Checkout, Access, RecoverPassword,
-  Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword, RecoverPasswordConfirmation, RegisterRequiredData, RegisterConfirmation, Product, RegisterConfirmEmail, LibraryBookPanel, LibraryBookElement, AccountAddress, BooksList, EbooksList, Discounts, UserWishlist, Payment, OrderConfirmation, CheckoutReview} from './import'
+  Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword, RecoverPasswordConfirmation, RegisterRequiredData, RegisterConfirmation, Product, RegisterConfirmEmail, LibraryBookPanel, LibraryBookElement, AccountAddress, BooksList, EbooksList, Discounts, UserWishlist, Payment, OrderConfirmation, CheckoutReview, Reviews} from './import'
 import MainLayout from './MainLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -63,6 +63,7 @@ function App() {
           <Route path='promocje' element={<Discounts />}/>
           <Route path='ksiazki' element={<BooksList />}/>
           <Route path='produkt/:id' element={<Product />}/>
+          <Route path='recenzje/:id' element={<Reviews />}/>
           <Route path='konto' element={!isAuth ? <Navigate to="/dostep/logowanie" /> : <Account />}>
             <Route index element={<AccountPersonalData />} />
             <Route path='adres' element={<AccountAddress />} />

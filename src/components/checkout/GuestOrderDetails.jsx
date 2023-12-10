@@ -49,19 +49,7 @@ function GuestOrderDetails({submitting,setCheckoutErrors,checkoutErrors}) {
       },[])
       useEffect(() => {
         if(userData && userData.guestData){
-          console.log("gowno");
-          setGuestData((prevData) => ({
-            ...prevData,
-            name: userData.guestData.name || '',
-            surname: userData.guestData.surname || '',
-            email: userData.guestData.email || '',
-            street: userData.guestData.street || '',
-            streetNumber: userData.guestData.streetNumber || '',
-            houseNumber: userData.guestData.houseNumber || '',
-            postcode: userData.guestData.postcode || '',
-            selectedCity: userData.guestData.selectedCity || 1,
-            selectedCountry: userData.guestData.selectedCountry || 1,
-          }));
+          setGuestData(userData.guestData);
         }
       },[userData])
       useEffect(() => {

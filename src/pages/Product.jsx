@@ -21,11 +21,30 @@ function Product() {
     const {id} = useParams()
     const productID = Number(id)
     const [book, setBook] = useState({})
+    const [books, setBooks] = useState([])
+    const [reviews, setReviews] = useState([])
     const getBook = async () => {
         try{
             const response = await axiosClient.get(`/BookItems/Book-Details?bookItemId=${productID}`)
             setBook(response.data)
+            console.log(response.data);
     
+        }catch(err){
+            console.error(err)
+        }
+    }
+    const getBooks = async (value) => {
+        try{
+            const response = await axiosClient.get(`/BookItems/All-Books?bookIds=${value}`)
+            setBooks(response.data)
+        }catch(err){
+            console.error(err)
+        }
+    }
+    const getReviews = async () => {
+        try{
+            const response = await axiosClient.get(`/BookItemReviews/Get-Product-Reviews?bookItemId=${productID}$numberOfElements=4`)
+            setReviews(response.data)
         }catch(err){
             console.error(err)
         }
@@ -63,9 +82,15 @@ function Product() {
     useEffect(() => {
         if(productID){
             getBook()
-            console.log(book);
+            getReviews()
         }
     },[productID])
+    useEffect(() => {
+        if(book.bookId){
+            console.log(book.bookId);
+            // getBooks(book.bookId)
+        }
+    },[book])
   return (
     <div className='default-page-wrapper'>
     {Object.keys(book).length > 0 &&
@@ -196,15 +221,26 @@ function Product() {
                 </div>
                 <div className='col-span-2 flex flex-col'>
                 <h1 className='text-3xl font-medium'>Recenzje</h1>
-                <ReviewSummary />
+                <ReviewSummary score={book.score} scoreValues={book.scoreValues}/>
                 <h1 className='text-xl font-medium my-2'>Ostatnie recenzje</h1>
+                {reviews.length > 0 ?
+                <>
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 my-2'>
-                    <Review name="Monika Bella" score={4} content="nfioarnfrainfoarnif fnarofniar nfiaronf anifna anuaip famropfa wi w ia fnarofniar nfiaronf anifna anuaip famropfa wi w ia" date="23-02-2020" />
-                    <Review name="Monika Bella" score={4} content="nfioarnfrainfoarnif fnarofniar nfiaronf anifna anuaip famropfa wi w ia" date="23-02-2020" />
-                    <Review name="Monika Bella" score={4} content="nfioarnfrainfoarnif fnarofniar nfiaronf anifna anuaip famropfa wi w ia" date="23-02-2020" />
-                    <Review name="Monika Bella" score={4} content="nfioarnfrainfoarnif fnarofniar nfiaronf anifna anuaip famropfa wi w ia" date="23-02-2020" />
+                    {reviews && reviews.map((item,index) => {
+                        return (
+                            <Review key={index} item={item} />
+                        )
+                    })}
                 </div>
-                <button className='purple-button my-2 w-max self-center'>Wyświetl wszystkie recenzje</button>
+                <Link to={`/recenzje/${book.id}`} className='purple-button mt-4 w-max self-center'>Wyświetl wszystkie recenzje</Link>
+                </>
+                :
+                <div className='flex flex-col justify-center items-center h-full'>
+                    <img src='https://iili.io/JT0PtrN.png' className='w-1/3 lg:w-1/6 h-auto object-contain' />
+                    <h1 className='text-xl lg:text-2xl font-semibold my-2'>Brak recenzji</h1>
+                    <p className='lg:text-lg font-light text-center'>Nie dodano jeszcze żadnych recenzji dla wybranej książki</p>
+                </div>
+                }
                 </div>
                 <div className='col-span-2 flex flex-col'>
                 <h1 className='text-2xl font-semibold mb-3'>Podobne produkty</h1>
