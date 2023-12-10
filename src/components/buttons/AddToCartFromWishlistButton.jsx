@@ -6,13 +6,21 @@ import { showPopup } from '../../store/cartPopupSlice'
 
 function AddToCartFromWishlistButton({item}) {
   const dispatch = useDispatch()
-  // const handleClick = (e) => {
-  //   dispatch(addToCart(item))
-  //   dispatch(showPopup(item))
-  //   dispatch(removeItem(item))
-  // }
+  const handleClick = () => {
+    const newItem = {
+      authors: item.authors,
+      formId: item.formId,
+      formName: item.formName,
+      id: item.id,
+      imageURL: item.imageURL,
+      price: item.priceBrutto,
+      title: item.bookTitle,
+  }
+    dispatch(addToCart(newItem))
+    dispatch(showPopup(newItem))
+  }
   return (
-    <button className='purple-button flex items-center justify-center'><FiShoppingBag className='mr-1 text-xs'/>Dodaj do koszyka</button>
+    <button onClick={handleClick} className='purple-button flex items-center justify-center'><FiShoppingBag className='mr-1 text-xs'/>Dodaj do koszyka</button>
   )
 }
 

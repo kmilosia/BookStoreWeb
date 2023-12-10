@@ -20,6 +20,9 @@ function EbooksCarousel(props) {
     getBooks()
   },[])
   return (
+  books.length > 0 &&
+    <>
+    <h1 className='carousel-header'>{props.title}</h1>
       <Slider {...settings}>
         {books.map((item, index) => {
             return (
@@ -27,6 +30,7 @@ function EbooksCarousel(props) {
             )
         })}
   </Slider>
+  </>
   )
 }
 

@@ -21,23 +21,19 @@ function Home() {
       </div>
       <div className='default-page-container pt-0'>
         <div className='carousel-element mb-5'>
-          <h1 className='carousel-header'>Najpopularniejsze książki</h1>
-          <BooksCarousel filter='numberOfElements=10&sortBy="popular"&formIds=1'/>
+          <BooksCarousel title="Najpopularniejsze książki" filter='numberOfElements=10&sortBy="popular"&formIds=1'/>
         </div>
         <BannerCarousel />
         <div className='carousel-element'>
-          <h1 className='carousel-header'>Ostatnio dodane książki</h1>
-          <BooksCarousel filter='numberOfElements=10&sortOrder="desc"&formIds=1'/>
+          <BooksCarousel title="Ostatnio dodane książki" filter='numberOfElements=10&sortOrder="desc"&formIds=1'/>
         </div>
         <EventDiscountElement />
         <div className='carousel-element'>
-          <h1 className='carousel-header'>Najpopularniejsze ebooki</h1>
-          <EbooksCarousel filter='numberOfElements=10&sortBy="popular"&formIds=2'/>
+          <EbooksCarousel title="Najpopularniejsze ebooki" filter='numberOfElements=10&sortBy="popular"&formIds=2'/>
         </div>
        <HomeNewsSegment />
        <div className='carousel-element'>
-          <h1 className='carousel-header'>Ostatnio dodane ebooki</h1>
-          <EbooksCarousel filter='numberOfElements=10&sortOrder="desc"&formIds=2'/>
+          <EbooksCarousel title="Ostatnio dodane ebooki" filter='numberOfElements=10&sortOrder="desc"&formIds=2'/>
         </div>
       </div>
       <NewsletterForm />

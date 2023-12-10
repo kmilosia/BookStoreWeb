@@ -22,30 +22,24 @@ function Store() {
           <StoreTypeLink src='https://iili.io/JCnBzCl.png' path="/kategorie" title="Przeglądaj kategorie" />
         </div>  
       <div className='carousel-element'>
-        <h1 className='carousel-header'>Najpopularniejsze książki</h1>
-        <BooksCarousel filter='numberOfElements=10&sortBy="popular"&formIds=1'/>
+        <BooksCarousel title="Najpopularniejsze książki" filter='numberOfElements=10&sortBy="popular"&formIds=1'/>
       </div>
       <div className='carousel-element'>
-        <h1 className='carousel-header'>Najlepiej oceniane książki</h1>
-        <BooksCarousel/>
+        <BooksCarousel title="Najlepiej oceniane książki"/>
       </div>
       <div className='carousel-element'>
-        <h1 className='carousel-header'>Nowo dodane książki</h1>
-        <BooksCarousel filter='numberOfElements=10&formIds=1&sortOrder="desc"'/>
+        <BooksCarousel title="Nowo dodane książki" filter='numberOfElements=10&formIds=1&sortOrder="desc"'/>
       </div>
       <ExploreAllElement path="/ksiazki" title="Przeglądaj wszystkie dostępne książki" />
       <div className='carousel-element'>
-        <h1 className='carousel-header'>Najnowsze ebooki</h1>
-        <EbooksCarousel rental={false} filter='numberOfElements=10&formIds=2&sortOrder="desc"'/>
+        <EbooksCarousel title="Najnowsze ebooki" rental={false} filter='numberOfElements=10&formIds=2&sortOrder="desc"'/>
       </div>
       <div className='carousel-element'>
-        <h1 className='carousel-header'>Najpopularniejsze ebooki</h1>
-        <EbooksCarousel rental={false} filter='numberOfElements=10&sortBy="popular"&formIds=2'/>
+        <EbooksCarousel title="Najpopularniejsze ebooki" rental={false} filter='numberOfElements=10&sortBy="popular"&formIds=2'/>
       </div>
       <ExploreAllElement path="/ebooki" title="Przeglądaj wszystkie dostępne ebooki" />
       <div className='carousel-element'>
-        <h1 className='carousel-header'>Najlepiej oceniane ebooki</h1>
-        <EbooksCarousel rental={false}/>
+        <EbooksCarousel title="Najlepiej oceniane ebooki" rental={false}/>
       </div>
       <InstallAppElement />
     </div>

@@ -25,6 +25,7 @@ function CartSummary() {
     }
     useEffect(() => {
       getDiscountCodes()
+      dispatch(setDiscount())
     },[])
     const handlePromoInput = (e) => {
       setPromoInput(e.target.value)

@@ -27,15 +27,13 @@ function Product() {
         try{
             const response = await axiosClient.get(`/BookItems/Book-Details?bookItemId=${productID}`)
             setBook(response.data)
-            console.log(response.data);
-    
         }catch(err){
             console.error(err)
         }
     }
-    const getBooks = async (value) => {
+    const getBooks = async () => {
         try{
-            const response = await axiosClient.get(`/BookItems/All-Books?bookIds=${value}`)
+            const response = await axiosClient.get(`/BookItems/All-Books?bookId=${book.bookId}`)
             setBooks(response.data)
         }catch(err){
             console.error(err)
@@ -43,7 +41,7 @@ function Product() {
     }
     const getReviews = async () => {
         try{
-            const response = await axiosClient.get(`/BookItemReviews/Get-Product-Reviews?bookItemId=${productID}$numberOfElements=4`)
+            const response = await axiosClient.get(`/BookItemReview/Get-Product-Reviews?bookItemId=${productID}&numberOfElements=4`)
             setReviews(response.data)
         }catch(err){
             console.error(err)
@@ -87,8 +85,7 @@ function Product() {
     },[productID])
     useEffect(() => {
         if(book.bookId){
-            console.log(book.bookId);
-            // getBooks(book.bookId)
+            getBooks()
         }
     },[book])
   return (
@@ -106,28 +103,19 @@ function Product() {
                     <h2 className='text-xl lg:text-2xl 2xl:text-3xl my-1 font-semibold'>{book.authors && book.authors.map((item, index) => {return (<span key={index} className='mr-1'>{item.name} {item.surname}</span>)})}</h2>
                     <h3 className='font-semibold lg:text-lg 2xl:text-xl my-1'>{book.formName === "Book" ? "Książka" : "Ebook"}</h3>
                     <Stars score={book.score}/>
+                    {books.length > 0 &&
                     <div className='flex flex-wrap my-4'>
-                    <Link className='flex flex-col bg-white/50 dark:bg-midnight-950/50 shadow-md rounded-md px-5 py-3 mr-2 my-1'>
-                        <h1 className='text-sm font-medium'>Ebook</h1>
-                        <h1 className='text-xs font-light mt-1'>PDF </h1>
-                        <h2 className='text-xs font-light mt-1'>59.99zł</h2>
-                    </Link>
-                    <Link className='flex flex-col bg-white/50 dark:bg-midnight-800 lg:dark:bg-midnight-950/50 shadow-md rounded-md px-5 py-3 mr-2 my-1'>
-                        <h1 className='text-sm font-medium'>Ebook</h1>
-                        <h1 className='text-xs font-light mt-1'>EPUB </h1>
-                        <h2 className='text-xs font-light mt-1'>59.99zł</h2>
-                    </Link>
-                    <Link className='flex flex-col bg-white/50 dark:bg-midnight-950/50 shadow-md rounded-md px-5 py-3 mr-2 my-1'>
-                        <h1 className='text-sm font-medium'>Książka </h1>
-                        <h1 className='text-xs font-light mt-1'>Okładka miękka </h1>
-                        <h2 className='text-xs font-light mt-1'>49.99zł</h2>
-                    </Link>
-                    <Link className='flex flex-col bg-white/50 dark:bg-midnight-950/50 shadow-md rounded-md px-5 py-3 mr-2 my-1'>
-                        <h1 className='text-sm font-medium'>Książka</h1>
-                        <h1 className='text-xs font-light mt-1'>Okładka twarda</h1>
-                        <h2 className='text-xs font-light mt-1'>25.99zł</h2>
-                    </Link>
+                        {books.map((item,index) => {
+                            return (
+                                <Link key={index} to={`/produkt/${item.id}`} className={`flex flex-col ${item.id === book.id ? 'border-2 border-purple-400' : ''} bg-white/50 dark:bg-midnight-950/50 shadow-md rounded-md px-5 py-3 mr-2 my-1`}>
+                                    <h1 className='text-base font-medium'>{item.formName === 'Book' ? 'Książka' : 'Ebook'}</h1>
+                                    {/* <h1 className='text-xs font-light mt-1'>PDF </h1> */}
+                                    <h2 className='font-bold mt-1'>{item.price && item.price.toFixed(2)}zł</h2>
+                                </Link>
+                            )
+                        })}                  
                     </div>
+                    }
                     <div className='mt-auto w-full flex flex-col items-start'>
                     <div className='flex my-2'>
                         <h3 className='text-3xl lg:text-4xl 2xl:text-5xl font-bold'>{book.price && book.price.toFixed(2)}zł</h3>
@@ -211,6 +199,7 @@ function Product() {
                     <h1 className='text-3xl font-medium my-5'>Opis</h1>
                     <p className='my-2 dark:text-gray-200'>{book.description}</p>
                 </div>
+                {book.images.length > 1 &&
                 <div className='col-span-2 flex flex-col'>
                     <h1 className='text-3xl font-medium'>Zdjęcia</h1>
                     <div className='grid grid-cols-2 lg:grid-cols-5 grid-rows-2 my-2 gap-5 lg:gap-10'>
@@ -219,6 +208,7 @@ function Product() {
                         ))}                  
                     </div>
                 </div>
+                }
                 <div className='col-span-2 flex flex-col'>
                 <h1 className='text-3xl font-medium'>Recenzje</h1>
                 <ReviewSummary score={book.score} scoreValues={book.scoreValues}/>
@@ -243,9 +233,8 @@ function Product() {
                 }
                 </div>
                 <div className='col-span-2 flex flex-col'>
-                <h1 className='text-2xl font-semibold mb-3'>Podobne produkty</h1>
                 {book.categories &&
-                <BooksCarousel filter={`numberOfElements=10&categoryIds=${book.categories[0].id}&formIds=1`}/>}
+                <BooksCarousel title="Podobne produkty" filter={`numberOfElements=10&categoryIds=${book.categories[0].id}&formIds=1`}/>}
                 </div>
             </div>
         </div>

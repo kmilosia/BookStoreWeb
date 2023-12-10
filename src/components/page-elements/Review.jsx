@@ -1,5 +1,6 @@
 import React from 'react'
 import Stars from '../elements/Stars'
+import { convertDateDisplay } from '../../utils/functions/convertDate'
 
 function Review({item}) {
   return (
@@ -9,7 +10,7 @@ function Review({item}) {
             <Stars score={item.scoreValue} />
           </div>
           <p className='my-2'>{item.content}</p>
-          <p className='text-xs mt-auto font-light my-2 border-t border-gray-100 dark:border-midnight-800 pt-4'>{item.creationDate}</p>
+          <p className='text-xs mt-auto font-light my-2 border-t border-gray-100 dark:border-midnight-800 pt-4'>{item.creationDate && convertDateDisplay(item.creationDate)}</p>
     </div>
   )
 }

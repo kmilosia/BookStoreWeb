@@ -11,7 +11,7 @@ function Reviews() {
     const [reviews, setReviews] = useState([])
     const getReviews = async () => {
         try{
-            const response = await axiosClient.get(`/BookItemReviews/Get-Product-Reviews?bookItemId=${newId}`)
+            const response = await axiosClient.get(`/BookItemReview/Get-Product-Reviews?bookItemId=${newId}`)
             setReviews(response.data)
         }catch(err){
             console.error(err)
@@ -26,7 +26,7 @@ function Reviews() {
   return (
     <div className='default-page-wrapper'>
         <div className='default-page-container'>
-            <Link to={`/produkt/${newId}`} className='text-button-link text-base my-3 w-max mx-7 flex flex-row items-center underline-hover-purple'><BsArrowLeftShort className='text-lg'/>Wróć do produktu</Link>
+            <Link to={`/produkt/${newId}`} className='text-button-link text-base my-3 w-max flex flex-row items-center underline-hover-purple'><BsArrowLeftShort className='text-lg'/>Wróć do produktu</Link>
             {reviews.length <= 0 ?
             <div className='flex flex-col justify-center items-center h-full'>
                 <img src='https://iili.io/JT0PtrN.png' className='w-full lg:w-1/5 h-auto object-contain' />
@@ -35,7 +35,7 @@ function Reviews() {
             </div>
             :
             <>
-            <h1 className='text-3xl font-semibold'>Recenzje</h1>
+            <h1 className='text-3xl font-semibold my-2'>Wszystkie recenzje</h1>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-2 my-2'>
                 {reviews.map((item,index) => {
                     return(

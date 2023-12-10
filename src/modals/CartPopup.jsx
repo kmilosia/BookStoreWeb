@@ -25,7 +25,7 @@ function CartPopup() {
                 <h1 className='text-xl lg:text-2xl font-semibold'>{product.title}</h1>
                 <h2 className='font-light my-1'>{product.authors.map((item,index)=>{return(<span key={index}>{item.name} {item.surname}</span>)})}</h2>
                 <h3 className='flex items-center'>{product.formName === 'Book' ? 'Książka' : 'Ebook'}</h3>
-                <h4 className='mt-auto font-semibold text-2xl lg:text-3xl'>{product.price.toFixed(2)}zł</h4>
+                <h4 className='mt-auto font-semibold text-2xl lg:text-3xl'>{product.price && product.price.toFixed(2)}zł</h4>
             </div>
         </div>
         }

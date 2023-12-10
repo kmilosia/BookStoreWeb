@@ -20,14 +20,18 @@ function BooksCarousel(props) {
     getBooks()
   },[])
   return (
-  <Slider {...settings}>
-    {books && books.map((item, index) => {
-      return (
-        <BookCarouselItem key={index} item={item}/>
-      )
-    })}
-  </Slider>
-  )
+    books.length > 0 &&
+      <>
+      <h1 className='carousel-header'>{props.title}</h1>
+        <Slider {...settings}>
+          {books.map((item, index) => {
+              return (
+                  <BookCarouselItem key={index} item={item}/>
+              )
+          })}
+    </Slider>
+    </>
+    )
 }
 
 export default BooksCarousel

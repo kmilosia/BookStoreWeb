@@ -31,14 +31,10 @@ function Category() {
     <div className='default-page-container'>
       <PageHeader src={category.imageURL} title={category.categoryName} content={category.content} />
       <div className='flex flex-col divide-border-top'>
-        <h1 className='carousel-header'>Najpopularniejsze książki</h1>
-        <BooksCarousel filter={`numberOfElements=10&sortBy=popular&formIds=1&categoryIds=${categoryID}`}/>
-        <h1 className='carousel-header'>Najnowsze książki</h1>
-        <BooksCarousel filter={`numberOfElements=10&sortOrder=desc&formIds=1&categoryIds=${categoryID}`}/>
-        <h1 className='carousel-header'>Najpopularniejsze ebooki</h1>
-        <BooksCarousel filter={`numberOfElements=10&sortBy=popular&formIds=2&categoryIds=${categoryID}`}/>
-        <h1 className='carousel-header'>Najnowsze ebooki</h1>
-        <EbooksCarousel filter={`numberOfElements=10&sortOrder=desc&formIds=2&categoryIds=${categoryID}`}/>
+        <BooksCarousel title="Najpopularniejsze książki" filter={`numberOfElements=10&sortBy=popular&formIds=1&categoryIds=${categoryID}`}/>
+        <BooksCarousel title="Najnowsze książki" filter={`numberOfElements=10&sortOrder=desc&formIds=1&categoryIds=${categoryID}`}/>
+        <EbooksCarousel title="Najpopularniejsze ebooki" filter={`numberOfElements=10&sortBy=popular&formIds=2&categoryIds=${categoryID}`}/>
+        <EbooksCarousel title="Najnowsze ebooki" filter={`numberOfElements=10&sortOrder=desc&formIds=2&categoryIds=${categoryID}`}/>
       </div>
       </div>
     }

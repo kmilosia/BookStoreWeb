@@ -6,7 +6,7 @@ import { showPopup } from '../../store/cartPopupSlice'
 
 function AddToCartButton({item}) {
   const dispatch = useDispatch()
-  const handleClick = (e) => {
+  const handleClick = () => {
     dispatch(addToCart(item))
     dispatch(showPopup(item))
   }
