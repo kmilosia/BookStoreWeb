@@ -17,7 +17,7 @@ function LoginPopup() {
         <div className='flex justify-end my-2'>
             <button onClick={handleHidePopup} className='text-2xl'><IoClose/></button>
         </div>
-        <h1 className='text-xl font-medium text-center my-2'>{loginMessageTitle}</h1>
+        <h1 className='text-2xl font-medium text-center mb-2'>{loginMessageTitle}</h1>
         <div className='my-2 justify-center flex flex-col lg:flex-row'>
             <Link to='/dostep/logowanie' onClick={handleHidePopup} className='purple-button'>Przejdź do logowania</Link>
         </div>

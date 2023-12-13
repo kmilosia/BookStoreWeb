@@ -6,6 +6,7 @@ import cartPopupSlice from "./cartPopupSlice";
 import messageSlice from "./messageSlice";
 import loginPopupSlice from "./loginPopupSlice";
 import checkoutSlice, { subscribeToStoreCheckout } from "./checkoutSlice";
+import rentSlice from "./rentSlice";
 
 const store = configureStore({
     reducer:{
@@ -15,6 +16,7 @@ const store = configureStore({
         cartPopup: cartPopupSlice,
         message: messageSlice,
         loginPopup: loginPopupSlice,
+        rent: rentSlice,
         checkout: checkoutSlice,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authMiddleware),

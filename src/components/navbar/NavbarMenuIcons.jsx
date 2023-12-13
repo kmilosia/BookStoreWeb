@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BiHeart, BiShoppingBag, BiUser } from 'react-icons/bi'
 import { FiMoon, FiSun } from 'react-icons/fi'
 import { HiOutlineSearch } from 'react-icons/hi'
@@ -12,6 +12,7 @@ function NavbarMenuIcons({toggleTheme, isDarkTheme}) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const {isAuth} = useSelector((state)=>state.user)
+  const {cart} = useSelector((state)=>state.cart)
   const handleClose = () => {
     dispatch(hideAll())
   }
@@ -39,6 +40,11 @@ function NavbarMenuIcons({toggleTheme, isDarkTheme}) {
       <BiHeart />
     </button>
     <Link onClick={handleClose} to='/koszyk' className='navbar-menu-icon group'>
+      {(cart && cart.length > 0) &&
+      <div className='absolute flex -top-2 -right-2 rounded-full h-4 w-4 items-center justify-center text-[0.6rem] bg-purple-400 text-white'>
+        <span>{cart.length}</span>
+      </div>
+      }
       <div className='tooltip-button'>
         <span>Koszyk</span>
       </div>

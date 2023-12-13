@@ -70,7 +70,9 @@ function CartSummary() {
     <>
     <div className='grid grid-cols-[auto_max-content] font-medium text-sm my-1'>
       <p className='text-gray-500'>Wartość rabatu</p>
+      {totalPrice &&
       <p className=''>-{((discount.value / 100) * totalPrice).toFixed(2)}zł</p>
+      }
     </div>
     <div className='grid grid-cols-[auto_max-content] font-medium text-sm my-1'>
       <p className='text-gray-500'>Kod rabatowy</p>
@@ -80,7 +82,9 @@ function CartSummary() {
     }
     <div className='grid grid-cols-[auto_max-content] font-semibold divide-border-top py-2 my-1'>
       <p>Do zapłaty</p>
+      {totalPrice &&
       <p>{discount ? ((totalPrice - ((discount.value / 100) * totalPrice)).toFixed(2)) : totalPrice.toFixed(2)}zł</p>
+      }
     </div>
     <Link to='/zamowienie' className='purple-button flex items-center justify-center shadow-md'><BiSolidLock className='mr-2'/>Złóż zamówienie</Link>
   </div>

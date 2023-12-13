@@ -10,6 +10,7 @@ import { checkUserLogin } from './store/userSlice';
 import CartPopup from './modals/CartPopup';
 import Message from './modals/Message';
 import LoginPopup from './modals/LoginPopup';
+import RentalModal from './modals/RentalModal';
 function App() {
   const dispatch = useDispatch()
   const isAuth = useSelector((state) => state.user.isAuth)
@@ -22,6 +23,7 @@ function App() {
     <Router>
     <CartPopup />
     <LoginPopup />
+    <RentalModal />
       <Routes>
         <Route path='/' element={<Navigate to={'/'}/>} />
         <Route path='/dostep' element={isAuth ? <Navigate to="/" /> : <Access />}>

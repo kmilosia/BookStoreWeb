@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa';
 import Stars from '../components/elements/Stars';
 import ReviewSummary from '../components/page-elements/ReviewSummary';
 import Review from '../components/page-elements/Review';
-import EbooksCarousel from '../components/carousel/ebooks-carousel/EbooksCarousel';
 import { scrollTop } from '../utils/functions/scrollTop';
 import axiosClient from '../utils/api/axiosClient';
 import { convertDateDisplay } from '../utils/functions/convertDate';
@@ -14,10 +13,12 @@ import { addToCart } from '../store/cartSlice';
 import { showPopup } from '../store/cartPopupSlice';
 import { showLoginMessage } from '../store/loginPopupSlice';
 import { showMessage } from '../store/messageSlice';
+import { addRentBook, showRentalModal } from '../store/rentSlice';
 
 function Product() {
     const { isAuth } = useSelector((state) => state.user);
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const {id} = useParams()
     const productID = Number(id)
     const [book, setBook] = useState({})
@@ -45,6 +46,21 @@ function Product() {
             setReviews(response.data)
         }catch(err){
             console.error(err)
+        }
+    }
+    const handleRentButton = () => {
+        if(isAuth){
+            const item = {
+                authors: book.authors,
+                formId: book.formId,
+                id: book.id,
+                imageURL: book.images[0].imageURL,
+                title: book.bookTitle,
+                fileFormat: book.fileFormatName
+            }
+            dispatch(addRentBook(item))
+        }else{
+            dispatch(showLoginMessage({title: 'Zaloguj się do swojego konta aby móc wypożyczać książki!'}))
         }
     }
     const handleAddToCart = () => {
@@ -93,7 +109,7 @@ function Product() {
     {Object.keys(book).length > 0 &&
       <div className='flex flex-col relative w-full'>
         <img src={book.images && book.images.length > 0 ? book.images[0].imageURL : ''} className='absolute h-[40rem] lg:h-[30rem] w-full z-10 object-cover blur-sm' />
-        <div className='w-full z-20 pt-10 lg:pt-20 px-5 lg:px-10 2xl:px-48'>
+        <div className='w-full z-20 pt-10 lg:pt-20 px-5 lg:px-20 2xl:px-48'>
             <div className='grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-5 lg:gap-10'>
                 <div className='h-auto w-full flex items-center justify-end'>
                     <img src={book.images && book.images.length > 0 ? book.images[0].imageURL : ''} className='h-full w-full object-cover rounded-md shadow-book' />
@@ -124,11 +140,11 @@ function Product() {
                         <div className='flex flex-col lg:flex-row'>
                             <button onClick={handleAddToCart} className='rounded-purple-button my-2 lg:my-0'>Dodaj do koszyka</button>
                             {book.formId === 2 &&
-                            <button className='rounded-purple-button my-2 lg:my-0 lg:mx-2'>Wypożycz ebooka</button>
+                            <button onClick={handleRentButton} className='rounded-purple-button my-2 lg:my-0 lg:mx-2'>Wypożycz ebooka</button>
                             }
                         </div>
                         <div className='flex justify-end my-2 lg:my-0'>
-                            <button onClick={handleAddToWishlist} className='rounded-3xl bg-purple-400 h-10 w-10 flex items-center justify-center mx-1 hover:bg-purple-500'><FaHeart className={`${book.isWishlisted ? "text-purple-800" : 'text-white'}`}/></button>
+                            <button onClick={handleAddToWishlist} className='rounded-3xl bg-purple-400 h-10 w-10 flex items-center justify-center mx-1 hover:bg-purple-500'><FaHeart className={`${book.isWishlisted ? "text-purple-800" : 'text-white dark:text-midnight-800'}`}/></button>
                         </div>
                     </div>
                     </div>
@@ -234,7 +250,7 @@ function Product() {
                 </div>
                 <div className='col-span-2 flex flex-col'>
                 {book.categories &&
-                <BooksCarousel title="Podobne produkty" filter={`numberOfElements=10&categoryIds=${book.categories[0].id}&formIds=1`}/>}
+                <BooksCarousel title="Podobne produkty" filter={`numberOfElements=10&categoryIds=${book.categories[0].id}`}/>}
                 </div>
             </div>
         </div>
