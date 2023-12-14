@@ -1,9 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import RentedBooks from '../components/library/RentedBooks'
 import PurchasedBooks from '../components/library/PurchasedBooks'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 function Library() {
+    const navigate = useNavigate()
+    const {isAuth} = useSelector((state) => state.user)
     const [showRented, setShowRented] = useState(true)
+    useEffect(() => {
+        if(!isAuth){
+          navigate('/')
+        }
+      },[])
   return (
     <div className='default-page-wrapper'>
         <div className='default-page-container'>

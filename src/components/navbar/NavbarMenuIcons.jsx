@@ -25,6 +25,15 @@ function NavbarMenuIcons({toggleTheme, isDarkTheme}) {
       dispatch(showLoginMessage({title: "Zaloguj się do swojego konta by mieć dostęp do listy życzeń!"}))
     }
   }
+  const handleLibraryButton = () => {
+    if(isAuth){
+      handleClose()
+      navigate('/biblioteka')
+    }else{
+      handleClose()
+      dispatch(showLoginMessage({title: "Zaloguj się do swojego konta by mieć dostęp do biblioteki!"}))
+    }
+  }
   return (
     <>
     <button onClick={() => {dispatch(showAccountModal())}} className='navbar-menu-icon group'>
@@ -50,12 +59,12 @@ function NavbarMenuIcons({toggleTheme, isDarkTheme}) {
       </div>
       <BiShoppingBag/>
     </Link>
-    <Link onClick={handleClose} to='/biblioteka' className='navbar-menu-icon group'>
+    <button onClick={handleLibraryButton} className='navbar-menu-icon group'>
       <div className='tooltip-button'>
         <span>Bilbioteka</span>
       </div>
       <LuBookMarked/>
-    </Link>
+    </button>
     <button className='navbar-menu-icon group' onClick={toggleTheme}>
       <div className='tooltip-button'>
       {isDarkTheme ? <span>Tryb nocny</span> : <span>Tryb dzienny</span>}

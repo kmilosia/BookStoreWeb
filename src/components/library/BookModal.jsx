@@ -31,7 +31,7 @@ function BookModal({item,setIsBookModal,purchased}) {
                     <button onClick={() => {setIsReviewed(true)}} className='purple-button'>Dodaj recenzję<FaStarHalfAlt className='ml-2' /></button>
                   </div>
                   :
-                  <ReviewModal setIsReviewed={setIsReviewed}/>
+                  <ReviewModal bookItemId={item.id} setIsReviewed={setIsReviewed}/>
                   }
                 </div>
           </div>
