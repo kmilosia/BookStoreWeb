@@ -22,7 +22,7 @@ function EbookListElement({item}) {
     </Link>
     <div className='lg:hidden lg:group-hover:flex lg:group-hover:flex-col flex flex-col'>
       <AddToCartButton item={item}/> 
-      <RentButton />          
+      <RentButton item={item}/>          
     </div>
   </div>
   </div>

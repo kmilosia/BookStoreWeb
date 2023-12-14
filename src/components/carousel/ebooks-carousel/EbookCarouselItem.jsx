@@ -21,7 +21,7 @@ function EbookCarouselItem({item,rental}) {
       <Stars score={item.score} />
       <h2 className='font-semibold text-lg my-1'>{item.price.toFixed(2)}zł</h2>
     </Link>
-    {rental ? <RentButton /> : <AddToCartButton item={item} />}
+    {rental ? <RentButton item={item}/> : <AddToCartButton item={item} />}
     </div>
   );
 }
