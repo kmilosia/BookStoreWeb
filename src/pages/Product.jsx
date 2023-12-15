@@ -36,6 +36,7 @@ function Product() {
         try{
             const response = await axiosClient.get(`/BookItems/All-Books?bookId=${book.bookId}`)
             setBooks(response.data)
+            console.log(response.data);
         }catch(err){
             console.error(err)
         }
@@ -124,8 +125,7 @@ function Product() {
                         {books.map((item,index) => {
                             return (
                                 <Link key={index} to={`/produkt/${item.id}`} className={`flex flex-col ${item.id === book.id ? 'border-2 border-purple-400' : ''} bg-white/50 dark:bg-midnight-950/50 shadow-md rounded-md px-5 py-3 mr-2 my-1`}>
-                                    <h1 className='text-base font-medium'>{item.formName === 'Book' ? 'Książka' : 'Ebook'}</h1>
-                                    {/* <h1 className='text-xs font-light mt-1'>PDF </h1> */}
+                                    <h1 className='text-base font-medium'>{item.formName === 'Book' ? `Książka (${item.editionName})` : `Ebook (${item.fileFormatName})`}</h1>
                                     <h2 className='font-bold mt-1'>{item.price && item.price.toFixed(2)}zł</h2>
                                 </Link>
                             )

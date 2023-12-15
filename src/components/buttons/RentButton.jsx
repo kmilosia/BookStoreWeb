@@ -14,7 +14,7 @@ function RentButton({item}) {
             id: item.id,
             imageURL: item.imageURL,
             title: item.title,
-            fileFormat: "Demo format"
+            fileFormat: item.fileFormatName
         }
         dispatch(addRentBook(newItem))
     }else{

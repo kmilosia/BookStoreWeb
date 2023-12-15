@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { IoClose } from "react-icons/io5";
 import { closeRentalModal } from '../store/rentSlice';
 import axiosClient from '../utils/api/axiosClient';
+import { getValidToken } from '../utils/functions/getValidToken';
+import { showMessage } from '../store/messageSlice';
 
 function RentalModal() {
     const {rentalModal,rentProduct} = useSelector((state) => state.rent)
@@ -24,14 +26,34 @@ function RentalModal() {
     const handlePaymentChange = (e) => {
         setSelectedPaymentMethod(e.target.value)
     }
-    //wypozycz ksiazke wyslij api i nawiguj do biblioteki
-    const handleRentBook = () => {
-        const item = {
-            product: rentProduct,
-            paymentMethod: selectedPaymentMethod,
-            rentType: selectedType
+    const rentBook = async (data) => {
+        try {
+            const token = getValidToken();
+            const response = await axiosClient.post('/Rental/New-Rental', data, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            })
+            if(response.status === 200){
+                dispatch(showMessage({title: "Książka została wypożyczona!"}))
+                handleCloseModal()
+            }
+            return response
+        } catch (error) {
+            console.error(error)
         }
-        console.log(item);
+    }
+    const handleRentBook = () => {
+        const today = new Date();
+        const formattedDate = today.toISOString();
+        const item = {
+            bookItemID: rentProduct.id,
+            paymentMethodID: Number(selectedPaymentMethod),
+            rentalTypeID: Number(selectedType),
+            startDate: formattedDate,
+        }
+        rentBook(item)
     }
     const handleNextStep = () => {
         if(selectedType){

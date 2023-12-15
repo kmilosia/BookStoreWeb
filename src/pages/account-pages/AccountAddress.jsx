@@ -13,14 +13,13 @@ function AccountAddress() {
   const [isAdding, setIsAdding] = useState(false)
   useEffect(() => { 
     dispatch(fetchUserAddress())
-    console.log(userAddress);
   },[])
   return (
     <>
     <div className='flex flex-col px-10 py-10 bg-white rounded-md dark:bg-midnight-900'>
       <h1 className='text-xl font-semibold text-center lg:text-start'>Adres dostawy</h1>
       <div className='flex flex-col w-full 2xl:w-3/4'>
-      {userAddress.length > 0 ?
+      {userAddress && userAddress.length > 0 ?
       <div className='flex flex-col'>
         {userAddress.map((item, index) => {
           return (

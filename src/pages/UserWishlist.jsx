@@ -7,8 +7,7 @@ import ReturnShoppingButton from '../components/buttons/ReturnShoppingButton'
 import WishlistElement from '../components/products/WishlistElement'
 import { useEffect } from 'react'
 import { scrollTop } from '../utils/functions/scrollTop'
-import { useDispatch, useSelector } from 'react-redux'
-import { addToCart } from '../store/cartSlice'
+import { useSelector } from 'react-redux'
 import { getValidToken } from '../utils/functions/getValidToken'
 import axiosClient from '../utils/api/axiosClient'
 
@@ -27,10 +26,8 @@ function UserWishlist() {
             },
         })
         setWishlistElements(response.data)
-        console.log(response.data);
     } catch (error) {
-        console.error('Error:', error);
-        throw error
+        console.error(error);
     }
 }
   useEffect(() => {

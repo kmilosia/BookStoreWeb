@@ -27,7 +27,6 @@ function ReviewModal({setIsReviewed, bookItemId}) {
             return response
         } catch (error) {
             console.error(error)
-            throw error
         }
     }
     const handleInput = (e) => {

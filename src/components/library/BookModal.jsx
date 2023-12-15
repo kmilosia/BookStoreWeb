@@ -7,6 +7,21 @@ import ReviewModal from '../../modals/ReviewModal';
 
 function BookModal({item,setIsBookModal,purchased}) {
   const [isReviewed, setIsReviewed] = useState(false)
+  const showDate = () => {
+    const newDate = new Date(item.expirationDate)
+    const day = newDate.getDate();
+    const month = newDate.getMonth() + 1;
+    const year = newDate.getFullYear();
+    const formattedDate = `${day}.${month}.${year}`;
+    return formattedDate
+  }
+  const showTime = () => {
+    const newDate = new Date(item.expirationDate)
+    const hours = newDate.getHours();
+    const minutes = newDate.getMinutes();
+    const formattedTime = `${hours}:${minutes}`;
+    return formattedTime
+  }
   return (
     <div className='fixed z-[100000] top-0 left-0 w-screen h-screen bg-black/80 dark:text-white flex justify-center items-start lg:items-center'>
       <div className='w-full lg:w-2/3 h-max flex flex-col py-10 px-10 bg-white dark:bg-midnight-800'>
@@ -22,11 +37,11 @@ function BookModal({item,setIsBookModal,purchased}) {
                     <button onClick={() => {setIsBookModal(false)}} className='text-2xl'><IoClose/></button>
                   </div>
                 </div>
-                <h2 className='text-xl font-medium mt-2'>PDF</h2>
+                <h2 className='text-xl font-medium mt-2'>{item.fileFormatName}</h2>
                   {!isReviewed ?
                   <div className='flex flex-col w-full mt-auto'>
                     {purchased && <button className='purple-button'>Pobierz na urządzenie<FaSave className='ml-2'/></button>}
-                    {!purchased && <p className='my-2 cursor-default'>Wypożyczenie ważne do <strong>22.12.2023</strong> do godziny 23:59:59</p>}
+                    {!purchased && <p className='my-2 cursor-default'>Wypożyczenie ważne do <strong>{showDate()}</strong> do godziny <strong>{showTime()}</strong></p>}
                     <button className='purple-button'>Czytaj ebooka<FiFileText  className='ml-2' /></button>
                     <button onClick={() => {setIsReviewed(true)}} className='purple-button'>Dodaj recenzję<FaStarHalfAlt className='ml-2' /></button>
                   </div>

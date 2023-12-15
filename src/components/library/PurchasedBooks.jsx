@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axiosClient from '../../utils/api/axiosClient'
 import BookModal from './BookModal'
+import { getValidToken } from '../../utils/functions/getValidToken'
 
 function PurchasedBooks() {
     const [purchasedBooks, setPurchasedBooks] = useState([])
@@ -9,23 +10,31 @@ function PurchasedBooks() {
     const [propItem, setPropItem] = useState({})
     const handleBook = (item) => {
         const newItem = {
-            id: item.id,
-            title: item.title,
+            id: item.bookItemId,
+            title: item.bookTitle,
             imageURL: item.imageURL,
+            fileFormatName: item.fileFormatName,
+            expirationDate: item.expirationDate,
         }
         setPropItem(newItem)
         setIsBookModal(true)
     }
-    const getBooks = async () => {
-        try{
-            const response = await axiosClient.get(`/BookItems/All-Books?formIds=2`)
+    const getPurchasedBooks = async () => {
+        try {
+            const token = getValidToken();
+            const response = await axiosClient.get('/Rental/Purchased-Ebooks', {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            })
             setPurchasedBooks(response.data)
-        }catch(err){
-            console.error(err)
+        } catch (error) {
+            console.error(error);
         }
-      }
+    }
     useEffect(() => {
-        getBooks()
+        getPurchasedBooks()
     },[])
   return (
     <>
@@ -35,7 +44,7 @@ function PurchasedBooks() {
             return (
                 <button onClick={() => {handleBook(item)}} key={index} className='flex flex-col w-full h-auto px-5 py-5 items-center border border-gray-200 dark:border-midnight-800 rounded-md shadow-md hover:scale-105'>
                     <img src={item.imageURL} className='w-auto h-96 object-contain mb-2' />
-                    <h1 className='text-lg font-semibold cursor-pointer text-center'>{item.title}</h1>
+                    <h1 className='text-lg font-semibold cursor-pointer text-center'>{item.bookTitle}</h1>
                 </button>
             )
         })}
