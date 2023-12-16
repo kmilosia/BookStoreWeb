@@ -16,6 +16,15 @@ function UserWishlist() {
   const {guid} = useParams()
   const {isAuth} = useSelector((state) => state.user)
   const [wishlistElements, setWishlistElements] = useState({})
+  const updateWishlistAfterDelete = (id) => {
+    setWishlistElements((prev) => {
+      const updatedItems = prev.items.filter((item) => item.id !== id);
+      return {
+        ...prev,
+        items: updatedItems,
+      };
+    })
+  }
   const getWishlist = async (data) => {
     try {
         const token = getValidToken();
@@ -26,6 +35,7 @@ function UserWishlist() {
             },
         })
         setWishlistElements(response.data)
+        console.log(response.data);
     } catch (error) {
         console.error(error);
     }
@@ -78,7 +88,7 @@ function UserWishlist() {
           <div className='grid grid-cols-1 lg:grid-cols-4 2xl:grid-cols-5 gap-3 lg:gap-5 mt-5 mb-3'>
               {wishlistElements && wishlistElements.items.map((item,index) => {
                 return (
-                  <WishlistElement key={index} item={item} guid={guid} getWishlist={getWishlist}/>
+                  <WishlistElement key={index} item={item} updateWishlistAfterDelete={updateWishlistAfterDelete}/>
                 )
               })}
           </div>

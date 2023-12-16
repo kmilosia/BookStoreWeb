@@ -8,8 +8,7 @@ import { getValidToken } from '../../utils/functions/getValidToken';
 import { useDispatch } from 'react-redux';
 import { showMessage } from '../../store/messageSlice';
 
-function WishlistElement({item,guid,getWishlist}) {
-  const navigate = useNavigate()
+function WishlistElement({item,updateWishlistAfterDelete}) {
   const dispatch = useDispatch()
   const deleteWishlistItem = async (id) => {
     try {
@@ -20,7 +19,6 @@ function WishlistElement({item,guid,getWishlist}) {
               'Content-Type': 'application/json',
           },
         })
-        console.log(response.data);
         return response.data
     } catch (error) {
         console.error(error);
@@ -28,7 +26,7 @@ function WishlistElement({item,guid,getWishlist}) {
   }
   const handleRemove = () => {
     deleteWishlistItem(item.id)
-    getWishlist(guid)
+    updateWishlistAfterDelete(item.id)
     dispatch(showMessage({title: "Produkt usunięto z listy życzeń!"}))
   }
   const [showText, setShowText] = useState(false)
