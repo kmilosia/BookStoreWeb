@@ -14,6 +14,7 @@ import { showPopup } from '../store/cartPopupSlice';
 import { showLoginMessage } from '../store/loginPopupSlice';
 import { showMessage } from '../store/messageSlice';
 import { addRentBook, showRentalModal } from '../store/rentSlice';
+import { getValidToken } from '../utils/functions/getValidToken';
 
 function Product() {
     const { isAuth } = useSelector((state) => state.user);
@@ -78,15 +79,30 @@ function Product() {
         dispatch(addToCart(item))
         dispatch(showPopup(item))
     }
+    const addToWishlist = async (id) => {
+        try {
+            const token = getValidToken();
+            const response = await axiosClient.post(`/Wishlist/Edit-Wishlist-Item?bookItemId=${id}&isWishlisted=false`, null, {
+              headers: {
+                  'Authorization': `Bearer ${token}`,
+                  'Content-Type': 'application/json',
+              },
+            })
+            console.log(response.data);
+            return response.data
+        } catch (error) {
+            console.error(error);
+        }
+      }
     const handleAddToWishlist = () => {
         if(isAuth){
-            const data = {
-                id: book.id,
-                bool: true,
+            if(book.isWishlisted){
+                dispatch(showMessage({title: "Produkt znajduję się już na liście życzeń!"}))
+            }else{
+            addToWishlist(book.id)
+            dispatch(showMessage({title: "Produkt dodano do listy życzeń!"}))
+            setBook(prevBook => ({...prevBook,isWishlisted: !prevBook.isWishlisted}))
             }
-            // dispatch(editWishlist(data))
-            // dispatch(showMessage({title: "Lista życzeń została zmieniona!"}))
-            // setBook(prevBook => ({...prevBook,isWishlisted: !prevBook.isWishlisted}))
         }else{
             dispatch(showLoginMessage({title: "Zaloguj się aby dodawać produkty do listy życzeń!"}))
         }
@@ -144,7 +160,7 @@ function Product() {
                             }
                         </div>
                         <div className='flex justify-end my-2 lg:my-0'>
-                            <button onClick={handleAddToWishlist} className='rounded-3xl bg-purple-400 h-10 w-10 flex items-center justify-center mx-1 hover:bg-purple-500'><FaHeart className={`${book.isWishlisted ? "text-purple-800" : 'text-white dark:text-midnight-800'}`}/></button>
+                            <button onClick={handleAddToWishlist} className='rounded-3xl bg-purple-400 h-10 w-10 flex items-center justify-center mx-1 hover:bg-purple-500'><FaHeart className={`${book.isWishlisted ? "text-purple-900" : 'text-white dark:text-midnight-800'}`}/></button>
                         </div>
                     </div>
                     </div>

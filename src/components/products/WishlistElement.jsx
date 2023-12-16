@@ -1,27 +1,35 @@
 import React, { useState } from 'react'
 import TrashButton from '../buttons/TrashButton'
 import TitleTooltip from '../elements/TitleTooltip';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AddToCartFromWishlistButton from '../buttons/AddToCartFromWishlistButton';
 import axiosClient from '../../utils/api/axiosClient';
 import { getValidToken } from '../../utils/functions/getValidToken';
+import { useDispatch } from 'react-redux';
+import { showMessage } from '../../store/messageSlice';
 
-function WishlistElement({item}) {
+function WishlistElement({item,guid,getWishlist}) {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const deleteWishlistItem = async (id) => {
     try {
         const token = getValidToken();
-        const request = await axiosClient.post(`/Wishlist/Edit-Wishlist-Item?bookItemId=${id}&isWishlisted=true`, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
+        const response = await axiosClient.post(`/Wishlist/Edit-Wishlist-Item?bookItemId=${id}&isWishlisted=true`, null, {
+          headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+          },
         })
+        console.log(response.data);
+        return response.data
     } catch (error) {
         console.error(error);
     }
   }
   const handleRemove = () => {
-    // deleteWishlistItem(item.id)
+    deleteWishlistItem(item.id)
+    getWishlist(guid)
+    dispatch(showMessage({title: "Produkt usunięto z listy życzeń!"}))
   }
   const [showText, setShowText] = useState(false)
   return (

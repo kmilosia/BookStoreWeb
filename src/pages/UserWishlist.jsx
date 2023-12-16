@@ -78,7 +78,7 @@ function UserWishlist() {
           <div className='grid grid-cols-1 lg:grid-cols-4 2xl:grid-cols-5 gap-3 lg:gap-5 mt-5 mb-3'>
               {wishlistElements && wishlistElements.items.map((item,index) => {
                 return (
-                  <WishlistElement key={index} item={item}/>
+                  <WishlistElement key={index} item={item} guid={guid} getWishlist={getWishlist}/>
                 )
               })}
           </div>
