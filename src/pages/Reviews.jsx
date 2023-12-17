@@ -1,31 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import axiosClient from '../utils/api/axiosClient'
 import { BsArrowLeftShort } from 'react-icons/bs'
 import Review from '../components/page-elements/Review'
+import PageLoader from '../components/elements/PageLoader'
 import { scrollTop } from '../utils/functions/scrollTop'
+import { getReviews } from '../utils/api/reviewsAPI'
 
 function Reviews() {
+    scrollTop()
     const {id} = useParams()
     const newId = Number(id)
     const [reviews, setReviews] = useState([])
-    const getReviews = async () => {
-        try{
-            const response = await axiosClient.get(`/BookItemReview/Get-Product-Reviews?bookItemId=${newId}`)
-            setReviews(response.data)
-        }catch(err){
-            console.error(err)
-        }
-    }
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
-        getReviews()
-    },[])
-    useEffect(() => {
-        scrollTop()
+        getReviews(newId,setReviews,setLoading)
     },[])
   return (
     <div className='default-page-wrapper'>
         <div className='default-page-container'>
+            {loading ? <PageLoader /> :
+            <>
             <Link to={`/produkt/${newId}`} className='text-button-link text-base my-3 w-max flex flex-row items-center underline-hover-purple'><BsArrowLeftShort className='text-lg'/>Wróć do produktu</Link>
             {reviews.length <= 0 ?
             <div className='flex flex-col justify-center items-center h-full'>
@@ -45,6 +39,7 @@ function Reviews() {
             </div>
             </>
             }
+            </>}
         </div>
     </div>
   )

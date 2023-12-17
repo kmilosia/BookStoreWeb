@@ -1,34 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { scrollTop } from '../../utils/functions/scrollTop'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import PageHeader from '../../components/page-elements/PageHeader'
 import BooksCarousel from '../../components/carousel/books-carousel/BooksCarousel'
-import axiosClient from '../../utils/api/axiosClient'
 import EbooksCarousel from '../../components/carousel/ebooks-carousel/EbooksCarousel'
+import { getCategoryElement } from '../../utils/api/categoryAPI'
+import PageLoader from '../../components/elements/PageLoader'
 
 function Category() {
+  scrollTop()
   const [params, setParams] = useSearchParams()
   const categoryID = params.get('categoryId')
   const id = params.get('id')
   const [category, setCategory] = useState({})
-  const getCategory = async () => {
-    try {
-      const response = await axiosClient.get(`/CategoryElements/${id}`)
-      setCategory(response.data)
-    } catch (err) {
-      console.error(err)
-    }
-  }
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
-    scrollTop()
-  },[])
-  useEffect(() => {
-    getCategory()
+    getCategoryElement(id, setCategory,setLoading )
   },[categoryID])
   return (
     <div className='default-page-wrapper'>
-    {category &&
     <div className='default-page-container'>
+    {loading ? <PageLoader /> :
+    category && 
+      <>
       <PageHeader src={category.imageURL} title={category.categoryName} content={category.content} />
       <div className='flex flex-col divide-border-top'>
         <BooksCarousel title="Najpopularniejsze książki" filter={`numberOfElements=10&sortBy=popular&formIds=1&categoryIds=${categoryID}`}/>
@@ -36,8 +30,9 @@ function Category() {
         <EbooksCarousel title="Najpopularniejsze ebooki" filter={`numberOfElements=10&sortBy=popular&formIds=2&categoryIds=${categoryID}`}/>
         <EbooksCarousel title="Najnowsze ebooki" filter={`numberOfElements=10&sortOrder=desc&formIds=2&categoryIds=${categoryID}`}/>
       </div>
-      </div>
+      </>
     }
+    </div>
     </div>
   )
 }

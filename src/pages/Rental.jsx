@@ -2,14 +2,11 @@ import React from 'react'
 import BannerCarousel from '../components/carousel/banner-carousel/BannerCarousel'
 import ExploreAllElement from '../components/page-elements/ExploreAllElement'
 import InstallAppElement from '../components/page-elements/InstallAppElement'
-import { useEffect } from 'react'
 import { scrollTop } from '../utils/functions/scrollTop'
 import EbooksCarousel from '../components/carousel/ebooks-carousel/EbooksCarousel'
 
 function Rental() {
-  useEffect(() => {
-    scrollTop()
-  },[])
+  scrollTop()
   return (
     <div className='default-page-wrapper'>
         <div className='default-page-container'>
