@@ -221,18 +221,18 @@
     }
     .newsletter-bg-dark{
         background-position: center;
-        background-image: url("assets/backgrounds/magic-forest.jpg");
+        background-image: url("https://iili.io/JCJO7B1.jpg");
         box-shadow: inset 0 0 0 2000px rgba(24, 24, 38, 0.8);
     }
     .newsletter-bg-light{
         background-position: bottom;
-        background-image: url("assets/backgrounds/clouds-peach.jpg");
+        background-image: url("https://iili.io/JCJNlb2.jpg");
         box-shadow: inset 0 0 0 2000px rgba(246, 246, 249, 0.5);
     } 
     .forest-bg{
         background-position: center;
         background-size: cover;
-        background-image: url("assets/backgrounds/forestlogin.jpg");
+        background-image: url("https://iili.io/JCJO9dG.jpg");
     }
     /* background */
 }

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import AddToCartButton from '../buttons/AddToCartButton'
 import { Link } from 'react-router-dom'
 import Stars from '../elements/Stars'
-import TitleTooltip from '../elements/TitleTooltip'
 
 function BookListElement({item}) {
   const [showText, setShowText] = useState()
@@ -13,7 +12,7 @@ function BookListElement({item}) {
         <img src={item.imageURL} className='w-full aspect-[3/4] object-cover rounded-md' />
         <div className='relative mt-2' onMouseOver={() => {setShowText(true)}} onMouseLeave={() => {setShowText(false)}}>
           <h1 className='font-semibold text-sm cursor-pointer truncated-text'>{item.title}</h1>
-          {showText && <TitleTooltip title={item.title}/>}
+          {showText && <span className='title-tooltip'>{item.title}</span>}
         </div>
         <p className='font-light text-xs'>{item.authors.map((item,index)=>{return(<span key={index}>{item.name} {item.surname}</span>)})}</p>
         <Stars score={item.score} />

@@ -4,8 +4,9 @@ import { getNews } from '../../utils/api/newsAPI'
 
 function LatestNewsColumn() {
     const [news, setNews] = useState([])
+    const [loading, setLoading] = useState(true)
     useEffect(() => {
-        getNews(3, setNews)
+        getNews(3, setNews,setLoading)
     },[])
   return (
     <div className='flex flex-col divide-border-top pt-2 lg:pt-0 lg:border-none'>

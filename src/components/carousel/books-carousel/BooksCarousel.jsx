@@ -4,25 +4,21 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import BookCarouselItem from './BookCarouselItem';
 import { settings } from '../../../utils/objects/carousel-settings';
-import axiosClient from '../../../utils/api/axiosClient';
+import { getFilteredBooks } from '../../../utils/api/bookItemsAPI';
 
 function BooksCarousel(props) {
   const [books, setBooks] = useState([])
-  const getBooks = async () => {
-    try{
-        const response = await axiosClient.get(`/BookItems/All-Books?${props.filter}`)
-        setBooks(response.data)
-    }catch(err){
-        console.error(err)
-    }
-  }
+  const [loading, setLoading] = useState(true)
   useEffect(() =>{ 
-    getBooks()
+    getFilteredBooks(props.filter, setBooks, setLoading)
   },[])
   return (
+    <>
+    <h1 className='carousel-header'>{props.title}</h1>
+    {loading ? 
+    <div className='bg-white dark:bg-midnight-900 animate-pulse w-full h-80 rounded-md'></div>
+    :
     books.length > 0 &&
-      <>
-      <h1 className='carousel-header'>{props.title}</h1>
         <Slider {...settings}>
           {books.map((item, index) => {
               return (
@@ -30,6 +26,7 @@ function BooksCarousel(props) {
               )
           })}
     </Slider>
+    }
     </>
     )
 }

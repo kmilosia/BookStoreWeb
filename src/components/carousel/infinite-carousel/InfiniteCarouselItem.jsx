@@ -1,35 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import InfiniteCarouselBook from './InfiniteCarouselBook'
-import axiosClient from '../../../utils/api/axiosClient'
+import { getBooksCarousel, getEbooksCarousel } from '../../../utils/api/infiniteCarouselAPI'
 
 function InfiniteCarouselItem(props) {
   const [books, setBooks] = useState([])
-  const getBooks = async () => {
-    try{
-        const response = await axiosClient.get(`/BookItems/Infinite-Carousel-Books`)
-        setBooks(response.data)
-
-    }catch(err){
-        console.error(err)
-    }
-  }
-  const getEbooks = async () => {
-    try{
-        const response = await axiosClient.get(`/BookItems/Infinite-Carousel-EBooks`)
-        setBooks(response.data)
-
-    }catch(err){
-        console.error(err)
-    }
-  }
+  const [loading, setLoading] = useState(true)
   useEffect(() =>{ 
     if(props.form === 'book'){
-      getBooks()
+      getBooksCarousel(setBooks, setLoading)
     }else{
-      getEbooks()
+      getEbooksCarousel(setBooks, setLoading)
     }
   },[])
   return (
+    loading ?
+    <div className='animate-pulse h-40 w-full bg-white dark:bg-midnight-900'></div> :
     <div className={`flex items-center max-h-40 justify-center md:justify-start group-hover:pause-animation ${props.isReversed ? 'animate-infinite-scroll-reverse' : 'animate-infinite-scroll'}`}>
         {books.map((item,index) => {
           return (

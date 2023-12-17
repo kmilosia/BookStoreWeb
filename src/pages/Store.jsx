@@ -4,19 +4,16 @@ import BooksCarousel from '../components/carousel/books-carousel/BooksCarousel'
 import BannerCarousel from '../components/carousel/banner-carousel/BannerCarousel'
 import InstallAppElement from '../components/page-elements/InstallAppElement'
 import ExploreAllElement from '../components/page-elements/ExploreAllElement'
-import { useEffect } from 'react'
 import { scrollTop } from '../utils/functions/scrollTop'
 import EbooksCarousel from '../components/carousel/ebooks-carousel/EbooksCarousel'
 
 function Store() {
-  useEffect(() => {
-    scrollTop()
-  },[])
+  scrollTop()
   return (
     <div className='default-page-wrapper'>
     <div className='default-page-container'>
       <BannerCarousel />
-      <div className='grid grid-cols-1 mt-5 mb-3 lg:grid-cols-3 gap-5'>
+      <div className='grid mt-5 mb-3 grid-cols-3 gap-5'>
           <StoreTypeLink src='https://iili.io/JBf7uNp.png' path="/ksiazki" title="Przeglądaj książki" />
           <StoreTypeLink src='https://iili.io/JBf7lls.png' path="/ebooki" title="Przeglądaj ebooki" />
           <StoreTypeLink src='https://iili.io/JCnBzCl.png' path="/kategorie" title="Przeglądaj kategorie" />

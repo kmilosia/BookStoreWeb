@@ -3,21 +3,13 @@ import Slider from 'react-slick'
 import RightArrowCarousel from '../../elements/RightArrowCarousel';
 import LeftArrowCarousel from '../../elements/LeftArrowCarousel';
 import BannerCarouselItem from './BannerCarouselItem';
-import axiosClient from '../../../utils/api/axiosClient';
+import { getBanners } from '../../../utils/api/bannerAPI';
 
 function BannerCarousel() {
   const [banners, setBanners] = useState([])
-  const getBanners = async () => {
-    try{
-        const response = await axiosClient.get(`Banner`)
-        setBanners(response.data)
-
-    }catch(err){
-        console.error(err)
-    }
-  }
+  const [loading,setLoading] = useState(true)
   useEffect(() => {
-    getBanners()
+    getBanners(setBanners,setLoading)
   },[])
     const settings = {
         dots: false,
@@ -33,8 +25,11 @@ function BannerCarousel() {
         prevArrow: <LeftArrowCarousel />,
     };
   return (
+    loading ? 
+    <div className='w-full aspect-[10/3] rounded-md bg-white dark:bg-midnight-900 animate-pulse'></div>
+    :
     <Slider className='mb-2' {...settings}>
-    {banners && banners.map((item, index) => {
+    {banners?.map((item, index) => {
         return (
           <BannerCarouselItem key={index} path={item.path} src={item.imageURL} title={item.title} alt={item.imageTitle} />
         )

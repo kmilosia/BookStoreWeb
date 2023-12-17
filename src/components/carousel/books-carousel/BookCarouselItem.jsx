@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Stars from '../../elements/Stars';
 import { Link } from 'react-router-dom';
 import AddToCartButton from '../../buttons/AddToCartButton'
-import TitleTooltip from '../../elements/TitleTooltip';
 
 function BookCarouselItem({item}) {
   const [showText, setShowText] = useState(false)
@@ -11,14 +10,14 @@ function BookCarouselItem({item}) {
       <Link to={`/produkt/${item.id}`}>
       <img src={item.imageURL} className='w-full aspect-[3/4] object-cover rounded-md' />
       <div className="text-container">
-      <div className='relative mt-2' onMouseOver={() => {setShowText(true)}} onMouseLeave={() => {setShowText(false)}}>
-        <h1 className='font-semibold text-sm cursor-pointer truncated-text'>{item.title}</h1>
-        {showText && <TitleTooltip title={item.title}/>}
-      </div>
-        <p className='font-light text-xs'>{item.authors.map((item,index)=>{return(<span key={index}>{item.name} {item.surname}</span>)})}</p>
+        <h1 className='font-light text-sm mt-2'>{item.authors.map((item,index)=>{return(<span key={index}>{item.name} {item.surname}</span>)})}</h1>
+        <div className='relative' onMouseOver={() => {setShowText(true)}} onMouseLeave={() => {setShowText(false)}}>
+          <h2 className='font-semibold cursor-pointer truncated-text'>{item.title}</h2>
+          {showText && <span className='title-tooltip top-6'>{item.title}</span>}
+        </div>
       </div>
       <Stars score={item.score} />
-      <h2 className='font-semibold text-lg my-1'>{item.price.toFixed(2)}zł</h2>
+      <h3 className='font-semibold text-xl mt-2 mb-1'>{item.price.toFixed(2)}zł</h3>
       </Link>
       <AddToCartButton item={item}/>
     </div>

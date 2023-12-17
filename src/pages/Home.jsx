@@ -5,14 +5,11 @@ import BooksCarousel from '../components/carousel/books-carousel/BooksCarousel'
 import BannerCarousel from '../components/carousel/banner-carousel/BannerCarousel'
 import EventDiscountElement from '../components/page-elements/EventDiscountElement'
 import HomeNewsSegment from '../components/news-elements/HomeNewsSegment'
-import { useEffect } from 'react'
 import { scrollTop } from '../utils/functions/scrollTop'
 import EbooksCarousel from '../components/carousel/ebooks-carousel/EbooksCarousel'
 
 function Home() {
-  useEffect(() => {
-    scrollTop()
-  },[])
+  scrollTop()
   return (
     <div className='default-page-wrapper'>
       <div className='flex flex-col pt-5'>
