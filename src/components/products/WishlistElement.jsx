@@ -32,17 +32,20 @@ function WishlistElement({item,updateWishlistAfterDelete}) {
     dispatch(showPopup(newItem))
   }
   return (
-    <div className='flex flex-col px-5 py-3 border border-gray-200 dark:border-midnight-800 rounded-md lg:hover:scale-105 transition-all'>
+    <div className='flex flex-col px-5 py-3 border border-gray-200 dark:border-midnight-800 rounded-md'>
       <TrashButton onClick={handleRemove} />
       <div className='my-3'>
         <img src={item.imageURL} className='h-auto aspect-[3/4] w-full object-cover rounded-md' />
       </div>
-      <h2 className='font-light text-sm'>{item.authors.map((item,index)=>{return(<span key={index}>{item.name} {item.surname}</span>)})}</h2>
-      <Link to={`/produkt/${item.id}`} className='relative' onMouseOver={() => {setShowText(true)}} onMouseLeave={() => {setShowText(false)}}><h1 className='font-semibold my-1 cursor-pointer truncated-text'>{item.bookTitle}</h1>{showText && <span className='title-tooltip top-6'>{item.bookTitle}</span>}</Link>
-      <div className='my-1 flex flex-row items-center text-gray-600 dark:text-gray-400 text-sm lg:text-xs 2xl:text-sm cursor-default'>
-        <p>{item.formName === "Book" ? "Książka" : "Ebook"}</p>
+      <h2 className='font-light text-sm'>{item?.authors.map((item,index)=>{return(<span key={index}>{item.name} {item.surname}</span>)})}</h2>
+      <Link to={`/produkt/${item.id}`} className='relative' onMouseOver={() => {setShowText(true)}} onMouseLeave={() => {setShowText(false)}}>
+        <h1 className='font-semibold my-1 cursor-pointer truncated-text'>{item.bookTitle}</h1>
+        {showText && <span className='title-tooltip top-7'>{item.bookTitle}</span>}
+      </Link>
+      <div className='flex flex-row items-center text-gray-600 dark:text-gray-400 text-sm lg:text-xs 2xl:text-sm cursor-default'>
+        <h3>{item.formName === "Book" ? "Książka" : "Ebook"}</h3>
       </div>
-      <h3 className='font-semibold cursor-default text-xl my-1'>{item.priceBrutto.toFixed(2)} zł</h3>
+      <h4 className='font-semibold cursor-default text-xl mt-2 mb-1'>{item?.priceBrutto.toFixed(2)}zł</h4>
       <button onClick={handleAddToCartButton} className='purple-button flex items-center justify-center'>
         <FiShoppingBag className='mr-1 text-xs'/>Przenieś do koszyka
       </button>
