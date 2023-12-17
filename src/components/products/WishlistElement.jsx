@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import TrashButton from '../buttons/TrashButton'
 import TitleTooltip from '../elements/TitleTooltip';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AddToCartFromWishlistButton from '../buttons/AddToCartFromWishlistButton';
 import axiosClient from '../../utils/api/axiosClient';
 import { getValidToken } from '../../utils/functions/getValidToken';
@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { showMessage } from '../../store/messageSlice';
 
 function WishlistElement({item,updateWishlistAfterDelete}) {
+  const [showText, setShowText] = useState(false)
   const dispatch = useDispatch()
   const deleteWishlistItem = async (id) => {
     try {
@@ -29,7 +30,6 @@ function WishlistElement({item,updateWishlistAfterDelete}) {
     updateWishlistAfterDelete(item.id)
     dispatch(showMessage({title: "Produkt usunięto z listy życzeń!"}))
   }
-  const [showText, setShowText] = useState(false)
   return (
     <div className='flex flex-col px-5 py-3 border border-gray-200 dark:border-midnight-800 rounded-md lg:hover:scale-105 transition-all'>
       <TrashButton onClick={handleRemove} />

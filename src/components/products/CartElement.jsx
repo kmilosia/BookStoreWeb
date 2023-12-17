@@ -1,6 +1,12 @@
 import React, { useEffect } from 'react'
 import AddToWishlist from '../buttons/AddToWishlist'
 import QuantityChanger from '../elements/QuantityChanger'
+import { useDispatch, useSelector } from 'react-redux';
+import { showMessage } from '../../store/messageSlice';
+import { getValidToken } from '../../utils/functions/getValidToken';
+import axiosClient from '../../utils/api/axiosClient';
+import { showLoginMessage } from '../../store/loginPopupSlice';
+import { removeItem } from '../../store/cartSlice';
 
 function CartElement({item}) {
   return (

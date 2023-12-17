@@ -55,7 +55,6 @@ function App() {
           <Route path='przeglad-zamowienie' element={<CheckoutReview />}/>
           <Route path='potwierdzenie-zamowienia' element={<OrderConfirmation />}/>
           <Route path='ulubione' element={<Wishlist />} />
-          <Route path='ulubione/:guid' element={<UserWishlist />} />
           <Route path='kontakt' element={<Contact />} />
           <Route path='o-nas' element={<About />} />
           <Route path='wiadomosci' element={<News />} />

@@ -21,7 +21,7 @@ function HomeNewsSegment() {
     <h1 className='carousel-header mx-0'>Najnowsze wiadomości</h1>
     <div className='grid grid-cols-2 lg:grid-cols-4 grid-rows-2 gap-5'>
     {news.map((item, index) => (
-        <div key={index} className={index === 0 ? 'lg:row-span-2' : ''}>
+        <div key={index} className={index === 0 ? 'row-span-2' : ''}>
           <NewsElement item={item} />
         </div>
       ))}
