@@ -128,7 +128,7 @@ function Product() {
                     <img src={book.images?.length > 0 ? book.images[0].imageURL : ''} className='h-full w-full object-cover rounded-md shadow-book' />
                 </div>
                 <div className='flex flex-col items-start py-5 px-5 lg:py-10 lg:px-10 bg-white/50 shadow-md dark:bg-midnight-900/70 lg:backdrop-blur-md rounded-md'>
-                    <div className='grid grid-cols-[auto_max-content] gap-2'>
+                    <div className='grid grid-cols-[auto_max-content] gap-2 w-full'>
                         <h1 className='text-2xl lg:text-4xl 2xl:text-5xl font-bold my-1'>{book.bookTitle}</h1>
                         <div className='flex mt-1'>
                             <button onClick={handleAddToWishlist} className='rounded-3xl bg-midnight-900 dark:bg-white h-10 w-10 flex items-center justify-center mx-1'><FaHeart className={`${book.isWishlisted ? "text-purple-500" : 'text-white dark:text-midnight-800'}`}/></button>
