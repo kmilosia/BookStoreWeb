@@ -3,29 +3,24 @@ import { Link } from 'react-router-dom'
 import NewsElement from '../../components/news-elements/NewsElement'
 import { useEffect } from 'react'
 import { scrollTop } from '../../utils/functions/scrollTop'
-import axiosClient from '../../utils/api/axiosClient'
+import { getNews } from '../../utils/api/newsAPI'
+import PageLoader from '../../components/elements/PageLoader'
 
 function News() {
+    scrollTop()
     const [news, setNews] = useState([])
     const [first, setFirst] = useState({})
-    const getNews = async () => {
-      try{
-          const response = await axiosClient.get(`/News/Get-Number-Of-News?numberOfElements=7`)
-          setNews(response.data)
-      }catch(err){
-          console.error(err)
-      }
-    }
+    const [loading, setLoading] = useState(true)
     useEffect(() => {
-        scrollTop()
-        getNews()
+        getNews(7,setNews, setLoading)
     },[])
     useEffect(() => {
-    const firstNews = news.length > 0 ? news[0] : null;
-    setFirst(firstNews)
+      const firstNews = news.length > 0 ? news[0] : null;
+      setFirst(firstNews)
     },[news])
   return (
     <div className='default-page-wrapper'>
+      {loading ? <PageLoader /> :
       <div className='flex flex-col'>
             {first && 
             <Link to={`/wiadomosc/${first.id}`} className='relative w-full h-48 lg:h-96 rounded-md'>
@@ -47,6 +42,7 @@ function News() {
               <Link to='/wszystkie-wiadomosci' className='text-button-link mt-3 w-max'>Zobacz wszystkie wiadomości</Link>
             </div>
         </div>
+        }
       </div>
   )
 }

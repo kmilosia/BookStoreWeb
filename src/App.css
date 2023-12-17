@@ -117,7 +117,7 @@
     /* forms */
     /* buttons */
     .text-button-link{
-        @apply lg:text-xs text-base text-purple-400 hover:text-purple-500 font-semibold;
+        @apply lg:text-sm text-base text-purple-400 hover:text-purple-500 font-semibold;
     }
     .purple-button{
         @apply bg-purple-400 rounded-md py-2.5 px-5 lg:text-sm my-1 text-center text-white hover:bg-purple-500 font-semibold flex items-center justify-center;
