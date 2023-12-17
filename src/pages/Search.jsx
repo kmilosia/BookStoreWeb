@@ -5,46 +5,39 @@ import { scrollTop } from '../utils/functions/scrollTop'
 import SearchInput from '../components/forms/SearchInput'
 import { productSortOptions } from '../utils/data'
 import { useSearchParams } from 'react-router-dom'
-import axiosClient from '../utils/api/axiosClient';
+import { getSearchResults } from '../utils/api/bookItemsAPI'
+import PageLoader from '../components/elements/PageLoader'
 
 function Search() {
+  scrollTop()
   const [searchParams, setSearchParams] = useSearchParams()
   const search = searchParams.get('search')
   const [results, setResults] = useState([])
   const [sorting, setSorting] = useState('')
+  const [loading, setLoading] = useState(true)
   const handleSortingChange = (e) => {
     setSorting(e.target.value)
   }
-  const getResults = async () => {
-    try{
-        const response = await axiosClient.get(`/BookItems/All-Books?searchPhrase=${search}&${sorting}`)
-        setResults(response.data)
-    }catch(err){
-        console.error(err)
-    }
-  }
-  useEffect(() => {
-    scrollTop()
-  },[])
   useEffect(() => {
     if(search){
-      getResults()
+      getSearchResults(search,sorting,setResults,setLoading)
     }
   },[search,sorting])
   return (
     <div className='default-page-wrapper'>
       <div className='default-page-container'>
-        {results.length <= 0 ?
-         <div className='flex flex-col w-full justify-center items-center py-5'>
-           <img src='https://iili.io/JxdQe0G.png' className='w-full lg:w-1/3 mb-2 h-auto object-contain'/>
-           <h1 className='text-3xl font-medium my-3 lg:my-1 text-center'>Nie znaleziono takich wyników wyszukiwania</h1>
-           <p className='mb-5 lg:mb-3'>Spróbuj wpisać inną frazę wyszukiwania</p>
+      {loading ? <PageLoader /> : (
+        results.length <= 0 ?
+         <div className='flex flex-col w-full justify-center items-center py-5 min-h-[70vh]'>
+           <img src='https://iili.io/JxdQe0G.png' className='w-full lg:w-1/4 h-auto object-contain'/>
+           <h1 className='text-3xl font-semibold my-2'>Nie znaleziono takich wyników wyszukiwania</h1>
+           <p className='mb-5 lg:mb-3 font-light'>Spróbuj wpisać inną frazę wyszukiwania</p>
            <SearchInput />
          </div>
         :
         <>
         <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between'>
-          <div className='flex flex-col'>
+          <div className='flex flex-col cursor-default'>
             <h1 className='text-3xl font-semibold dark:text-white'>Wyniki wyszukiwania</h1>
             <p className='text-lg'>{results.length} rezultatów</p>
           </div>
@@ -60,7 +53,7 @@ function Search() {
           })}
         </div>
         </>
-        }
+        )}
       </div>
     </div>
   )

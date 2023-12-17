@@ -67,11 +67,11 @@ function Wishlist() {
       Object.keys(wishlistElements).length > 0 && (
       <>
       { wishlistElements.items.length <= 0 ?
-        <div className='flex flex-col items-center justify-center cursor-default h-[70vh]'>
+        <div className='flex flex-col items-center justify-center cursor-default min-h-[70vh]'>
           <img src='https://iili.io/JCJhsbS.png' className='w-full lg:w-1/4 h-auto object-contain' />
-          <h1 className='text-2xl font-semibold my-2'>Twoja lista życzeń jest pusta</h1>
-          <p className='text-sm font-light'>Dodaj do swojej listy życzeń wymarzone książki</p>
-          <Link to='/sklep' className='rounded-purple-button my-5'>Przejdź do sklepu</Link>
+          <h1 className='text-3xl font-semibold my-2'>Twoja lista życzeń jest pusta</h1>
+          <p className='font-light mb-5 lg:mb-3'>Dodaj do swojej listy życzeń wymarzone książki</p>
+          <Link to='/sklep' className='rounded-purple-button'>Przejdź do sklepu</Link>
         </div>
         : 
         <div className='flex flex-col'>
