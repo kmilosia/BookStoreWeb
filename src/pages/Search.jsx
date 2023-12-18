@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Select from '../components/forms/Select'
 import BookElement from '../components/products/BookElement'
-import { scrollTop } from '../utils/functions/scrollTop'
 import SearchInput from '../components/forms/SearchInput'
 import { productSortOptions } from '../utils/data'
 import { useSearchParams } from 'react-router-dom'
@@ -9,7 +8,6 @@ import { getSearchResults } from '../utils/api/bookItemsAPI'
 import PageLoader from '../components/elements/PageLoader'
 
 function Search() {
-  scrollTop()
   const [searchParams, setSearchParams] = useSearchParams()
   const search = searchParams.get('search')
   const [results, setResults] = useState([])

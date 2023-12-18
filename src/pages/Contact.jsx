@@ -5,15 +5,12 @@ import {BsFillPersonFill} from 'react-icons/bs'
 import ElementScrollButton from '../components/buttons/ElementScrollButton';
 import SubmitLoadingButton from '../components/buttons/SubmitLoadingButton';
 import ContactElement from '../components/page-elements/ContactElement';
-import {scrollTop} from '../utils/functions/scrollTop'
 import { useDispatch, useSelector } from 'react-redux';
 import {contactformValidate} from '../utils/validation/contactformValidation'
-import axiosClient from '../utils/api/axiosClient';
 import { resetState, sendContactMessage } from '../store/userSlice';
 import { showMessage } from '../store/messageSlice';
 
 function Contact() {
-  scrollTop()
   const dispatch = useDispatch()
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false)

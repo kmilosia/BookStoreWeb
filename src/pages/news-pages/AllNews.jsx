@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import NewsElement from '../../components/news-elements/NewsElement'
-import { scrollTop } from '../../utils/functions/scrollTop'
 import { useEffect } from 'react'
 import { getAllNews } from '../../utils/api/newsAPI'
 import PageLoader from '../../components/elements/PageLoader'
 
 function AllNews() {
-  scrollTop()
   const [news, setNews] = useState([])
   const [loading, setLoading] = useState(true)
   useEffect(() => {

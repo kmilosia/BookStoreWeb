@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../store/userSlice'
-import { scrollTop } from '../../utils/functions/scrollTop'
 import { CgMenuLeftAlt } from "react-icons/cg";
 
 function Account() {
-  scrollTop()
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [isMenuOpen, setIsMenuOpen] = useState(false)

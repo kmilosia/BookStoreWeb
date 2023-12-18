@@ -3,10 +3,8 @@ import RentedBooks from '../components/library/RentedBooks'
 import PurchasedBooks from '../components/library/PurchasedBooks'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { scrollTop } from '../utils/functions/scrollTop'
 
 function Library() {
-    scrollTop()
     const navigate = useNavigate()
     const {isAuth} = useSelector((state) => state.user)
     const [showRented, setShowRented] = useState(true)

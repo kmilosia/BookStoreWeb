@@ -1,10 +1,6 @@
-import React, { useEffect } from 'react'
-import { scrollTop } from '../../utils/functions/scrollTop'
+import React from 'react'
 
 function Cookies() {
-    useEffect(() => {
-        scrollTop()
-      },[])
   return (
     <div className='default-page-container'>
     <h1 class="document-header">O Cookies</h1>

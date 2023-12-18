@@ -8,13 +8,11 @@ import WishlistElement from '../components/products/WishlistElement'
 import PageLoader from '../components/elements/PageLoader'
 import { BiSolidShoppingBag } from 'react-icons/bi'
 import { BsDot } from 'react-icons/bs'
-import { scrollTop } from '../utils/functions/scrollTop'
 import { addToCart } from '../store/cartSlice'
 import { showMessage } from '../store/messageSlice'
 import { deleteWishlistItem, getWishlist, getWishlistGuid } from '../utils/api/wishlistAPI'
 
 function Wishlist() {
-  scrollTop()
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const {isAuth} = useSelector((state) => state.user)

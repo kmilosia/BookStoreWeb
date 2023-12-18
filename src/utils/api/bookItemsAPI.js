@@ -46,3 +46,11 @@ export const getBookDetails = async (id, setData, setLoading) => {
         console.error(err)
     }
 }
+export const getBooksByBookId = async (id, setData) => {
+    try{
+        const response = await axiosClient.get(`/BookItems/All-Books?bookId=${id}`)
+        setData(response.data)
+    }catch(err){
+        console.error(err)
+    }
+}

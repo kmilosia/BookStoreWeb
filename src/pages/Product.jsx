@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa';
 import Stars from '../components/elements/Stars';
 import PageLoader from '../components/elements/PageLoader';
 import ReviewSummary from '../components/page-elements/ReviewSummary';
 import Review from '../components/page-elements/Review';
-import { scrollTop } from '../utils/functions/scrollTop';
-import axiosClient from '../utils/api/axiosClient';
 import { convertDateDisplay } from '../utils/functions/convertDate';
 import BooksCarousel from '../components/carousel/books-carousel/BooksCarousel';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,44 +13,19 @@ import { showPopup } from '../store/cartPopupSlice';
 import { showLoginMessage } from '../store/loginPopupSlice';
 import { showMessage } from '../store/messageSlice';
 import { addRentBook } from '../store/rentSlice';
-import { getValidToken } from '../utils/functions/getValidToken';
-import { getBookDetails } from '../utils/api/bookItemsAPI';
+import { getBookDetails, getBooksByBookId } from '../utils/api/bookItemsAPI';
+import { getReviewsAmount } from '../utils/api/reviewsAPI';
+import { addToWishlist } from '../utils/api/wishlistAPI';
 
 function Product() {
-    scrollTop()
     const { isAuth } = useSelector((state) => state.user);
     const dispatch = useDispatch()
-    const navigate = useNavigate()
     const {id} = useParams()
     const productID = Number(id)
     const [book, setBook] = useState({})
     const [books, setBooks] = useState([])
     const [reviews, setReviews] = useState([])
     const [bookLoading, setBookLoading] = useState(true)
-    // const getBook = async () => {
-    //     try{
-    //         const response = await axiosClient.get(`/BookItems/Book-Details?bookItemId=${productID}`)
-    //         setBook(response.data)
-    //     }catch(err){
-    //         console.error(err)
-    //     }
-    // }
-    const getBooks = async () => {
-        try{
-            const response = await axiosClient.get(`/BookItems/All-Books?bookId=${book.bookId}`)
-            setBooks(response.data)
-        }catch(err){
-            console.error(err)
-        }
-    }
-    const getReviews = async () => {
-        try{
-            const response = await axiosClient.get(`/BookItemReview/Get-Product-Reviews?bookItemId=${productID}&numberOfElements=4`)
-            setReviews(response.data)
-        }catch(err){
-            console.error(err)
-        }
-    }
     const handleRentButton = () => {
         if(isAuth){
             const item = {
@@ -82,20 +55,6 @@ function Product() {
         dispatch(addToCart(item))
         dispatch(showPopup(item))
     }
-    const addToWishlist = async (id) => {
-        try {
-            const token = getValidToken();
-            const response = await axiosClient.post(`/Wishlist/Edit-Wishlist-Item?bookItemId=${id}&isWishlisted=false`, null, {
-              headers: {
-                  'Authorization': `Bearer ${token}`,
-                  'Content-Type': 'application/json',
-              },
-            })
-            return response.data
-        } catch (error) {
-            console.error(error);
-        }
-      }
     const handleAddToWishlist = () => {
         if(isAuth){
             if(book.isWishlisted){
@@ -112,12 +71,12 @@ function Product() {
     useEffect(() => {
         if(productID){
             getBookDetails(productID,setBook,setBookLoading)
-            getReviews()
+            getReviewsAmount(productID, setReviews, 4)
         }
     },[productID])
     useEffect(() => {
         if(book.bookId){
-            getBooks()
+            getBooksByBookId(book.bookId, setBooks)
         }
     },[book])
   return (

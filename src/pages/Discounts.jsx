@@ -12,12 +12,10 @@ import FilterButton from '../components/buttons/FilterButton'
 import Select from '../components/forms/Select'
 import BookElement from '../components/products/BookElement'
 import { productSortOptions } from '../utils/data'
-import { scrollTop } from '../utils/functions/scrollTop'
 import { getDiscountedBooksList } from '../utils/api/bookItemsAPI'
 import PageLoader from '../components/elements/PageLoader'
 
 function Discounts() {
-    scrollTop()
     const [isFilterOpen, setIsFilterOpen] = useState(false)
     const [loading, setLoading] = useState(true)
     const [results, setResults] = useState([])

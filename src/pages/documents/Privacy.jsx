@@ -1,10 +1,6 @@
-import React, { useEffect } from 'react'
-import { scrollTop } from '../../utils/functions/scrollTop'
+import React from 'react'
 
 function Privacy() {
-    useEffect(() => {
-        scrollTop()
-      },[])
   return (
     <div className='default-page-container'>
     <h1 class="document-header">Polityka prywatności sklepu Spellarium</h1>

@@ -1,10 +1,8 @@
 import React from 'react';
 import ElementScrollButton from '../components/buttons/ElementScrollButton';
 import AboutElement from '../components/page-elements/AboutElement';
-import { scrollTop } from '../utils/functions/scrollTop';
 
 function About() {
-  scrollTop()
   return (
     <div className='default-page-wrapper'>
       <div className='relative'>

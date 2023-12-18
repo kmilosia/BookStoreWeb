@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageHeader from '../../components/page-elements/PageHeader'
-import { scrollTop } from '../../utils/functions/scrollTop'
 import { getCategoryElements } from '../../utils/api/categoryAPI'
 
 function Categories() {
-  scrollTop()
   const [loading, setLoading] = useState(true)
   const [elements, setElements] = useState([])
   useEffect(() => {

@@ -4,11 +4,9 @@ import BooksCarousel from '../components/carousel/books-carousel/BooksCarousel'
 import BannerCarousel from '../components/carousel/banner-carousel/BannerCarousel'
 import InstallAppElement from '../components/page-elements/InstallAppElement'
 import ExploreAllElement from '../components/page-elements/ExploreAllElement'
-import { scrollTop } from '../utils/functions/scrollTop'
 import EbooksCarousel from '../components/carousel/ebooks-carousel/EbooksCarousel'
 
 function Store() {
-  scrollTop()
   return (
     <div className='default-page-wrapper'>
     <div className='default-page-container'>

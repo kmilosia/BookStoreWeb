@@ -3,11 +3,9 @@ import { Link, useParams } from 'react-router-dom'
 import { BsArrowLeftShort } from 'react-icons/bs'
 import Review from '../components/page-elements/Review'
 import PageLoader from '../components/elements/PageLoader'
-import { scrollTop } from '../utils/functions/scrollTop'
 import { getReviews } from '../utils/api/reviewsAPI'
 
 function Reviews() {
-    scrollTop()
     const {id} = useParams()
     const newId = Number(id)
     const [reviews, setReviews] = useState([])

@@ -11,6 +11,7 @@ import CartPopup from './modals/CartPopup';
 import Message from './modals/Message';
 import LoginPopup from './modals/LoginPopup';
 import RentalModal from './modals/RentalModal';
+import ScrollToTop from './components/ScrollToTop';
 function App() {
   const dispatch = useDispatch()
   const isAuth = useSelector((state) => state.user.isAuth)
@@ -21,6 +22,7 @@ function App() {
     <>
     <Message />
     <Router>
+    <ScrollToTop/>
     <CartPopup />
     <LoginPopup />
     <RentalModal />

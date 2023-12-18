@@ -12,12 +12,10 @@ import ToggleFilterMenuButton from '../components/buttons/ToggleFilterMenuButton
 import { productSortOptions } from '../utils/data'
 import EbookListElement from '../components/products/EbookListElement'
 import Select from '../components/forms/Select'
-import { scrollTop } from '../utils/functions/scrollTop'
 import { getFilteredSortedBooks } from '../utils/api/bookItemsAPI'
 import PageLoader from '../components/elements/PageLoader'
 
 function EbooksList() {
-    scrollTop()
     const [isFilterOpen, setIsFilterOpen] = useState(false)
     const [loading, setLoading] = useState(true)
     const [results, setResults] = useState([])

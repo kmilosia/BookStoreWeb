@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { BsArrowLeftShort } from 'react-icons/bs'
 import { Link, useParams } from 'react-router-dom'
-import { scrollTop } from '../../utils/functions/scrollTop'
 import LatestNewsColumn from '../../components/news-elements/LatestNewsColumn'
 import { getNewsInfo } from '../../utils/api/newsAPI'
 import PageLoader from '../../components/elements/PageLoader'
 
 function NewsItem() {
-    scrollTop()
     const {id} = useParams()
     const newsID = Number(id)
     const [news, setNews] = useState({})

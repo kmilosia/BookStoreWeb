@@ -11,13 +11,11 @@ import PageLoader from '../components/elements/PageLoader'
 import { useState } from 'react'
 import ToggleFilterMenuButton from '../components/buttons/ToggleFilterMenuButton'
 import { productSortOptions } from '../utils/data'
-import { scrollTop } from '../utils/functions/scrollTop'
 import BookListElement from '../components/products/BookListElement'
 import Select from '../components/forms/Select'
 import { getFilteredSortedBooks } from '../utils/api/bookItemsAPI'
 
 function BooksList() {
-    scrollTop()
     const [isFilterOpen, setIsFilterOpen] = useState(false)
     const [loading, setLoading] = useState(true)
     const [results, setResults] = useState([])

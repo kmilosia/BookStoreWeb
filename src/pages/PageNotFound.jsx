@@ -1,9 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {scrollTop} from '../utils/functions/scrollTop'
 
 function PageNotFound() {
-  scrollTop()
   return (
     <div className='default-page-wrapper'>
         <div className='flex flex-col w-full h-screen items-center justify-center py-5 px-5 '>

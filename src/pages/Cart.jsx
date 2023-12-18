@@ -5,13 +5,11 @@ import ReturnShoppingButton from '../components/buttons/ReturnShoppingButton'
 import { BsDot } from 'react-icons/bs'
 import { TbTrash } from 'react-icons/tb'
 import { useEffect } from 'react'
-import { scrollTop } from '../utils/functions/scrollTop'
 import { useDispatch, useSelector } from 'react-redux'
 import { emptyCart } from '../store/cartSlice'
 import CartSummary from '../components/page-elements/CartSummary'
 
 function Cart() {
-  scrollTop()
   const dispatch = useDispatch()
   const {cart, totalPrice, quantity} = useSelector((state) => state.cart)
   const [cartElements, setCartElements] = useState([])

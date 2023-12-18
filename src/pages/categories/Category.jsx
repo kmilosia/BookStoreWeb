@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { scrollTop } from '../../utils/functions/scrollTop'
 import { useSearchParams } from 'react-router-dom'
 import PageHeader from '../../components/page-elements/PageHeader'
 import BooksCarousel from '../../components/carousel/books-carousel/BooksCarousel'
@@ -8,7 +7,6 @@ import { getCategoryElement } from '../../utils/api/categoryAPI'
 import PageLoader from '../../components/elements/PageLoader'
 
 function Category() {
-  scrollTop()
   const [params, setParams] = useSearchParams()
   const categoryID = params.get('categoryId')
   const id = params.get('id')
