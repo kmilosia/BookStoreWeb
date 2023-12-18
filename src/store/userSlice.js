@@ -104,17 +104,40 @@ export const editUserData = createAsyncThunk(
         return request.data
     }
 )
+// export const changePassword = createAsyncThunk(
+//     'user/changePassword',
+//     async(data) => {
+//         try{
+//             const token = getValidToken()
+//             const response = await axiosClient.put('/User/Edit-Password', data,{
+//                 headers: {
+//                   'Authorization': `Bearer ${token}`,
+//                   'Content-Type': 'application/json',
+//                 },
+//               })
+//             return response.data    
+//         }catch(error){
+//             if (error.response && error.response.status === 400) {
+//                 const errorMessage = error.response.data;
+//                 throw new Error(errorMessage);
+//               } else {
+//                 throw error;
+//               }
+//         }
+        
+//     }
+// )
 export const changePassword = createAsyncThunk(
     'user/changePassword',
     async(data) => {
         const token = getValidToken()
-        const request = await axiosClient.put('/User/Edit-Password', data,{
+        const response = await axiosClient.put('/User/Edit-Password', data,{
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',
             },
           })
-        return request.data
+        return response.data
     }
 )
 export const deleteAccount = createAsyncThunk(
@@ -203,7 +226,7 @@ const userSlice = createSlice({
             state.error = null
         }).addCase(loginUser.rejected,(state,action)=>{
             state.loading = false
-            state.error = 'Nieudane logowanie!' 
+            state.error = action.error.message
         }).addCase(registerUser.pending,(state)=>{
             state.loading = true
             state.success = false
@@ -213,7 +236,7 @@ const userSlice = createSlice({
             state.error = null
         }).addCase(registerUser.rejected,(state,action)=>{
             state.loading = false
-            state.error = 'Podane dane już istnieją w naszej bazie!' 
+            state.error = action.error.message
         }).addCase(fetchUserData.pending,(state)=>{
             state.loading = true
         }).addCase(fetchUserData.fulfilled,(state,action)=>{
@@ -222,7 +245,7 @@ const userSlice = createSlice({
             state.error = null
         }).addCase(fetchUserData.rejected,(state,action)=>{
             state.loading = false
-            state.error = 'Nie można pobrać danych użytkownika!' 
+            state.error = action.error.message
         }).addCase(fetchUserAddress.pending,(state)=>{
             state.loading = true
         }).addCase(fetchUserAddress.fulfilled,(state,action)=>{
@@ -231,7 +254,7 @@ const userSlice = createSlice({
             state.error = null
         }).addCase(fetchUserAddress.rejected,(state,action)=>{
             state.loading = false
-            state.error = 'Nie udało się pobrać adresów użytkownika!' 
+            state.error = action.error.message
         }).addCase(resetPasswordEmail.pending,(state)=>{
             state.loading = true
             state.success = false
@@ -241,7 +264,7 @@ const userSlice = createSlice({
             state.error = null
         }).addCase(resetPasswordEmail.rejected,(state,action)=>{
             state.loading = false
-            state.error = 'Nie znaleziono podanego adresu email!' 
+            state.error = action.error.message
         }).addCase(resetPassword.pending,(state)=>{
             state.loading = true
             state.success = false
@@ -251,7 +274,7 @@ const userSlice = createSlice({
             state.error = null
         }).addCase(resetPassword.rejected,(state,action)=>{
             state.loading = false
-            state.error = 'Nie udało się odzyskać hasła!' 
+            state.error = action.error.message
         }).addCase(checkUserLogin.fulfilled, (state, action) => {
             state.isAuth = action.payload;
             state.error = null
@@ -264,7 +287,7 @@ const userSlice = createSlice({
             state.error = null
         }).addCase(createCustomer.rejected,(state,action)=>{
             state.loading = false
-            state.error = 'Nie udało się zapisać danych!' 
+            state.error = action.error.message
         }).addCase(deleteAccount.pending,(state)=>{
             state.loading = true
             state.success = false
@@ -276,7 +299,7 @@ const userSlice = createSlice({
             state.error = null
         }).addCase(deleteAccount.rejected,(state,action)=>{
             state.loading = false
-            state.error = 'Nie udało się usunąć konta!' 
+            state.error = action.error.message
         }).addCase(editUserData.pending,(state)=>{
             state.loading = true
             state.success = false
@@ -286,7 +309,7 @@ const userSlice = createSlice({
             state.error = null
         }).addCase(editUserData.rejected,(state,action)=>{
             state.loading = false
-            state.error = 'Nie udało się zmienić danych!' 
+            state.error = action.error.message
         }).addCase(addUserAddress.pending,(state)=>{
             state.loading = true
             state.success = false
@@ -296,7 +319,7 @@ const userSlice = createSlice({
             state.error = null
         }).addCase(addUserAddress.rejected,(state,action)=>{
             state.loading = false
-            state.error = 'Nie udało się dodać adresu!' 
+            state.error = action.error.message
         }).addCase(changePassword.pending,(state)=>{
             state.loading = true
             state.success = false
@@ -306,7 +329,7 @@ const userSlice = createSlice({
             state.error = null
         }).addCase(changePassword.rejected,(state,action)=>{
             state.loading = false
-            state.error = 'Nie udało się zmienić hasła!' 
+            state.error = action.error.message
         }).addCase(signNewsletter.pending,(state)=>{
             state.loading = true
             state.success = false

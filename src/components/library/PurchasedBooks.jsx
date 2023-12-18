@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import axiosClient from '../../utils/api/axiosClient'
 import BookModal from './BookModal'
-import { getValidToken } from '../../utils/functions/getValidToken'
+import { getPurchasedBooks } from '../../utils/api/rentalAPI'
+import PageLoader from '../elements/PageLoader'
 
 function PurchasedBooks() {
     const [purchasedBooks, setPurchasedBooks] = useState([])
     const [isBookModal, setIsBookModal] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [propItem, setPropItem] = useState({})
     const handleBook = (item) => {
         const newItem = {
@@ -19,24 +20,11 @@ function PurchasedBooks() {
         setPropItem(newItem)
         setIsBookModal(true)
     }
-    const getPurchasedBooks = async () => {
-        try {
-            const token = getValidToken();
-            const response = await axiosClient.get('/Rental/Purchased-Ebooks', {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-            })
-            setPurchasedBooks(response.data)
-        } catch (error) {
-            console.error(error);
-        }
-    }
     useEffect(() => {
-        getPurchasedBooks()
+        getPurchasedBooks(setPurchasedBooks, setLoading)
     },[])
   return (
+    loading ? <PageLoader /> :
     <>
     {purchasedBooks.length > 0 ?
     <div className='grid grid-cols-2 lg:grid-cols-4 gap-5 my-5'>

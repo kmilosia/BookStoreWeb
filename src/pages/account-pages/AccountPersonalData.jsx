@@ -51,7 +51,7 @@ function AccountPersonalData() {
     }
   },[userData])
   useEffect(() => {
-    if (success) {
+    if (success && !deleteModule && !passwordModule) {
       dispatch(resetState())
       dispatch(fetchUserData())
       setIsEdited(false)

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../store/userSlice'
@@ -6,20 +6,17 @@ import { scrollTop } from '../../utils/functions/scrollTop'
 import { CgMenuLeftAlt } from "react-icons/cg";
 
 function Account() {
+  scrollTop()
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const toggleMenu = () => {
       setIsMenuOpen(!isMenuOpen)
   }
-  useEffect(() => {
-    scrollTop()
-  },[])
   const handleLogout = () => {
     dispatch(logout())
     navigate('/dostep/logowanie')
 }
-  const linkStyle = 'px-5 py-2 hover:font-semibold'
   return (
     <div className='default-page-wrapper'>
       <div className='flex flex-col px-3 lg:px-10 pt-0 lg:pt-3 pb-5'>
@@ -28,12 +25,12 @@ function Account() {
           <div className='flex flex-col mt-2 lg:mt-0'>
             <button onClick={toggleMenu} className='flex lg:hidden items-center bg-white dark:bg-midnight-900 px-5 py-2 w-max rounded-md border dark:border-midnight-700'><CgMenuLeftAlt /><span className='mx-2'>Menu</span></button>
           <div className={`lg:flex flex-col py-3 mt-3 lg:mt-0 items-center lg:items-start rounded-md h-auto bg-white dark:bg-midnight-900 ${isMenuOpen ? 'flex' : 'hidden'}`}>
-            <Link to='' className={linkStyle}>Dane użytkownika</Link>
-            <Link to='adres' className={linkStyle}>Adres dostawy</Link>
-            <Link to='zamowienia' className={linkStyle}>Zamówienia</Link>
-            <Link to='wypozyczenia' className={linkStyle}>Wypożyczenia</Link>
-            <Link to='/biblioteka' className={linkStyle}>Biblioteka</Link>
-            <button onClick={handleLogout} className={`${linkStyle} text-red-500`}>Wyloguj się</button>
+            <Link to='' className='px-5 py-2 hover:font-semibold'>Dane użytkownika</Link>
+            <Link to='adres' className='px-5 py-2 hover:font-semibold'>Adres dostawy</Link>
+            <Link to='zamowienia' className='px-5 py-2 hover:font-semibold'>Zamówienia</Link>
+            <Link to='wypozyczenia' className='px-5 py-2 hover:font-semibold'>Wypożyczenia</Link>
+            <Link to='/biblioteka' className='px-5 py-2 hover:font-semibold'>Biblioteka</Link>
+            <button onClick={handleLogout} className='px-5 py-2 hover:font-semibold text-red-500'>Wyloguj się</button>
           </div>
           </div>
           <Outlet />

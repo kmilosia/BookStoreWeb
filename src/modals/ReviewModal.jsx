@@ -4,9 +4,11 @@ import axiosClient from '../utils/api/axiosClient';
 import {getValidToken} from '../utils/functions/getValidToken';
 import { useDispatch } from 'react-redux';
 import { showMessage } from '../store/messageSlice';
+import Spinner from '../components/elements/Spinner';
 
 function ReviewModal({setIsReviewed, bookItemId}) {
     const dispatch = useDispatch()
+    const [loading, setLoading] = useState(false)
     const [rating, setRating] = useState(null)
     const [hover, setHover] = useState(null)
     const [textInput, setTextInput] = useState('')
@@ -24,6 +26,7 @@ function ReviewModal({setIsReviewed, bookItemId}) {
                 dispatch(showMessage({title: "Recenzja została dodana!"}))
                 setIsReviewed(false)
             }
+            setLoading(false)
             return response
         } catch (error) {
             console.error(error)
@@ -33,6 +36,7 @@ function ReviewModal({setIsReviewed, bookItemId}) {
         setTextInput(e.target.value)
     }
     const handleAddReview = () => {
+        setLoading(true)
         let newErrors = {}
         if(textInput === ''){
             newErrors = { ...newErrors, input: 'Napisz swoją recenzję!' };
@@ -69,10 +73,14 @@ function ReviewModal({setIsReviewed, bookItemId}) {
         })}
         </div>
         {errors.rating && <p className='error-text'>{errors.rating}</p>}
-        <textarea rows={3} className='resize-none cursor-pointer my-1 form-input focus:border-purple-400' onChange={handleInput} placeholder='Napisz swoją recenzję...'/>
+        <textarea rows={3} className='resize-none my-1 form-input focus:border-purple-400' onChange={handleInput} placeholder='Napisz swoją recenzję...'/>
         {errors.input && <p className='error-text'>{errors.input}</p>}
         <div className='grid grid-cols-2 gap-3 mt-2'>
-            <button onClick={handleAddReview} className='purple-button w-full'>Dodaj recenzję</button>
+            <button onClick={handleAddReview} type='submit' className='purple-button w-full'>
+                {loading ?
+                <Spinner /> : <span>Dodaj recenzję</span>
+                }
+            </button>
             <button onClick={() => {setIsReviewed(false)}} className='bordered-purple-button w-full'>Wróć</button>
         </div>
     </div>

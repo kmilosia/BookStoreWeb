@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import BookModal from './BookModal'
-import axiosClient from '../../utils/api/axiosClient'
-import { getValidToken } from '../../utils/functions/getValidToken'
+import { getRentedBooks } from '../../utils/api/rentalAPI'
+import PageLoader from '../elements/PageLoader'
 
 function RentedBooks() {
     const [rentedBooks, setRentedBooks] = useState([])
     const [isBookModal, setIsBookModal] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [propItem, setPropItem] = useState({})
     const handleBook = (item) => {
         const newItem = {
@@ -19,24 +20,11 @@ function RentedBooks() {
         setPropItem(newItem)
         setIsBookModal(true)
     }
-    const getRentedBooks = async () => {
-        try {
-            const token = getValidToken();
-            const response = await axiosClient.get('/Rental/Rented-Ebooks', {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-            })
-            setRentedBooks(response.data)
-        } catch (error) {
-            console.error(error);
-        }
-    }
     useEffect(() => {
-        getRentedBooks()
+        getRentedBooks(getRentedBooks, setLoading)
     },[])
     return (
+    loading ? <PageLoader /> :
     <>
     {rentedBooks.length > 0 ?
      <div className='grid grid-cols-2 lg:grid-cols-4 gap-5 my-5'>

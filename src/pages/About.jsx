@@ -14,7 +14,7 @@ function About() {
         <img src='https://iili.io/JCJNZXI.jpg' alt='Library' className='w-full h-40 lg:h-96 object-cover object-center' />
         <div className='w-full h-40 lg:h-96 bg-midnight-950/70 top-0 absolute z-0' />
         <div className='w-full h-40 lg:h-96 flex flex-col items-center justify-center absolute top-0 z-10 px-5 lg:px-0'>
-            <h1 className='font-semibold text-3xl lg:text-5xl text-white text-center'>O naszym sklepie</h1>
+            <h1 className='font-semibold text-3xl lg:text-5xl text-white text-center cursor-default'>O naszym sklepie</h1>
         </div>
       </div>
         <div id='about' className='default-page-container'>

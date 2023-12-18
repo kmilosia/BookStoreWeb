@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { changePassword, resetState } from '../store/userSlice'
-import Spinner from '../components/elements/Spinner'
-import ShowPasswordButton from '../components/buttons/ShowPasswordButton'
 import { resetPasswordValidate } from '../utils/validation/resetPasswordValidation'
+import { AiFillEye } from 'react-icons/ai'
+import SubmitLoadingButton from '../components/buttons/SubmitLoadingButton'
 
 function PasswordChangeModal(props) {
   const dispatch = useDispatch()
@@ -32,7 +32,6 @@ function PasswordChangeModal(props) {
         newPassword: inputValues.newPassword,
         repeatNewPassword: inputValues.confirmPassword,
     }
-    console.log(data);
     dispatch(changePassword(data))
   }
   useEffect(() => {
@@ -46,49 +45,42 @@ function PasswordChangeModal(props) {
       finishSubmit();
     }
   }, [errors])
-  useEffect(() => {
-    if (props.setPasswordModule) {
-        document.body.style.overflow = 'hidden'
-    } else {
-        document.body.style.overflow = 'auto'
-    }
-    return () => {
-        document.body.style.overflow = 'auto'
-    };
-}, [props.setPasswordModule])
 
   return (
-    <div className='fixed flex justify-center items-center top-0 left-0 w-screen h-full z-100 bg-black/50'>
+    <div className='fixed z-[100000] top-0 left-0 w-screen h-screen bg-black/80 dark:text-white flex justify-center items-center lg:items-center'>
     <div className='bg-gray-100 px-10 py-10 rounded-md w-auto h-auto flex flex-col items-center justify-center dark:bg-midnight-800 mx-3 lg:mx-0'>
-      <h1 className='text-2xl font-semibold my-2 text-center lg:text-start'>Zmień hasło</h1>
+      <h1 className='text-2xl font-semibold text-center lg:text-start'>Zmień hasło</h1>
       <form onSubmit={handleSubmit} className='lg:w-[30rem]'>
-      <div className='grid grid-cols-1 lg:grid-cols-2 gap-3 my-2 w-full'>
-      <div className="col-span-2">
-      <div className="relative">
-        <ShowPasswordButton setIsHiddenPassword={setIsHiddenOldPassword} isHiddenPassword={isHiddenOldPassword}/>
-        <input value={inputValues.oldPassword} onChange={handleChange} type={`${isHiddenOldPassword ? 'password' : 'text'}`} id='oldPassword' name='oldPassword' className="floating-form-input-colors peer" placeholder=" " />
-        <label htmlFor='oldPassword' className="floating-form-label-colors">Stare hasło</label>
+      <div className='flex flex-col w-full'>
+      <div className='flex flex-col'>
+          <label htmlFor='oldPassword' className='label-input'>Stare hasło</label>
+          <div className='relative'>
+          <input value={inputValues.oldPassword} onChange={handleChange} name='oldPassword' className='form-input w-full'  type={`${isHiddenOldPassword ? 'password' : 'text'}`}/>
+          <button type='button'><AiFillEye onClick={() => {setIsHiddenOldPassword(!isHiddenOldPassword)}} className='eye-password-button'/></button>
+          </div>
+          {errors.oldPassword && <span className='error-text'>{errors.oldPassword}</span>}
       </div>
-      {errors.oldPassword && <span className='error-text'>{errors.oldPassword}</span>}
-    </div>
-      <div className="col-span-2">
-      <div className="relative">
-        <ShowPasswordButton setIsHiddenPassword={setIsHiddenPassword} isHiddenPassword={isHiddenPassword} />
-        <input value={inputValues.newPassword} onChange={handleChange} type={`${isHiddenPassword ? 'password' : 'text'}`} id='newPassword' name='newPassword' className="floating-form-input-colors peer" placeholder=" " />
-        <label htmlFor='newPassword' className="floating-form-label">Nowe hasło</label>
+      <div className='flex flex-col'>
+          <label htmlFor='newPassword' className='label-input'>Nowe hasło</label>
+          <div className='relative'>
+          <input value={inputValues.newPassword} onChange={handleChange} name='newPassword' className='form-input w-full'  type={`${isHiddenPassword ? 'password' : 'text'}`}/>
+          <button type='button'><AiFillEye onClick={() => {setIsHiddenPassword(!isHiddenPassword)}} className='eye-password-button'/></button>
+          </div>
+          {errors.newPassword && <span className='error-text'>{errors.newPassword}</span>}
       </div>
-      {errors.password && <span className='error-text'>{errors.password}</span>}
-    </div>
-    <div className="col-span-2">
-      <div className="relative">
-        <ShowPasswordButton setIsHiddenPassword={setIsHiddenRepeatPassword} isHiddenPassword={isHiddenRepeatPassword} />
-        <input value={inputValues.confirmPassword} onChange={handleChange} type={`${isHiddenRepeatPassword ? 'password' : 'text'}`} id='confirmPassword' name='confirmPassword' className="floating-form-input-colors peer" placeholder=" " />
-        <label htmlFor='confirmPassword' className="floating-form-label">Powtórz nowe hasło</label>
+      <div className='flex flex-col'>
+          <label htmlFor='confirmPassword' className='label-input'>Powtórz nowe hasło</label>
+          <div className='relative'>
+          <input value={inputValues.confirmPassword} onChange={handleChange} name='confirmPassword' className='form-input w-full'  type={`${isHiddenRepeatPassword ? 'password' : 'text'}`}/>
+          <button type='button'><AiFillEye onClick={() => {setIsHiddenRepeatPassword(!isHiddenRepeatPassword)}} className='eye-password-button'/></button>
+          </div>
+          {errors.confirmPassword && <span className='error-text'>{errors.confirmPassword}</span>}
       </div>
-      {errors.confirmPassword && <span className='error-text'>{errors.confirmPassword}</span>}
-    </div>
-        <button type='submit' className='purple-button'>{loading ? <Spinner size={6}/> : <span>Zmień hasło</span>}</button>
-        <button onClick={() => {props.setPasswordModule(false);dispatch(resetState())}} className='bordered-purple-button'>Anuluj</button>
+        <div className='flex flex-col mt-2'>
+          <SubmitLoadingButton loading={loading} title="Zmień hasło" />
+          <button onClick={() => {props.setPasswordModule(false);dispatch(resetState())}} className='bordered-purple-button'>Anuluj</button>
+          {errors.submit && <span className='error-text'>{errors.submit}</span>}
+        </div>
       </div>
       </form>
       {error && <p className='my-1 error-text'>{error}</p>}

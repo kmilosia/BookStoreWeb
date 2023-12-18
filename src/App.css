@@ -134,6 +134,9 @@
     .rounded-bordered-purple-button{
         @apply flex flex-row items-center rounded-3xl font-semibold lg:text-sm text-purple-400 hover:bg-purple-400 hover:text-white border-2 border-purple-400 px-5 py-2;
     }
+    .eye-password-button{
+        @apply absolute right-3 top-3 text-xl cursor-pointer text-midnight-500 dark:text-white hover:text-purple-500 dark:hover:text-purple-500;
+    }
     /* buttons */
     /* access pages */
     .login-container{
@@ -221,18 +224,18 @@
     }
     .newsletter-bg-dark{
         background-position: center;
-        background-image: url("https://iili.io/JCJO7B1.jpg");
+        background-image: url("https://iili.io/JAJsefe.jpg");
         box-shadow: inset 0 0 0 2000px rgba(24, 24, 38, 0.8);
     }
     .newsletter-bg-light{
         background-position: bottom;
-        background-image: url("https://iili.io/JCJNlb2.jpg");
+        background-image: url("https://iili.io/JAJswW7.jpg");
         box-shadow: inset 0 0 0 2000px rgba(246, 246, 249, 0.5);
     } 
     .forest-bg{
         background-position: center;
         background-size: cover;
-        background-image: url("https://iili.io/JCJO9dG.jpg");
+        background-image: url("https://iili.io/JAJsNs9.jpg");
     }
     /* background */
 }

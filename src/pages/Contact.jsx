@@ -13,6 +13,7 @@ import { resetState, sendContactMessage } from '../store/userSlice';
 import { showMessage } from '../store/messageSlice';
 
 function Contact() {
+  scrollTop()
   const dispatch = useDispatch()
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false)
@@ -38,6 +39,7 @@ function Contact() {
   }
   const finishSubmit = () => {
     dispatch(sendContactMessage(values))
+    clearForm()
   }
   useEffect(() => {
     if(success){
@@ -51,9 +53,6 @@ function Contact() {
       finishSubmit()
     }
   }, [errors])
-  useEffect(() => {
-    scrollTop()
-  },[])
   return (
     <div className='default-page-wrapper'>
       <div className='relative'>
@@ -62,7 +61,7 @@ function Contact() {
         </div>
         <img src='https://iili.io/JCJNZXI.jpg' alt='Library' className='w-full h-48 lg:h-96 object-cover object-center' />
         <div className='w-full h-48 lg:h-96 bg-midnight-950/70 top-0 absolute z-0' />
-        <div className='w-full h-48 lg:h-96 flex flex-col items-center justify-center absolute top-0 z-10 px-5 lg:px-0'>
+        <div className='w-full h-48 lg:h-96 flex flex-col items-center justify-center absolute top-0 z-10 px-5 lg:px-0 cursor-default'>
             <h1 className='info-page-h1'>Skontaktuj się z nami</h1>
             <p className='info-page-h1-p'>Jeśli chcesz dowiedzieć się więcej o swojej przesyłce lub masz jakiekolwiek inne pytania, skontaktuj się z nami.</p>
         </div>
@@ -75,14 +74,14 @@ function Contact() {
               <div className='flex flex-col'>
                 <div className='icons-form-input-container'>
                     <BsFillPersonFill />
-                    <input type='text' placeholder='Twoje imię' name='clientName' id='clientName' onChange={handleChange} className='icons-form-input'/>
+                    <input type='text' placeholder='Twoje imię' name='clientName' id='clientName' value={values.clientName} onChange={handleChange} className='icons-form-input'/>
                 </div>
                 {errors.clientName && <p className='error-text'>{errors.clientName}</p>}
                 </div>
                 <div className='flex flex-col'>
                 <div className='icons-form-input-container'>
                     <MdEmail />
-                    <input type='text' placeholder='Adres e-mail' name='email' id='email' onChange={handleChange} className='icons-form-input'/>
+                    <input type='text' placeholder='Adres e-mail' name='email' id='email' value={values.email} onChange={handleChange} className='icons-form-input'/>
                 </div>
                 {errors.email && <p className='error-text'>{errors.email}</p>}
               </div>    
@@ -90,7 +89,7 @@ function Contact() {
             <div className='flex flex-col w-full my-2'>
             <div className='icons-form-input-container w-full items-start'>
                 <TbMessageCircle2Filled className='my-[0.65rem]'/>
-                <textarea rows={6} placeholder='Twoja wiadomość' name='message' id='message' onChange={handleChange} className='icons-form-input w-full resize-none'/>
+                <textarea autoComplete='off' rows={6} placeholder='Twoja wiadomość' value={values.message} name='message' id='message' onChange={handleChange} className='icons-form-input w-full resize-none'/>
             </div>
             {errors.message && <p className='error-text'>{errors.message}</p>}
             </div>

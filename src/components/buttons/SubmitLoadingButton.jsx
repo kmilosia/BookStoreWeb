@@ -3,9 +3,9 @@ import Spinner from '../elements/Spinner'
 
 function SubmitLoadingButton({loading,title}) {
   return (
-    <button type='submit' className='purple-button w-full flex items-center justify-center'>
+    <button type='submit' className='purple-button w-full'>
         {loading ?
-        <Spinner size={6}/> : <span>{title}</span>
+        <Spinner /> : <span>{title}</span>
         }
     </button>
   )
