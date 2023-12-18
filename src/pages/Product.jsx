@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa';
 import Stars from '../components/elements/Stars';
+import PageLoader from '../components/elements/PageLoader';
 import ReviewSummary from '../components/page-elements/ReviewSummary';
 import Review from '../components/page-elements/Review';
 import { scrollTop } from '../utils/functions/scrollTop';
@@ -15,6 +16,7 @@ import { showLoginMessage } from '../store/loginPopupSlice';
 import { showMessage } from '../store/messageSlice';
 import { addRentBook } from '../store/rentSlice';
 import { getValidToken } from '../utils/functions/getValidToken';
+import { getBookDetails } from '../utils/api/bookItemsAPI';
 
 function Product() {
     scrollTop()
@@ -26,14 +28,15 @@ function Product() {
     const [book, setBook] = useState({})
     const [books, setBooks] = useState([])
     const [reviews, setReviews] = useState([])
-    const getBook = async () => {
-        try{
-            const response = await axiosClient.get(`/BookItems/Book-Details?bookItemId=${productID}`)
-            setBook(response.data)
-        }catch(err){
-            console.error(err)
-        }
-    }
+    const [bookLoading, setBookLoading] = useState(true)
+    // const getBook = async () => {
+    //     try{
+    //         const response = await axiosClient.get(`/BookItems/Book-Details?bookItemId=${productID}`)
+    //         setBook(response.data)
+    //     }catch(err){
+    //         console.error(err)
+    //     }
+    // }
     const getBooks = async () => {
         try{
             const response = await axiosClient.get(`/BookItems/All-Books?bookId=${book.bookId}`)
@@ -108,7 +111,7 @@ function Product() {
     }
     useEffect(() => {
         if(productID){
-            getBook()
+            getBookDetails(productID,setBook,setBookLoading)
             getReviews()
         }
     },[productID])
@@ -119,7 +122,8 @@ function Product() {
     },[book])
   return (
     <div className='default-page-wrapper'>
-    {Object.keys(book).length > 0 &&
+    {bookLoading ? <PageLoader /> :
+    Object.keys(book).length > 0 &&
       <div className='flex flex-col relative w-full'>
         <img src={book.images?.length > 0 ? book.images[0].imageURL : ''} className='absolute h-[40rem] lg:h-[30rem] w-full z-10 object-cover blur-sm' />
         <div className='w-full z-20 pt-10 lg:pt-20 px-5 lg:px-20 2xl:px-48'>

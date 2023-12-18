@@ -37,3 +37,12 @@ export const getDiscountedBooksList = async (sorting,filter,setData, setLoading)
         console.error(err)
     }
   }
+export const getBookDetails = async (id, setData, setLoading) => {
+    try{
+        const response = await axiosClient.get(`/BookItems/Book-Details?bookItemId=${id}`)
+        setData(response.data)
+        setLoading(false)
+    }catch(err){
+        console.error(err)
+    }
+}
