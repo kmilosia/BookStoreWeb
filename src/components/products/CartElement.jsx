@@ -1,12 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import AddToWishlist from '../buttons/AddToWishlist'
 import QuantityChanger from '../elements/QuantityChanger'
-import { useDispatch, useSelector } from 'react-redux';
-import { showMessage } from '../../store/messageSlice';
-import { getValidToken } from '../../utils/functions/getValidToken';
-import axiosClient from '../../utils/api/axiosClient';
-import { showLoginMessage } from '../../store/loginPopupSlice';
-import { removeItem } from '../../store/cartSlice';
 
 function CartElement({item}) {
   return (
@@ -21,7 +15,7 @@ function CartElement({item}) {
             <h2 className='font-light'>{item.authors.map((item,index)=>{return(<span key={index}>{item.name} {item.surname}</span>)})}</h2>
             </div>
             <div className='lg:my-2 my-1 h-full'>
-              <AddToWishlist item={item}/>
+              <AddToWishlist id={item.id} isWishlisted={item.isWishlisted}/>
             </div>
           </div>
           <div className='mt-auto lg:hidden'>

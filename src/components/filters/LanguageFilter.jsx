@@ -3,23 +3,14 @@ import FilterHeader from './FilterHeader'
 import FilterLabelElement from './FilterLabelElement'
 import ShowMoreButton from '../buttons/ShowMoreButton'
 import { useState } from 'react'
-import axiosClient from '../../utils/api/axiosClient'
+import { getLanguages } from '../../utils/api/filtersAPI'
 
 function LanguageFilter({setLanguageFilter}) {
 const [showFilter, setShowFilter] = useState(false)
 const [languages, setLanguages] = useState([])
 const [displayedFields, setDisplayedFields] = useState(6)
-
-const getLanguages = async () => {
-  try {
-    const response = await axiosClient.get(`/Language`)
-    setLanguages(response.data)
-  } catch (err) {
-    console.error(err)
-  }
-}
 useEffect(() => {
-  getLanguages()
+  getLanguages(setLanguages)
 }, [])
 const handleShowMore = () => {
   setDisplayedFields((prevCount) => (prevCount === 6 ? languages.length : 6));

@@ -2,19 +2,11 @@ import React from 'react'
 import FilterHeader from './FilterHeader'
 import { useState, useEffect } from 'react'
 import FilterLabelElement from './FilterLabelElement'
-import axiosClient from '../../utils/api/axiosClient';
+import { getAvailabilities } from '../../utils/api/filtersAPI';
 
 function StockFilter({setStockFilter}) {
 const [showFilter, setShowFilter] = useState(false)
 const [availability, setAvailability] = useState([])
-const getAvailabilities = async () => {
-  try {
-    const response = await axiosClient.get(`/Availability`)
-    setAvailability(response.data)
-  } catch (err) {
-    console.error(err)
-  }
-}
 const handleCheckboxChange = (value, isChecked) => {
   if (isChecked) {
     setStockFilter((prevFilter) => `${prevFilter}${value}`)
@@ -25,7 +17,7 @@ const handleCheckboxChange = (value, isChecked) => {
   }
 }
 useEffect(() => {
-  getAvailabilities()
+  getAvailabilities(setAvailability)
 }, [])
   return (
     <div className='filter-wrapper'>

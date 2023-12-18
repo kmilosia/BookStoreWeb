@@ -4,18 +4,15 @@ import { useState } from 'react'
 
 function PriceFilter({minPriceFilter, setMinPriceFilter, maxPriceFilter, setMaxPriceFilter}) {
 const [showFilter, setShowFilter] = useState(false)
-const [minPrice, setMinPrice] = useState('')
-const [maxPrice, setMaxPrice] = useState('')
 const handleMinPriceChange = (e) => {
   const newMinPrice = e.target.value;
   setMinPriceFilter(newMinPrice);
 
-};
-
+}
 const handleMaxPriceChange = (e) => {
   const newMaxPrice = e.target.value;
   setMaxPriceFilter(newMaxPrice);
-};
+}
 
   return (
     <div className='filter-wrapper'>

@@ -3,22 +3,14 @@ import FilterHeader from './FilterHeader'
 import { useState } from 'react'
 import FilterLabelElement from './FilterLabelElement'
 import ShowMoreButton from '../buttons/ShowMoreButton'
-import axiosClient from '../../utils/api/axiosClient'
+import { getCategories } from '../../utils/api/filtersAPI'
 
 function CategoryFilter({setCategoryFilter}) {
 const [showFilter, setShowFilter] = useState(false)
 const [categories, setCategories] = useState([])
 const [displayedFields, setDisplayedFields] = useState(6)
-const getCategories = async () => {
-  try {
-    const response = await axiosClient.get(`/Category`)
-    setCategories(response.data)
-  } catch (err) {
-    console.error(err)
-  }
-}
 useEffect(() => {
-  getCategories()
+  getCategories(setCategories)
 }, [])
 const handleShowMore = () => {
   setDisplayedFields((prevCount) => (prevCount === 6 ? categories.length : 6));

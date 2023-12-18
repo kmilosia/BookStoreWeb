@@ -4,6 +4,7 @@ import { changePassword, resetState } from '../store/userSlice'
 import { resetPasswordValidate } from '../utils/validation/resetPasswordValidation'
 import { AiFillEye } from 'react-icons/ai'
 import SubmitLoadingButton from '../components/buttons/SubmitLoadingButton'
+import { showMessage } from '../store/messageSlice'
 
 function PasswordChangeModal(props) {
   const dispatch = useDispatch()
@@ -38,6 +39,7 @@ function PasswordChangeModal(props) {
     if (success) {
       props.setPasswordModule(false)
       dispatch(resetState())
+      showMessage({title: "Hasło zostało zmienione!"})
     }
   }, [success])
   useEffect(() => {
@@ -77,8 +79,10 @@ function PasswordChangeModal(props) {
           {errors.confirmPassword && <span className='error-text'>{errors.confirmPassword}</span>}
       </div>
         <div className='flex flex-col mt-2'>
-          <SubmitLoadingButton loading={loading} title="Zmień hasło" />
-          <button onClick={() => {props.setPasswordModule(false);dispatch(resetState())}} className='bordered-purple-button'>Anuluj</button>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
+            <SubmitLoadingButton loading={loading} title="Zmień hasło" />
+            <button type='button' onClick={() => {props.setPasswordModule(false);dispatch(resetState())}} className='bordered-purple-button'>Anuluj</button>
+          </div>
           {errors.submit && <span className='error-text'>{errors.submit}</span>}
         </div>
       </div>

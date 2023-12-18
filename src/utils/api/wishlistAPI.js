@@ -46,3 +46,17 @@ export const deleteWishlistItem = async (id) => {
         throw error
     }
   }
+ export const addToWishlist = async (id) => {
+    try {
+        const token = getValidToken()
+        const response = await axiosClient.post(`/Wishlist/Edit-Wishlist-Item?bookItemId=${id}&isWishlisted=false`, null, {
+          headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+          },
+        })
+        return response.data
+    } catch (error) {
+        console.error(error);
+    }
+  }

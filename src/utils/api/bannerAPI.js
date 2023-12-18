@@ -9,3 +9,12 @@ export const getBanners = async (setData, setLoading) => {
         console.error(err)
     }
   }
+export const getDiscountBanner = async (setData,setLoading) => {
+    try{
+        const response = await axiosClient.get(`/DiscountsBanner/1`)
+        setData(response.data)
+        setLoading(false)
+    }catch(err){
+        console.error(err)
+    }
+  }

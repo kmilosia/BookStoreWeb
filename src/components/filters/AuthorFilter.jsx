@@ -2,22 +2,14 @@ import React, { useEffect, useState } from 'react';
 import FilterHeader from './FilterHeader';
 import ShowMoreButton from '../buttons/ShowMoreButton';
 import FilterLabelElement from './FilterLabelElement';
-import axiosClient from '../../utils/api/axiosClient';
+import { getAuthors } from '../../utils/api/filtersAPI';
 
 function AuthorFilter({setAuthorFilter}) {
   const [showFilter, setShowFilter] = useState(false)
   const [authors, setAuthors] = useState([])
   const [displayedFields, setDisplayedFields] = useState(6)
-  const getAuthors = async () => {
-    try {
-      const response = await axiosClient.get(`/Author`)
-      setAuthors(response.data)
-    } catch (err) {
-      console.error(err)
-    }
-  }
   useEffect(() => {
-    getAuthors()
+    getAuthors(setAuthors)
   }, [])
   const handleShowMore = () => {
     setDisplayedFields((prevCount) => (prevCount === 6 ? authors.length : 6));

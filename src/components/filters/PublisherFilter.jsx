@@ -3,20 +3,12 @@ import FilterHeader from './FilterHeader'
 import ShowMoreButton from '../buttons/ShowMoreButton'
 import { useState } from 'react'
 import FilterLabelElement from './FilterLabelElement'
-import axiosClient from '../../utils/api/axiosClient'
+import { getPublishers } from '../../utils/api/filtersAPI'
 
 function PublisherFilter({setPublisherFilter}) {
 const [showFilter, setShowFilter] = useState(false)
 const [publishers, setPublishers] = useState([]);
 const [displayedFields, setDisplayedFields] = useState(6)
-const getPublishers = async () => {
-  try {
-    const response = await axiosClient.get(`/Publisher`);
-    setPublishers(response.data);
-  } catch (err) {
-    console.error(err)
-  }
-}
 const handleShowMore = () => {
   setDisplayedFields((prevCount) => (prevCount === 6 ? publishers.length : 6));
 }
@@ -30,7 +22,7 @@ const handleCheckboxChange = (value, isChecked) => {
   }
 }
 useEffect(() => {
-  getPublishers()
+  getPublishers(setPublishers)
 }, [])
   return (
     <div className='filter-wrapper'>

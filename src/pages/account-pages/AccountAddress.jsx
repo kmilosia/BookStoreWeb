@@ -14,6 +14,10 @@ function AccountAddress() {
   useEffect(() => { 
     dispatch(fetchUserAddress())
   },[])
+  const handleAfterAddedNewAddress = () => {
+    dispatch(fetchUserAddress())
+    setIsAdding(false)
+  }
   return (
     <>
     <div className='flex flex-col px-10 py-10 bg-white rounded-md dark:bg-midnight-900'>
@@ -24,38 +28,40 @@ function AccountAddress() {
         {userAddress.map((item, index) => {
           return (
             <div key={index} className='grid grid-cols-1 lg:grid-cols-2 gap-2 my-2'>
-              <h1 className='font-light text-sm text-purple-400'>{item.position === 1 ? "Adres zamieszkania" : "Adres korespondencyjny"}</h1>
+              <h1 className='font-medium text-purple-400'>{item.position === 1 ? "Adres zamieszkania" : "Adres korespondencyjny"}</h1>
               <div className='flex flex-col col-span-2'>
                 <label className='label-input'>Ulica</label>
-                <input disabled type='text' className='form-input' value={item.street}/>
+                <input disabled={!isEdited} type='text' className='form-input' value={item.street}/>
               </div>
               <div className='flex flex-col'>
                 <label className='label-input'>Numer ulicy</label>
-                <input disabled type='text' className='form-input' value={item.streetNumber}/>
+                <input disabled={!isEdited} type='text' className='form-input' value={item.streetNumber}/>
               </div>
               <div className='flex flex-col'>
                 <label className='label-input'>Numer domu</label>
-                <input disabled type='text' className='form-input' value={item.houseNumber}/>
+                <input disabled={!isEdited} type='text' className='form-input' value={item.houseNumber}/>
               </div>
               <div className='flex flex-col col-span-2'>
                 <label className='label-input'>Kod pocztowy</label>
-                <input disabled type='text' className='form-input' value={item.postcode}/>
+                <input disabled={!isEdited} type='text' className='form-input' value={item.postcode}/>
               </div>
               <div className='flex flex-col'>
                 <label className='label-input'>Miasto</label>
-                <input disabled type='text' className='form-input' value={item.cityName}/>
+                <input disabled={!isEdited} type='text' className='form-input' value={item.cityName}/>
               </div>
               <div className='flex flex-col'>
                 <label className='label-input'>Kraj</label>
-                <input disabled type='text' className='form-input' value={item.countryName}/>
+                <input disabled={!isEdited} type='text' className='form-input' value={item.countryName}/>
               </div>
             </div>
           )
         })}
-      <button className='purple-button w-max'>Edytuj adres</button>
+        {isEdited ?
+      <button type='button' onClick={() => {setIsEdited(false)}} className='purple-button w-max'>Zapisz zmiany</button>:
+      <button type='button' onClick={() => {setIsEdited(true)}} className='purple-button w-max'>Edytuj adres</button>}
       </div>
       :
-      <> {isAdding ? <NewAddress /> : <AddNewAddressButton onClick={() => setIsAdding(true)} />}</>}
+      <> {isAdding ? <NewAddress handleAfterAddedNewAddress={handleAfterAddedNewAddress}/> : <AddNewAddressButton onClick={() => setIsAdding(true)} />}</>}
       </div>
     </div>
     </>

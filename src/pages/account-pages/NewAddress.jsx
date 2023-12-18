@@ -6,9 +6,11 @@ import { addUserAddress, resetState } from '../../store/userSlice'
 import { showMessage } from '../../store/messageSlice'
 import { useNavigate } from 'react-router-dom'
 import SubmitLoadingButton from '../../components/buttons/SubmitLoadingButton'
+import { getCities } from '../../utils/api/cityAPI'
+import { getCountries } from '../../utils/api/countryAPI'
 
-function NewAddress() {
-  const {success, loading, error} = useSelector((state) => state.user)
+function NewAddress({handleAfterAddedNewAddress}) {
+  const {success, loading} = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [errors,setErrors] = useState({})
@@ -32,22 +34,6 @@ function NewAddress() {
     selectedMailingCity: 1,
     selectedMailingCountry: 1,
   })
-  const getCities = async () => {
-    try {
-      const response = await axiosClient.get(`/City`)
-      setCities(response.data)
-    } catch (err) {
-      console.error(err)
-    }
-  }
-  const getCountries = async () => {
-    try {
-      const response = await axiosClient.get(`/Country`)
-      setCountries(response.data)
-    } catch (err) {
-      console.error(err)
-    }
-  }
   const handleChange = (e) => {
     setUserAddress({ ...userAddress, [e.target.name]: e.target.value });
   }
@@ -126,13 +112,13 @@ function NewAddress() {
   useEffect(() => {
     if (success) {
       dispatch(resetState())
-      navigate('/konto/adres')
       dispatch(showMessage({title: "Adres został dodany!"}))
+      handleAfterAddedNewAddress()
     }
   }, [success])
   useEffect(() => {
-    getCities()
-    getCountries()
+    getCities(setCities)
+    getCountries(setCountries)
   },[])
   return (
     <form onSubmit={handleSubmit}>

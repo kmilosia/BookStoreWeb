@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import axiosClient from '../utils/api/axiosClient'
 import FooterColumn from './footer/FooterColumn'
+import { getFooterColumns } from '../utils/api/footerAPI'
 
 function Footer() {
   const [footerColumns, setFooterColumns] = useState([])
-  const getFooterColumns = async() => {
-    try{
-        const response = await axiosClient.get(`/FooterColumns`)
-        setFooterColumns(response.data)
-      }catch(err){
-        console.error(err)
-    }  
-  }
   useEffect(() => {
-    getFooterColumns()
+    getFooterColumns(setFooterColumns)
   },[])
   return (
     <footer className='flex flex-col items-center justify-center w-full bg-midnight-50 dark:bg-midnight-900 divide-border-top'>

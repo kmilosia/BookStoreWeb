@@ -104,29 +104,6 @@ export const editUserData = createAsyncThunk(
         return request.data
     }
 )
-// export const changePassword = createAsyncThunk(
-//     'user/changePassword',
-//     async(data) => {
-//         try{
-//             const token = getValidToken()
-//             const response = await axiosClient.put('/User/Edit-Password', data,{
-//                 headers: {
-//                   'Authorization': `Bearer ${token}`,
-//                   'Content-Type': 'application/json',
-//                 },
-//               })
-//             return response.data    
-//         }catch(error){
-//             if (error.response && error.response.status === 400) {
-//                 const errorMessage = error.response.data;
-//                 throw new Error(errorMessage);
-//               } else {
-//                 throw error;
-//               }
-//         }
-        
-//     }
-// )
 export const changePassword = createAsyncThunk(
     'user/changePassword',
     async(data) => {
@@ -329,7 +306,7 @@ const userSlice = createSlice({
             state.error = null
         }).addCase(changePassword.rejected,(state,action)=>{
             state.loading = false
-            state.error = action.error.message
+            state.error = "Nie udało się zmienić hasła.Sprawdź czy wprowadzone dane są prawidłowe!"
         }).addCase(signNewsletter.pending,(state)=>{
             state.loading = true
             state.success = false

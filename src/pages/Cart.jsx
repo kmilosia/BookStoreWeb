@@ -11,6 +11,7 @@ import { emptyCart } from '../store/cartSlice'
 import CartSummary from '../components/page-elements/CartSummary'
 
 function Cart() {
+  scrollTop()
   const dispatch = useDispatch()
   const {cart, totalPrice, quantity} = useSelector((state) => state.cart)
   const [cartElements, setCartElements] = useState([])
@@ -19,9 +20,6 @@ function Cart() {
       setCartElements(cart)
     }
   },[cart])
-  useEffect(() => {
-    scrollTop()
-  },[])
   return (
     <div className='default-page-wrapper'>
       <div className='default-page-container'>
