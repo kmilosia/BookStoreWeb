@@ -21,7 +21,7 @@ function RentedBooks() {
         setIsBookModal(true)
     }
     useEffect(() => {
-        getRentedBooks(getRentedBooks, setLoading)
+        getRentedBooks(setRentedBooks, setLoading)
     },[])
     return (
     loading ? <PageLoader /> :

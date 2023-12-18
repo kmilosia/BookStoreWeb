@@ -5,9 +5,10 @@ import { addressValidate, addressesValidate } from '../../utils/validation/addre
 import { addUserAddress, resetState } from '../../store/userSlice'
 import { showMessage } from '../../store/messageSlice'
 import { useNavigate } from 'react-router-dom'
+import SubmitLoadingButton from '../../components/buttons/SubmitLoadingButton'
 
 function NewAddress() {
-  const {success} = useSelector((state) => state.user)
+  const {success, loading, error} = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [errors,setErrors] = useState({})
@@ -228,7 +229,7 @@ function NewAddress() {
     </div>
     </>
     }
-    <button type='submit' className='purple-button my-2'>Akceptuj</button>
+    <SubmitLoadingButton loading={loading} title="Akceptuj" />
   </form> 
   )
 }

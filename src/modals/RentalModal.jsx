@@ -8,6 +8,7 @@ import { showMessage } from '../store/messageSlice';
 import { getRentalTypes } from '../utils/api/rentalTypeAPI';
 import { getPaymentMethods } from '../utils/api/paymentMethodAPI';
 import Spinner from '../components/elements/Spinner';
+import { useNavigate } from 'react-router-dom';
 
 function RentalModal() {
     const {rentalModal,rentProduct} = useSelector((state) => state.rent)
@@ -21,6 +22,7 @@ function RentalModal() {
     const [choosePayment, setChoosePayment] = useState(false)  
     const [error, setError] = useState('')
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const handleCloseModal = () => {
         dispatch(closeRentalModal())
         setSelectedType(null)
@@ -28,14 +30,12 @@ function RentalModal() {
         setSelectedPaymentMethod(null)
     }
     const handleInputChange = (e) => {
-        console.log("Kliknięto grupę type ID:" + e.target.value);
         setSelectedType(e.target.value)
         if(error !== ''){
             setError('')
         }
     }
     const handlePaymentChange = (e) => {
-        console.log("Kliknięto grupę payment ID:" + e.target.value);
         setSelectedPaymentMethod(e.target.value)
         if(error !== ''){
             setError('')
@@ -55,6 +55,9 @@ function RentalModal() {
             if(response.status === 200){
                 dispatch(showMessage({title: "Książka została wypożyczona!"}))
                 handleCloseModal()
+                navigate('/biblioteka')
+            }else{
+                dispatch(showMessage({title: "Błąd podczas wypożyczania książki!", type: 'warning'}))
             }
             return response
         } catch (error) {
@@ -62,20 +65,24 @@ function RentalModal() {
         }
     }
     const handleRentBook = () => {
-        const today = new Date();
-        const formattedDate = today.toISOString();
-        const item = {
-            bookItemID: rentProduct.id,
-            paymentMethodID: Number(selectedPaymentMethod),
-            rentalTypeID: Number(selectedType),
-            startDate: formattedDate,
+        if(selectedPaymentMethod){
+            const today = new Date();
+            const formattedDate = today.toISOString();
+            const item = {
+                bookItemID: rentProduct.id,
+                paymentMethodID: Number(selectedPaymentMethod),
+                rentalTypeID: Number(selectedType),
+                startDate: formattedDate,
+            }
+            rentBook(item)
+        }else{
+            setError("Wybierz metodę płatności!")
         }
-        rentBook(item)
+       
     }
     const handleNextStep = () => {
         if(selectedType){
             setChoosePayment(true)
-            console.log("Kliknięto next, ID wybranego type:" + selectedType + "ID wybranego payment:" + selectedPaymentMethod);
         }else{
             setError("Wybierz czas wypożyczenia!")
         }
