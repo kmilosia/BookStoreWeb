@@ -4,7 +4,7 @@ import {Home, Search,PageNotFound, Rental, Store, Contact, News, AllNews, NewsIt
 Library, AccountRentals, Cart, Wishlist,Checkout, Access, RecoverPassword,
 Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword,
 RecoverPasswordConfirmation, RegisterRequiredData, RegisterConfirmation, Product, RegisterConfirmEmail, BooksList, EbooksList, Discounts, Payment,
-OrderConfirmation, CheckoutReview, Reviews, UserAddress} from './import'
+OrderConfirmation, CheckoutReview, Reviews, UserAddress, UserData} from './import'
 import MainLayout from './MainLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
