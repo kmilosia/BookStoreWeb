@@ -24,7 +24,6 @@ function Account() {
             <button onClick={toggleMenu} className='flex lg:hidden items-center bg-white dark:bg-midnight-900 px-5 py-2 w-max rounded-md border dark:border-midnight-700'><CgMenuLeftAlt /><span className='mx-2'>Menu</span></button>
             <div className={`lg:flex flex-col py-3 mt-3 lg:mt-0 items-center lg:items-start rounded-md h-auto bg-white dark:bg-midnight-900 ${isMenuOpen ? 'flex' : 'hidden'}`}>
               <Link to='' className='px-5 py-2 hover:font-semibold'>Dane użytkownika</Link>
-              <Link to='test' className='px-5 py-2 hover:font-semibold'>Dane test</Link>
               <Link to='adres' className='px-5 py-2 hover:font-semibold'>Adresy użytkownika</Link>
               <Link to='zamowienia' className='px-5 py-2 hover:font-semibold'>Zamówienia</Link>
               <Link to='wypozyczenia' className='px-5 py-2 hover:font-semibold'>Wypożyczenia</Link>

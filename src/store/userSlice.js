@@ -8,6 +8,7 @@ const initialState = {
     isAuth: false,
     success: false,
     userData: null,
+    userAddress: null,
 }
 export const checkTokenValidity = async (token) => {
     try {
@@ -69,6 +70,28 @@ export const fetchUserData = createAsyncThunk(
         try{
         const token = getValidToken()
         const response = await axiosClient.get('User/Data',{
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          })
+        return response.data
+        }catch(error){
+            if (error.response && error.response.status === 400) {
+                const errorMessage = error.response.data;
+                throw new Error(errorMessage);
+              } else {
+                throw error;
+              }
+        }
+    }
+)
+export const fetchUserAddress = createAsyncThunk(
+    'user/address',
+    async() => {
+        try{
+        const token = getValidToken()
+        const response = await axiosClient.get('User/Data-Address',{
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',
@@ -308,6 +331,15 @@ const userSlice = createSlice({
             state.userData = action.payload
             state.error = null
         }).addCase(fetchUserData.rejected,(state,action)=>{
+            state.loading = false
+            state.error = action.error.message
+        }).addCase(fetchUserAddress.pending,(state)=>{
+            state.loading = true
+        }).addCase(fetchUserAddress.fulfilled,(state,action)=>{
+            state.loading = false
+            state.userAddress = action.payload
+            state.error = null
+        }).addCase(fetchUserAddress.rejected,(state,action)=>{
             state.loading = false
             state.error = action.error.message
         }).addCase(resetPasswordEmail.pending,(state)=>{
