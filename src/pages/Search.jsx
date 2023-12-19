@@ -23,7 +23,7 @@ function Search() {
   },[search,sorting])
   return (
     <div className='default-page-wrapper'>
-      <div className='default-page-container'>
+      <div className='default-page-container pb-20'>
       {loading ? <PageLoader /> : (
         results.length <= 0 ?
          <div className='flex flex-col w-full justify-center items-center py-5 min-h-[70vh]'>
@@ -43,7 +43,7 @@ function Search() {
             <Select onChange={handleSortingChange} sortOptions={productSortOptions}/>
           </div>
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-5 gap-5 my-3'>
+        <div className='grid grid-cols-1 lg:grid-cols-4 2xl:grid-cols-5 gap-5 my-3'>
           {results.map((item,index) => {
             return (
               <BookElement key={index} item={item} />

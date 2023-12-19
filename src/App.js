@@ -1,8 +1,10 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
 import {Home, Search,PageNotFound, Rental, Store, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders,
-  Library, AccountRentals, Cart, Wishlist,Checkout, Access, RecoverPassword,
-  Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword, RecoverPasswordConfirmation, RegisterRequiredData, RegisterConfirmation, Product, RegisterConfirmEmail, AccountAddress, BooksList, EbooksList, Discounts, UserWishlist, Payment, OrderConfirmation, CheckoutReview, Reviews} from './import'
+Library, AccountRentals, Cart, Wishlist,Checkout, Access, RecoverPassword,
+Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail, RecoverPasswordResetLink, RecoverPasswordNewPassword,
+RecoverPasswordConfirmation, RegisterRequiredData, RegisterConfirmation, Product, RegisterConfirmEmail, BooksList, EbooksList, Discounts, Payment,
+OrderConfirmation, CheckoutReview, Reviews, UserAddress} from './import'
 import MainLayout from './MainLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -69,7 +71,7 @@ function App() {
           <Route path='recenzje/:id' element={<Reviews />}/>
           <Route path='konto' element={!isAuth ? <Navigate to="/dostep/logowanie" /> : <Account />}>
             <Route index element={<AccountPersonalData />} />
-            <Route path='adres' element={<AccountAddress />} />
+            <Route path='adres' element={<UserAddress />} />
             <Route path='zamowienia' element={<AccountOrders />} />
             <Route path='wypozyczenia' element={<AccountRentals />} />
           </Route>

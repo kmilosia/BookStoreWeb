@@ -8,17 +8,16 @@ const initialState = {
     isAuth: false,
     success: false,
     userData: null,
-    userAddress: null,
 }
 export const checkTokenValidity = async (token) => {
     try {
         const request = await axiosClient.post(`Account/CheckTokenValidity?token=${token}`);
         return request.data === 'Valid';
     } catch (error) {
-      console.error('Błąd przy uwierzytelnianiu użytkownika - token jest przeterminowany!');
+      console.error(error.response.data)
       return false;
     }
-  };
+  }
 export const checkUserLogin = createAsyncThunk(
     'user/auth',
     async () => {
@@ -35,78 +34,131 @@ export const checkUserLogin = createAsyncThunk(
 export const loginUser = createAsyncThunk(
     'user/login',
     async(userCredentials) => {
-        const response = await axiosClient.post('/Account/login', userCredentials)
-        return response.data
+        try{
+            const response = await axiosClient.post('/Account/login', userCredentials)
+            return response.data    
+        }catch(error){
+            if (error.response && error.response.status === 400) {
+                const errorMessage = error.response.data;
+                throw new Error(errorMessage);
+              } else {
+                throw error;
+              }
+        }
     }
 )
 export const registerUser = createAsyncThunk(
     'user/register',
     async(userCredentials) => {
-        const request = await axiosClient.post('Account/registration',userCredentials)
-        return request.data
+        try{
+            const response = await axiosClient.post('Account/registration',userCredentials)
+            return response.data    
+        }catch(error){
+            if (error.response && error.response.status === 400) {
+                const errorMessage = error.response.data;
+                throw new Error(errorMessage);
+              } else {
+                throw error;
+              }
+        }
     }
 )
 export const fetchUserData = createAsyncThunk(
     'user/data',
     async() => {
+        try{
         const token = getValidToken()
         const response = await axiosClient.get('User/Data',{
-            headers:{
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-        }})
-        return response.data
-    }
-)
-export const fetchUserAddress = createAsyncThunk(
-    'user/address',
-    async() => {
-        const token = getValidToken()
-        const response = await axiosClient.get('User/Data-Address',{
-            headers:{
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-        }})
-        return response.data
-    }
-)
-export const resetPasswordEmail = createAsyncThunk(
-    'user/resetPasswordEmail',
-    async(data) => {
-        const response = await axiosClient.post('/Account/ForgotPassword', data)
-        return response.data
-    }
-)
-export const resetPassword = createAsyncThunk(
-    'user/resetPassword',
-    async(data) => {
-        const request = await axiosClient.post('/Account/ResetPassword', data)
-        return request.data
-    }
-)
-export const createCustomer = createAsyncThunk(
-    'user/createCustomer',
-    async({data,id}) => {
-        const request = await axiosClient.post(`/Account/CreateCustomerData?userId=${id}`, data)
-        return request.data
-    }
-)
-export const editUserData = createAsyncThunk(
-    'user/editData',
-    async(data) => {
-        const token = getValidToken()
-        const request = await axiosClient.put('/User/Edit-Data', data, {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',
             },
           })
-        return request.data
+        return response.data
+        }catch(error){
+            if (error.response && error.response.status === 400) {
+                const errorMessage = error.response.data;
+                throw new Error(errorMessage);
+              } else {
+                throw error;
+              }
+        }
+    }
+)
+export const resetPasswordEmail = createAsyncThunk(
+    'user/resetPasswordEmail',
+    async(data) => {
+        try{
+            const response = await axiosClient.post('/Account/ForgotPassword', data)
+            return response.data    
+        }catch(error){
+            if (error.response && error.response.status === 400) {
+                const errorMessage = error.response.data;
+                throw new Error(errorMessage);
+              } else {
+                throw error;
+              }
+        }
+    }
+)
+export const resetPassword = createAsyncThunk(
+    'user/resetPassword',
+    async(data) => {
+        try{
+            const response = await axiosClient.post('/Account/ResetPassword', data)
+            return response.data    
+        }catch(error){
+            if (error.response && error.response.status === 400) {
+                const errorMessage = error.response.data;
+                throw new Error(errorMessage);
+              } else {
+                throw error;
+              }
+        }
+    }
+)
+export const createCustomer = createAsyncThunk(
+    'user/createCustomer',
+    async({data,id}) => {
+        try{
+            const response = await axiosClient.post(`/Account/CreateCustomerData?userId=${id}`, data)
+            return response.data    
+        }catch(error){
+            if (error.response && error.response.status === 400) {
+                const errorMessage = error.response.data;
+                throw new Error(errorMessage);
+              } else {
+                throw error;
+              }
+        }
+    }
+)
+export const editUserData = createAsyncThunk(
+    'user/editData',
+    async(data) => {
+        try{
+        const token = getValidToken()
+        const response = await axiosClient.put('/User/Edit-Data', data, {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          })
+        return response.data
+        }catch(error){
+            if (error.response && error.response.status === 400) {
+                const errorMessage = error.response.data;
+                throw new Error(errorMessage);
+              } else {
+                throw error;
+              }
+        }
     }
 )
 export const changePassword = createAsyncThunk(
     'user/changePassword',
     async(data) => {
+        try{
         const token = getValidToken()
         const response = await axiosClient.put('/User/Edit-Password', data,{
             headers: {
@@ -115,19 +167,36 @@ export const changePassword = createAsyncThunk(
             },
           })
         return response.data
+        }catch(error){
+            if (error.response && error.response.status === 400) {
+                const errorMessage = error.response.data;
+                throw new Error(errorMessage);
+              } else {
+                throw error;
+              }
+        }
     }
 )
 export const deleteAccount = createAsyncThunk(
     'user/delete',
     async() => {
+        try{
         const token = getValidToken()
-        const request = await axiosClient.delete('/User/Deactivate',{
-            headers: {
+        const response = await axiosClient.delete('/User/Deactivate',{
+        headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',
             },
           })
-        return request.data
+        return response.data
+        }catch(error){
+            if (error.response && error.response.status === 400) {
+                const errorMessage = error.response.data;
+                throw new Error(errorMessage);
+              } else {
+                throw error;
+              }
+        }
     }
 )
 export const signNewsletter = createAsyncThunk(
@@ -149,21 +218,39 @@ export const signNewsletter = createAsyncThunk(
 export const sendContactMessage = createAsyncThunk(
     'user/contactMessage',
     async(data) => {
-        const request = await axiosClient.post('/Contact', data)
-        return request.data
+        try{
+            const response = await axiosClient.post('/Contact', data)
+            return response.data    
+        }catch(error){
+            if (error.response && error.response.status === 400) {
+                const errorMessage = error.response.data;
+                throw new Error(errorMessage);
+              } else {
+                throw error;
+              }
+        }
     }
 )
 export const addUserAddress = createAsyncThunk(
     'user/addAddress',
     async(data) => {
+        try{
         const token = getValidToken()
-        const request = await axiosClient.post('/User/Edit-Address-Data', data, {
+        const response = await axiosClient.post('/User/Edit-Address-Data', data, {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',
             },
           })
-        return request.data
+        return response.data
+        }catch(error){
+            if (error.response && error.response.status === 400) {
+                const errorMessage = error.response.data;
+                throw new Error(errorMessage);
+              } else {
+                throw error;
+              }
+        }
     }
 )
 export const authMiddleware = (store) => (next) => (action) => {
@@ -221,15 +308,6 @@ const userSlice = createSlice({
             state.userData = action.payload
             state.error = null
         }).addCase(fetchUserData.rejected,(state,action)=>{
-            state.loading = false
-            state.error = action.error.message
-        }).addCase(fetchUserAddress.pending,(state)=>{
-            state.loading = true
-        }).addCase(fetchUserAddress.fulfilled,(state,action)=>{
-            state.loading = false
-            state.userAddress = action.payload
-            state.error = null
-        }).addCase(fetchUserAddress.rejected,(state,action)=>{
             state.loading = false
             state.error = action.error.message
         }).addCase(resetPasswordEmail.pending,(state)=>{

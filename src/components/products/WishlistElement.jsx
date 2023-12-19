@@ -44,9 +44,7 @@ function WishlistElement({item,updateWishlistAfterDelete}) {
       </Link>
         <h3 className='text-gray-600 dark:text-gray-400 text-sm lg:text-xs 2xl:text-sm cursor-default'>{item.formName === "Book" ? "Książka" : "Ebook"}</h3>
       <h4 className='font-semibold cursor-default text-xl mt-2 mb-1'>{item?.priceBrutto.toFixed(2)}zł</h4>
-      <button onClick={handleAddToCartButton} className='purple-button flex items-center justify-center'>
-        <FiShoppingBag className='mr-1 text-xs'/>Przenieś do koszyka
-      </button>
+      <button onClick={handleAddToCartButton} className='purple-button'>Przenieś do koszyka</button>
     </div>
   )
 }

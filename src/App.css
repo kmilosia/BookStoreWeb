@@ -88,7 +88,7 @@
         @apply block px-2.5 pb-2.5 pt-4 w-full text-base lg:text-sm border-black/10 text-white bg-black/20 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-purple-400;
     }
     .floating-form-label{
-        @apply absolute text-base lg:text-sm text-midnight-200 duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-purple-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-2 left-1;
+        @apply absolute text-base lg:text-sm text-midnight-400 duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-purple-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-2 left-1;
     }
     .floating-form-input-colors{
         @apply block px-2.5 pb-2.5 pt-4 w-full text-base lg:text-sm border-black/10 text-white bg-black/20 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-purple-400;
@@ -120,13 +120,13 @@
         @apply lg:text-sm text-base text-purple-400 hover:text-purple-500 font-semibold;
     }
     .purple-button{
-        @apply bg-purple-400 rounded-md py-2.5 px-5 lg:text-sm my-1 text-center text-white hover:bg-purple-500 font-semibold flex items-center justify-center;
+        @apply bg-purple-400 border-2 border-purple-400 hover:border-purple-500 rounded-md py-2 px-5 lg:text-sm my-1 text-center text-white hover:bg-purple-500 font-semibold flex items-center justify-center;
     }
     .delete-button{
         @apply bg-white dark:bg-midnight-900 border-2 flex justify-center border-red-500 rounded-md py-2.5 px-5 text-lg lg:text-sm my-1 text-red-500 hover:bg-red-500 dark:hover:bg-red-500 hover:text-white font-semibold;
     }
     .bordered-purple-button{
-        @apply bg-white dark:bg-midnight-900 border-2 flex justify-center border-purple-400 rounded-md py-2.5 px-5 text-lg lg:text-sm my-1 text-purple-400 hover:bg-purple-400 dark:hover:bg-purple-400 hover:text-white font-semibold;
+        @apply bg-white dark:bg-midnight-900 border-2 flex justify-center border-purple-400 rounded-md py-2 px-5 text-lg lg:text-sm my-1 text-purple-400 hover:bg-purple-400 dark:hover:bg-purple-400 hover:text-white font-semibold;
     }
     .rounded-purple-button{
         @apply rounded-3xl text-white font-medium px-10 py-2.5 text-lg lg:text-sm 2xl:text-base bg-purple-400 hover:bg-purple-500 flex flex-row items-center justify-center;
@@ -235,7 +235,7 @@
     .forest-bg{
         background-position: center;
         background-size: cover;
-        background-image: url("https://iili.io/JAJsNs9.jpg");
+        background-image: url("https://iili.io/JAzYznj.jpg");
     }
     /* background */
 }
@@ -296,14 +296,13 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endCo
   article h1{
     font-size: 1.2rem;
   }
-  /* input:-webkit-autofill,
-  input:-webkit-autofill:hover, 
-  input:-webkit-autofill:focus, 
-  input:-webkit-autofill:active  {
-    transition: background-color 5000s;
-    -webkit-text-fill-color: #fff !important;
-  }
-
+   /* .access-input:-webkit-autofill,
+  .access-input:-webkit-autofill:hover, 
+  .access-input:-webkit-autofill:focus, 
+  .access-input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0) inset;
+} */
+/*
   .newsletter-input:-webkit-autofill {
     -webkit-text-fill-color: black !important;
 } */

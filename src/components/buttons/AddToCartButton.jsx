@@ -1,5 +1,4 @@
 import React from 'react'
-import {FiShoppingBag} from 'react-icons/fi'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../../store/cartSlice'
 import { showPopup } from '../../store/cartPopupSlice'
@@ -11,7 +10,7 @@ function AddToCartButton({item}) {
     dispatch(showPopup(item))
   }
   return (
-    <button onClick={handleClick} className='purple-button'><FiShoppingBag className='mr-1 text-xs'/>Dodaj do koszyka</button>
+    <button onClick={handleClick} className='purple-button whitespace-nowrap'>Dodaj do koszyka</button>
   )
 }
 

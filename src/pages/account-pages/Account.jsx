@@ -22,14 +22,14 @@ function Account() {
         <div className='grid grid-cols-1 lg:grid-cols-[1fr_4fr] min-h-[80vh] gap-3 lg:gap-5'>
           <div className='flex flex-col mt-2 lg:mt-0'>
             <button onClick={toggleMenu} className='flex lg:hidden items-center bg-white dark:bg-midnight-900 px-5 py-2 w-max rounded-md border dark:border-midnight-700'><CgMenuLeftAlt /><span className='mx-2'>Menu</span></button>
-          <div className={`lg:flex flex-col py-3 mt-3 lg:mt-0 items-center lg:items-start rounded-md h-auto bg-white dark:bg-midnight-900 ${isMenuOpen ? 'flex' : 'hidden'}`}>
-            <Link to='' className='px-5 py-2 hover:font-semibold'>Dane użytkownika</Link>
-            <Link to='adres' className='px-5 py-2 hover:font-semibold'>Adres dostawy</Link>
-            <Link to='zamowienia' className='px-5 py-2 hover:font-semibold'>Zamówienia</Link>
-            <Link to='wypozyczenia' className='px-5 py-2 hover:font-semibold'>Wypożyczenia</Link>
-            <Link to='/biblioteka' className='px-5 py-2 hover:font-semibold'>Biblioteka</Link>
-            <button onClick={handleLogout} className='px-5 py-2 hover:font-semibold text-red-500'>Wyloguj się</button>
-          </div>
+            <div className={`lg:flex flex-col py-3 mt-3 lg:mt-0 items-center lg:items-start rounded-md h-auto bg-white dark:bg-midnight-900 ${isMenuOpen ? 'flex' : 'hidden'}`}>
+              <Link to='' className='px-5 py-2 hover:font-semibold'>Dane użytkownika</Link>
+              <Link to='adres' className='px-5 py-2 hover:font-semibold'>Adresy użytkownika</Link>
+              <Link to='zamowienia' className='px-5 py-2 hover:font-semibold'>Zamówienia</Link>
+              <Link to='wypozyczenia' className='px-5 py-2 hover:font-semibold'>Wypożyczenia</Link>
+              <Link to='/biblioteka' className='px-5 py-2 hover:font-semibold'>Biblioteka</Link>
+              <button onClick={handleLogout} className='px-5 py-2 hover:font-semibold text-red-500'>Wyloguj się</button>
+            </div>
           </div>
           <Outlet />
         </div>
