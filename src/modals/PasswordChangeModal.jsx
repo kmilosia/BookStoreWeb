@@ -81,7 +81,7 @@ function PasswordChangeModal(props) {
         <div className='flex flex-col mt-2'>
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
             <SubmitLoadingButton loading={loading} title="Zmień hasło" />
-            <button type='button' onClick={() => {props.setPasswordModule(false);dispatch(resetState())}} className='bordered-purple-button'>Anuluj</button>
+            <button type='button' onClick={() => {props.setPasswordModule(false);dispatch(resetState())}} className='cancel-button'>Anuluj</button>
           </div>
           {errors.submit && <span className='error-text'>{errors.submit}</span>}
         </div>

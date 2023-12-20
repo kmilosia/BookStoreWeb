@@ -4,10 +4,10 @@ import { useState } from 'react'
 import { editUserData, fetchUserData, resetState } from '../../store/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import DeleteAccountModal from '../../modals/DeleteAccountModal'
-import SubmitLoadingButton from '../../components/buttons/SubmitLoadingButton'
 import PasswordChangeModal from '../../modals/PasswordChangeModal'
 import { showMessage } from '../../store/messageSlice'
 import { userDataValidate } from '../../utils/validation/userDataValidation'
+import Spinner from '../../components/elements/Spinner'
 
 function AccountPersonalData() {
   const dispatch = useDispatch()
@@ -85,11 +85,14 @@ function AccountPersonalData() {
           <input disabled={!isEdited} onChange={handleChange} name='phoneNumber' id='phoneNumber' type='text' className='form-input' value={userDetails.phoneNumber}/>
           {errors.phoneNumber && <p className='error-text'>{errors.phoneNumber}</p>}
         </div>
-        {error && <p className='error-text my-1 col-span-2'>{error}</p>}
-        {isEdited ? <SubmitLoadingButton loading={loading} title="Zapisz zmiany" />
-        :  <button type='button' onClick={() => {setIsEdited(true)}} className='purple-button'>Edytuj dane</button>
+      </div>
+      {error && <p className='error-text my-1 col-span-2'>{error}</p>}
+      <div className='flex items-center mt-2'>
+      {isEdited ? 
+        <button type='submit' className='purple-button w-max mr-2'>{loading ?<Spinner /> : <span>Zapisz zmiany</span>}</button>
+        :  <button type='button' onClick={(e) => {e.preventDefault();setIsEdited(true)}} className='purple-button w-max'>Edytuj dane</button>
         }
-        {isEdited && <button type='button' onClick={() => {setIsEdited(false)}} className='bordered-purple-button'>Anuluj</button>}
+        {isEdited && <button type='button' onClick={() => {setIsEdited(false)}} className='cancel-button w-max'>Anuluj</button>}
       </div>
       </form>
       <h1 className='text-xl mt-5 font-semibold text-center lg:text-start'>Konto</h1>

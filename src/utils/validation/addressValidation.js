@@ -42,3 +42,25 @@ export const addressesValidate = (address, mailingAddress) => {
       }
     return errors
 }
+export const editedAddressValidate = (addresses) => {
+    let errorsArray = [];
+  
+    addresses.forEach((address, index) => {
+      let errors = {};
+      if (!address.street) {
+        errors.street = `Ulica jest obowiązkowa!`;
+      }
+      if (!address.streetNumber) {
+        errors.streetNumber = `Numer ulicy jest obowiązkowy!`;
+      }
+      if (!address.houseNumber) {
+        errors.houseNumber = `Numer domu jest obowiązkowy!`;
+      }
+      if (!address.postcode) {
+        errors.postcode = `Kod pocztowy jest obowiązkowy!`;
+      }
+      errorsArray.push(errors);
+    });
+  
+    return errorsArray;
+  };
