@@ -16,6 +16,7 @@ import { addRentBook } from '../store/rentSlice';
 import { getBookDetails, getBooksByBookId } from '../utils/api/bookItemsAPI';
 import { getReviewsAmount } from '../utils/api/reviewsAPI';
 import { addToWishlist } from '../utils/api/wishlistAPI';
+import ProductImages from '../components/page-elements/ProductImages';
 
 function Product() {
     const { isAuth } = useSelector((state) => state.user);
@@ -195,11 +196,12 @@ function Product() {
                 {book.images.length > 1 &&
                 <div className='col-span-2 flex flex-col'>
                     <p className='text-3xl font-medium'>Zdjęcia</p>
-                    <div className='grid grid-cols-2 lg:grid-cols-5 grid-rows-2 my-2 gap-5 lg:gap-10'>
+                    <ProductImages item={book.images} />
+                    {/* <div className='grid grid-cols-2 lg:grid-cols-5 grid-rows-2 my-2 gap-5 lg:gap-10'>
                         {book.images && book.images.map((image, index) => (
                             <img key={index} src={image.imageURL} className={`h-auto w-full object-contain rounded-md ${index === 0 ? 'col-span-2 row-span-2' : ''}`} />
                         ))}                  
-                    </div>
+                    </div> */}
                 </div>
                 }
                 <div className='col-span-2 flex flex-col'>
