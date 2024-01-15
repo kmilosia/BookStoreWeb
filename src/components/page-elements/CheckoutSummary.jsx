@@ -4,6 +4,44 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 function CheckoutSummary({setSubmitting, submitting,setCheckoutErrors,checkoutErrors}) {
+  // const {discount} = useSelector((state) => state.checkout)
+  // const [isPromoOpen, setIsPromoOpen] = useState(false)
+  // const [promoError, setPromoError] = useState('')
+  // const [promoInput, setPromoInput] = useState('')
+  // const [promo, setPromo] = useState({})
+  // const [discounts, setDiscounts] = useState([])
+  // const getDiscountCodes = async () => {
+  //   try {
+  //     const response = await axiosClient.get(`/DiscountCodes`)
+  //     setDiscounts(response.data)
+  //   } catch (err) {
+  //     console.error(err)
+  //   }
+  // }
+  // useEffect(() => {
+  //   getDiscountCodes()
+  //   dispatch(setDiscount())
+  // },[])
+  // const handlePromoInput = (e) => {
+  //   setPromoInput(e.target.value)
+  // }
+  // const handleAddPromo = () => {
+  //   const result = discounts.find(({ code }) => code === promoInput);
+  //   if(!result){
+  //     setPromoError("Podany kod jest nieprawidłowy lub jest już nieaktywny")
+  //     dispatch(setDiscount())
+  //   }else{
+  //     setPromoError("")
+  //     setPromo(result) 
+  //     const item = {
+  //       code: promoInput,
+  //       value: result.percentOfDiscount
+  //     }
+  //     dispatch(setDiscount(item))
+  //   }
+  // }
+
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [canNavigate, setCanNavigate] = useState(false)
@@ -45,6 +83,18 @@ function CheckoutSummary({setSubmitting, submitting,setCheckoutErrors,checkoutEr
         )
     })}
     </div>
+    {/* <div className='flex flex-col py-2 my-1 divide-border-bottom'>
+      <div className='flex items-center justify-between'>
+        <label htmlFor='promoCode' className='font-medium text-sm '>Dodaj kod rabatowy</label>
+        <button onClick={() => {setIsPromoOpen(!isPromoOpen); setPromoError('')}} className='mx-1'><FiChevronDown /></button>
+      </div>
+      {isPromoOpen &&
+      <div className='flex items-center flex-col'>
+      <input onChange={handlePromoInput} id='promoCode' name='promoCode' type='text' className='default-input w-full my-2' placeholder='Wprowadź kod rabatowy' />
+      {promoError && <p className='error-text mb-2 text-center'>{promoError}</p>}
+      <button onClick={handleAddPromo} className='purple-button w-full shadow-md'>Zastosuj</button>
+      </div>}
+    </div> */}
     <div className='grid grid-cols-[auto_max-content] font-medium text-sm my-1'>
       <p className='text-gray-500'>Suma za zakupy</p>
       <p className=''>{totalPrice && totalPrice.toFixed(2)} zł</p>

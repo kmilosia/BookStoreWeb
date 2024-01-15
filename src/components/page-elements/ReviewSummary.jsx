@@ -2,19 +2,20 @@ import React, { useEffect, useState } from 'react'
 import Stars from '../elements/Stars'
 
 function ReviewSummary({score, scoreValues}) {
-  const [reviewsQuantity, setReviewsQuantity] = useState(0)
-  useEffect(() => {
-    if(scoreValues){
-      // console.log(scoreValues);
-        setReviewsQuantity( scoreValues['1'] + scoreValues['2'] + scoreValues['3'] + scoreValues['4'] + scoreValues['5'])
-    }
-  },[])
+  const reviewsQuantity = scoreValues['1'] + scoreValues['2'] + scoreValues['3'] + scoreValues['4'] + scoreValues['5']
+
+  // const [reviewsQuantity, setReviewsQuantity] = useState(0)
+  // useEffect(() => {
+  //   if(scoreValues){
+  //       setReviewsQuantity( scoreValues['1'] + scoreValues['2'] + scoreValues['3'] + scoreValues['4'] + scoreValues['5'])
+  //   }
+  // },[])
   return (
     <div className='flex flex-col lg:flex-row my-2 py-10 justify-around items-center bg-white dark:bg-midnight-900'>
       <div className='flex flex-col items-center mb-5 lg:mb-0 cursor-default'>
         <h1 className='font-bold text-5xl'>{score}</h1>
         <Stars score={score} />
-        <p className='text-sm'>Średnia ocena z {reviewsQuantity} recenzjii</p>
+        <p className='text-sm'>Średnia ocen z {reviewsQuantity} recenzjii</p>
       </div>
       <div className='flex flex-col'>   
         <div className='flex flex-row items-center'>
