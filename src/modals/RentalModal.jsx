@@ -5,8 +5,7 @@ import { closeRentalModal } from '../store/rentSlice';
 import axiosClient from '../utils/api/axiosClient';
 import { getValidToken } from '../utils/functions/getValidToken';
 import { showMessage } from '../store/messageSlice';
-import { getRentalTypes } from '../utils/api/rentalTypeAPI';
-import { getPaymentMethods } from '../utils/api/paymentMethodAPI';
+import { getPaymentMethods,getRentalTypes } from '../utils/api/dictionaryAPI';
 import Spinner from '../components/elements/Spinner';
 import { useNavigate } from 'react-router-dom';
 

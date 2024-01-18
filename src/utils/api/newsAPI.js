@@ -11,7 +11,7 @@ export const getNewsInfo = async (id,setData,setLoading) => {
   }
 export const getNews = async (number, setData, setLoading) => {
     try{
-        const response = await axiosClient.get(`/News/Get-Number-Of-News?numberOfElements=${number}`)
+        const response = await axiosClient.get(`/News/Elements?numberOfElements=${number}`)
         setData(response.data)
         setLoading(false)
     }catch(err){

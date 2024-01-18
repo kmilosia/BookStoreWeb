@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient"
 
 export const getBooksCarousel = async (setData, setLoading) => {
     try{
-        const response = await axiosClient.get('/BookItems/Infinite-Carousel-Books')
+        const response = await axiosClient.get('/BookItems/Carousel/1')
         setData(response.data)
         setLoading(false)
     }catch(err){
@@ -11,7 +11,7 @@ export const getBooksCarousel = async (setData, setLoading) => {
   }
  export const getEbooksCarousel = async (setData, setLoading) => {
     try{
-        const response = await axiosClient.get('/BookItems/Infinite-Carousel-EBooks')
+        const response = await axiosClient.get('/BookItems/Carousel/2')
         setData(response.data)
         setLoading(false)
     }catch(err){

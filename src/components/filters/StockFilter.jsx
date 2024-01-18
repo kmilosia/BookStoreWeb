@@ -2,7 +2,7 @@ import React from 'react'
 import FilterHeader from './FilterHeader'
 import { useState, useEffect } from 'react'
 import FilterLabelElement from './FilterLabelElement'
-import { getAvailabilities } from '../../utils/api/filtersAPI';
+import { getAvailabilities } from '../../utils/api/dictionaryAPI';
 
 function StockFilter({setStockFilter}) {
 const [showFilter, setShowFilter] = useState(false)

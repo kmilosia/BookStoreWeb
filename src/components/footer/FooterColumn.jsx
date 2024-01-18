@@ -14,16 +14,16 @@ function FooterColumn(props) {
     <div className='flex flex-col items-center md:items-start my-3 md:my-0'>
         <h2 className='text-2xl md:text-lg font-semibold my-4 md:my-2 cursor-default'>{props.name}</h2>
         <div className={`flex flex-wrap items-center lg:items-start justify-center flex-${props.direction}`}>
-        {footerLinks?.map((item,index) => {
-          if(item.htmlObject === 'Link'){
+        {footerLinks.footerLinksList?.map((item,index) => {
+          if(props.htmlObject === 'Link'){
             return (
               <FooterLink key={index} name={item.name} path={item.path}/>
             )
-          }else if(item.htmlObject === 'Anchor'){
+          }else if(props.htmlObject === 'Anchor'){
             return (
               <FooterAnchor key={index} path={item.path} url={item.url}/>
             )
-          }else if(item.htmlObject === 'Image'){
+          }else if(props.htmlObject === 'Image'){
             return(
               <FooterImage key={index} url={item.url}/>
             )

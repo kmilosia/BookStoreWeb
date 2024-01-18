@@ -4,7 +4,7 @@ import axiosClient from "./axiosClient"
 export const deleteWishlistItem = async (id) => {
     try {
         const token = getValidToken()
-        const response = await axiosClient.post(`/Wishlist/Edit-Wishlist-Item?bookItemId=${id}&isWishlisted=true`, null, {
+        const response = await axiosClient.post(`/Wishlist/Item?bookItemId=${id}&isWishlisted=true`, null, {
           headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',
@@ -28,6 +28,7 @@ export const deleteWishlistItem = async (id) => {
         setLoading(false)
     } catch (error) {
         console.error(error);
+        setLoading(false)
     }
   }
   export const getWishlistGuid = async (setData, setLoading) => {
@@ -42,14 +43,13 @@ export const deleteWishlistItem = async (id) => {
         })
         setData(response.data)
     } catch (error) {
-        console.error('Error:', error);
-        throw error
+        console.error( error);
     }
   }
  export const addToWishlist = async (id) => {
     try {
         const token = getValidToken()
-        const response = await axiosClient.post(`/Wishlist/Edit-Wishlist-Item?bookItemId=${id}&isWishlisted=false`, null, {
+        const response = await axiosClient.post(`/Wishlist/Item?bookItemId=${id}&isWishlisted=false`, null, {
           headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',

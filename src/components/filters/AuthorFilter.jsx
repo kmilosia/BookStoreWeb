@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FilterHeader from './FilterHeader';
 import ShowMoreButton from '../buttons/ShowMoreButton';
 import FilterLabelElement from './FilterLabelElement';
-import { getAuthors } from '../../utils/api/filtersAPI';
+import { getAuthors } from '../../utils/api/dictionaryAPI';
 
 function AuthorFilter({setAuthorFilter}) {
   const [showFilter, setShowFilter] = useState(false)

@@ -3,7 +3,7 @@ import FilterHeader from './FilterHeader'
 import { useState } from 'react'
 import FilterLabelElement from './FilterLabelElement'
 import ShowMoreButton from '../buttons/ShowMoreButton'
-import { getCategories } from '../../utils/api/filtersAPI'
+import { getCategories } from '../../utils/api/dictionaryAPI'
 
 function CategoryFilter({setCategoryFilter}) {
 const [showFilter, setShowFilter] = useState(false)

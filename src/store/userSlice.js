@@ -12,8 +12,12 @@ const initialState = {
 }
 export const checkTokenValidity = async (token) => {
     try {
-        const request = await axiosClient.post(`Account/CheckTokenValidity?token=${token}`);
-        return request.data === 'Valid';
+        const response = await axiosClient.post(`Account/CheckTokenValidity?token=${token}`);
+        if(response.status === 200){
+            return true
+        }else{
+            return false
+        }
     } catch (error) {
       console.error(error.response.data)
       return false;

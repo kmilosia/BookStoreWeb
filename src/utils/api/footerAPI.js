@@ -10,7 +10,7 @@ export const getFooterColumns = async(setData) => {
   }
 export const getFooterLinks = async(id,setData) => {
   try{
-      const response = await axiosClient.get(`/FooterLinks/column-id/${id}`)
+      const response = await axiosClient.get(`/FooterLinks/Column/${id}`)
       setData(response.data)
     }catch(err){
       console.error(err)

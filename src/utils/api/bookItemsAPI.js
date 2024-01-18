@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient"
 
 export const getSearchResults = async (search,sorting,setData,setLoading) => {
     try{
-        const response = await axiosClient.get(`/BookItems/All-Books?searchPhrase=${search}&${sorting}`)
+        const response = await axiosClient.get(`/BookItems/Store?SearchPhrase=${search}&${sorting}`)
         setData(response.data)
         setLoading(false)
     }catch(err){
@@ -11,7 +11,7 @@ export const getSearchResults = async (search,sorting,setData,setLoading) => {
   }
 export const getFilteredBooks = async (filter, setData, setLoading) => {
     try{
-        const response = await axiosClient.get(`/BookItems/All-Books?${filter}`)
+        const response = await axiosClient.get(`/BookItems/Store?${filter}`)
         setData(response.data)
         setLoading(false)
     }catch(err){
@@ -20,7 +20,7 @@ export const getFilteredBooks = async (filter, setData, setLoading) => {
   }
 export const getFilteredSortedBooks = async (form, sorting, filter, setData, setLoading) => {
     try{
-        const response = await axiosClient.get(`/BookItems/All-Books?formIds=${form}&${sorting}${filter}`)
+        const response = await axiosClient.get(`/BookItems/Store?FormIds=${form}&${sorting}${filter}`)
         setData(response.data)
         setLoading(false)
     }catch(err){
@@ -30,7 +30,7 @@ export const getFilteredSortedBooks = async (form, sorting, filter, setData, set
   
 export const getDiscountedBooksList = async (sorting,filter,setData, setLoading) => {
     try{
-        const response = await axiosClient.get(`/BookItems/All-Books?isOnSale=true&${sorting}${filter}`)
+        const response = await axiosClient.get(`/BookItems/Store?IsOnSale=true&${sorting}${filter}`)
         setData(response.data)
         setLoading(false)
     }catch(err){
@@ -39,7 +39,7 @@ export const getDiscountedBooksList = async (sorting,filter,setData, setLoading)
   }
 export const getBookDetails = async (id, setData, setLoading) => {
     try{
-        const response = await axiosClient.get(`/BookItems/Book-Details?bookItemId=${id}`)
+        const response = await axiosClient.get(`/BookItems/Store/${id}`)
         setData(response.data)
         setLoading(false)
     }catch(err){
@@ -48,7 +48,7 @@ export const getBookDetails = async (id, setData, setLoading) => {
 }
 export const getBooksByBookId = async (id, setData) => {
     try{
-        const response = await axiosClient.get(`/BookItems/All-Books?bookId=${id}`)
+        const response = await axiosClient.get(`/BookItems/Store?BookId=${id}`)
         setData(response.data)
     }catch(err){
         console.error(err)

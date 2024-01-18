@@ -1,6 +1,23 @@
-import axiosClient from "./axiosClient";
+import axiosClient from "./axiosClient"
 
-export const getForms = async (setData) => {
+export const getCities = async (setData) => {
+    try {
+      const response = await axiosClient.get('/City')
+      setData(response.data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  export const getCountries = async (setData) => {
+    try {
+      const response = await axiosClient.get('/Country')
+      setData(response.data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+  export const getForms = async (setData) => {
     try {
       const response = await axiosClient.get(`/Form`);
       setData(response.data);
@@ -48,3 +65,22 @@ export const getAuthors = async (setData) => {
       console.error(err)
     }
   }
+
+  export const getPaymentMethods = async (setData, setLoading) => {
+    try {
+      const response = await axiosClient.get('/PaymentMethod')
+      setData(response.data)
+      setLoading(false)
+    } catch (err) {
+      console.error(err)
+    }
+}
+export const getRentalTypes = async (setData, setLoading) => {
+    try{
+        const response = await axiosClient.get('/RentalType')
+        setData(response.data)
+        setLoading(false)  
+    }catch(err){
+        console.error(err)
+    }
+}

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import NewAddress from './NewAddress'
 import AddNewAddressButton from '../../components/buttons/AddNewAddressButton'
 import Spinner from '../../components/elements/Spinner'
-import { getCities } from '../../utils/api/cityAPI'
+import { getCities } from '../../utils/api/dictionaryAPI'
 import { editedAddressValidate } from '../../utils/validation/addressValidation'
 import { showMessage } from '../../store/messageSlice'
 

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import FilterHeader from './FilterHeader'
 import { useState } from 'react'
 import FilterLabelElement from './FilterLabelElement'
-import { getForms } from '../../utils/api/filtersAPI'
+import { getForms } from '../../utils/api/dictionaryAPI'
 
 function TypeFilter({setTypeFilter}) {
 const [showFilter, setShowFilter] = useState(false)

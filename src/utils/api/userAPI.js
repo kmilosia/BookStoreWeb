@@ -4,7 +4,7 @@ import axiosClient from "./axiosClient";
 export const fetchUserAddress = async (setData,setErrors, setLoading) => {
     try {
         const token = getValidToken()
-        const response = await axiosClient.get('User/Data-Address',{
+        const response = await axiosClient.get('User/Address',{
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',
@@ -21,7 +21,7 @@ export const fetchUserAddress = async (setData,setErrors, setLoading) => {
 export const addUserAddress = async (data,setErrors, setLoading) => {
         try{
         const token = getValidToken()
-        const response = await axiosClient.post('/User/Edit-Address-Data', data, {
+        const response = await axiosClient.post('/User/Address', data, {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',

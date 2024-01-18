@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import axiosClient from '../../utils/api/axiosClient'
 import { useDispatch, useSelector } from 'react-redux'
 import { addressValidate, addressesValidate } from '../../utils/validation/addressValidation'
 import { addUserAddress, resetState } from '../../store/userSlice'
 import { showMessage } from '../../store/messageSlice'
 import { useNavigate } from 'react-router-dom'
 import SubmitLoadingButton from '../../components/buttons/SubmitLoadingButton'
-import { getCities } from '../../utils/api/cityAPI'
-import { getCountries } from '../../utils/api/countryAPI'
+import { getCities, getCountries } from '../../utils/api/dictionaryAPI'
 
 function NewAddress({handleAfterAddedNewAddress}) {
   const {success, loading} = useSelector((state) => state.user)

@@ -3,7 +3,7 @@ import FilterHeader from './FilterHeader'
 import FilterLabelElement from './FilterLabelElement'
 import ShowMoreButton from '../buttons/ShowMoreButton'
 import { useState } from 'react'
-import { getLanguages } from '../../utils/api/filtersAPI'
+import { getLanguages } from '../../utils/api/dictionaryAPI'
 
 function LanguageFilter({setLanguageFilter}) {
 const [showFilter, setShowFilter] = useState(false)

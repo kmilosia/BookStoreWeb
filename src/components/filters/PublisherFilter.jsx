@@ -3,7 +3,7 @@ import FilterHeader from './FilterHeader'
 import ShowMoreButton from '../buttons/ShowMoreButton'
 import { useState } from 'react'
 import FilterLabelElement from './FilterLabelElement'
-import { getPublishers } from '../../utils/api/filtersAPI'
+import { getPublishers } from '../../utils/api/dictionaryAPI'
 
 function PublisherFilter({setPublisherFilter}) {
 const [showFilter, setShowFilter] = useState(false)
