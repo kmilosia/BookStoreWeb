@@ -18,9 +18,9 @@ export const getFilteredBooks = async (filter, setData, setLoading) => {
         console.error(err)
     }
   }
-export const getFilteredSortedBooks = async (form, sorting, filter, setData, setLoading) => {
+export const getFilteredSortedBooks = async (sorting, filter, setData, setLoading) => {
     try{
-        const response = await axiosClient.get(`/BookItems/Store?FormIds=${form}&${sorting}${filter}`)
+        const response = await axiosClient.get(`/BookItems/Store?${sorting}${filter}`)
         setData(response.data)
         setLoading(false)
     }catch(err){

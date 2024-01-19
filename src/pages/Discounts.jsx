@@ -1,97 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import PriceFilter from '../components/filters/PriceFilter'
-import AuthorFilter from '../components/filters/AuthorFilter'
-import PublisherFilter from '../components/filters/PublisherFilter'
-import CategoryFilter from '../components/filters/CategoryFilter'
-import LanguageFilter from '../components/filters/LanguageFilter'
-import ScoreFilter from '../components/filters/ScoreFilter'
-import StockFilter from '../components/filters/StockFilter'
-import TypeFilter from '../components/filters/TypeFilter'
-import ToggleFilterMenuButton from '../components/buttons/ToggleFilterMenuButton'
-import FilterButton from '../components/buttons/FilterButton'
-import Select from '../components/forms/Select'
-import BookElement from '../components/products/BookElement'
-import { productSortOptions } from '../utils/data'
-import { getDiscountedBooksList } from '../utils/api/bookItemsAPI'
-import PageLoader from '../components/elements/PageLoader'
 
 function Discounts() {
-    const [isFilterOpen, setIsFilterOpen] = useState(false)
-    const [loading, setLoading] = useState(true)
-    const [results, setResults] = useState([])
-    const [sorting, setSorting] = useState('')
-    const [minPriceFilter, setMinPriceFilter] = useState('')
-    const [maxPriceFilter, setMaxPriceFilter] = useState('')
-    const [authorFilter, setAuthorFilter] = useState('')
-    const [typeFilter, setTypeFilter] = useState('')
-    const [publisherFilter, setPublisherFilter] = useState('')
-    const [categoryFilter, setCategoryFilter] = useState('')
-    const [languageFilter, setLanguageFilter] = useState('')
-    const [scoreFilter, setScoreFilter] = useState('')
-    const [stockFilter, setStockFilter] = useState('')
-    const [filter, setFilter] = useState('')
-    const toggleFilterMenu = () => {
-        setIsFilterOpen(!isFilterOpen)
-    }
-    const handleSortingChange = (e) => {
-        setSorting(e.target.value)
-    }
-      const buildFilter = () => {
-        let filter = ''
-        if (minPriceFilter !== '') {
-          filter += `&priceFrom=${minPriceFilter}`
-        }
-        if (maxPriceFilter !== '') {
-          filter += `&priceTo=${maxPriceFilter}`
-        }
-        if (authorFilter !== '') {
-            filter += `${authorFilter}`
-        }
-        if (publisherFilter !== '') {
-            filter += `${publisherFilter}`
-        }
-        if (categoryFilter !== '') {
-            filter += `${categoryFilter}`
-        }
-        if (languageFilter !== '') {
-            filter += `${languageFilter}`
-        }
-        if (stockFilter !== '') {
-            filter += `${stockFilter}`
-        }
-        if (scoreFilter !== '') {
-            filter += `${scoreFilter}`
-        }
-        if (typeFilter !== '') {
-            filter += `${typeFilter}`
-        }
-        return filter
-      }
-    const applyFilters =() => {
-        setIsFilterOpen(false)
-        const newFilter = buildFilter()
-        setFilter(newFilter)
-    }
-    const resetFilters = () => {
-        setMinPriceFilter('')
-        setMaxPriceFilter('')
-        setAuthorFilter('')
-        setPublisherFilter('')
-        setCategoryFilter('')
-        setLanguageFilter('')
-        setScoreFilter('')
-        setStockFilter('')
-        setFilter('')
-    }
-    useEffect(() => {
-        getDiscountedBooksList(sorting,filter,setResults,setLoading)
-    },[])
-    useEffect(() => {
-        getDiscountedBooksList(sorting,filter,setResults,setLoading)
-    },[sorting, filter])
+  
   return (
     <div className='default-page-wrapper'>
-    <div className='default-page-container'>
+    {/* <div className='default-page-container'>
         <div className='grid grid-cols-1 lg:grid-cols-[2fr_5fr] lg:gap-10'>
         <div className={`flex flex-col bg-gray-100 dark:bg-midnight-950 py-5 lg:py-0 px-5 lg:px-0 shadow-md lg:shadow-none absolute z-[1000000] lg:z-10 w-full lg:relative lg:top-auto right-0 lg:right-auto transition-all duration-500 ${isFilterOpen ? 'top-0 overflow-y-auto' : 'top-[-1000px]'}`}>
                 <div className='flex flex-col'>
@@ -135,7 +48,7 @@ function Discounts() {
                     </div>
             </div>
         </div>
-    </div>
+    </div> */}
 </div>
   )
 }

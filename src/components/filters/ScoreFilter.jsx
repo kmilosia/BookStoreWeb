@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
-import FilterHeader from './FilterHeader'
 import Stars from '../elements/Stars'
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 
 const FilterElement = (props) => {
 const [isChecked, setIsChecked] = useState(false)
@@ -16,33 +16,40 @@ const handleCheckboxClick = () => {
         </div>
     )
 }
-function ScoreFilter({setScoreFilter}) {
-    const [showFilter, setShowFilter] = useState(false)
-    const handleCheckboxChange = (value, isChecked) => {
-        if (isChecked) {
-          setScoreFilter((prevFilter) => `${prevFilter}${value}`)
-        } else {
-          setScoreFilter((prevFilter) =>
-            prevFilter.replace(`${value}`, '')
-          )
-        }
+function ScoreFilter({filterElements,setFilterElements,filtersOpen,setFiltersOpen}) {
+    const handleCheckboxChange = (scoreId) => {
+      const isSelected = filterElements.score.includes(`&ScoreValues=${scoreId}`)
+      if (isSelected) {
+        setFilterElements((prevValues) => ({
+          ...prevValues,
+          score: prevValues.score.replace(`&ScoreValues=${scoreId}`, ''),
+      }))
+      } else {
+        setFilterElements((prevValues) => ({
+          ...prevValues,
+          score: `${prevValues.score}&ScoreValues=${scoreId}`,
+      }))
+      }
     }
   return (
     <div className='filter-wrapper'>
-        <FilterHeader showFilter={showFilter} setShowFilter={setShowFilter} title="Ocena" />
-        {showFilter &&
-            <>
+      <div onClick={() => setFiltersOpen({...filtersOpen, score: !filtersOpen.score})} className='cursor-pointer flex flex-row justify-between items-center w-full px-3 py-1'>
+        <h1 className='font-medium'>Ocena</h1>
+        <button className='pointer'>
+            {filtersOpen.score ? <IoIosArrowUp />: <IoIosArrowDown />}
+        </button>
+        </div>
+        {filtersOpen.score &&
             <div className='filter-list-wrapper'>
                 <div className='filter-list-container'>
-                    <FilterElement name="score0" score={0} value={`&scoreValues=${0}`} onChange={handleCheckboxChange}/>
-                    <FilterElement name="score1" score={1} value={`&scoreValues=${1}`} onChange={handleCheckboxChange}/>
-                    <FilterElement name="score2" score={2} value={`&scoreValues=${2}`} onChange={handleCheckboxChange}/>
-                    <FilterElement name="score3" score={3} value={`&scoreValues=${3}`} onChange={handleCheckboxChange}/>
-                    <FilterElement name="score4" score={4} value={`&scoreValues=${4}`} onChange={handleCheckboxChange}/>
-                    <FilterElement name="score5" score={5} value={`&scoreValues=${5}`} onChange={handleCheckboxChange}/>
+                    <FilterElement name="score0" score={0} value={0} onChange={handleCheckboxChange}/>
+                    <FilterElement name="score1" score={1} value={1} onChange={handleCheckboxChange}/>
+                    <FilterElement name="score2" score={2} value={2} onChange={handleCheckboxChange}/>
+                    <FilterElement name="score3" score={3} value={3} onChange={handleCheckboxChange}/>
+                    <FilterElement name="score4" score={4} value={4} onChange={handleCheckboxChange}/>
+                    <FilterElement name="score5" score={5} value={5} onChange={handleCheckboxChange}/>
                 </div>
             </div>
-            </>
         }
     </div>
   )

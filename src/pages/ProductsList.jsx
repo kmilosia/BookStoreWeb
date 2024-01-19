@@ -14,21 +14,35 @@ import { productSortOptions } from '../utils/data'
 import BookListElement from '../components/products/BookListElement'
 import Select from '../components/forms/Select'
 import { getFilteredSortedBooks } from '../utils/api/bookItemsAPI'
+import FormFilter from '../components/filters/FormFilter'
 
-function BooksList() {
+function ProductsList() {
     const [isFilterOpen, setIsFilterOpen] = useState(false)
     const [loading, setLoading] = useState(true)
     const [results, setResults] = useState([])
     const [sorting, setSorting] = useState('')
-    const [minPriceFilter, setMinPriceFilter] = useState('')
-    const [maxPriceFilter, setMaxPriceFilter] = useState('')
-    const [authorFilter, setAuthorFilter] = useState('')
-    const [publisherFilter, setPublisherFilter] = useState('')
-    const [categoryFilter, setCategoryFilter] = useState('')
-    const [languageFilter, setLanguageFilter] = useState('')
-    const [scoreFilter, setScoreFilter] = useState('')
-    const [stockFilter, setStockFilter] = useState('')
     const [filter, setFilter] = useState('')
+    const [filterElements, setFilterElements] = useState({
+        minPrice: '',
+        maxPrice: '',
+        author: '',
+        publisher: '',
+        category: '',
+        language: '',
+        score: '',
+        stock: '',
+        form: '',
+    })
+    const [filtersOpen, setFiltersOpen] = useState({
+        form: false,
+        stock: false,
+        score: false,
+        publisher: false,
+        author: false,
+        price: false,
+        language: false,
+        category: false
+    })
     const toggleFilterMenu = () => {
         setIsFilterOpen(!isFilterOpen)
     }
@@ -37,29 +51,32 @@ function BooksList() {
     }
       const buildFilter = () => {
         let filter = ''
-        if (minPriceFilter !== '') {
-          filter += `&priceFrom=${minPriceFilter}`
+        if (filterElements.minPrice !== '') {
+          filter += `&priceFrom=${filterElements.minPrice}`
         }
-        if (maxPriceFilter !== '') {
-          filter += `&priceTo=${maxPriceFilter}`
+        if (filterElements.maxPrice !== '') {
+          filter += `&priceTo=${filterElements.maxPrice}`
         }
-        if (authorFilter !== '') {
-            filter += `${authorFilter}`
+        if (filterElements.author !== '') {
+            filter += `${filterElements.author}`
         }
-        if (publisherFilter !== '') {
-            filter += `${publisherFilter}`
+        if (filterElements.publisher !== '') {
+            filter += `${filterElements.publisher}`
         }
-        if (categoryFilter !== '') {
-            filter += `${categoryFilter}`
+        if (filterElements.category !== '') {
+            filter += `${filterElements.category}`
         }
-        if (languageFilter !== '') {
-            filter += `${languageFilter}`
+        if (filterElements.language !== '') {
+            filter += `${filterElements.language}`
         }
-        if (stockFilter !== '') {
-            filter += `${stockFilter}`
+        if (filterElements.stock !== '') {
+            filter += `${filterElements.stock}`
         }
-        if (scoreFilter !== '') {
-            filter += `${scoreFilter}`
+        if (filterElements.score !== '') {
+            filter += `${filterElements.score}`
+        }
+        if (filterElements.form !== '') {
+            filter += `${filterElements.form}`
         }
         return filter
       }
@@ -69,21 +86,37 @@ function BooksList() {
         setFilter(newFilter)
     }
     const resetFilters = () => {
-        setMinPriceFilter('')
-        setMaxPriceFilter('')
-        setAuthorFilter('')
-        setPublisherFilter('')
-        setCategoryFilter('')
-        setLanguageFilter('')
-        setScoreFilter('')
-        setStockFilter('')
-        setFilter('')
+        setFilterElements({
+            minPrice: '',
+            maxPrice: '',
+            author: '',
+            publisher: '',
+            category: '',
+            language: '',
+            score: '',
+            stock: '',
+            form: '',
+          })
+          setFiltersOpen({
+            form: false,
+            stock: false,
+            score: false,
+            publisher: false,
+            author: false,
+            price: false,
+            language: false,
+            category: false,
+        })
+        const newFilter = buildFilter()
+        setFilter(newFilter)
     }
     useEffect(() => {
-        getFilteredSortedBooks(1,sorting,filter,setResults,setLoading)
+        setLoading(true)
+        getFilteredSortedBooks(sorting,filter,setResults,setLoading)
     },[])
     useEffect(() => {
-        getFilteredSortedBooks(1,sorting,filter,setResults,setLoading)
+        setLoading(true)
+        getFilteredSortedBooks(sorting,filter,setResults,setLoading)
     },[sorting, filter])
   return (
     <div className='default-page-wrapper'>
@@ -97,13 +130,14 @@ function BooksList() {
                             <button onClick={resetFilters} className='bordered-purple-button whitespace-nowrap text-xs px-3 py-2'>Wyczyść filtry</button>}
                         </div>
                         <div className='flex flex-col my-2'>
-                            <PriceFilter setMinPriceFilter={setMinPriceFilter} setMaxPriceFilter={setMaxPriceFilter}/>
-                            <AuthorFilter setAuthorFilter={setAuthorFilter}/>
-                            <PublisherFilter setPublisherFilter={setPublisherFilter}/>
-                            <CategoryFilter setCategoryFilter={setCategoryFilter}/>
-                            <LanguageFilter setLanguageFilter={setLanguageFilter}/>
-                            <ScoreFilter setScoreFilter={setScoreFilter}/>
-                            <StockFilter setStockFilter={setStockFilter}/>
+                            <FormFilter filtersOpen={filtersOpen} setFiltersOpen={setFiltersOpen} filterElements={filterElements} setFilterElements={setFilterElements}/>
+                            <PriceFilter filtersOpen={filtersOpen} setFiltersOpen={setFiltersOpen} filterElements={filterElements} setFilterElements={setFilterElements}/>
+                            <AuthorFilter filtersOpen={filtersOpen} setFiltersOpen={setFiltersOpen} filterElements={filterElements} setFilterElements={setFilterElements}/>
+                            <PublisherFilter filtersOpen={filtersOpen} setFiltersOpen={setFiltersOpen} filterElements={filterElements} setFilterElements={setFilterElements}/>
+                            <CategoryFilter filtersOpen={filtersOpen} setFiltersOpen={setFiltersOpen} filterElements={filterElements} setFilterElements={setFilterElements}/>
+                            <LanguageFilter filtersOpen={filtersOpen} setFiltersOpen={setFiltersOpen} filterElements={filterElements} setFilterElements={setFilterElements}/>
+                            <ScoreFilter filtersOpen={filtersOpen} setFiltersOpen={setFiltersOpen} filterElements={filterElements} setFilterElements={setFilterElements}/>
+                            <StockFilter filtersOpen={filtersOpen} setFiltersOpen={setFiltersOpen} filterElements={filterElements} setFilterElements={setFilterElements}/>
                             <button onClick={applyFilters} className='purple-button sticky bottom-2'>Filtruj wyniki</button>
                         </div>
                         <ToggleFilterMenuButton toggleFilterMenu={toggleFilterMenu}/>
@@ -112,8 +146,8 @@ function BooksList() {
                 <div className='flex flex-col'>
                     <div className='flex flex-col lg:flex-row justify-between items-start lg:items-end'>
                         <div className='flex flex-col'>
-                            <h1 className='text-3xl font-semibold'>Książki</h1>
-                            <h2 className='flex items-center mt-2'><span className='mr-1 font-semibold'>{results ? results.length : '0'}</span>wyników</h2>
+                            <h1 className='text-3xl font-semibold'>Produkty</h1>
+                            <h2 className='flex items-center mt-2'><span className='mr-1 font-semibold'>{results ? results.length : '0'}</span>znalezione wyniki</h2>
                         </div>
                         <div className='flex my-2 lg:my-0'>
                             <FilterButton toggleFilterMenu={toggleFilterMenu}/>
@@ -135,4 +169,4 @@ function BooksList() {
   )
 }
 
-export default BooksList
+export default ProductsList

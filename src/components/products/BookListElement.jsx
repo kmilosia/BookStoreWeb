@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import AddToCartButton from '../buttons/AddToCartButton'
 import { Link } from 'react-router-dom'
 import Stars from '../elements/Stars'
+import RentButton from '../buttons/RentButton'
 
 function BookListElement({item}) {
   const [showText, setShowText] = useState()
@@ -15,11 +16,13 @@ function BookListElement({item}) {
           {showText && <span className='title-tooltip'>{item.title}</span>}
         </div>
         <p className='font-light text-xs'>{item.authors.map((item,index)=>{return(<span key={index}>{item.name} {item.surname}</span>)})}</p>
+        <p className='text-xs font-semibold'>{item.formId === 1 ? 'Książka' : 'Ebook'}</p>
         <Stars score={item.score} />
         <h2 className='font-semibold text-lg my-1'>{item.price.toFixed(2)}zł</h2>
     </Link>
     <div className='lg:hidden lg:group-hover:flex lg:group-hover:flex-col flex flex-col'>
-      <AddToCartButton item={item}/>           
+      <AddToCartButton item={item}/> 
+      {item.formId === 2 && <RentButton item={item}/>}          
     </div>
   </div>
   </div>
