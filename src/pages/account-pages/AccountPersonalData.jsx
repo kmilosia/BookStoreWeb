@@ -34,6 +34,7 @@ function AccountPersonalData() {
   }
   useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
+      console.log('hello')
       dispatch(editUserData(userDetails))
     }
   }, [errors])

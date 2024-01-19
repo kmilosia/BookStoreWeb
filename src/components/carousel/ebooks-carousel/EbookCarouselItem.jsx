@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import Stars from '../../elements/Stars';
 import { Link } from 'react-router-dom';
-import AddToCartButton from '../../buttons/AddToCartButton'
 import RentButton from '../../buttons/RentButton'
 
-function EbookCarouselItem({item,rental}) {
+function EbookCarouselItem({item}) {
   const [showText, setShowText] = useState(false)
   return (
     <div className='flex flex-col cursor-pointer lg:mx-2 lg:my-2 shadow-md bg-white hover:bg-gray-200 dark:bg-midnight-900 dark:hover:bg-midnight-800 rounded-md px-7 py-7 lg:px-5 lg:py-4 group'>
@@ -15,12 +14,13 @@ function EbookCarouselItem({item,rental}) {
         <div className='relative' onMouseOver={() => {setShowText(true)}} onMouseLeave={() => {setShowText(false)}}>
           <h2 className='font-semibold cursor-pointer truncated-text'>{item.title}</h2>
           {showText && <span className='title-tooltip top-6'>{item.title}</span>}
+          <h3 className='text-xs font-light'>{item.formId === 1 ? 'Książka' : 'Ebook'}</h3>
         </div>
       </div>
       <Stars score={item.score} />
       <h3 className='font-semibold text-xl mt-2 mb-1'>{item.price.toFixed(2)}zł</h3>
     </Link>
-    {rental ? <RentButton item={item}/> : <AddToCartButton item={item} />}
+    <RentButton item={item}/>
     </div>
   );
 }

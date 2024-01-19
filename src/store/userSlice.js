@@ -56,7 +56,7 @@ export const registerUser = createAsyncThunk(
     'user/register',
     async(userCredentials) => {
         try{
-            const response = await axiosClient.post('Account/registration',userCredentials)
+            const response = await axiosClient.post('Account/Register',userCredentials)
             return response.data    
         }catch(error){
             if (error.response && error.response.status === 400) {
@@ -73,7 +73,7 @@ export const fetchUserData = createAsyncThunk(
     async() => {
         try{
         const token = getValidToken()
-        const response = await axiosClient.get('User/Data',{
+        const response = await axiosClient.get('User',{
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ export const fetchUserAddress = createAsyncThunk(
     async() => {
         try{
         const token = getValidToken()
-        const response = await axiosClient.get('User/Data-Address',{
+        const response = await axiosClient.get('User/Address',{
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',
@@ -165,7 +165,7 @@ export const editUserData = createAsyncThunk(
     async(data) => {
         try{
         const token = getValidToken()
-        const response = await axiosClient.put('/User/Edit-Data', data, {
+        const response = await axiosClient.put('/User', data, {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',
@@ -187,7 +187,7 @@ export const changePassword = createAsyncThunk(
     async(data) => {
         try{
         const token = getValidToken()
-        const response = await axiosClient.put('/User/Edit-Password', data,{
+        const response = await axiosClient.put('/User/Password', data,{
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',
@@ -209,7 +209,7 @@ export const deleteAccount = createAsyncThunk(
     async() => {
         try{
         const token = getValidToken()
-        const response = await axiosClient.delete('/User/Deactivate',{
+        const response = await axiosClient.delete('/User',{
         headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',
@@ -230,7 +230,7 @@ export const signNewsletter = createAsyncThunk(
     'user/signNewsletter',
     async(email) => {
         try{
-            const response = await axiosClient.post(`/Newsletter/Add-New-Subscriber?email=${email}` )
+            const response = await axiosClient.post(`/Newsletter/Subscriber?email=${email}` )
             return response.data    
         }catch(error){
             if (error.response && error.response.status === 400) {
@@ -263,7 +263,7 @@ export const addUserAddress = createAsyncThunk(
     async(data) => {
         try{
         const token = getValidToken()
-        const response = await axiosClient.post('/User/Edit-Address-Data', data, {
+        const response = await axiosClient.post('/User/Address', data, {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',

@@ -5,7 +5,6 @@ import BooksCarousel from '../components/carousel/books-carousel/BooksCarousel'
 import BannerCarousel from '../components/carousel/banner-carousel/BannerCarousel'
 import EventDiscountElement from '../components/page-elements/EventDiscountElement'
 import HomeNewsSegment from '../components/news-elements/HomeNewsSegment'
-import EbooksCarousel from '../components/carousel/ebooks-carousel/EbooksCarousel'
 
 function Home() {
   return (
@@ -16,20 +15,17 @@ function Home() {
       </div>
       <div className='default-page-container pt-0'>
         <div className='carousel-element mb-5'>
-          <BooksCarousel title="Najpopularniejsze książki" filter='numberOfElements=10&sortBy="popular"&formIds=1'/>
+          <BooksCarousel title="Najpopularniejsze" filter='numberOfElements=10&sortBy="popular"'/>
         </div>
         <BannerCarousel />
         <div className='carousel-element'>
-          <BooksCarousel title="Ostatnio dodane książki" filter='numberOfElements=10&sortOrder="desc"&formIds=1'/>
+          <BooksCarousel title="Ostatnio dodane" filter='numberOfElements=10&sortOrder="desc"'/>
         </div>
         <EventDiscountElement />
         <div className='carousel-element'>
-          <EbooksCarousel title="Najpopularniejsze ebooki" filter='numberOfElements=10&sortBy="popular"&formIds=2'/>
+          <BooksCarousel title="Przecenione" filter='numberOfElements=10&isOnSale=true'/>
         </div>
        <HomeNewsSegment />
-       <div className='carousel-element'>
-          <EbooksCarousel title="Ostatnio dodane ebooki" filter='numberOfElements=10&sortOrder="desc"&formIds=2'/>
-        </div>
       </div>
       <NewsletterForm />
     </div>

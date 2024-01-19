@@ -15,8 +15,13 @@ import BookListElement from '../components/products/BookListElement'
 import Select from '../components/forms/Select'
 import { getFilteredSortedBooks } from '../utils/api/bookItemsAPI'
 import FormFilter from '../components/filters/FormFilter'
+import { useSearchParams } from 'react-router-dom'
+import DiscountFilter from '../components/filters/DiscountFilter'
 
 function ProductsList() {
+    const [params, setParams] = useSearchParams()
+    const paramsForm = params.get('form')  
+    const paramsDiscount = params.get('promocje')  
     const [isFilterOpen, setIsFilterOpen] = useState(false)
     const [loading, setLoading] = useState(true)
     const [results, setResults] = useState([])
@@ -31,7 +36,8 @@ function ProductsList() {
         language: '',
         score: '',
         stock: '',
-        form: '',
+        form: paramsForm ? `&FormIds=${paramsForm}` : '',
+        discount: paramsDiscount ? `&IsOnSale=${paramsDiscount}` : '',
     })
     const [filtersOpen, setFiltersOpen] = useState({
         form: false,
@@ -78,6 +84,9 @@ function ProductsList() {
         if (filterElements.form !== '') {
             filter += `${filterElements.form}`
         }
+        if (filterElements.discount !== '') {
+            filter += `${filterElements.discount}`
+        }
         return filter
       }
     const applyFilters =() => {
@@ -96,6 +105,7 @@ function ProductsList() {
             score: '',
             stock: '',
             form: '',
+            discount: '',
           })
           setFiltersOpen({
             form: false,
@@ -106,13 +116,13 @@ function ProductsList() {
             price: false,
             language: false,
             category: false,
+            discount: false,
         })
         const newFilter = buildFilter()
         setFilter(newFilter)
     }
     useEffect(() => {
-        setLoading(true)
-        getFilteredSortedBooks(sorting,filter,setResults,setLoading)
+        setFilter(buildFilter())
     },[])
     useEffect(() => {
         setLoading(true)
@@ -138,6 +148,7 @@ function ProductsList() {
                             <LanguageFilter filtersOpen={filtersOpen} setFiltersOpen={setFiltersOpen} filterElements={filterElements} setFilterElements={setFilterElements}/>
                             <ScoreFilter filtersOpen={filtersOpen} setFiltersOpen={setFiltersOpen} filterElements={filterElements} setFilterElements={setFilterElements}/>
                             <StockFilter filtersOpen={filtersOpen} setFiltersOpen={setFiltersOpen} filterElements={filterElements} setFilterElements={setFilterElements}/>
+                            <DiscountFilter filtersOpen={filtersOpen} setFiltersOpen={setFiltersOpen} filterElements={filterElements} setFilterElements={setFilterElements}/>
                             <button onClick={applyFilters} className='purple-button sticky bottom-2'>Filtruj wyniki</button>
                         </div>
                         <ToggleFilterMenuButton toggleFilterMenu={toggleFilterMenu}/>

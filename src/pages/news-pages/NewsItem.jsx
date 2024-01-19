@@ -23,7 +23,7 @@ function NewsItem() {
             <div className='grid grid-cols-1 lg:grid-cols-[4fr_1fr] gap-2 lg:gap-10 px-5 lg:px-10 py-5'>
                 <div className='flex flex-col cursor-default'>
                     <h1 className='text-3xl lg:text-4xl font-medium text-start mb-4'>{news.topic}</h1>
-                    <article dangerouslySetInnerHTML={{ __html: news.content }}></article>
+                    <article>{news.content}</article>
                 </div>
             <LatestNewsColumn />
             </div>

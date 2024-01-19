@@ -14,6 +14,7 @@ function BookCarouselItem({item}) {
         <div className='relative' onMouseOver={() => {setShowText(true)}} onMouseLeave={() => {setShowText(false)}}>
           <h2 className='font-semibold cursor-pointer truncated-text'>{item.title}</h2>
           {showText && <span className='title-tooltip top-6'>{item.title}</span>}
+          <h3 className='text-xs font-light'>{item.formId === 1 ? 'Książka' : 'Ebook'}</h3>
         </div>
       </div>
       <Stars score={item.score} />

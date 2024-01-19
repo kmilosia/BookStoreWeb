@@ -22,7 +22,7 @@ function EbooksCarousel(props) {
         <Slider {...settings}>
           {books.map((item, index) => {
               return (
-                  <EbookCarouselItem key={index} item={item} rental={props.rental}/>
+                  <EbookCarouselItem key={index} item={item}/>
               )
           })}
     </Slider>

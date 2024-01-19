@@ -4,7 +4,6 @@ import BooksCarousel from '../components/carousel/books-carousel/BooksCarousel'
 import BannerCarousel from '../components/carousel/banner-carousel/BannerCarousel'
 import InstallAppElement from '../components/page-elements/InstallAppElement'
 import ExploreAllElement from '../components/page-elements/ExploreAllElement'
-import EbooksCarousel from '../components/carousel/ebooks-carousel/EbooksCarousel'
 
 function Store() {
   return (
@@ -12,29 +11,19 @@ function Store() {
     <div className='default-page-container'>
       <BannerCarousel />
       <div className='grid mt-5 mb-3 grid-cols-3 gap-5'>
-          <StoreTypeLink src='https://iili.io/JBf7uNp.png' path="/ksiazki" title="Przeglądaj książki" />
-          <StoreTypeLink src='https://iili.io/JBf7lls.png' path="/ebooki" title="Przeglądaj ebooki" />
+          <StoreTypeLink src='https://iili.io/JBf7uNp.png' path="/produkty?form=1" title="Przeglądaj produkty" />
+          <StoreTypeLink src='https://iili.io/JBf7lls.png' path="/produkty?form=2" title="Przeglądaj ebooki" />
           <StoreTypeLink src='https://iili.io/JCnBzCl.png' path="/kategorie" title="Przeglądaj kategorie" />
         </div>  
       <div className='carousel-element'>
-        <BooksCarousel title="Najpopularniejsze książki" filter='numberOfElements=10&sortBy="popular"&formIds=1'/>
+        <BooksCarousel title="Najpopularniejsze" filter='numberOfElements=10&sortBy=popular'/>
       </div>
       <div className='carousel-element'>
-        <BooksCarousel title="Najlepiej oceniane książki"/>
+        <BooksCarousel title="Najnowsze" filter='numberOfElements=10&sortOrder=asc'/>
       </div>
+      <ExploreAllElement path="/produkty" title="Przeglądaj wszystkie dostępne książki" />
       <div className='carousel-element'>
-        <BooksCarousel title="Nowo dodane książki" filter='numberOfElements=10&formIds=1&sortOrder="desc"'/>
-      </div>
-      <ExploreAllElement path="/ksiazki" title="Przeglądaj wszystkie dostępne książki" />
-      <div className='carousel-element'>
-        <EbooksCarousel title="Najnowsze ebooki" rental={false} filter='numberOfElements=10&formIds=2&sortOrder="desc"'/>
-      </div>
-      <div className='carousel-element'>
-        <EbooksCarousel title="Najpopularniejsze ebooki" rental={false} filter='numberOfElements=10&sortBy="popular"&formIds=2'/>
-      </div>
-      <ExploreAllElement path="/ebooki" title="Przeglądaj wszystkie dostępne ebooki" />
-      <div className='carousel-element'>
-        <EbooksCarousel title="Najlepiej oceniane ebooki" rental={false}/>
+        <BooksCarousel title="Polecane" filter='numberOfElements=10&sortOrder=asc'/>
       </div>
       <InstallAppElement />
     </div>
