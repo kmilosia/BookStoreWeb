@@ -11,13 +11,12 @@ import PageLoader from '../components/elements/PageLoader'
 import { useState } from 'react'
 import ToggleFilterMenuButton from '../components/buttons/ToggleFilterMenuButton'
 import { productSortOptions } from '../utils/data'
-import BookListElement from '../components/products/BookListElement'
+import EbookListElement from '../components/products/EbookListElement'
 import Select from '../components/forms/Select'
-import { getFilteredSortedBooks } from '../utils/api/bookItemsAPI'
-import FormFilter from '../components/filters/FormFilter'
+import { getFilteredSortedBooks, getFilteredSortedFormBooks } from '../utils/api/bookItemsAPI'
 import DiscountFilter from '../components/filters/DiscountFilter'
 
-function ProductsList() {
+function EbooksList() {
     const [isFilterOpen, setIsFilterOpen] = useState(false)
     const [loading, setLoading] = useState(true)
     const [results, setResults] = useState([])
@@ -32,19 +31,16 @@ function ProductsList() {
         language: '',
         score: '',
         stock: '',
-        form: '',
         discount: '',
     })
     const [filtersOpen, setFiltersOpen] = useState({
-        form: false,
         stock: false,
         score: false,
         publisher: false,
         author: false,
         price: false,
         language: false,
-        category: false,
-        discount: false,
+        category: false
     })
     const toggleFilterMenu = () => {
         setIsFilterOpen(!isFilterOpen)
@@ -78,9 +74,6 @@ function ProductsList() {
         if (filterElements.score !== '') {
             filter += `${filterElements.score}`
         }
-        if (filterElements.form !== '') {
-            filter += `${filterElements.form}`
-        }
         if (filterElements.discount !== '') {
             filter += `${filterElements.discount}`
         }
@@ -101,11 +94,9 @@ function ProductsList() {
             language: '',
             score: '',
             stock: '',
-            form: '',
             discount: '',
           })
           setFiltersOpen({
-            form: false,
             stock: false,
             score: false,
             publisher: false,
@@ -120,7 +111,7 @@ function ProductsList() {
     }
     useEffect(() => {
         setLoading(true)
-        getFilteredSortedBooks(sorting,filter,setResults,setLoading)
+        getFilteredSortedFormBooks(2,sorting,filter,setResults,setLoading)
     },[sorting, filter])
   return (
     <div className='default-page-wrapper'>
@@ -134,7 +125,6 @@ function ProductsList() {
                             <button onClick={resetFilters} className='bordered-purple-button whitespace-nowrap text-xs px-3 py-2'>Wyczyść filtry</button>}
                         </div>
                         <div className='flex flex-col my-2'>
-                            <FormFilter filtersOpen={filtersOpen} setFiltersOpen={setFiltersOpen} filterElements={filterElements} setFilterElements={setFilterElements}/>
                             <PriceFilter filtersOpen={filtersOpen} setFiltersOpen={setFiltersOpen} filterElements={filterElements} setFilterElements={setFilterElements}/>
                             <AuthorFilter filtersOpen={filtersOpen} setFiltersOpen={setFiltersOpen} filterElements={filterElements} setFilterElements={setFilterElements}/>
                             <PublisherFilter filtersOpen={filtersOpen} setFiltersOpen={setFiltersOpen} filterElements={filterElements} setFilterElements={setFilterElements}/>
@@ -151,7 +141,7 @@ function ProductsList() {
                 <div className='flex flex-col'>
                     <div className='flex flex-col lg:flex-row justify-between items-start lg:items-end'>
                         <div className='flex flex-col'>
-                            <h1 className='text-3xl font-semibold'>Produkty</h1>
+                            <h1 className='text-3xl font-semibold'>Ebooki</h1>
                             <h2 className='flex items-center mt-2'><span className='mr-1 font-semibold'>{results ? results.length : '0'}</span>znalezione wyniki</h2>
                         </div>
                         <div className='flex my-2 lg:my-0'>
@@ -163,7 +153,7 @@ function ProductsList() {
                         {loading ? <div className='col-span-5'><PageLoader /></div> :
                         results && results.map((item,index) => {
                             return (
-                                <BookListElement key={index} item={item}/>
+                                <EbookListElement key={index} item={item}/>
                             )
                         })}
                     </div>
@@ -174,4 +164,4 @@ function ProductsList() {
   )
 }
 
-export default ProductsList
+export default EbooksList

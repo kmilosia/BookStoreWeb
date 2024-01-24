@@ -19,11 +19,11 @@ function Home() {
         </div>
         <BannerCarousel />
         <div className='carousel-element'>
-          <BooksCarousel title="Ostatnio dodane" filter='numberOfElements=10&sortOrder="desc"'/>
+          <BooksCarousel title="Ostatnio dodane" filter='numberOfElements=10&sortBy="recentlyAdded"'/>
         </div>
         <EventDiscountElement />
         <div className='carousel-element'>
-          <BooksCarousel title="Przecenione" filter='numberOfElements=10&isOnSale=true'/>
+          <BooksCarousel title="Najlepiej oceniane" filter='numberOfElements=10&sortBy="score"'/>
         </div>
        <HomeNewsSegment />
       </div>

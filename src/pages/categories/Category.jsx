@@ -23,7 +23,8 @@ function Category() {
       <PageHeader src={category.imageURL} title={category.categoryName} content={category.content} />
       <div className='flex flex-col divide-border-top'>
         <BooksCarousel title="Najpopularniejsze" filter={`numberOfElements=10&sortBy=popular&categoryIds=${categoryID}`}/>
-        <BooksCarousel title="Najnowsze" filter={`numberOfElements=10&sortOrder=desc&categoryIds=${categoryID}`}/>
+        <BooksCarousel title="Najnowsze" filter={`numberOfElements=10&sortBy=recentlyAdded&categoryIds=${categoryID}`}/>
+        <BooksCarousel title="Najlepiej oceniane" filter={`numberOfElements=10&sortBy=score&categoryIds=${categoryID}`}/>
       </div>
       </>
     }

@@ -24,7 +24,9 @@ function WishlistElement({item,updateWishlistAfterDelete}) {
       id: item.id,
       imageURL: item.imageURL,
       price: item.priceBrutto,
+      discountedBruttoPrice: item.discountedPriceBrutto,
       title: item.bookTitle,
+      isWishlisted: false,
   }
     dispatch(addToCart(newItem))
     deleteWishlistItem(item.id)
@@ -43,7 +45,10 @@ function WishlistElement({item,updateWishlistAfterDelete}) {
         {showText && <span className='title-tooltip top-7'>{item.bookTitle}</span>}
       </Link>
         <h3 className='text-gray-600 dark:text-gray-400 text-sm lg:text-xs 2xl:text-sm cursor-default'>{item.formName === "Book" ? "Książka" : "Ebook"}</h3>
-      <h4 className='font-semibold cursor-default text-xl mt-2 mb-1'>{item?.priceBrutto.toFixed(2)}zł</h4>
+        <div className='flex flex-row items-baseline'>
+        {item.discountedPriceBrutto !== 0 && <p className='font-semibold text-purple-400 text-xl mt-2 mb-1 mr-1'>{item.discountedPriceBrutto?.toFixed(2)}zł</p>}
+        <p className={`${item.discountedPriceBrutto !== 0 ? 'font-light text-md line-through' : 'font-semibold text-xl no-underline'} mt-2 mb-1`}>{item.priceBrutto?.toFixed(2)}zł</p>
+      </div>
       <button onClick={handleAddToCartButton} className='purple-button'>Przenieś do koszyka</button>
     </div>
   )

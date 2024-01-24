@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom
 import {Home, Search,PageNotFound, Rental, Store, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders,
 Library, AccountRentals, Cart, Wishlist,Checkout, Access, RecoverPassword,Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail,
 RecoverPasswordResetLink, RecoverPasswordNewPassword,RecoverPasswordConfirmation, RegisterRequiredData, RegisterConfirmation, Product, RegisterConfirmEmail,
-Payment, OrderConfirmation, CheckoutReview, Reviews, AccountAddress, ProductsList} from './import'
+Payment, OrderConfirmation, CheckoutReview, Reviews, AccountAddress, ProductsList, EbooksList, BooksList, Discounts} from './import'
 import MainLayout from './MainLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -63,7 +63,9 @@ function App() {
           <Route path='wiadomosci' element={<News />} />
           <Route path='wiadomosc/:id' element={<NewsItem />} />
           <Route path='wszystkie-wiadomosci' element={<AllNews />}/>
-          {/* <Route path='promocje' element={<Discounts />}/> */}
+          <Route path='promocje' element={<Discounts />}/>
+          <Route path='ebooki' element={<EbooksList />}/>
+          <Route path='booki' element={<BooksList />}/>
           <Route path='produkty' element={<ProductsList />}/>
           <Route path='produkt/:id' element={<Product />}/>
           <Route path='recenzje/:id' element={<Reviews />}/>

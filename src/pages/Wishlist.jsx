@@ -37,7 +37,9 @@ function Wishlist() {
           id: item.id,
           imageURL: item.imageURL,
           price: item.priceBrutto,
+          discountedBruttoPrice: item.discountedBruttoPrice,
           title: item.bookTitle,
+          isWishlisted: false,
       }
       dispatch(addToCart(newItem))
       deleteWishlistItem(item.id)

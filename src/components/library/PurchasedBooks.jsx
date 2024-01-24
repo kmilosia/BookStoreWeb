@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import BookModal from './BookModal'
-import { getPurchasedBooks } from '../../utils/api/rentalAPI'
 import PageLoader from '../elements/PageLoader'
+import { getLibraryItems } from '../../utils/api/libraryAPI'
 
 function PurchasedBooks() {
     const [purchasedBooks, setPurchasedBooks] = useState([])
@@ -21,7 +21,7 @@ function PurchasedBooks() {
         setIsBookModal(true)
     }
     useEffect(() => {
-        getPurchasedBooks(setPurchasedBooks, setLoading)
+        getLibraryItems(2,setPurchasedBooks, setLoading)
     },[])
   return (
     loading ? <PageLoader /> :

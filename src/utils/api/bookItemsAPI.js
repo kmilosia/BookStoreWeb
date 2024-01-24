@@ -18,7 +18,16 @@ export const getFilteredBooks = async (filter, setData, setLoading) => {
         console.error(err)
     }
   }
-export const getFilteredSortedBooks = async (sorting, filter, setData, setLoading) => {
+export const getFilteredSortedFormBooks = async (form,sorting, filter, setData, setLoading) => {
+    try{
+        const response = await axiosClient.get(`/BookItems/Store?FormIds=${form}&${sorting}${filter}`)
+        setData(response.data)
+        setLoading(false)
+    }catch(err){
+        console.error(err)
+    }
+  }
+  export const getFilteredSortedBooks = async (sorting, filter, setData, setLoading) => {
     try{
         const response = await axiosClient.get(`/BookItems/Store?${sorting}${filter}`)
         setData(response.data)
@@ -26,8 +35,7 @@ export const getFilteredSortedBooks = async (sorting, filter, setData, setLoadin
     }catch(err){
         console.error(err)
     }
-  }
-  
+  } 
 export const getDiscountedBooksList = async (sorting,filter,setData, setLoading) => {
     try{
         const response = await axiosClient.get(`/BookItems/Store?IsOnSale=true&${sorting}${filter}`)

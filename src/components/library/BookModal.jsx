@@ -40,9 +40,9 @@ function BookModal({item,setIsBookModal,purchased}) {
                 <h2 className='text-xl font-medium mt-2'>{item.fileFormatName}</h2>
                   {!isReviewed ?
                   <div className='flex flex-col w-full mt-auto'>
-                    {purchased && <button className='purple-button'>Pobierz na urządzenie<FaSave className='ml-2'/></button>}
+                    {purchased && <button className='purple-button'>Pobierz książkę<FaSave className='ml-2'/></button>}
                     {!purchased && <p className='my-2 cursor-default'>Wypożyczenie ważne do <strong>{showDate()}</strong> do godziny <strong>{showTime()}</strong></p>}
-                    <a href='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' target='_blank' className='purple-button'>Czytaj ebooka<FiFileText  className='ml-2' /></a>
+                    <a href='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' target='_blank' className='purple-button'>Czytaj książkę<FiFileText  className='ml-2' /></a>
                     <button onClick={() => {setIsReviewed(true)}} className='purple-button'>Dodaj recenzję<FaStarHalfAlt className='ml-2' /></button>
                   </div>
                   :

@@ -18,7 +18,6 @@ function EbookCarouselItem({item}) {
         </div>
       </div>
       <Stars score={item.score} />
-      <h3 className='font-semibold text-xl mt-2 mb-1'>{item.price.toFixed(2)}zł</h3>
     </Link>
     <RentButton item={item}/>
     </div>

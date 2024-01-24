@@ -16,7 +16,7 @@ function BooksCarousel(props) {
     <>
     <h1 className='carousel-header'>{props.title}</h1>
     {loading ? 
-    <div className='bg-white dark:bg-midnight-900 animate-pulse w-full h-80 rounded-md'></div>
+    <div className='bg-white dark:bg-midnight-900 animate-pulse w-full h-80 rounded-md'/>
     :
     books.length > 0 &&
         <Slider {...settings}>

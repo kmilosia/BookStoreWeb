@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { AiFillStar } from 'react-icons/ai';
-import axiosClient from '../utils/api/axiosClient';
-import {getValidToken} from '../utils/functions/getValidToken';
 import { useDispatch } from 'react-redux';
 import { showMessage } from '../store/messageSlice';
 import Spinner from '../components/elements/Spinner';
+import {addReview} from '../utils/api/reviewsAPI'
 
 function ReviewModal({setIsReviewed, bookItemId}) {
     const dispatch = useDispatch()
@@ -13,25 +12,8 @@ function ReviewModal({setIsReviewed, bookItemId}) {
     const [hover, setHover] = useState(null)
     const [textInput, setTextInput] = useState('')
     const [errors, setErrors] = useState({})
-    const addReview = async (data) => {
-        try {
-            const token = getValidToken();
-            const response = await axiosClient.post('/BookItemReview/Add-Review', data, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-            })
-            if(response.status === 200){
-                dispatch(showMessage({title: "Recenzja została dodana!"}))
-                setIsReviewed(false)
-            }
-            setLoading(false)
-            return response
-        } catch (error) {
-            console.error(error)
-        }
-    }
+    const [success, setSuccess] = useState(null)
+  
     const handleInput = (e) => {
         setTextInput(e.target.value)
     }
@@ -51,9 +33,17 @@ function ReviewModal({setIsReviewed, bookItemId}) {
                 scoreId: rating,
                 bookItemId: bookItemId,
             }
-            addReview(item)
+            addReview(bookItemId, item, setLoading, setSuccess)
         }
     }
+    useEffect(() => {
+        if(success){
+            setIsReviewed(true)
+            dispatch(showMessage({title: "Recenzja została dodana!"}))
+        }else if(success === false){
+            dispatch(showMessage({title: "Nie można było dodać recenzji!", type: 'warning'}))
+        }
+    },[success])
   return (
     <div className='flex flex-col w-full mt-auto'>
         <p className='text-lg'>Oceń książkę</p>

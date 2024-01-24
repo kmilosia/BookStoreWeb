@@ -11,20 +11,21 @@ function Store() {
     <div className='default-page-container'>
       <BannerCarousel />
       <div className='grid mt-5 mb-3 grid-cols-3 gap-5'>
-          <StoreTypeLink src='https://iili.io/JBf7uNp.png' path="/produkty?form=1" title="Przeglądaj produkty" />
-          <StoreTypeLink src='https://iili.io/JBf7lls.png' path="/produkty?form=2" title="Przeglądaj ebooki" />
+          <StoreTypeLink src='https://iili.io/JBf7uNp.png' path="/ksiazki" title="Przeglądaj książki" />
+          <StoreTypeLink src='https://iili.io/JBf7lls.png' path="/ebooki" title="Przeglądaj ebooki" />
           <StoreTypeLink src='https://iili.io/JCnBzCl.png' path="/kategorie" title="Przeglądaj kategorie" />
         </div>  
       <div className='carousel-element'>
         <BooksCarousel title="Najpopularniejsze" filter='numberOfElements=10&sortBy=popular'/>
       </div>
       <div className='carousel-element'>
-        <BooksCarousel title="Najnowsze" filter='numberOfElements=10&sortOrder=asc'/>
+        <BooksCarousel title="Ostatnio dodane" filter='numberOfElements=10&sortBy=recentlyAdded'/>
       </div>
-      <ExploreAllElement path="/produkty" title="Przeglądaj wszystkie dostępne książki" />
+      <ExploreAllElement path="/ksiazki" title="Przeglądaj wszystkie dostępne książki" />
       <div className='carousel-element'>
-        <BooksCarousel title="Polecane" filter='numberOfElements=10&sortOrder=asc'/>
+        <BooksCarousel title="Najlepiej oceniane" filter='numberOfElements=10&sortBy=score'/>
       </div>
+      <ExploreAllElement path="/ebooki" title="Przeglądaj wszystkie dostępne ebooki" />
       <InstallAppElement />
     </div>
 </div>
