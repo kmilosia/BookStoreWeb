@@ -17,7 +17,10 @@ function BookElement({item}) {
         </div>
         <h3 className='text-gray-600 dark:text-gray-400 text-sm mb-2 lg:text-xs 2xl:text-sm cursor-default'>{item.formName === "Book" ? "Książka" : "Ebook"}</h3>
         <Stars score={item.score} />
-        <h4 className='font-semibold text-xl mt-2 mb-1'>{item.price.toFixed(2)}zł</h4>
+        <div className='flex flex-row items-baseline'>
+        {item.discountedBruttoPrice !== 0 && <p className='font-semibold text-purple-400 text-xl mt-2 mb-1 mr-1'>{item.discountedBruttoPrice.toFixed(2)}zł</p>}
+        <p className={`${item.discountedBruttoPrice !== 0 ? 'font-light text-md line-through' : 'font-semibold text-xl no-underline'} mt-2 mb-1`}>{item.price.toFixed(2)}zł</p>
+        </div>
         <div className='lg:hidden lg:group-hover:flex lg:group-hover:flex-col flex flex-col'>
             <AddToCartButton />  
             {item.formId === 2 && <RentButton />}

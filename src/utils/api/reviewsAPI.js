@@ -18,16 +18,16 @@ export const getReviewsAmount = async (id, setData, number) => {
         console.error(err)
     }
 }
-export const addReview = async (id,data,setLoading,setSuccess) => {
+export const addReview = async (data,setLoading,setSuccess) => {
     try {
         const token = getValidToken();
-        const response = await axiosClient.post(`/BookItemReview/${id}`, data, {
+        const response = await axiosClient.post(`/BookItemReview/`, data, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },
         })
-        if(response.status === 200){
+        if(response.status === 200 || response.status === 204){
             setSuccess(true)
         }else{
             setSuccess(false)

@@ -26,7 +26,11 @@ function CartPopup() {
                 <h2 className='font-light my-1'>{product.authors.map((item,index)=>{return(<span key={index}>{item.name} {item.surname}</span>)})}</h2>
                 <h3 className='flex items-center'>{product.formName === 'Book' ? 'Książka' : 'Ebook'}</h3>
                 <div className='flex flex-col mt-auto'>
-                <h4 className='font-semibold text-2xl lg:text-3xl my-2 text-end'>{product.price && product.price.toFixed(2)}zł</h4>
+                <div className='flex flex-row align-baseline justify-end my-2'>
+                  {product.discountedBruttoPrice !== 0 && 
+                  <p className='font-bold text-2xl lg:text-3xl mr-2 text-purple-400'>{product.discountedBruttoPrice?.toFixed(2)}zł</p>}
+                  <p className={`${product.discountedBruttoPrice !== 0 ? 'text-xl line-through font-light' : 'font-bold text-2xl lg:text-3xl'}`}>{product.price?.toFixed(2)}zł</p>
+                </div>
                   <div className='grid grid-cols-2 gap-2 lg:flex justify-end'>
                     <button onClick={handleHidePopup} className='bordered-purple-button lg:w-max'>Kontynuuj zakupy</button>
                     <Link to='/koszyk' onClick={handleHidePopup} className='purple-button lg:w-max'>Przejdź do koszyka</Link>

@@ -1,3 +1,4 @@
+import { getValidToken } from "../functions/getValidToken"
 import axiosClient from "./axiosClient"
 
 export const getSearchResults = async (search,sorting,setData,setLoading) => {
@@ -47,7 +48,13 @@ export const getDiscountedBooksList = async (sorting,filter,setData, setLoading)
   }
 export const getBookDetails = async (id, setData, setLoading) => {
     try{
-        const response = await axiosClient.get(`/BookItems/Store/${id}`)
+        const token = getValidToken();
+        const response = await axiosClient.get(`/BookItems/Store/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        })
         setData(response.data)
         setLoading(false)
     }catch(err){

@@ -22,6 +22,7 @@ function BookModal({item,setIsBookModal,purchased}) {
     const formattedTime = `${hours}:${minutes}`;
     return formattedTime
   }
+  console.log(item);
   return (
     <div className='fixed z-[100000] top-0 left-0 w-screen h-screen bg-black/80 dark:text-white flex justify-center items-start lg:items-center'>
       <div className='w-full lg:w-2/3 h-max flex flex-col py-10 px-10 bg-white dark:bg-midnight-800'>

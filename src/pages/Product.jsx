@@ -15,7 +15,7 @@ import { showMessage } from '../store/messageSlice';
 import { addRentBook } from '../store/rentSlice';
 import { getBookDetails, getBooksByBookId } from '../utils/api/bookItemsAPI';
 import { getReviewsAmount } from '../utils/api/reviewsAPI';
-import { addToWishlist } from '../utils/api/wishlistAPI';
+import { addToWishlist, deleteWishlistItem } from '../utils/api/wishlistAPI';
 import ProductImages from '../components/page-elements/ProductImages';
 
 function Product() {
@@ -50,8 +50,10 @@ function Product() {
             id: book.id,
             imageURL: book.images[0].imageURL,
             price: book.price,
+            discountedBruttoPrice: book.discountedBruttoPrice,
             score: book.score,
             title: book.bookTitle,
+            isWishlisted: book.isWishlisted,
         }
         dispatch(addToCart(item))
         dispatch(showPopup(item))
@@ -59,7 +61,9 @@ function Product() {
     const handleAddToWishlist = () => {
         if(isAuth){
             if(book.isWishlisted){
-                dispatch(showMessage({title: "Produkt znajduję się już na liście życzeń!"}))
+                deleteWishlistItem(book.id)
+                setBook(prevBook => ({...prevBook,isWishlisted: !prevBook.isWishlisted}))
+                dispatch(showMessage({title: "Produkt usunięto z listy życzeń!"}))
             }else{
             addToWishlist(book.id)
             dispatch(showMessage({title: "Produkt dodano do listy życzeń!"}))
@@ -107,15 +111,17 @@ function Product() {
                             return (
                                 <Link key={index} to={`/produkt/${item.id}`} className={`flex flex-col ${item.id === book.id ? 'border-2 border-purple-400' : ''} bg-white/50 dark:bg-midnight-950/50 shadow-md rounded-md px-5 py-3 mr-2 my-1`}>
                                     <p className='text-base font-medium'>{item.formName === 'Book' ? `${item.editionName}` : `Ebook ${item.fileFormatName}`}</p>
-                                    <p className='font-bold mt-1'>{item.price?.toFixed(2)}zł</p>
+                                    <p className='font-bold mt-1'>{item.discountedBruttoPrice !== 0 ? item.discountedBruttoPrice.toFixed(2) : item.price.toFixed(2)}zł</p>
                                 </Link>
                             )
                         })}                  
                     </div>
                     }
                     <div className='mt-auto w-full flex flex-col items-start'>
-                    <div className='flex my-2'>
-                        <h4 className='text-3xl lg:text-4xl 2xl:text-5xl font-bold'>{book.price?.toFixed(2)}zł</h4>
+                    <div className='flex flex-row align-bottom justify-center my-2'>
+                        {book.discountedBruttoPrice !== 0 &&
+                        <p className='text-3xl lg:text-4xl 2xl:text-5xl font-bold text-purple-400 mr-2'>{book.discountedBruttoPrice?.toFixed(2)}zł</p>}
+                        <p className={`${book.discountedBruttoPrice !== 0 ? 'font-light line-through text-xl' : 'text-3xl lg:text-4xl 2xl:text-5xl font-bold'}`}>{book.price?.toFixed(2)}zł</p>
                     </div>
                     <div className='flex flex-col lg:flex-row justify-between my-2 w-full'>
                         <div className='flex flex-col lg:flex-row'>
@@ -175,12 +181,12 @@ function Product() {
                     </div>
                     <div className='col-span-2'>
                         <p className='font-medium'>Autor</p>
-                        <p className='font-light'>{book.authors.map((item,index) => {return(<span key={index} className='mr-1'>{item.name} {item.surname}</span>)})}</p>
+                        <p className='font-light'>{book.authors?.map((item,index) => {return(<span key={index} className='mr-1'>{item.name} {item.surname}</span>)})}</p>
                     </div>
                     <div className='col-span-2'>
                         <p className='font-medium'>Kategorie</p>
                         <div className='my-2 flex'>
-                            {book.categories.map((item,index) => {
+                            {book.categories?.map((item,index) => {
                                 return (
                                     <div key={index} className='mr-2 text-sm bg-purple-400 text-white rounded-full px-4 py-2'><p>{item.name}</p></div>
                                 )

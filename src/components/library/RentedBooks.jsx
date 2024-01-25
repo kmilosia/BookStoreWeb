@@ -11,7 +11,7 @@ function RentedBooks() {
     const [propItem, setPropItem] = useState({})
     const handleBook = (item) => {
         const newItem = {
-            id: item.bookItemId,
+            id: item.id,
             title: item.bookTitle,
             imageURL: item.imageURL,
             fileFormatName: item.fileFormatName,

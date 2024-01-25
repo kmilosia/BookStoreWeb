@@ -13,7 +13,6 @@ function ReviewModal({setIsReviewed, bookItemId}) {
     const [textInput, setTextInput] = useState('')
     const [errors, setErrors] = useState({})
     const [success, setSuccess] = useState(null)
-  
     const handleInput = (e) => {
         setTextInput(e.target.value)
     }
@@ -33,12 +32,13 @@ function ReviewModal({setIsReviewed, bookItemId}) {
                 scoreId: rating,
                 bookItemId: bookItemId,
             }
-            addReview(bookItemId, item, setLoading, setSuccess)
+            console.log(item);
+            addReview(item, setLoading, setSuccess)
         }
     }
     useEffect(() => {
         if(success){
-            setIsReviewed(true)
+            setIsReviewed(false)
             dispatch(showMessage({title: "Recenzja została dodana!"}))
         }else if(success === false){
             dispatch(showMessage({title: "Nie można było dodać recenzji!", type: 'warning'}))
