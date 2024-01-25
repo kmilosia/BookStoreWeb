@@ -5,7 +5,7 @@ export const getCities = async (setData) => {
       const response = await axiosClient.get('/City')
       setData(response.data)
     } catch (err) {
-      console.error(err)
+      console.log(err)
     }
   }
 
@@ -14,7 +14,7 @@ export const getCities = async (setData) => {
       const response = await axiosClient.get('/Country')
       setData(response.data)
     } catch (err) {
-      console.error(err)
+      console.log(err)
     }
   }
   export const getForms = async (setData) => {
@@ -22,7 +22,7 @@ export const getCities = async (setData) => {
       const response = await axiosClient.get(`/Form`);
       setData(response.data);
     } catch (err) {
-      console.error(err);
+      console.log(err);
     }
   }
 export const getAvailabilities = async (setData) => {
@@ -30,7 +30,7 @@ export const getAvailabilities = async (setData) => {
       const response = await axiosClient.get(`/Availability`)
       setData(response.data)
     } catch (err) {
-      console.error(err)
+      console.log(err)
     }
   }
 export const getPublishers = async (setData) => {
@@ -38,7 +38,7 @@ export const getPublishers = async (setData) => {
       const response = await axiosClient.get(`/Publisher`);
       setData(response.data);
     } catch (err) {
-      console.error(err)
+      console.log(err)
     }
   }
 export const getLanguages = async (setData) => {
@@ -46,7 +46,7 @@ export const getLanguages = async (setData) => {
       const response = await axiosClient.get(`/Language`)
       setData(response.data)
     } catch (err) {
-      console.error(err)
+      console.log(err)
     }
   }
 export const getCategories = async (setData) => {
@@ -54,7 +54,7 @@ export const getCategories = async (setData) => {
       const response = await axiosClient.get(`/Category`)
       setData(response.data)
     } catch (err) {
-      console.error(err)
+      console.log(err)
     }
   }
 export const getAuthors = async (setData) => {
@@ -62,7 +62,7 @@ export const getAuthors = async (setData) => {
       const response = await axiosClient.get(`/Author`)
       setData(response.data)
     } catch (err) {
-      console.error(err)
+      console.log(err)
     }
   }
 
@@ -72,7 +72,7 @@ export const getAuthors = async (setData) => {
       setData(response.data)
       setLoading(false)
     } catch (err) {
-      console.error(err)
+      console.log(err)
     }
 }
 export const getRentalTypes = async (setData, setLoading) => {
@@ -81,6 +81,22 @@ export const getRentalTypes = async (setData, setLoading) => {
         setData(response.data)
         setLoading(false)  
     }catch(err){
-        console.error(err)
+        console.log(err)
     }
+}
+export const getRentalStatuses = async (setData) => {
+  try {
+    const response = await axiosClient.get(`/RentalStatus`);
+    setData(response.data);
+  } catch (err) {
+    console.log(err);
+  }
+}
+export const getOrderStatuses = async (setData) => {
+  try {
+    const response = await axiosClient.get(`/OrderStatus`);
+    setData(response.data);
+  } catch (err) {
+    console.log(err);
+  }
 }

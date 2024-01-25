@@ -116,6 +116,9 @@
     }
     /* forms */
     /* buttons */
+    .status-list-button{
+        @apply mr-3 text-sm text-gray-500 dark:text-gray-300 py-1 underline-hover;
+    }
     .text-button-link{
         @apply lg:text-sm text-base text-purple-400 hover:text-purple-500 font-semibold;
     }
