@@ -6,6 +6,7 @@ import { showMessage } from '../../store/messageSlice'
 import { useNavigate } from 'react-router-dom'
 import SubmitLoadingButton from '../../components/buttons/SubmitLoadingButton'
 import { getCities, getCountries } from '../../utils/api/dictionaryAPI'
+import Spinner from '../../components/elements/Spinner'
 
 function NewAddress({handleAfterAddedNewAddress}) {
   const {success, loading} = useSelector((state) => state.user)
@@ -68,7 +69,7 @@ function NewAddress({handleAfterAddedNewAddress}) {
         "postcode": userAddress.postcode,
         "cityID": userAddress.selectedCity,
         "countryID": userAddress.selectedCountry,
-        "position": 1
+        "addressTypeID": 1
       },"mailingAddress": {
         "street": userAddress.street,
         "streetNumber": userAddress.streetNumber,
@@ -76,7 +77,7 @@ function NewAddress({handleAfterAddedNewAddress}) {
         "postcode": userAddress.postcode,
         "cityID": userAddress.selectedCity,
         "countryID": userAddress.selectedCountry,
-        "position": 2
+        "addressTypeID": 2
       }
     }}else{
       data = {
@@ -87,7 +88,7 @@ function NewAddress({handleAfterAddedNewAddress}) {
           "postcode": userAddress.postcode,
           "cityID": userAddress.selectedCity,
           "countryID": userAddress.selectedCountry,
-          "position": 1
+          "addressTypeID": 1
         },
         "mailingAddress": {
           "street": mailingAddress.mailingStreet,
@@ -96,7 +97,7 @@ function NewAddress({handleAfterAddedNewAddress}) {
           "postcode": mailingAddress.mailingPostcode,
           "cityID": mailingAddress.selectedMailingCity,
           "countryID": mailingAddress.selectedMailingCountry,
-          "position": 2
+          "addressTypeID": 2
         }
       }
     }
@@ -213,7 +214,11 @@ function NewAddress({handleAfterAddedNewAddress}) {
     </div>
     </>
     }
-    <SubmitLoadingButton loading={loading} title="Akceptuj" />
+     <button type='submit' className='purple-button w-max mt-4'>
+        {loading ?
+        <Spinner /> : <span>Akceptuj</span>
+        }
+    </button>
   </form> 
   )
 }

@@ -1,140 +1,90 @@
 import React, { useEffect, useState } from 'react'
-import axiosClient from '../../utils/api/axiosClient'
 import { useDispatch, useSelector } from 'react-redux'
 import { guestValidate } from '../../utils/validation/guestValidation'
-import { setUserData } from '../../store/checkoutSlice'
+import { setCheckoutErrors, setGuestData } from '../../store/checkoutSlice'
 
-function GuestOrderDetails({submitting,setCheckoutErrors,checkoutErrors}) {
+function GuestOrderDetails({submitting}) {
     const dispatch = useDispatch()
-    const {userData} = useSelector((state) => state.checkout)
-    const [errors, setErrors] = useState({})
-    const [cities, setCities] = useState([])
-    const [countries, setCountries] = useState([])
-    const [guestData, setGuestData] = useState({
+    const {guestData, checkoutErrors} = useSelector((state) => state.checkout)
+  //   const handleChange = (e) => {
+  //     const { name, value } = e.target;
+  //     dispatch(setGuestData({ ...guestData, [name]: value }));
+  // };
+    // const [errors, setErrors] = useState({})
+    const [data, setData] = useState({
         name: '',
         surname: '',
         email: '',
-        street: '',
-        streetNumber: '',
-        houseNumber: '',
-        postcode: '',
-        selectedCity: 1,
-        selectedCountry: 1,
       })
+      useEffect(() => {
+        dispatch(setGuestData(data))
+      },[data])
       const handleChange = (e) => {
-        setGuestData({ ...guestData, [e.target.name]: e.target.value });
+        setData({ ...data, [e.target.name]: e.target.value });
       }
-      const handleSelectedCity = (selectedCityId) => {
-        setGuestData({ ...guestData, selectedCity: Number(selectedCityId) });
-      }
-    const getCities = async () => {
-        try {
-          const response = await axiosClient.get(`/City`)
-          setCities(response.data)
-        } catch (err) {
-          console.error(err)
-        }
-      }
-      const getCountries = async () => {
-        try {
-          const response = await axiosClient.get(`/Country`)
-          setCountries(response.data)
-        } catch (err) {
-          console.error(err)
-        }
-      }
-      useEffect(() => {
-        getCities()
-        getCountries()
-      },[])
-      useEffect(() => {
-        if(userData && userData.guestData){
-          setGuestData(userData.guestData);
-        }
-      },[userData])
+      // useEffect(() => {
+      //   if(guestData){
+      //     setData(guestData)
+      //   }
+      // },[guestData])
+      // useEffect(() => {
+      //   if (submitting) {
+      //       setErrors(guestValidate(data))
+      //       if(Object.keys(errors).length > 0){
+      //         dispatch(setCheckoutErrors({ ...checkoutErrors, guestData: 'Dane do zamówienia muszą zostać uzupełnione' }));
+      //       }else{
+      //         dispatch(setCheckoutErrors((prevErrors) => {
+      //           const { guestData, ...newErrors } = prevErrors;
+      //           return newErrors;
+      //       }));
+      //       dispatch(setGuestData(data))
+      //       }
+      //   } else {
+      //     dispatch(setCheckoutErrors((prevErrors) => {
+      //       const { guestData, ...newErrors } = prevErrors;
+      //       return newErrors;
+      //   }));
+      //   }
+      // }, [errors, submitting]);
       useEffect(() => {
         if (submitting) {
-            setErrors(guestValidate(guestData))
-            if(Object.keys(errors).length > 0){
-              setCheckoutErrors({ ...checkoutErrors, guestDetails: 'Dane do zamówienia muszą zostać uzupełnione' });
-            }else{
-              setCheckoutErrors((prevErrors) => {
-                const { guestDetails, ...newErrors } = prevErrors;
-                return newErrors;
-            });
-            dispatch(setUserData({guestData}))
+            const errors = guestValidate(guestData)
+            if (Object.keys(errors).length > 0) {
+                dispatch(setCheckoutErrors({ ...checkoutErrors, guestData: 'Dane do zamówienia muszą zostać uzupełnione' }))
+            } else {
+              if(checkoutErrors?.guestData){
+                dispatch(setCheckoutErrors((prevErrors) => {
+                    const { guestData, ...newErrors } = prevErrors;
+                    return newErrors;
+                }));
+              }
             }
-        } else {
-          setCheckoutErrors((prevErrors) => {
-            const { guestDetails, ...newErrors } = prevErrors;
-            return newErrors;
-        });
         }
-      }, [ errors, submitting]);
+    }, [submitting, checkoutErrors])
       
   return (
-    <div className='flex flex-col px-10 divide-border-top divide-border-bottom py-4'>
+    <div className='flex flex-col divide-border-bottom py-4'>
+      <h1 className='font-semibold text-2xl mb-2'>Dane do zamówienia</h1>
         <form>
-            <div className='lg:grid flex flex-col lg:grid-cols-2 gap-2'>
-                <div className='flex flex-col col-span-2'>
+            <div className='lg:grid flex flex-col lg:grid-cols-3 gap-2'>
+                <div className='flex flex-col'>
                     <label htmlFor='email' className='label-input text-base'>Adres email</label>
-                    <input onChange={handleChange} value={guestData.email} name='email' type='text' className='form-input text-sm' placeholder='Email'/>
-                    {errors.email && <p className='error-text'>{errors.email}</p>}
+                    <input onChange={handleChange} value={data.email} name='email' type='text' className='form-input text-sm' placeholder='Email'/>
+                    {/* {checkoutErrors?.guestData?.email && <p className='error-text'>{checkoutErrors.guestData?.email}</p>} */}
                 </div>
-                <h1 className='font-semibold col-span-2 text-lg mt-2'>Dane do faktury</h1>
                 <div className='flex flex-col'>
                     <label htmlFor='name' className='label-input text-base'>Imię</label>
-                    <input onChange={handleChange} value={guestData.name} name='name' type='text' className='form-input text-sm' placeholder='Imię'/>
-                    {errors.name && <p className='error-text'>{errors.name}</p>}
+                    <input onChange={handleChange} value={data.name} name='name' type='text' className='form-input text-sm' placeholder='Imię'/>
+                    {/* {checkoutErrors?.guestData?.name && <p className='error-text'>{checkoutErrors.guestData?.name}</p>} */}
                 </div>
                 <div className='flex flex-col'>
                     <label htmlFor='surname' className='label-input text-base'>Nazwisko</label>
-                    <input onChange={handleChange} value={guestData.surname} name='surname' type='text' className='form-input text-sm' placeholder='Nazwisko'/>
-                    {errors.surname && <p className='error-text'>{errors.surname}</p>}
+                    <input onChange={handleChange} value={data.surname} name='surname' type='text' className='form-input text-sm' placeholder='Nazwisko'/>
+                    {/* {checkoutErrors?.guestData?.surname && <p className='error-text'>{checkoutErrors.guestData?.surname}</p>} */}
                 </div>
-                <div className='flex flex-col col-span-2'>
-                    <label htmlFor='street' className='label-input text-base'>Ulica</label>
-                    <input onChange={handleChange} value={guestData.street} name='street' type='text' className='form-input text-sm' placeholder='Ulica'/>
-                    {errors.street && <p className='error-text'>{errors.street}</p>}
-                </div>
-                <div className='flex flex-col'>
-                    <label htmlFor='streetNumber' className='label-input text-base'>Numer ulicy</label>
-                    <input onChange={handleChange} value={guestData.streetNumber} name='streetNumber' type='text' className='form-input text-sm' placeholder='Numer ulicy'/>
-                    {errors.streetNumber && <p className='error-text'>{errors.streetNumber}</p>}
-                </div>
-                <div className='flex flex-col'>
-                    <label htmlFor='houseNumber' className='label-input text-base'>Numer domu</label>
-                    <input onChange={handleChange} value={guestData.houseNumber} name='houseNumber' type='text' className='form-input text-sm' placeholder='Numer domu'/>
-                    {errors.houseNumber && <p className='error-text'>{errors.houseNumber}</p>}
-                </div>
-                <div className='flex flex-col col-span-2'>
-                    <label htmlFor='postcode' className='label-input text-base'>Kod pocztowy</label>
-                    <input onChange={handleChange} value={guestData.postcode} name='postcode' type='text' className='form-input text-sm' placeholder='Kod pocztowy'/>
-                    {errors.postcode && <p className='error-text'>{errors.postcode}</p>}
-                </div>
-                <div className='flex flex-col'>
-                    <label htmlFor='city' className='label-input text-base'>Miasto</label>
-                    <select onChange={(e) => handleSelectedCity(e.target.value)} name='city' className='form-input text-sm'>
-                    {cities && cities.map((item,index) => {
-                        return (
-                        <option key={index} value={item.id}>{item.name}</option>
-                        )
-                    })}
-                    </select>
-                </div>
-                <div className='flex flex-col'>
-                    <label htmlFor='country' className='label-input text-base'>Kraj</label>
-                    <select disabled name='country' className='form-input text-sm'>
-                    {countries && countries.map((item,index) => {
-                        return (
-                        <option key={index} value={item.id}>{item.name}</option>
-                        )
-                    })}
-                    </select>
-                </div>
-
             </div>
         </form>
+        {checkoutErrors?.guestData && <p className='error-text'>{checkoutErrors?.guestData}</p>}
     </div>
   )
 }

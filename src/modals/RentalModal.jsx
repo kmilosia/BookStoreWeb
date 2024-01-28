@@ -44,14 +44,14 @@ function RentalModal() {
         try {
             setLoading(true)
             const token = getValidToken();
-            const response = await axiosClient.post('/Rental/New-Rental', data, {
+            const response = await axiosClient.post('/Rental', data, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                 },
             })
             setLoading(false)
-            if(response.status === 200){
+            if(response.status === 200 || response.status === 204){
                 dispatch(showMessage({title: "Książka została wypożyczona!"}))
                 handleCloseModal()
                 navigate('/biblioteka')
@@ -60,7 +60,7 @@ function RentalModal() {
             }
             return response
         } catch (error) {
-            console.error(error)
+            console.log(error)
         }
     }
     const handleRentBook = () => {

@@ -13,7 +13,7 @@ import ToggleFilterMenuButton from '../components/buttons/ToggleFilterMenuButton
 import { productSortOptions } from '../utils/data'
 import EbookListElement from '../components/products/EbookListElement'
 import Select from '../components/forms/Select'
-import { getFilteredSortedBooks, getFilteredSortedFormBooks } from '../utils/api/bookItemsAPI'
+import { getFilteredSortedFormBooks } from '../utils/api/bookItemsAPI'
 import DiscountFilter from '../components/filters/DiscountFilter'
 
 function EbooksList() {

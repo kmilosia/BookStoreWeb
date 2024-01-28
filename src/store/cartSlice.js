@@ -12,7 +12,10 @@ const loadCartFromLocalStorage = () => {
 }
 
 const calculateTotalPrice = (cart) => {
-  return cart.reduce((total, item) => total + item.price * item.quantity, 0)
+  return cart.reduce((total, item) => {
+    const priceToUse = item.discountedBruttoPrice !== 0 ? item.discountedBruttoPrice : item.price;
+    return total + item.quantity * priceToUse;
+  }, 0);
 }
 const calculateTotalQuantity = (cart) => {
   return cart.reduce((total, item) => total + item.quantity, 0)

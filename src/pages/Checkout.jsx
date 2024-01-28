@@ -2,21 +2,24 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import CheckoutSummary from '../components/page-elements/CheckoutSummary'
-import PaymentMethods from '../components/checkout/PaymentMethods'
-import DeliveryMethods from '../components/checkout/DeliveryMethods'
-import { setOrderAuth } from '../store/checkoutSlice'
-import AuthorisationMethods from '../components/checkout/AuthorisationMethods'
-import OrderDetails from '../components/checkout/OrderDetails'
 import {BsArrowLeftShort} from 'react-icons/bs'
+import { resetCheckout, setDeliveryMethod, setGuest } from '../store/checkoutSlice'
+import GuestOrderDetails from '../components/checkout/GuestOrderDetails'
+import DeliveryMethods from '../components/checkout/DeliveryMethods'
+import PaymentMethods from '../components/checkout/PaymentMethods'
+import InvoiceAddress from '../components/checkout/InvoiceAddress'
+import DeliveryAddress from '../components/checkout/DeliveryAddress'
 
 function Order() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const {cart} = useSelector((state) => state.cart)
-  const {orderAuth} = useSelector((state) => state.checkout)
+  const {checkoutCart,deliveryMethod,paymentMethod,deliveryAddress,invoiceAddress,guestData,discount,guest,isElectronicPurchase} = useSelector((state) => state.checkout)
   const {isAuth} = useSelector((state) => state.user)
   const [submitting, setSubmitting] = useState(false)
-  const [checkoutErrors, setCheckoutErrors] = useState({})
+  useEffect(() => {
+    dispatch(resetCheckout())
+  },[])
   useEffect(() => {
     if(cart.length <= 0){
       navigate('/koszyk')
@@ -24,9 +27,15 @@ function Order() {
   },[cart])
   useEffect(()=>{
     if(isAuth){
-      dispatch(setOrderAuth({orderAuth: "user"}))
+      dispatch(setGuest(false))
     }
   },[isAuth])
+  // useEffect(() => {
+  //   console.log(isElectronicPurchase);
+  //   if(isElectronicPurchase){
+  //     dispatch(setDeliveryMethod({id: 1, name:"Dostawa elektroniczna", price:0}))
+  //   }
+  // },[isElectronicPurchase])
   return (
     <div className='default-page-wrapper'>
       <div className='default-page-container'>
@@ -35,16 +44,35 @@ function Order() {
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-[4fr_2fr] gap-5 2xl:gap-20'>
         <div className='flex flex-col'>
-            { !orderAuth && <AuthorisationMethods />}
-            {orderAuth &&
-            <>
-            <OrderDetails submitting={submitting} checkoutErrors={checkoutErrors} setCheckoutErrors={setCheckoutErrors}/>
-            <DeliveryMethods submitting={submitting} checkoutErrors={checkoutErrors} setCheckoutErrors={setCheckoutErrors}/>
-            <PaymentMethods submitting={submitting} checkoutErrors={checkoutErrors} setCheckoutErrors={setCheckoutErrors}/>
-            </>
-            }
+          {guest === null ?
+          <div className='grid grid-cols-1 gap-5 mt-5'>
+          <div className='flex flex-col items-center'>
+            <h1 className='text-xl font-semibold'>Jestem już klientem sklepu</h1>
+            <p className='font-light text-center'>Zaloguj się do swojego konta aby kontynuować zakupy</p>
+            <Link to='/dostep/logowanie' className='purple-button w-full lg:w-2/3'>Zaloguj się</Link>
           </div>
-          <CheckoutSummary submitting={submitting} setSubmitting={setSubmitting} checkoutErrors={checkoutErrors} setCheckoutErrors={setCheckoutErrors}/>
+          <div className='flex flex-col items-center'>
+            <h1 className='text-xl font-semibold'>Nowy klient</h1>
+            <p className='font-light text-center'>Kontynuuj jako gość lub zarejestruj się w naszym sklepie</p>
+            <Link to='/dostep/rejestracja' className='purple-button w-full lg:w-2/3'>Zarejestruj się</Link>
+            <button onClick={() => dispatch(setGuest(true))} className='bordered-purple-button w-full lg:w-2/3'>Kontynuuj jako gość</button>
+          </div>
+        </div>
+        :
+        <div className='flex flex-col'>
+          {guest &&
+          <GuestOrderDetails submitting={submitting}/>
+          }
+          <DeliveryMethods submitting={submitting}/>
+          <PaymentMethods submitting={submitting} />
+          <InvoiceAddress submitting={submitting}/>
+          {(deliveryMethod && deliveryMethod?.name === 'Dostawa do domu') &&
+          <DeliveryAddress submitting={submitting}/>
+          }
+        </div>
+          }
+        </div>
+        <CheckoutSummary submitting={submitting} setSubmitting={setSubmitting}/>
         </div>
       </div>
     </div>

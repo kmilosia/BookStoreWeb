@@ -13,9 +13,8 @@ import ToggleFilterMenuButton from '../components/buttons/ToggleFilterMenuButton
 import { productSortOptions } from '../utils/data'
 import BookListElement from '../components/products/BookListElement'
 import Select from '../components/forms/Select'
-import { getDiscountedBooksList, getFilteredSortedBooks } from '../utils/api/bookItemsAPI'
+import { getDiscountedBooksList } from '../utils/api/bookItemsAPI'
 import FormFilter from '../components/filters/FormFilter'
-import DiscountFilter from '../components/filters/DiscountFilter'
 
 function Discounts() {
     const [isFilterOpen, setIsFilterOpen] = useState(false)

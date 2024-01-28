@@ -13,7 +13,7 @@ function LoginPopup() {
   return (
     showLoginMessage && (
     <div className='fixed z-[100000] top-0 left-0 w-screen h-screen bg-black/80 dark:text-white flex justify-center items-start lg:items-center'>
-      <div className='1-full lg:w-1/2 2xl:w-1/3 h-max flex flex-col py-5 px-10 bg-white dark:bg-midnight-800 rounded-md'>
+      <div className='w-full lg:w-1/2 2xl:w-1/3 h-max flex flex-col py-5 px-10 bg-white dark:bg-midnight-800 rounded-md'>
         <div className='flex justify-end my-2'>
             <button onClick={handleHidePopup} className='text-2xl'><IoClose/></button>
         </div>

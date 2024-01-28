@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCities, getCountries } from '../../utils/api/dictionaryAPI'
 import { addressValidate } from '../../utils/validation/addressValidation'
-import { setCheckoutErrors, setDeliveryAddress } from '../../store/checkoutSlice'
+import { setCheckoutErrors, setInvoiceAddress } from '../../store/checkoutSlice'
 import { getValidToken } from '../../utils/functions/getValidToken'
 import axiosClient from '../../utils/api/axiosClient'
 
-function DeliveryAddress({submitting}) {
+function InvoiceAddress({submitting}) {
     const dispatch = useDispatch()
-    const {deliveryAddress,checkoutErrors} = useSelector((state) => state.checkout)
+    const {invoiceAddress,checkoutErrors} = useSelector((state) => state.checkout)
     const [cities, setCities] = useState([])
     const [countries, setCountries] = useState([])
     const [userAddress, setUserAddress] = useState(null)
@@ -46,17 +46,17 @@ function DeliveryAddress({submitting}) {
       useEffect(() => {
         if(userAddress){
             const data = {
-                street: userAddress[0].street,
-                streetNumber: userAddress[0].streetNumber,
-                houseNumber: userAddress[0].houseNumber,
-                postcode: userAddress[0].postcode,
-                cityID: userAddress[0].cityID,
-                cityName: userAddress[0].cityName,
-                countryID: userAddress[0].countryID,
-                countryName: userAddress[0].countryName,
-                addressTypeID: 4
+                street: userAddress[1].street,
+                streetNumber: userAddress[1].streetNumber,
+                houseNumber: userAddress[1].houseNumber,
+                postcode: userAddress[1].postcode,
+                cityID: userAddress[1].cityID,
+                cityName: userAddress[1].cityName,
+                countryID: userAddress[1].countryID,
+                countryName: userAddress[1].countryName,
+                addressTypeID: 3
             }
-            dispatch(setDeliveryAddress(data))
+            dispatch(setInvoiceAddress(data))
         }
       },[userAddress])
       const handleAddNew = () => {
@@ -74,20 +74,20 @@ function DeliveryAddress({submitting}) {
                 cityName: data.cityName,
                 countryID: data.countryID,
                 countryName: data.countryName,
-                addressTypeID: 4
+                addressTypeID: 3
             }
-            dispatch(setDeliveryAddress(newData))
+            dispatch(setInvoiceAddress(newData))
             setAddNew(false)
             setEdit(false)
         }
       },[submit,errors])
       useEffect(() => {
         if (submitting) {
-            if(!deliveryAddress){
-              dispatch(setCheckoutErrors({ ...checkoutErrors, deliveryAddress: "Dodaj adres dostawy"}))
-            }else if(checkoutErrors?.deliveryAddress){
+            if(!invoiceAddress){
+              dispatch(setCheckoutErrors({ ...checkoutErrors, invoiceAddress: "Dodaj adres faktury"}))
+            }else if(checkoutErrors?.invoiceAddress){
               dispatch(setCheckoutErrors((prevErrors) => {
-                const { deliveryAddress, ...newErrors } = prevErrors
+                const { invoiceAddress, ...newErrors } = prevErrors
                 return newErrors
             }))
             }
@@ -125,23 +125,23 @@ function DeliveryAddress({submitting}) {
       }
   return (
     <div className='flex flex-col border-t mt-4 border-gray-200 dark:border-midnight-800'>
-        <h3 className='font-semibold text-2xl mt-4 mb-2'>Adres dostawy</h3>
-        {(deliveryAddress && !edit && !addNew) && 
+        <h3 className='font-semibold text-2xl mt-4 mb-2'>Adres faktury</h3>
+        {(invoiceAddress && !edit && !addNew) && 
         <div className='grid grid-cols-2 gap-5'>
             <div className='flex flex-row items-center justify-between w-full bg-white dark:bg-midnight-800 py-5 px-5 rounded-md mb-4'>
             <div className='flex flex-col w-full'>
-                <p>{deliveryAddress.street} {deliveryAddress.streetNumber} / {deliveryAddress.houseNumber}</p>
-                <p>{deliveryAddress.postcode} {deliveryAddress.cityName}</p>
-                <p>{deliveryAddress.countryName}</p>
+                <p>{invoiceAddress.street} {invoiceAddress.streetNumber} / {invoiceAddress.houseNumber}</p>
+                <p>{invoiceAddress.postcode} {invoiceAddress.cityName}</p>
+                <p>{invoiceAddress.countryName}</p>
             </div>
             <div className='flex'>
-                <button onClick={() => {setData(deliveryAddress);setEdit(true)}} className='text-purple-400 hover:text-purple-500 whitespace-nowrap'>Edytuj adres</button>
+                <button onClick={() => {setData(invoiceAddress);setEdit(true)}} className='text-purple-400 hover:text-purple-500 whitespace-nowrap'>Edytuj adres</button>
             </div>
             </div>
-            <button onClick={() => {setAddNew(true)}} className='flex flex-row items-center justify-center w-full h-auto bg-white dark:bg-midnight-800 rounded-md mb-4 hover:bg-gray-100 hover:dark:bg-midnight-700'>Dodaj nowy adres dostawy</button>
+            <button onClick={() => {setAddNew(true)}} className='flex flex-row items-center justify-center w-full h-auto bg-white dark:bg-midnight-800 rounded-md mb-4 hover:bg-gray-100 hover:dark:bg-midnight-700'>Dodaj nowy adres faktury</button>
         </div>
         }
-        {(!deliveryAddress && !edit && !addNew) &&
+        {(!invoiceAddress && !edit && !addNew) &&
             <button onClick={() => {setAddNew(true)}} className='flex flex-row items-center justify-center w-1/2 py-10 h-auto bg-white dark:bg-midnight-800 rounded-md mb-4 hover:bg-gray-100 hover:dark:bg-midnight-700'>Dodaj nowy adres faktury</button>
         }
         {addNew &&
@@ -240,4 +240,4 @@ function DeliveryAddress({submitting}) {
   )
 }
 
-export default DeliveryAddress
+export default InvoiceAddress

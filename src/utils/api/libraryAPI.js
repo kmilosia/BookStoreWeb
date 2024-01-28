@@ -13,5 +13,6 @@ export const getLibraryItems = async (id, setData, setLoading) => {
         setLoading(false)
     } catch (error) {
         console.error(error);
+        setLoading(false)
     }
 }

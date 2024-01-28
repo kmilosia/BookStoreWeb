@@ -53,7 +53,7 @@ function App() {
           <Route path='koszyk' element={<Cart />} />
           <Route path='kategorie' element={<Categories />} />
           <Route path='kategorie/:title' element={<Category />} />
-          <Route path='zamowienie' element={<Checkout />}/>
+          <Route path='kasa' element={<Checkout />}/>
           <Route path='oplac-zamowienie' element={<Payment />}/>
           <Route path='przeglad-zamowienie' element={<CheckoutReview />}/>
           <Route path='potwierdzenie-zamowienia' element={<OrderConfirmation />}/>
@@ -65,7 +65,7 @@ function App() {
           <Route path='wszystkie-wiadomosci' element={<AllNews />}/>
           <Route path='promocje' element={<Discounts />}/>
           <Route path='ebooki' element={<EbooksList />}/>
-          <Route path='booki' element={<BooksList />}/>
+          <Route path='ksiazki' element={<BooksList />}/>
           <Route path='produkty' element={<ProductsList />}/>
           <Route path='produkt/:id' element={<Product />}/>
           <Route path='recenzje/:id' element={<Reviews />}/>

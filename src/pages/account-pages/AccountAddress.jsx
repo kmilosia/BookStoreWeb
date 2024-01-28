@@ -55,7 +55,7 @@ function AccountAddress() {
         "postcode": editedAddresses[0].postcode,
         "cityID": editedAddresses[0].cityID,
         "countryID": editedAddresses[0].countryID,
-        "position": 1
+        "addressTypeID": 1
       },
       "mailingAddress": {
         "street": editedAddresses[1].street,
@@ -64,7 +64,7 @@ function AccountAddress() {
         "postcode": editedAddresses[1].postcode,
         "cityID": editedAddresses[1].cityID,
         "countryID": editedAddresses[1].countryID,
-        "position": 2
+        "addressTypeID": 2
       }
     }
     console.log(data);
@@ -93,7 +93,7 @@ function AccountAddress() {
         {userAddress.map((item, index) => {
           return (
             <div key={index} className='grid grid-cols-1 lg:grid-cols-2 gap-2 mb-2'>
-              <h1 className='text-xl font-semibold text-center lg:text-start'>{item.position === 1 ? "Adres zamieszkania" : "Adres korespondencyjny"}</h1>
+              <h1 className='text-xl font-semibold text-center lg:text-start'>{item.addressTypeID === 1 ? "Adres zamieszkania" : "Adres korespondencyjny"}</h1>
               <div className='flex flex-col col-span-2'>
                 <label className='label-input'>Ulica</label>
                 <input disabled={!isEdited} type='text' className='form-input'
@@ -152,6 +152,7 @@ function AccountAddress() {
             </div>
           )
         })}
+        {error && <p className='error-text'>{error}</p>}
         {isEdited ?
         <div className='flex'>
           <button type='submit' onClick={handleSaveChanges} className='purple-button w-max mr-2'>{loading ?<Spinner /> : <span>Zapisz zmiany</span>}</button>

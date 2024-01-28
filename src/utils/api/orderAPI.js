@@ -54,3 +54,23 @@ export const getOrderInvoice = async (id, setLoading) => {
         console.error(error);
     }
 }
+export const makeOrder = async (data, setLoading, setSuccess) => {
+    try {
+        const token = getValidToken();
+        const response = await axiosClient.post(`/User/Order`,data, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        })
+        if(response.status === 200 || response.status === 204){
+            setSuccess(true)
+        }else{
+            setSuccess(false)
+        }
+        setLoading(false)
+    } catch (error) {
+        console.log(error)
+        setLoading(false)
+    }
+}

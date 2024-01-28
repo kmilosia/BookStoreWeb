@@ -1,66 +1,81 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-const loadCheckoutFromLocalStorage = () => {
-  const checkout = JSON.parse(localStorage.getItem("checkout")) || {};
-  return checkout;
+const initialState = {
+    checkoutCart: [],
+    isElectronicPurchase: false,
+    deliveryAddress: null,
+    invoiceAddress: null,
+    discount: null,
+    deliveryMethod: null,
+    paymentMethod: null,
+    guest: null,
+    guestData: null,
+    checkoutErrors: null,
+    totalPrice: 0,
 }
-
-export const checkoutSlice = createSlice({
-  name: "checkout",
-  initialState: loadCheckoutFromLocalStorage(),
-  reducers: {
-    setOrderAuth: (state,action) => {
-      if (action.payload) {
-        state.orderAuth = action.payload;
-      } else {
-        delete state.orderAuth;
-      }
-      localStorage.setItem("checkout", JSON.stringify(state));
+const checkoutSlice = createSlice({
+    name: 'message',
+    initialState,
+    reducers: {
+        resetCheckout: (state, action) => {
+            let cart = localStorage.getItem("cart")
+            cart = cart ? JSON.parse(cart) : []
+            state.checkoutCart = cart
+            state.totalPrice = calculateTotalAmount()
+            state.isElectronicPurchase = checkElectronicCart()
+            state.deliveryAddress = null
+            state.invoiceAddress = null
+            state.discount = null
+            state.deliveryMethod = null
+            state.paymentMethod = null
+            state.guest = null
+            state.guestData = null
+            state.checkoutErrors = null
+          },
+        setGuestData: (state, action) => {
+            state.guestData = action.payload
+        },
+        setGuest: (state, action) => {
+            state.guest = action.payload
+        },
+        setPaymentMethod: (state, action) => {
+            state.paymentMethod = action.payload
+        },
+        setDeliveryMethod: (state, action) => {
+            state.deliveryMethod = action.payload
+        },
+        setDiscount: (state, action) => {
+            state.discount = action.payload
+        },
+        setInvoiceAddress: (state, action) => {
+            state.invoiceAddress = action.payload
+        },
+        setDeliveryAddress: (state, action) => {
+            state.deliveryAddress = action.payload
+        },
+        setCheckoutCart: (state, action) => {
+            state.checkoutCart = action.payload
+        },
+        setCheckoutErrors: (state, action) => {
+            state.checkoutErrors = action.payload
+        },
+        setTotalPrice: (state, action) => {
+            state.totalPrice = action.payload
+        }
     },
-    setDiscount: (state, action) => {
-      if (action.payload) {
-        state.discount = action.payload;
-      } else {
-        delete state.discount;
-      }
-      localStorage.setItem("checkout", JSON.stringify(state));
-    },
-    setPayment: (state, action) => {
-      if (action.payload) {
-        state.payment = action.payload;
-      } else {
-        delete state.payment;
-      }
-      localStorage.setItem("checkout", JSON.stringify(state));
-    },
-    setDelivery: (state, action) => {
-      if (action.payload) {
-        state.delivery = action.payload;
-      } else {
-        delete state.delivery;
-      }
-      localStorage.setItem("checkout", JSON.stringify(state));
-    },
-    setUserData: (state, action) => {
-      if (action.payload) {
-        state.userData = action.payload;
-      } else {
-        delete state.userData;
-      }
-      localStorage.setItem("checkout", JSON.stringify(state));
-    },
-  }
 })
-
-const { actions } = checkoutSlice;
-const { setDiscount, setPayment, setDelivery, setUserData, setOrderAuth } = actions;
-
-const subscribeToStoreCheckout = (store) => {
-  store.subscribe(() => {
-    const state = store.getState().checkout;
-    localStorage.setItem("checkout", JSON.stringify(state));
-  });
+const checkElectronicCart = () => {
+    let cart = localStorage.getItem("cart")
+    cart = cart ? JSON.parse(cart) : []
+    const bool = cart.some((item) => item.formId === 1)
+    return (!bool)
 }
-
-export { setDiscount, setPayment, setDelivery, setUserData,setOrderAuth, subscribeToStoreCheckout };
-export default checkoutSlice.reducer;
+const calculateTotalAmount = () => {
+    let cart = localStorage.getItem("cart")
+    cart = cart ? JSON.parse(cart) : []
+    return cart.reduce((total, item) => {
+      const priceToUse = item.discountedBruttoPrice !== 0 ? item.discountedBruttoPrice : item.price;
+      return total + item.quantity * priceToUse;
+    }, 0);
+}
+export const { setCheckoutCart,setDeliveryAddress,setInvoiceAddress,setDiscount,setPaymentMethod,setDeliveryMethod,setGuest,setGuestData,resetCheckout, setCheckoutErrors,setTotalPrice } = checkoutSlice.actions
+export default checkoutSlice.reducer
