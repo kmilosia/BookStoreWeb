@@ -31,7 +31,7 @@ function PurchasedBooks() {
         {purchasedBooks.map((item,index) => {
             return (
                 <button onClick={() => {handleBook(item)}} key={index} className='flex flex-col w-full h-auto px-5 py-5 items-center border border-gray-200 dark:border-midnight-800 rounded-md shadow-md hover:scale-105'>
-                    <img src={item.imageURL} className='w-auto h-96 object-contain mb-2' />
+                    <img src={item.imageURL} className='w-auto h-96 object-contain mb-2 rounded-md' />
                     <h1 className='text-lg font-semibold cursor-pointer text-center'>{item.bookTitle}</h1>
                 </button>
             )

@@ -49,12 +49,12 @@ function OrderInformations() {
                   <h1 className='font-semibold'>{item.bookTitle}</h1>
                   <h2 className='font-light text-sm'>{item.authors.map((item) => {return (item.name + " " + item.surname)})}</h2>
                   <h3 className='font-medium text-sm'>{item.formName === 'Book' ? 'Książka' : 'Ebook'} | {item.formName === 'Ebook' ? item.fileFormatName : item.editionName}</h3>
-                  <h4 className='mt-auto font-semibold text-xl'>{item.quantity} x {item.priceBrutto?.toFixed(2)}zł</h4>
+                  <h4 className='mt-auto font-semibold text-xl'>{item.quantity} x {item.bruttoPrice?.toFixed(2)}zł</h4>
                 </div>
               </div>
               <div className='flex flex-col h-auto items-end'>
                 <button onClick={() => {setReviewed(item.id);setReviewModal(true)}} className='text-purple-400 w-max text-sm lg:text-base hover:font-semibold'>Oceń książkę</button>
-                <h5 className='text-2xl font-semibold mt-auto'>{item.fullPriceBrutto?.toFixed(2)}zł</h5>
+                <h5 className='text-2xl font-semibold mt-auto'>{item.totalBruttoPrice?.toFixed(2)}zł</h5>
               </div>
             </div>
           )
@@ -102,7 +102,7 @@ function OrderInformations() {
       </div>
         <div className='flex flex-row items-center mb-4'>
           <p className='text-xl font-semibold mr-2'>Kwota całkowita zamówienia: </p>
-          <p className='font-light text-xl'>{data.fullBruttoPrice?.toFixed(2)}zł</p>
+          <p className='font-light text-xl'>{data.totalBruttoPrice?.toFixed(2)}zł</p>
         </div>
       </div>
       {reviewModal && <AddReviewModal setIsReviewed={setReviewModal} bookItemId={reviewed} />}

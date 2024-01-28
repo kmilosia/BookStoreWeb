@@ -61,12 +61,12 @@ function AccountOrders() {
               <p className='font-medium text-base lg:text-lg w-full lg:w-2/5'>{order.bookTitle}</p>
               <p className='text-sm lg:text-xs font-light'>{order.formName === 'Ebook' ? order.fileFormatName : order.editionName}</p>
               <div className='flex flex-row justify-between mt-auto'>
-                <p className='font-medium my-1 lg:my-0'>{order.quantity} x {order.priceBrutto?.toFixed(2)}zł</p>
+                <p className='font-medium my-1 lg:my-0'>{order.quantity} x {order.bruttoPrice?.toFixed(2)}zł</p>
               </div>
             </div>
             <div className='flex flex-col h-auto items-end'>
               <button onClick={(e) => {e.stopPropagation();setReviewed(order.id);setReviewModal(true)}} className='text-purple-400 w-max text-sm lg:text-base hover:font-semibold whitespace-nowrap my-2'>Oceń książkę</button>
-              <h5 className='text-xl font-semibold mt-auto'>{order.fullPriceBrutto?.toFixed(2)}zł</h5>
+              <h5 className='text-xl font-semibold mt-auto'>{order.totalBruttoPrice?.toFixed(2)}zł</h5>
               </div>
             </div>
           </div>
@@ -78,7 +78,7 @@ function AccountOrders() {
           </div>
           <div className='flex flex-row items-end my-2 lg:my-0'>
             <p className='text-lg'>Kwota całkowita:</p>
-            <p className='font-semibold mx-1 text-lg'>{item.fullBruttoPrice?.toFixed(2)}zł</p>
+            <p className='font-semibold mx-1 text-lg'>{item.totalBruttoPrice?.toFixed(2)}zł</p>
           </div>
         </div>
       </div>

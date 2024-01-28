@@ -4,25 +4,29 @@ import { FaSave , FaStarHalfAlt  } from "react-icons/fa"
 import { FiFileText } from "react-icons/fi";
 import { Link } from 'react-router-dom'
 import ReviewModal from '../../modals/ReviewModal';
+import {convertDateDisplay} from '../../utils/functions/convertDate'
 
 function BookModal({item,setIsBookModal,purchased}) {
   const [isReviewed, setIsReviewed] = useState(false)
-  const showDate = () => {
-    const newDate = new Date(item.expirationDate)
-    const day = newDate.getDate();
-    const month = newDate.getMonth() + 1;
-    const year = newDate.getFullYear();
-    const formattedDate = `${day}.${month}.${year}`;
-    return formattedDate
+  const downloadBook = () => {
+    // const anchor = document.createElement('a');
+    // anchor.href = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+    // anchor.setAttribute('download', 'dummy.pdf');
+    // anchor.click();
+    fetch("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", {
+    method: 'GET'
+    }).then(resp => resp.blob())
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = "book.pdf"; // the filename you want
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+    })
   }
-  const showTime = () => {
-    const newDate = new Date(item.expirationDate)
-    const hours = newDate.getHours();
-    const minutes = newDate.getMinutes();
-    const formattedTime = `${hours}:${minutes}`;
-    return formattedTime
-  }
-  console.log(item);
   return (
     <div className='fixed z-[100000] top-0 left-0 w-screen h-screen bg-black/80 dark:text-white flex justify-center items-start lg:items-center'>
       <div className='w-full lg:w-2/3 h-max flex flex-col py-10 px-10 bg-white dark:bg-midnight-800'>
@@ -41,8 +45,8 @@ function BookModal({item,setIsBookModal,purchased}) {
                 <h2 className='text-xl font-medium mt-2'>{item.fileFormatName}</h2>
                   {!isReviewed ?
                   <div className='flex flex-col w-full mt-auto'>
-                    {purchased && <button className='purple-button'>Pobierz książkę<FaSave className='ml-2'/></button>}
-                    {!purchased && <p className='my-2 cursor-default'>Wypożyczenie ważne do <strong>{showDate()}</strong> do godziny <strong>{showTime()}</strong></p>}
+                    {purchased && <button onClick={downloadBook} className='purple-button'>Pobierz książkę<FaSave className='ml-2'/></button>}
+                    {!purchased && <p className='my-2 cursor-default'>Wypożyczenie ważne do <strong>{item.expiryDate && convertDateDisplay(item.expiryDate)}</strong></p>}
                     <a href='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' target='_blank' className='purple-button'>Czytaj książkę<FiFileText  className='ml-2' /></a>
                     <button onClick={() => {setIsReviewed(true)}} className='purple-button'>Dodaj recenzję<FaStarHalfAlt className='ml-2' /></button>
                   </div>
