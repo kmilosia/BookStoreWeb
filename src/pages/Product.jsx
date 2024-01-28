@@ -208,11 +208,6 @@ function Product() {
                 <div className='col-span-2 flex flex-col'>
                     <p className='text-3xl font-medium'>Zdjęcia</p>
                     <ProductImages item={book.images} />
-                    {/* <div className='grid grid-cols-2 lg:grid-cols-5 grid-rows-2 my-2 gap-5 lg:gap-10'>
-                        {book.images && book.images.map((image, index) => (
-                            <img key={index} src={image.imageURL} className={`h-auto w-full object-contain rounded-md ${index === 0 ? 'col-span-2 row-span-2' : ''}`} />
-                        ))}                  
-                    </div> */}
                 </div>
                 }
                 <div className='col-span-2 flex flex-col'>

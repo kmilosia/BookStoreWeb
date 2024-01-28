@@ -7,6 +7,7 @@ import ReviewModal from '../../modals/ReviewModal';
 import {convertDateDisplay} from '../../utils/functions/convertDate'
 
 function BookModal({item,setIsBookModal,purchased}) {
+  console.log(item);
   const [isReviewed, setIsReviewed] = useState(false)
   const downloadBook = () => {
     // const anchor = document.createElement('a');
