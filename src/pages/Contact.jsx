@@ -101,9 +101,9 @@ function Contact() {
         <h1 className='info-page-h2'>Kontakt</h1>
         <p className='info-page-h2-p'>Jeżeli potrzebujesz skontaktować się z nami jak najszybciej, wybierz jedną z naszych form kontaktowych!</p>
         <div className='grid grid-rows-3 lg:grid-rows-1 lg:grid-cols-3 gap-10 lg:gap-5 mt-5'>
-          <ContactElement imgURL='https://iili.io/JBf75xI.png' linkTitle='+48 777 888 999' title='Zadzwoń do nas' path='www.phone.com' />
-          <ContactElement imgURL='https://iili.io/JBf7XxS.png' linkTitle='spellarium-info@gmail.com' title='Wyślij do nas e-mail' path='www.gmail.com' />
-          <ContactElement imgURL='https://iili.io/JBf785x.png' linkTitle='+48 777 888 999' title='Napisz do nas na Whatsapp' path='www.whatsapp.com' />
+          <ContactElement imgURL='https://iili.io/JBf75xI.png' linkTitle='+48 777 888 999' title='Zadzwoń do nas' path='tel:+48777-888-999' />
+          <ContactElement imgURL='https://iili.io/JBf7XxS.png' linkTitle='spellariumemailsender@gmail.com' title='Wyślij do nas e-mail' path='https://www.gmail.com' />
+          <ContactElement imgURL='https://iili.io/JBf785x.png' linkTitle='+48 777 888 999' title='Napisz do nas na Whatsapp' path='https://www.whatsapp.com' />
           </div>
         </div>
       </div>

@@ -74,7 +74,7 @@ function AccountOrders() {
         })}
         <div className='flex flex-col-reverse lg:flex-row justify-between items-center lg:mt-5'>
           <div className='flex flex-row items-center'>
-          <button onClick={() => downloadInvoice(item.id)} className='rounded-purple-button py-2'>{loadingDownload ? <Spinner /> : 'Pobierz fakturę'}</button>
+          <button onClick={(e) => {e.stopPropagation();downloadInvoice(item.id)}} className='rounded-purple-button py-2'>{loadingDownload ? <Spinner /> : 'Pobierz fakturę'}</button>
           </div>
           <div className='flex flex-row items-end my-2 lg:my-0'>
             <p className='text-lg'>Kwota całkowita:</p>

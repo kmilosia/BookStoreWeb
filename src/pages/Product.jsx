@@ -117,21 +117,26 @@ function Product() {
                         })}                  
                     </div>
                     }
+                    {book.availabilityId === 1 ?
                     <div className='mt-auto w-full flex flex-col items-start'>
-                    <div className='flex flex-row align-bottom justify-center my-2'>
-                        {book.discountedBruttoPrice !== 0 &&
-                        <p className='text-3xl lg:text-4xl 2xl:text-5xl font-bold text-purple-400 mr-2'>{book.discountedBruttoPrice?.toFixed(2)}zł</p>}
-                        <p className={`${book.discountedBruttoPrice !== 0 ? 'font-light line-through text-xl' : 'text-3xl lg:text-4xl 2xl:text-5xl font-bold'}`}>{book.price?.toFixed(2)}zł</p>
-                    </div>
-                    <div className='flex flex-col lg:flex-row justify-between my-2 w-full'>
-                        <div className='flex flex-col lg:flex-row'>
-                            <button onClick={handleAddToCart} className='rounded-purple-button my-2 lg:my-0'>Dodaj do koszyka</button>
-                            {book.formId === 2 &&
-                            <button onClick={handleRentButton} className='rounded-purple-button my-2 lg:my-0 lg:mx-2'>Wypożycz ebooka</button>
-                            }
+                        <div className='flex flex-row align-bottom justify-center my-2'>
+                            {book.discountedBruttoPrice !== 0 &&
+                            <p className='text-3xl lg:text-4xl 2xl:text-5xl font-bold text-purple-400 mr-2'>{book.discountedBruttoPrice?.toFixed(2)}zł</p>}
+                            <p className={`${book.discountedBruttoPrice !== 0 ? 'font-light line-through text-xl' : 'text-3xl lg:text-4xl 2xl:text-5xl font-bold'}`}>{book.price?.toFixed(2)}zł</p>
+                        </div>
+                        <div className='flex flex-col lg:flex-row justify-between my-2 w-full'>
+                            <div className='flex flex-col lg:flex-row'>
+                                <button onClick={handleAddToCart} className='rounded-purple-button my-2 lg:my-0'>Dodaj do koszyka</button>
+                                {book.formId === 2 &&
+                                <button onClick={handleRentButton} className='rounded-purple-button my-2 lg:my-0 lg:mx-2'>Wypożycz ebooka</button>
+                                }
+                            </div>
                         </div>
                     </div>
-                    </div>
+                    :
+                    <div className='flex justify-center items-center mt-auto'>
+                        <p className='text-lg text-gray-500 dark:text-gray-400'>Produkt tymczasowo niedostępny!</p> 
+                    </div>}
                 </div>
             </div>
             <div className='flex flex-col lg:grid grid-cols-[1fr_2fr] gap-5 lg:gap-10 my-5 lg:my-10'>
