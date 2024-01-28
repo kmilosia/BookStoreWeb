@@ -68,9 +68,9 @@ function AccountAddress() {
       }
     }
     console.log(data);
-    dispatch(addUserAddress(data))
-    setIsEdited(false)
-    dispatch(fetchUserAddress())
+    // dispatch(addUserAddress(data))
+    // setIsEdited(false)
+    // dispatch(fetchUserAddress())
   }
   useEffect(() => {
     if(success){
@@ -92,7 +92,7 @@ function AccountAddress() {
       <div className='flex flex-col'>
         {userAddress.map((item, index) => {
           return (
-            <div key={index} className='grid grid-cols-1 lg:grid-cols-2 gap-2 mb-2'>
+            <div key={index} className='grid grid-cols-1 lg:grid-cols-2 gap-2 mb-4'>
               <h1 className='text-xl font-semibold text-center lg:text-start'>{item.addressTypeID === 1 ? "Adres zamieszkania" : "Adres korespondencyjny"}</h1>
               <div className='flex flex-col col-span-2'>
                 <label className='label-input'>Ulica</label>
