@@ -22,7 +22,7 @@ function BookElement({item}) {
         <p className={`${item.discountedBruttoPrice !== 0 ? 'font-light text-md line-through' : 'font-semibold text-xl no-underline'} mt-2 mb-1`}>{item.price.toFixed(2)}zł</p>
         </div>
         <div className='lg:hidden lg:group-hover:flex lg:group-hover:flex-col flex flex-col'>
-            <AddToCartButton />  
+            <AddToCartButton item={item}/>  
             {item.formId === 2 && <RentButton />}
         </div>
     </div>

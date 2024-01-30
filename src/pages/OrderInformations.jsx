@@ -26,7 +26,7 @@ function OrderInformations() {
     <>
     {data ?
     <>
-    <div className='flex flex-col bg-white p-4 lg:p-6 dark:bg-midnight-900 min-h-[80vh] dark:text-white cursor-default'>
+    <div className='flex flex-col bg-white p-4 lg:p-10 dark:bg-midnight-900 min-h-[80vh] dark:text-white cursor-default'>
       <div className='flex flex-col lg:flex-row justify-between items-start lg:items-end'>
         <div className='flex flex-col'>
         <h1 className='text-3xl font-semibold'>Zamówienie #{data.id}</h1>

@@ -23,8 +23,8 @@ function WishlistElement({item,updateWishlistAfterDelete}) {
       formName: item.formName,
       id: item.id,
       imageURL: item.imageURL,
-      price: item.priceBrutto,
-      discountedBruttoPrice: item.discountedPriceBrutto,
+      price: item.bruttoPrice,
+      discountedBruttoPrice: item.discountedBruttoPrice,
       title: item.bookTitle,
       isWishlisted: false,
   }
@@ -46,8 +46,8 @@ function WishlistElement({item,updateWishlistAfterDelete}) {
       </Link>
         <h3 className='text-gray-600 dark:text-gray-400 text-sm lg:text-xs 2xl:text-sm cursor-default'>{item.formName === "Book" ? "Książka" : "Ebook"}</h3>
         <div className='flex flex-row items-baseline'>
-        {item.discountedPriceBrutto !== 0 && <p className='font-semibold text-purple-400 text-xl mt-2 mb-1 mr-1'>{item.discountedPriceBrutto?.toFixed(2)}zł</p>}
-        <p className={`${item.discountedPriceBrutto !== 0 ? 'font-light text-md line-through' : 'font-semibold text-xl no-underline'} mt-2 mb-1`}>{item.priceBrutto?.toFixed(2)}zł</p>
+        {item.discountedBruttoPrice !== 0 && <p className='font-semibold text-purple-400 text-xl mt-2 mb-1 mr-1'>{item.discountedBruttoPrice?.toFixed(2)}zł</p>}
+        <p className={`${item.discountedBruttoPrice !== 0 ? 'font-light text-md line-through' : 'font-semibold text-xl no-underline'} mt-2 mb-1`}>{item.bruttoPrice?.toFixed(2)}zł</p>
       </div>
       <button onClick={handleAddToCartButton} className='purple-button'>Przenieś do koszyka</button>
     </div>

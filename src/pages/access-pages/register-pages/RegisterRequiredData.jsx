@@ -124,14 +124,14 @@ function RegisterRequiredData() {
             </div>
             <div className="flex items-start justify-start">
                 <input checked={inputValues.conditions} onChange={handleChange} id="conditions" name='conditions' type="checkbox" value="" className="purple-checkbox mt-0.5"/>
-                <label htmlFor="conditions" className="checkbox-label my-0 flex flex-row"><span>Akceptuję</span> <Link target='_blank' to='/dokumenty/regulamin' className='text-button-link mx-1'>regulamin sklepu</Link><span>internetowego</span></label>
+                <label htmlFor="conditions" className="checkbox-label my-0 flex flex-row items-center"><span>Akceptuję</span> <Link target='_blank' to='/dokumenty/regulamin' className='text-button-link mx-1'>regulamin sklepu</Link><span>internetowego</span></label>
             </div>
             {errors.conditions && <span className='error-text'>{errors.conditions}</span>}
             </div>
             <SubmitLoadingButton title="Zarejestruj się" loading={loading} />
         </form>
         {error && <p className='error-text my-1'>{error}</p> }
-        <div className='flex flex-row justify-center my-1'>
+        <div className='flex flex-row items-center justify-center my-1'>
             <p className='lg:text-xs text-base text-white'>Posiadasz już konto?</p>
             <Link to='/dostep/logowanie' className='text-button-link mx-1'>Zaloguj się</Link>
           </div>

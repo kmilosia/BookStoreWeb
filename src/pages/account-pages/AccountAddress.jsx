@@ -68,9 +68,9 @@ function AccountAddress() {
       }
     }
     console.log(data);
-    // dispatch(addUserAddress(data))
-    // setIsEdited(false)
-    // dispatch(fetchUserAddress())
+    dispatch(addUserAddress(data))
+    setIsEdited(false)
+    dispatch(fetchUserAddress())
   }
   useEffect(() => {
     if(success){

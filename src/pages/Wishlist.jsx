@@ -36,7 +36,7 @@ function Wishlist() {
           formName: item.formName,
           id: item.id,
           imageURL: item.imageURL,
-          price: item.priceBrutto,
+          price: item.bruttoPrice,
           discountedBruttoPrice: item.discountedBruttoPrice,
           title: item.bookTitle,
           isWishlisted: false,
@@ -83,7 +83,7 @@ function Wishlist() {
                 <p>produktów</p>
                 <BsDot />
                 <p>Suma całkowita</p>
-                <span className='font-semibold mx-1'>{wishlistElements?.fullPrice.toFixed(2)}zł</span>
+                <span className='font-semibold mx-1'>{wishlistElements?.fullPrice?.toFixed(2)}zł</span>
               </div>
             </div>
             <button onClick={moveAllToCart} className='rounded-bordered-purple-button h-max w-max mt-2 lg:mt-0'>Przenieś wszystko do koszyka<BiSolidShoppingBag className='mx-1'/></button>
