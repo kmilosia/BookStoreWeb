@@ -4,8 +4,8 @@ import { Document, Page, pdfjs } from 'react-pdf'
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 import 'react-pdf/dist/Page/TextLayer.css'
 import 'react-pdf/dist/Page/AnnotationLayer.css'
-import axiosClient from '../../utils/api/axiosClient';
 import PageLoader from '../../components/elements/PageLoader';
+import { getBookFile } from '../../utils/api/filesAPI';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
 function DisplayFile() {
@@ -19,30 +19,12 @@ function DisplayFile() {
     const [pdfBlob, setPdfBlob] = useState(null)
     const [pageWidth, setPageWidth] = useState(0)
     const pageWrapperRef = useRef(null) 
-    const getBookFile = async () => {
-        try {
-            const response = await axiosClient.get(`/Library/download/${paramId}`, {
-                headers: {
-                    'Authorization': `Bearer ${paramToken}`,
-                },
-                responseType: 'arraybuffer',
-            })
-            const blob = new Blob([response.data], { type: 'application/pdf' })
-            setPdfBlob(blob)
-            setLoading(false)
-            setAccess(true)
-        } catch (error) {
-            console.log(error)
-            setAccess(false)
-            setLoading(false)
-        }
-    }
     const onDocumentLoadSuccess = ({ numPages }) => {
         setNumPages(numPages)
     }
     useEffect(() => {
         if(paramToken && paramId){
-            getBookFile()
+            getBookFile(paramId, paramToken, setLoading, setAccess, setPdfBlob)
         }
     },[paramToken])
     useEffect(() => {
