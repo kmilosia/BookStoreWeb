@@ -8,8 +8,8 @@ export const contactformValidate = (values) => {
     } else if (!/\S+@\S+\.\S+/.test(values.email)) {
       errors.email = "Nieprawidłowy format email!"
     }
-    if (!values.message) {
-        errors.message = "Wiadomość nie może być pusta!"
+    if (!values.content) {
+        errors.content = "Wiadomość nie może być pusta!"
       }
     return errors
   }

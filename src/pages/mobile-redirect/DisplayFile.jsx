@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { getValidToken } from '../utils/functions/getValidToken'
-import axiosClient from '../utils/api/axiosClient'
-import PageLoader from '../components/elements/PageLoader'
+import { useSearchParams } from 'react-router-dom'
 import { Document, Page, pdfjs } from 'react-pdf'
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 import 'react-pdf/dist/Page/TextLayer.css'
 import 'react-pdf/dist/Page/AnnotationLayer.css'
+import axiosClient from '../../utils/api/axiosClient';
+import PageLoader from '../../components/elements/PageLoader';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
-function FileReader() {
-    const {id} = useParams()
-    const bookID = Number(id)
+function DisplayFile() {
+    const [params, setParams] = useSearchParams()
+    const paramToken = params.get('token')  
+    const paramId = params.get('id')  
     const [access, setAccess] = useState(null)
     const [loading, setLoading] = useState(true)
     const [numPages, setNumPages] = useState(null)
@@ -19,12 +19,11 @@ function FileReader() {
     const [pdfBlob, setPdfBlob] = useState(null)
     const [pageWidth, setPageWidth] = useState(0)
     const pageWrapperRef = useRef(null) 
-    const getBookFile = async (id) => {
+    const getBookFile = async () => {
         try {
-            const token = getValidToken()
-            const response = await axiosClient.get(`/Library/download/${id}`, {
+            const response = await axiosClient.get(`/Library/download/${paramId}`, {
                 headers: {
-                    'Authorization': `Bearer ${token}`,
+                    'Authorization': `Bearer ${paramToken}`,
                 },
                 responseType: 'arraybuffer',
             })
@@ -41,21 +40,11 @@ function FileReader() {
     const onDocumentLoadSuccess = ({ numPages }) => {
         setNumPages(numPages)
     }
-    const handleKeyDown = (event) => {
-        if (event.key === 'ArrowLeft' && pageNumber > 1) {
-            setPageNumber(pageNumber - 1)
-            window.scrollTo(0,0)
-        }
-        if (event.key === 'ArrowRight' && pageNumber < numPages) {
-            setPageNumber(pageNumber + 1)
-        }
-    }
     useEffect(() => {
-        if(bookID){
-            getBookFile(bookID)
+        if(paramToken && paramId){
+            getBookFile()
         }
-    },[])
-    window.addEventListener('keydown', handleKeyDown)
+    },[paramToken])
     useEffect(() => {
         const updatePageWidth = () => {
             const currentRef = pageWrapperRef.current
@@ -70,7 +59,6 @@ function FileReader() {
             window.removeEventListener('resize', updatePageWidth)
         }
     }, [pageWrapperRef.current])
-
   return (
     loading ? <PageLoader /> :
     <div className='default-page-wrapper'>
@@ -99,4 +87,4 @@ function FileReader() {
   )
 }
 
-export default FileReader
+export default DisplayFile

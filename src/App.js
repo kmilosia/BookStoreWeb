@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom
 import {Home, Search,PageNotFound, Rental, Store, Contact, News, AllNews, NewsItem, Login, Register, Account, AccountPersonalData, AccountOrders,
 Library, AccountRentals, Cart, Wishlist,Checkout, Access, RecoverPassword,Documents, Terms, Privacy, Cookies, About, Categories, Category, RecoverPasswordEmail,
 RecoverPasswordResetLink, RecoverPasswordNewPassword,RecoverPasswordConfirmation, RegisterRequiredData, RegisterConfirmation, Product, RegisterConfirmEmail,
-Payment, OrderConfirmation, CheckoutReview, Reviews, AccountAddress, ProductsList, EbooksList, BooksList, Discounts, OrderInformations, FileReader} from './import'
+Payment, OrderConfirmation, CheckoutReview, Reviews, AccountAddress, ProductsList, EbooksList, BooksList, Discounts, OrderInformations, FileReader, DownloadInvoice, DownloadBook, DisplayFile} from './import'
 import MainLayout from './MainLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -23,10 +23,10 @@ function App() {
     <>
     <Message />
     <Router>
-    <ScrollToTop/>
-    <CartPopup />
-    <LoginPopup />
-    <RentalModal />
+      <ScrollToTop/>
+      <CartPopup />
+      <LoginPopup />
+      <RentalModal />
       <Routes>
         <Route path='/' element={<Navigate to={'/'}/>} />
         <Route path='/dostep' element={isAuth ? <Navigate to="/" /> : <Access />}>
@@ -47,6 +47,9 @@ function App() {
         <Route path='/' element={<MainLayout />}>
           <Route path='*' element={<PageNotFound />} />
           <Route index element={<Home />} />
+          <Route path='pobierz-fakture' element={<DownloadInvoice />} />
+          <Route path='pobierz-ksiazke' element={<DownloadBook />} />
+          <Route path='wyswietl-ksiazke' element={<DisplayFile />} />
           <Route path='czytelnia/:id' element={<FileReader />} />
           <Route path='sklep' element={<Store />} />
           <Route path='wypozyczalnia' element={<Rental />}/>

@@ -18,7 +18,7 @@ function Contact() {
   const [values, setValues] = useState({
     clientName: '',
     email: '',
-    message: '',
+    content: '',
   })
   const clearForm = () => {
     setValues((prevValues) => {
@@ -86,9 +86,9 @@ function Contact() {
             <div className='flex flex-col w-full my-2'>
             <div className='icons-form-input-container w-full items-start'>
                 <TbMessageCircle2Filled className='my-[0.65rem]'/>
-                <textarea autoComplete='off' rows={6} placeholder='Twoja wiadomość' value={values.message} name='message' id='message' onChange={handleChange} className='icons-form-input w-full resize-none'/>
+                <textarea autoComplete='off' rows={6} placeholder='Twoja wiadomość' value={values.content} name='content' id='content' onChange={handleChange} className='icons-form-input w-full resize-none'/>
             </div>
-            {errors.message && <p className='error-text'>{errors.message}</p>}
+            {errors.content && <p className='error-text'>{errors.content}</p>}
             </div>
             <div className='flex justify-end'>
               <div className='w-1/3'>

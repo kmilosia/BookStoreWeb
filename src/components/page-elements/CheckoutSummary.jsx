@@ -11,7 +11,6 @@ import { emptyCart } from '../../store/cartSlice'
 function CheckoutSummary({setSubmitting, submitting}) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [canNavigate, setCanNavigate] = useState(false)
   const { checkoutErrors, discount, deliveryMethod, paymentMethod, totalPrice,checkoutCart,guest, guestData,invoiceAddress,deliveryAddress} = useSelector((state) => state.checkout)
   const [total,setTotal] = useState(0)
   const [error, setError] = useState(null)
@@ -65,7 +64,6 @@ function CheckoutSummary({setSubmitting, submitting}) {
           addressTypeID: deliveryAddress.addressTypeID
         }
       }
-      console.log(data);
       makeOrder(data, setLoading, setSuccess)
     }
     const handleSubmitOrder = () => {
@@ -74,17 +72,20 @@ function CheckoutSummary({setSubmitting, submitting}) {
         setError("Sprawdź czy wszystkie wymagane pola zostały uzupełnione")
       }else{
         setError(null)
-      }
-    }
-    useEffect(() => {
-      if(!checkoutErrors && submitting && !error){
         setLoading(true)
         finishSubmit()
       }
-    },[submitting,error,checkoutErrors])
+    }
+    // useEffect(() => {
+    //   if(!checkoutErrors && submitting && !error){
+    //     setLoading(true)
+    //     finishSubmit()
+    //   }
+    // },[submitting,error,checkoutErrors])
     useEffect(() => {
       if(success){
         dispatch(showMessage({title: 'Zamówienie zostało złożone'}))
+        dispatch(emptyCart())
         navigate('/potwierdzenie-zamowienia')
       }else if(success === false){
         dispatch(showMessage({title: 'Błąd podczas składania zamówienia', type: 'warning'}))

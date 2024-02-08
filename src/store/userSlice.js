@@ -43,12 +43,7 @@ export const loginUser = createAsyncThunk(
             const response = await axiosClient.post('/Account/login', userCredentials)
             return response.data    
         }catch(error){
-            if (error.response && error.response.status === 400) {
-                const errorMessage = error.response.data;
-                throw new Error(errorMessage);
-              } else {
-                throw error;
-              }
+            console.log(error);
         }
     }
 )
@@ -59,12 +54,7 @@ export const registerUser = createAsyncThunk(
             const response = await axiosClient.post('Account/Register',userCredentials)
             return response.data    
         }catch(error){
-            if (error.response && error.response.status === 400) {
-                const errorMessage = error.response.data;
-                throw new Error(errorMessage);
-              } else {
-                throw error;
-              }
+            console.log(error);
         }
     }
 )
@@ -81,12 +71,7 @@ export const fetchUserData = createAsyncThunk(
           })
         return response.data
         }catch(error){
-            if (error.response && error.response.status === 400) {
-                const errorMessage = error.response.data;
-                throw new Error(errorMessage);
-              } else {
-                throw error;
-              }
+            console.log(error);
         }
     }
 )
@@ -103,12 +88,7 @@ export const fetchUserAddress = createAsyncThunk(
           })
         return response.data
         }catch(error){
-            if (error.response && error.response.status === 400) {
-                const errorMessage = error.response.data;
-                throw new Error(errorMessage);
-              } else {
-                throw error;
-              }
+            console.log(error);
         }
     }
 )
@@ -119,12 +99,7 @@ export const resetPasswordEmail = createAsyncThunk(
             const response = await axiosClient.post('/Account/ForgotPassword', data)
             return response.data    
         }catch(error){
-            if (error.response && error.response.status === 400) {
-                const errorMessage = error.response.data;
-                throw new Error(errorMessage);
-              } else {
-                throw error;
-              }
+            console.log(error);
         }
     }
 )
@@ -135,12 +110,7 @@ export const resetPassword = createAsyncThunk(
             const response = await axiosClient.post('/Account/ResetPassword', data)
             return response.data    
         }catch(error){
-            if (error.response && error.response.status === 400) {
-                const errorMessage = error.response.data;
-                throw new Error(errorMessage);
-              } else {
-                throw error;
-              }
+            console.log(error);
         }
     }
 )
@@ -151,12 +121,7 @@ export const createCustomer = createAsyncThunk(
             const response = await axiosClient.post(`/Account/CreateCustomerData?userId=${id}`, data)
             return response.data    
         }catch(error){
-            if (error.response && error.response.status === 400) {
-                const errorMessage = error.response.data;
-                throw new Error(errorMessage);
-              } else {
-                throw error;
-              }
+            console.log(error);
         }
     }
 )
@@ -173,12 +138,7 @@ export const editUserData = createAsyncThunk(
           })
         return response.data
         }catch(error){
-            if (error.response && error.response.status === 400) {
-                const errorMessage = error.response.data;
-                throw new Error(errorMessage);
-              } else {
-                throw error;
-              }
+            console.log(error);
         }
     }
 )
@@ -195,12 +155,7 @@ export const changePassword = createAsyncThunk(
           })
         return response.data
         }catch(error){
-            if (error.response && error.response.status === 400) {
-                const errorMessage = error.response.data;
-                throw new Error(errorMessage);
-              } else {
-                throw error;
-              }
+            console.log(error);
         }
     }
 )
@@ -217,12 +172,7 @@ export const deleteAccount = createAsyncThunk(
           })
         return response.data
         }catch(error){
-            if (error.response && error.response.status === 400) {
-                const errorMessage = error.response.data;
-                throw new Error(errorMessage);
-              } else {
-                throw error;
-              }
+            console.log(error);
         }
     }
 )
@@ -233,12 +183,7 @@ export const signNewsletter = createAsyncThunk(
             const response = await axiosClient.post(`/Newsletter/Subscriber?email=${email}` )
             return response.data    
         }catch(error){
-            if (error.response && error.response.status === 400) {
-                const errorMessage = error.response.data;
-                throw new Error(errorMessage);
-              } else {
-                throw error;
-              }
+            console.log(error);
         }
     }
 )
@@ -249,12 +194,7 @@ export const sendContactMessage = createAsyncThunk(
             const response = await axiosClient.post('/Contact', data)
             return response.data    
         }catch(error){
-            if (error.response && error.response.status === 400) {
-                const errorMessage = error.response.data;
-                throw new Error(errorMessage);
-              } else {
-                throw error;
-              }
+            console.log(error);
         }
     }
 )
@@ -271,14 +211,8 @@ export const addUserAddress = createAsyncThunk(
           })
         return response.data
         }catch(error){
-            if (error.response && error.response.status === 400) {
-                const errorMessage = error.response.data;
-                throw new Error(errorMessage);
-              } else {
-                throw error;
-              }
-        }
-    }
+          console.log(error);
+    }}
 )
 export const authMiddleware = (store) => (next) => (action) => {
     if (action.type === 'user/logout') {

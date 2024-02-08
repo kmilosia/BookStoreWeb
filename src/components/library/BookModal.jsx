@@ -9,7 +9,6 @@ import { downloadBookFile } from '../../utils/api/libraryAPI';
 import Spinner from '../elements/Spinner';
 
 function BookModal({item,setIsBookModal,purchased}) {
-  console.log(item);
   const [isReviewed, setIsReviewed] = useState(false)
   const [downloadLoading, setDownloadLoading] = useState(false)
   const downloadBook = () => {

@@ -51,7 +51,8 @@ export const getOrderInvoice = async (id, setLoading) => {
         document.body.removeChild(a);
         setLoading(false)
     } catch (error) {
-        console.error(error);
+        console.error(error)
+        setLoading(false)
     }
 }
 export const makeOrder = async (data, setLoading, setSuccess) => {

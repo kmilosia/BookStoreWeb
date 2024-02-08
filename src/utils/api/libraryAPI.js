@@ -28,37 +28,14 @@ export const downloadBookFile = async (id, setLoading) => {
         const blob = new Blob([response.data], { type: 'application/pdf' })
         const url = window.URL.createObjectURL(blob)
         const a = document.createElement('a')
-        a.href = url;
+        a.href = url
         a.download = 'book.pdf'
         document.body.appendChild(a)
         a.click()
         document.body.removeChild(a)
         setLoading(false)
     } catch (error) {
-        console.log(error);
-        setLoading(false)
-    }
-}
-export const getBookFile = async (id, setData, setLoading) => {
-    try {
-        const token = getValidToken();
-        const response = await axiosClient.get(`/Library/download/${id}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            },
-            responseType: 'arraybuffer',
-        })
-        const blob = new Blob([response.data], { type: 'application/pdf' })
-        const url = window.URL.createObjectURL(blob)
-        const a = document.createElement('a')
-        a.href = url;
-        a.download = 'book.pdf'
-        document.body.appendChild(a)
-        a.click()
-        document.body.removeChild(a)
-        setLoading(false)
-    } catch (error) {
-        console.log(error);
+        console.log(error)
         setLoading(false)
     }
 }
