@@ -12,7 +12,7 @@ export const deleteWishlistItem = async (id) => {
         })
         return response.data
     } catch (error) {
-        console.error(error)
+        console.log(error)
     }
   }
   export const getWishlist = async (data, setData, setLoading) => {
@@ -24,12 +24,13 @@ export const deleteWishlistItem = async (id) => {
                 'Content-Type': 'application/json',
             },
         })
+        if(response.status === 200 || response.status === 204){
         setData(response.data)
-        setLoading(false)
+        }
     } catch (error) {
-        console.error(error);
-        setLoading(false)
+        console.log(error);
     }
+    setLoading(false)
   }
   export const getWishlistGuid = async (setData, setLoading) => {
     try {
@@ -41,9 +42,11 @@ export const deleteWishlistItem = async (id) => {
                 'Content-Type': 'application/json',
             },
         })
+        if(response.status === 200 || response.status === 204){
         setData(response.data)
+        }
     } catch (error) {
-        console.error( error);
+        console.log( error);
     }
   }
  export const addToWishlist = async (id) => {
@@ -57,6 +60,6 @@ export const deleteWishlistItem = async (id) => {
         })
         return response.data
     } catch (error) {
-        console.error(error);
+        console.log(error);
     }
   }

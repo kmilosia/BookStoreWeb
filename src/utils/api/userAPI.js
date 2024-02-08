@@ -10,13 +10,13 @@ export const fetchUserAddress = async (setData,setErrors, setLoading) => {
               'Content-Type': 'application/json',
           },
         })
+        if(response.status === 200 || response.status === 204){
         setData(response.data)
-        setLoading(false)
-    } catch (error) {
-        if (error.response) {
-            setErrors(error.response.data)
         }
+    } catch (error) {
+      setErrors("Błąd podczas pobierana adresu użytkownika")
     }
+    setLoading(false)
   }
 export const addUserAddress = async (data,setErrors, setLoading) => {
         try{
@@ -30,8 +30,7 @@ export const addUserAddress = async (data,setErrors, setLoading) => {
         setLoading(false)
         return response.data
         }catch (error) {
-            if (error.response) {
-                setErrors(error.response.data)
-            }
+          setErrors("Błąd podczas dodawania adresu użytkownika")
+          setLoading(false)
         }
 }

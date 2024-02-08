@@ -10,11 +10,13 @@ export const getPurchasedBooks = async (setData, setLoading) => {
                 'Content-Type': 'application/json',
             },
         })
+        if(response.status === 200 || response.status === 204){
         setData(response.data)
-        setLoading(false)
+        }
     } catch (error) {
-        console.error(error);
+        console.log(error);
     }
+    setLoading(false)
 }
 export const getRentedBooks = async (setData, setLoading) => {
     try {
@@ -25,11 +27,13 @@ export const getRentedBooks = async (setData, setLoading) => {
                 'Content-Type': 'application/json',
             },
         })
+        if(response.status === 200 || response.status === 204){
         setData(response.data)
-        setLoading(false)
+        }
     } catch (error) {
-        console.error(error);
+        console.log(error);
     }
+    setLoading(false)
 }
 export const getFilteredRentedBooks = async (filter,setData, setLoading) => {
     try {
@@ -40,9 +44,11 @@ export const getFilteredRentedBooks = async (filter,setData, setLoading) => {
                 'Content-Type': 'application/json',
             },
         })
+        if(response.status === 200 || response.status === 204){
         setData(response.data)
-        setLoading(false)
+        }
     } catch (error) {
-        console.error(error);
+        console.log(error);
     }
+    setLoading(false)
 }

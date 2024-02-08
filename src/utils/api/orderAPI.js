@@ -10,11 +10,13 @@ export const getFilteredOrderedBooks = async (filter,setData, setLoading) => {
                 'Content-Type': 'application/json',
             },
         })
+        if(response.status === 200 || response.status === 204){
         setData(response.data)
-        setLoading(false)
+        }
     } catch (error) {
-        console.error(error);
+        console.log(error);
     }
+    setLoading(false)
 }
 export const getUserOrder = async (id,setData, setLoading) => {
     try {
@@ -25,11 +27,13 @@ export const getUserOrder = async (id,setData, setLoading) => {
                 'Content-Type': 'application/json',
             },
         })
+        if(response.status === 200 || response.status === 204){
         setData(response.data)
-        setLoading(false)
+        }
     } catch (error) {
-        console.error(error);
+        console.log(error);
     }
+    setLoading(false)
 }
 export const getOrderInvoice = async (id, setLoading) => {
     try {
@@ -49,11 +53,10 @@ export const getOrderInvoice = async (id, setLoading) => {
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
-        setLoading(false)
     } catch (error) {
-        console.error(error)
-        setLoading(false)
+        console.log(error)
     }
+    setLoading(false)
 }
 export const makeOrder = async (data, setLoading, setSuccess) => {
     try {
@@ -69,9 +72,8 @@ export const makeOrder = async (data, setLoading, setSuccess) => {
         }else{
             setSuccess(false)
         }
-        setLoading(false)
     } catch (error) {
         console.log(error)
-        setLoading(false)
     }
+    setLoading(false)
 }
