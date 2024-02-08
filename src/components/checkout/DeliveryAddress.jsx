@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCities, getCountries } from '../../utils/api/dictionaryAPI'
 import { addressValidate } from '../../utils/validation/addressValidation'
-import { setCheckoutErrors, setDeliveryAddress } from '../../store/checkoutSlice'
+import { setDeliveryAddress } from '../../store/checkoutSlice'
 import { getValidToken } from '../../utils/functions/getValidToken'
 import axiosClient from '../../utils/api/axiosClient'
 
-function DeliveryAddress({submitting}) {
+function DeliveryAddress() {
     const dispatch = useDispatch()
-    const {deliveryAddress,checkoutErrors} = useSelector((state) => state.checkout)
+    const {deliveryAddress} = useSelector((state) => state.checkout)
     const [cities, setCities] = useState([])
     const [countries, setCountries] = useState([])
     const [userAddress, setUserAddress] = useState(null)
@@ -81,18 +81,18 @@ function DeliveryAddress({submitting}) {
             setEdit(false)
         }
       },[submit,errors])
-      useEffect(() => {
-        if (submitting) {
-            if(!deliveryAddress){
-              dispatch(setCheckoutErrors({ ...checkoutErrors, deliveryAddress: "Dodaj adres dostawy"}))
-            }else if(checkoutErrors?.deliveryAddress){
-              dispatch(setCheckoutErrors((prevErrors) => {
-                const { deliveryAddress, ...newErrors } = prevErrors
-                return newErrors
-            }))
-            }
-        }
-      }, [submitting])
+    //   useEffect(() => {
+    //     if (submitting) {
+    //         if(!deliveryAddress){
+    //           dispatch(setCheckoutErrors({ ...checkoutErrors, deliveryAddress: "Dodaj adres dostawy"}))
+    //         }else if(checkoutErrors?.deliveryAddress){
+    //           dispatch(setCheckoutErrors((prevErrors) => {
+    //             const { deliveryAddress, ...newErrors } = prevErrors
+    //             return newErrors
+    //         }))
+    //         }
+    //     }
+    //   }, [submitting])
       useEffect(() => {
         if(cities.length > 0){
             setData(prev => ({
@@ -118,7 +118,9 @@ function DeliveryAddress({submitting}) {
                   'Content-Type': 'application/json',
               },
             })
+            if(response.status === 200 || response.status === 204){
             setUserAddress(response.data)
+            }
         } catch (error) {
             console.log(error);
         }

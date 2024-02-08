@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCities, getCountries } from '../../utils/api/dictionaryAPI'
 import { addressValidate } from '../../utils/validation/addressValidation'
-import { setCheckoutErrors, setInvoiceAddress } from '../../store/checkoutSlice'
+import { setInvoiceAddress } from '../../store/checkoutSlice'
 import { getValidToken } from '../../utils/functions/getValidToken'
 import axiosClient from '../../utils/api/axiosClient'
 
-function InvoiceAddress({submitting}) {
+function InvoiceAddress() {
     const dispatch = useDispatch()
-    const {invoiceAddress,checkoutErrors} = useSelector((state) => state.checkout)
+    const {invoiceAddress} = useSelector((state) => state.checkout)
     const [cities, setCities] = useState([])
     const [countries, setCountries] = useState([])
     const [userAddress, setUserAddress] = useState(null)
@@ -81,18 +81,18 @@ function InvoiceAddress({submitting}) {
             setEdit(false)
         }
       },[submit,errors])
-      useEffect(() => {
-        if (submitting) {
-            if(!invoiceAddress){
-              dispatch(setCheckoutErrors({ ...checkoutErrors, invoiceAddress: "Dodaj adres faktury"}))
-            }else if(checkoutErrors?.invoiceAddress){
-              dispatch(setCheckoutErrors((prevErrors) => {
-                const { invoiceAddress, ...newErrors } = prevErrors
-                return newErrors
-            }))
-            }
-        }
-      }, [submitting])
+    //   useEffect(() => {
+    //     if (submitting) {
+    //         if(!invoiceAddress){
+    //           dispatch(setCheckoutErrors({ ...checkoutErrors, invoiceAddress: "Dodaj adres faktury"}))
+    //         }else if(checkoutErrors?.invoiceAddress){
+    //           dispatch(setCheckoutErrors((prevErrors) => {
+    //             const { invoiceAddress, ...newErrors } = prevErrors
+    //             return newErrors
+    //         }))
+    //         }
+    //     }
+    //   }, [submitting])
       useEffect(() => {
         if(cities.length > 0){
             setData(prev => ({
@@ -118,7 +118,9 @@ function InvoiceAddress({submitting}) {
                   'Content-Type': 'application/json',
               },
             })
+            if(response.status === 200 || response.status === 204){
             setUserAddress(response.data)
+            }
         } catch (error) {
             console.log(error);
         }

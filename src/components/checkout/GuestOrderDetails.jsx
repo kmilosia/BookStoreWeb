@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { guestValidate } from '../../utils/validation/guestValidation'
-import { setCheckoutErrors, setGuestData } from '../../store/checkoutSlice'
+import { useDispatch } from 'react-redux'
+import { setGuestData } from '../../store/checkoutSlice'
 
-function GuestOrderDetails({submitting}) {
+function GuestOrderDetails({errors}) {
     const dispatch = useDispatch()
-    const {guestData, checkoutErrors} = useSelector((state) => state.checkout)
     const [data, setData] = useState({
         name: '',
         surname: '',
@@ -17,21 +15,21 @@ function GuestOrderDetails({submitting}) {
       const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value });
       }
-      useEffect(() => {
-        if (submitting) {
-            const errors = guestValidate(guestData)
-            if (Object.keys(errors).length > 0) {
-                dispatch(setCheckoutErrors({ ...checkoutErrors, guestData: 'Dane do zamówienia muszą zostać uzupełnione' }))
-            } else {
-              if(checkoutErrors?.guestData){
-                dispatch(setCheckoutErrors((prevErrors) => {
-                    const { guestData, ...newErrors } = prevErrors;
-                    return newErrors;
-                }));
-              }
-            }
-        }
-    }, [submitting, checkoutErrors])
+    //   useEffect(() => {
+    //     if (submitting) {
+    //         const errors = guestValidate(guestData)
+    //         if (Object.keys(errors).length > 0) {
+    //             dispatch(setCheckoutErrors({ ...checkoutErrors, guestData: 'Dane do zamówienia muszą zostać uzupełnione' }))
+    //         } else {
+    //           if(checkoutErrors?.guestData){
+    //             dispatch(setCheckoutErrors((prevErrors) => {
+    //                 const { guestData, ...newErrors } = prevErrors;
+    //                 return newErrors;
+    //             }));
+    //           }
+    //         }
+    //     }
+    // }, [submitting, checkoutErrors])
       
   return (
     <div className='flex flex-col divide-border-bottom py-4'>
@@ -52,7 +50,7 @@ function GuestOrderDetails({submitting}) {
                 </div>
             </div>
         </form>
-        {checkoutErrors?.guestData && <p className='error-text'>{checkoutErrors?.guestData}</p>}
+        {errors.guestData && <p className='error-text'>{errors.guestData}</p>}
     </div>
   )
 }

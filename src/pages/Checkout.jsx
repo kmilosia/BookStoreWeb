@@ -17,6 +17,7 @@ function Order() {
   const {deliveryMethod,guest} = useSelector((state) => state.checkout)
   const {isAuth} = useSelector((state) => state.user)
   const [submitting, setSubmitting] = useState(false)
+  const [errors, setErrors] = useState({})
   useEffect(() => {
     dispatch(resetCheckout())
   },[])
@@ -55,18 +56,22 @@ function Order() {
         :
         <div className='flex flex-col'>
           {guest &&
-          <GuestOrderDetails submitting={submitting}/>
+          <GuestOrderDetails errors={errors} submitting={submitting}/>
           }
-          <DeliveryMethods submitting={submitting}/>
-          <PaymentMethods submitting={submitting} />
-          <InvoiceAddress submitting={submitting}/>
+          <DeliveryMethods errors={errors} submitting={submitting}/>
+          <PaymentMethods errors={errors} submitting={submitting} />
+          <InvoiceAddress errors={errors} submitting={submitting}/>
+          {errors.invoiceAddress && <p className='error-text'>{errors.invoiceAddress}</p>}
           {(deliveryMethod && deliveryMethod?.name === 'Dostawa do domu') &&
-          <DeliveryAddress submitting={submitting}/>
+          <>
+          <DeliveryAddress errors={errors} submitting={submitting}/>
+          {errors.deliveryAddress && <p className='error-text'>{errors.deliveryAddress}</p>}
+          </>
           }
         </div>
           }
         </div>
-        <CheckoutSummary submitting={submitting} setSubmitting={setSubmitting}/>
+        <CheckoutSummary setErrors={setErrors} errors={errors} submitting={submitting} setSubmitting={setSubmitting}/>
         </div>
       </div>
     </div>

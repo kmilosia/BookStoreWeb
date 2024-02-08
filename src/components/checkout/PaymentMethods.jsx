@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axiosClient from '../../utils/api/axiosClient'
-import { useDispatch, useSelector } from 'react-redux'
-import { setCheckoutErrors, setPaymentMethod } from '../../store/checkoutSlice'
+import { useDispatch } from 'react-redux'
+import { setPaymentMethod } from '../../store/checkoutSlice'
 
-function PaymentMethods({submitting}) {
+function PaymentMethods({errors}) {
     const dispatch = useDispatch()
-    const {paymentMethod,checkoutErrors} = useSelector((state) => state.checkout)
     const [paymentMethods, setPaymentMethods] = useState([])
     const getPaymentMethods = async () => {
         try {
@@ -21,22 +20,20 @@ function PaymentMethods({submitting}) {
         const selectedId = parseInt(e.target.value);
         const selectedPayment = paymentMethods.find(method => method.id === selectedId);
         if (selectedPayment) {
-            dispatch(setPaymentMethod(selectedPayment));
-        } else {
-            dispatch(setCheckoutErrors({ ...checkoutErrors, payment: 'Nieprawidłowa metoda płatności' }))
+            dispatch(setPaymentMethod(selectedPayment))
         }
-    };
+    }
     useEffect(() => {
         getPaymentMethods()
     },[])
-    useEffect(() => {
-        if (!paymentMethod && submitting) {
-            dispatch(setCheckoutErrors({ ...checkoutErrors, payment: 'Wybierz metodę płatności' }))
-        } else if(paymentMethod && submitting && checkoutErrors?.payment) {
-            const { payment, ...newErrors } = checkoutErrors
-            dispatch(setCheckoutErrors(newErrors))
-        }
-    }, [submitting])
+    // useEffect(() => {
+    //     if (!paymentMethod && submitting) {
+    //         dispatch(setCheckoutErrors({ ...checkoutErrors, payment: 'Wybierz metodę płatności' }))
+    //     } else if(paymentMethod && submitting && checkoutErrors?.payment) {
+    //         const { payment, ...newErrors } = checkoutErrors
+    //         dispatch(setCheckoutErrors(newErrors))
+    //     }
+    // }, [submitting])
   return (
     <>
     <div className='flex flex-col'>
@@ -53,7 +50,7 @@ function PaymentMethods({submitting}) {
             )
         })}
         </div>
-        {submitting && checkoutErrors?.payment && <p className='error-text'>{checkoutErrors?.payment}</p>}
+        {errors.payment && <p className='error-text'>{errors.payment}</p>}
     </div> 
     </>
   )

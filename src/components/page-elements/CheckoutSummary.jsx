@@ -8,12 +8,11 @@ import { showMessage } from '../../store/messageSlice'
 import { makeOrder } from '../../utils/api/orderAPI'
 import { emptyCart } from '../../store/cartSlice'
 
-function CheckoutSummary({setSubmitting, submitting}) {
+function CheckoutSummary({setSubmitting, submitting,errors, setErrors}) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { checkoutErrors, discount, deliveryMethod, paymentMethod, totalPrice,checkoutCart,guest, guestData,invoiceAddress,deliveryAddress} = useSelector((state) => state.checkout)
+  const { discount, deliveryMethod, paymentMethod, totalPrice,checkoutCart,guest, guestData,invoiceAddress,deliveryAddress} = useSelector((state) => state.checkout)
   const [total,setTotal] = useState(0)
-  const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(null)
 
@@ -66,20 +65,44 @@ function CheckoutSummary({setSubmitting, submitting}) {
       }
       makeOrder(data, setLoading, setSuccess)
     }
+
     const handleSubmitOrder = () => {
       setSubmitting(true)
-      if(checkoutErrors){
-        setError("Sprawdź czy wszystkie wymagane pola zostały uzupełnione")
-      }else{
-        setError(null)
+      setErrors(validate())
+    }
+    const validate = () => {
+      let errors = {}
+       if(!invoiceAddress){
+          errors.invoiceAddress = "Wprowadź adres faktury!"
       }
+      if(!deliveryAddress && deliveryMethod?.name === 'Dostawa do domu'){
+        errors.deliveryAddress = "Wprowadź adres dostawy!"
+      }
+      if(!deliveryMethod){
+        errors.delivery = "Wybierz sposób dostawy!"
+      }
+      if(!paymentMethod){
+        errors.payment = "Wybierz metodę płatności!"
+      }
+      if(guest){
+        if(guestData.name === '' || guestData.surname === '' || guestData.email === '' || !/\S+@\S+\.\S+/.test(guestData.email)){
+          errors.guestData = "Wprowadź prawidłowe dane do zamówienia!"
+        }
+      }
+      return errors
     }
     useEffect(() => {
-      if(!checkoutErrors && submitting){
+      if (Object.keys(errors).length === 0 && submitting) {
         setLoading(true)
         finishSubmit()
       }
-    },[submitting,checkoutErrors])
+    }, [errors])
+    // useEffect(() => {
+    //   if(!checkoutErrors && submitting){
+    //     setLoading(true)
+    //     finishSubmit()
+    //   }
+    // },[submitting,checkoutErrors])
     useEffect(() => {
       if(success){
         dispatch(showMessage({title: 'Zamówienie zostało złożone'}))
@@ -131,11 +154,9 @@ function CheckoutSummary({setSubmitting, submitting}) {
       <p>Kwota do zapłaty</p>
       <p>{total ? total.toFixed(2) : "0.00"}zł</p>
     </div>
-    {paymentMethod && deliveryMethod && invoiceAddress &&
     <button onClick={handleSubmitOrder} className='purple-button flex items-center justify-center shadow-md'>
       {loading ? <Spinner /> : <span className='flex flex-row items-center'><BiSolidLock className='mr-2'/>Opłać i zamów</span>}
-    </button>}
-    {error && <p className='error-text'>{error}</p>}
+    </button>
   </div>
   </div>
   )

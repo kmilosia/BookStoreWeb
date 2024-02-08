@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axiosClient from '../../utils/api/axiosClient'
-import { setCheckoutErrors, setDeliveryMethod } from '../../store/checkoutSlice'
+import { setDeliveryMethod } from '../../store/checkoutSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
-function DeliveryMethods({submitting}) {
+function DeliveryMethods({errors}) {
     const dispatch = useDispatch()
     const [deliveryMethods, setDeliveryMethods] = useState([])
-    const {deliveryMethod,checkoutErrors,isElectronicPurchase} = useSelector((state) => state.checkout)
+    const {isElectronicPurchase} = useSelector((state) => state.checkout)
     const getDeliveryMethods = async () => {
         try {
             const response = await axiosClient.get(`/DeliveryMethod`)
@@ -20,13 +20,10 @@ function DeliveryMethods({submitting}) {
     const handleDeliveryChange = (e) => {
         const selectedId = parseInt(e.target.value);
         const selectedDelivery = deliveryMethods.find(method => method.id === selectedId);
-
         if (selectedDelivery) {
             dispatch(setDeliveryMethod(selectedDelivery));
-        } else {
-            dispatch(setCheckoutErrors({ ...checkoutErrors, delivery: 'Nieprawidłowa metoda dostawy' }));
         }
-    };
+    }
     useEffect(() => {
         if(isElectronicPurchase && deliveryMethods.length > 0){
             const selectedDelivery = deliveryMethods.find(method => method.id === 1);
@@ -38,14 +35,14 @@ function DeliveryMethods({submitting}) {
     useEffect(() => {
         getDeliveryMethods()
     },[])
-    useEffect(() => {
-        if (!deliveryMethod && submitting) {
-            dispatch(setCheckoutErrors({ ...checkoutErrors, delivery: 'Wybierz metodę dostawy' }));
-        } else if(deliveryMethod && submitting && checkoutErrors?.delivery){
-            const { delivery, ...newErrors } = checkoutErrors;
-            dispatch(setCheckoutErrors(newErrors));
-        }
-    }, [submitting]);
+    // useEffect(() => {
+    //     if (!deliveryMethod && submitting) {
+    //         dispatch(setCheckoutErrors({ ...checkoutErrors, delivery: 'Wybierz metodę dostawy' }));
+    //     } else if(deliveryMethod && submitting && checkoutErrors?.delivery){
+    //         const { delivery, ...newErrors } = checkoutErrors;
+    //         dispatch(setCheckoutErrors(newErrors));
+    //     }
+    // }, [submitting]);
 
   return (
     <>
@@ -75,7 +72,7 @@ function DeliveryMethods({submitting}) {
         })}
         </>}
         </div>
-        {submitting && checkoutErrors?.delivery && <p className='error-text'>{checkoutErrors?.delivery}</p>}
+        {errors.delivery && <p className='error-text'>{errors.delivery}</p>}
     </div> 
     </>
   )
