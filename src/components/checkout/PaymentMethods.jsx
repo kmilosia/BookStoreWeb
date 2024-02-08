@@ -10,7 +10,9 @@ function PaymentMethods({submitting}) {
     const getPaymentMethods = async () => {
         try {
           const response = await axiosClient.get(`/PaymentMethod`)
+          if(response.status === 200 || response.status === 204){
           setPaymentMethods(response.data)
+          }
         } catch (err) {
           console.error(err)
         }

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import CheckoutSummary from '../components/page-elements/CheckoutSummary'
 import {BsArrowLeftShort} from 'react-icons/bs'
-import { resetCheckout, setDeliveryMethod, setGuest } from '../store/checkoutSlice'
+import { resetCheckout, setGuest } from '../store/checkoutSlice'
 import GuestOrderDetails from '../components/checkout/GuestOrderDetails'
 import DeliveryMethods from '../components/checkout/DeliveryMethods'
 import PaymentMethods from '../components/checkout/PaymentMethods'
@@ -14,7 +14,7 @@ function Order() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const {cart} = useSelector((state) => state.cart)
-  const {checkoutCart,deliveryMethod,paymentMethod,deliveryAddress,invoiceAddress,guestData,discount,guest,isElectronicPurchase} = useSelector((state) => state.checkout)
+  const {deliveryMethod,guest} = useSelector((state) => state.checkout)
   const {isAuth} = useSelector((state) => state.user)
   const [submitting, setSubmitting] = useState(false)
   useEffect(() => {
@@ -30,12 +30,6 @@ function Order() {
       dispatch(setGuest(false))
     }
   },[isAuth])
-  // useEffect(() => {
-  //   console.log(isElectronicPurchase);
-  //   if(isElectronicPurchase){
-  //     dispatch(setDeliveryMethod({id: 1, name:"Dostawa elektroniczna", price:0}))
-  //   }
-  // },[isElectronicPurchase])
   return (
     <div className='default-page-wrapper'>
       <div className='default-page-container'>

@@ -72,16 +72,14 @@ function CheckoutSummary({setSubmitting, submitting}) {
         setError("Sprawdź czy wszystkie wymagane pola zostały uzupełnione")
       }else{
         setError(null)
+      }
+    }
+    useEffect(() => {
+      if(!checkoutErrors && submitting){
         setLoading(true)
         finishSubmit()
       }
-    }
-    // useEffect(() => {
-    //   if(!checkoutErrors && submitting && !error){
-    //     setLoading(true)
-    //     finishSubmit()
-    //   }
-    // },[submitting,error,checkoutErrors])
+    },[submitting,checkoutErrors])
     useEffect(() => {
       if(success){
         dispatch(showMessage({title: 'Zamówienie zostało złożone'}))
@@ -133,9 +131,10 @@ function CheckoutSummary({setSubmitting, submitting}) {
       <p>Kwota do zapłaty</p>
       <p>{total ? total.toFixed(2) : "0.00"}zł</p>
     </div>
+    {paymentMethod && deliveryMethod && invoiceAddress &&
     <button onClick={handleSubmitOrder} className='purple-button flex items-center justify-center shadow-md'>
       {loading ? <Spinner /> : <span className='flex flex-row items-center'><BiSolidLock className='mr-2'/>Opłać i zamów</span>}
-    </button>
+    </button>}
     {error && <p className='error-text'>{error}</p>}
   </div>
   </div>

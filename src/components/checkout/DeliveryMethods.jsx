@@ -10,7 +10,9 @@ function DeliveryMethods({submitting}) {
     const getDeliveryMethods = async () => {
         try {
             const response = await axiosClient.get(`/DeliveryMethod`)
+            if(response.status === 200 || response.status === 204){
             setDeliveryMethods(response.data)
+            }
         } catch (err) {
         console.error(err)
         }
