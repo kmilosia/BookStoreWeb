@@ -26,14 +26,6 @@ function PaymentMethods({errors}) {
     useEffect(() => {
         getPaymentMethods()
     },[])
-    // useEffect(() => {
-    //     if (!paymentMethod && submitting) {
-    //         dispatch(setCheckoutErrors({ ...checkoutErrors, payment: 'Wybierz metodę płatności' }))
-    //     } else if(paymentMethod && submitting && checkoutErrors?.payment) {
-    //         const { payment, ...newErrors } = checkoutErrors
-    //         dispatch(setCheckoutErrors(newErrors))
-    //     }
-    // }, [submitting])
   return (
     <>
     <div className='flex flex-col'>

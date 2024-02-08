@@ -97,12 +97,6 @@ function CheckoutSummary({setSubmitting, submitting,errors, setErrors}) {
         finishSubmit()
       }
     }, [errors])
-    // useEffect(() => {
-    //   if(!checkoutErrors && submitting){
-    //     setLoading(true)
-    //     finishSubmit()
-    //   }
-    // },[submitting,checkoutErrors])
     useEffect(() => {
       if(success){
         dispatch(showMessage({title: 'Zamówienie zostało złożone'}))

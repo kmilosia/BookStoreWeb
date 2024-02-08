@@ -9,7 +9,6 @@ const initialState = {
     paymentMethod: null,
     guest: null,
     guestData: null,
-    // checkoutErrors: null,
     totalPrice: 0,
 }
 const checkoutSlice = createSlice({
@@ -29,7 +28,6 @@ const checkoutSlice = createSlice({
             state.paymentMethod = null
             state.guest = null
             state.guestData = null
-            // state.checkoutErrors = null
           },
         setGuestData: (state, action) => {
             state.guestData = action.payload
@@ -54,10 +52,7 @@ const checkoutSlice = createSlice({
         },
         setCheckoutCart: (state, action) => {
             state.checkoutCart = action.payload
-        },
-        // setCheckoutErrors: (state, action) => {
-        //     state.checkoutErrors = action.payload
-        // },
+        },    
         setTotalPrice: (state, action) => {
             state.totalPrice = action.payload
         }

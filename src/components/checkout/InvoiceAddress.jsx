@@ -81,18 +81,6 @@ function InvoiceAddress() {
             setEdit(false)
         }
       },[submit,errors])
-    //   useEffect(() => {
-    //     if (submitting) {
-    //         if(!invoiceAddress){
-    //           dispatch(setCheckoutErrors({ ...checkoutErrors, invoiceAddress: "Dodaj adres faktury"}))
-    //         }else if(checkoutErrors?.invoiceAddress){
-    //           dispatch(setCheckoutErrors((prevErrors) => {
-    //             const { invoiceAddress, ...newErrors } = prevErrors
-    //             return newErrors
-    //         }))
-    //         }
-    //     }
-    //   }, [submitting])
       useEffect(() => {
         if(cities.length > 0){
             setData(prev => ({

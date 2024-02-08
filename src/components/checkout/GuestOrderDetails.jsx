@@ -15,21 +15,6 @@ function GuestOrderDetails({errors}) {
       const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value });
       }
-    //   useEffect(() => {
-    //     if (submitting) {
-    //         const errors = guestValidate(guestData)
-    //         if (Object.keys(errors).length > 0) {
-    //             dispatch(setCheckoutErrors({ ...checkoutErrors, guestData: 'Dane do zamówienia muszą zostać uzupełnione' }))
-    //         } else {
-    //           if(checkoutErrors?.guestData){
-    //             dispatch(setCheckoutErrors((prevErrors) => {
-    //                 const { guestData, ...newErrors } = prevErrors;
-    //                 return newErrors;
-    //             }));
-    //           }
-    //         }
-    //     }
-    // }, [submitting, checkoutErrors])
       
   return (
     <div className='flex flex-col divide-border-bottom py-4'>

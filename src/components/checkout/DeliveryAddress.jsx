@@ -81,18 +81,6 @@ function DeliveryAddress() {
             setEdit(false)
         }
       },[submit,errors])
-    //   useEffect(() => {
-    //     if (submitting) {
-    //         if(!deliveryAddress){
-    //           dispatch(setCheckoutErrors({ ...checkoutErrors, deliveryAddress: "Dodaj adres dostawy"}))
-    //         }else if(checkoutErrors?.deliveryAddress){
-    //           dispatch(setCheckoutErrors((prevErrors) => {
-    //             const { deliveryAddress, ...newErrors } = prevErrors
-    //             return newErrors
-    //         }))
-    //         }
-    //     }
-    //   }, [submitting])
       useEffect(() => {
         if(cities.length > 0){
             setData(prev => ({

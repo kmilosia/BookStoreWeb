@@ -31,14 +31,14 @@ function CartPopup() {
                   <p className='font-bold text-2xl lg:text-3xl mr-2 text-purple-400'>{product.discountedBruttoPrice?.toFixed(2)}zł</p>}
                   <p className={`${product.discountedBruttoPrice !== 0 ? 'text-xl line-through font-light' : 'font-bold text-2xl lg:text-3xl'}`}>{product.price?.toFixed(2)}zł</p>
                 </div>
-                  <div className='grid grid-cols-2 gap-2 lg:flex justify-end'>
-                    <button onClick={handleHidePopup} className='bordered-purple-button lg:w-max'>Kontynuuj zakupy</button>
-                    <Link to='/koszyk' onClick={handleHidePopup} className='purple-button lg:w-max'>Przejdź do koszyka</Link>
-                  </div>
                 </div>
             </div>
         </div>
         }
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-2 lg:flex lg:justify-end w-full'>
+            <button onClick={handleHidePopup} className='bordered-purple-button w-full lg:w-max'>Kontynuuj zakupy</button>
+            <Link to='/koszyk' onClick={handleHidePopup} className='purple-button lg:w-max'>Przejdź do koszyka</Link>
+        </div>
       </div>
     </div>
     )

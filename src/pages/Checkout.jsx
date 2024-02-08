@@ -25,7 +25,7 @@ function Order() {
     if(cart.length <= 0){
       navigate('/koszyk')
     }
-  },[cart])
+  },[])
   useEffect(()=>{
     if(isAuth){
       dispatch(setGuest(false))

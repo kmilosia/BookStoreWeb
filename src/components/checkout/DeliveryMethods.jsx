@@ -35,14 +35,6 @@ function DeliveryMethods({errors}) {
     useEffect(() => {
         getDeliveryMethods()
     },[])
-    // useEffect(() => {
-    //     if (!deliveryMethod && submitting) {
-    //         dispatch(setCheckoutErrors({ ...checkoutErrors, delivery: 'Wybierz metodę dostawy' }));
-    //     } else if(deliveryMethod && submitting && checkoutErrors?.delivery){
-    //         const { delivery, ...newErrors } = checkoutErrors;
-    //         dispatch(setCheckoutErrors(newErrors));
-    //     }
-    // }, [submitting]);
 
   return (
     <>

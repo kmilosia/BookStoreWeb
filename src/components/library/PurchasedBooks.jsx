@@ -27,7 +27,7 @@ function PurchasedBooks() {
     loading ? <PageLoader /> :
     <>
     {purchasedBooks.length > 0 ?
-    <div className='grid grid-cols-2 lg:grid-cols-4 gap-5 my-5'>
+    <div className='grid grid-cols-1 lg:grid-cols-4 gap-5 my-5'>
         {purchasedBooks.map((item,index) => {
             return (
                 <button onClick={() => {handleBook(item)}} key={index} className='flex flex-col w-full h-auto px-5 py-5 items-center border border-gray-200 dark:border-midnight-800 rounded-md shadow-md hover:scale-105'>
