@@ -1,21 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import axiosClient from '../../utils/api/axiosClient'
 import { useDispatch } from 'react-redux'
 import { setPaymentMethod } from '../../store/checkoutSlice'
+import { getPaymentMethods } from '../../utils/api/dictionaryAPI'
 
 function PaymentMethods({errors}) {
     const dispatch = useDispatch()
     const [paymentMethods, setPaymentMethods] = useState([])
-    const getPaymentMethods = async () => {
-        try {
-          const response = await axiosClient.get(`/PaymentMethod`)
-          if(response.status === 200 || response.status === 204){
-          setPaymentMethods(response.data)
-          }
-        } catch (err) {
-          console.error(err)
-        }
-    }
+    const [loading, setLoading] = useState(false)
     const handlePaymentChange = (e) => {
         const selectedId = parseInt(e.target.value);
         const selectedPayment = paymentMethods.find(method => method.id === selectedId);
@@ -24,7 +15,7 @@ function PaymentMethods({errors}) {
         }
     }
     useEffect(() => {
-        getPaymentMethods()
+        getPaymentMethods(setPaymentMethods,setLoading)
     },[])
   return (
     <>

@@ -13,7 +13,7 @@ function GuestOrderDetails({errors}) {
         dispatch(setGuestData(data))
       },[data])
       const handleChange = (e) => {
-        setData({ ...data, [e.target.name]: e.target.value });
+        setData({ ...data, [e.target.name]: e.target.value })
       }
       
   return (

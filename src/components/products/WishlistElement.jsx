@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import TrashButton from '../buttons/TrashButton'
 import { Link } from 'react-router-dom';
 import {deleteWishlistItem} from '../../utils/api/wishlistAPI';
 import { useDispatch } from 'react-redux';
 import { showMessage } from '../../store/messageSlice';
-import { FiShoppingBag } from 'react-icons/fi';
 import { addToCart } from '../../store/cartSlice';
 import { showPopup } from '../../store/cartPopupSlice';
+import { TbTrash } from 'react-icons/tb';
 
 function WishlistElement({item,updateWishlistAfterDelete}) {
   const [showText, setShowText] = useState(false)
@@ -35,7 +34,9 @@ function WishlistElement({item,updateWishlistAfterDelete}) {
   }
   return (
     <div className='flex flex-col px-5 py-3 border border-gray-200 dark:border-midnight-800 rounded-md'>
-      <TrashButton onClick={handleRemove} />
+      <button onClick={handleRemove} className='2xl:text-2xl lg:text-lg text-xl w-max text-gray-600 dark:text-gray-300 dark:hover:text-red-500 hover:text-red-500 transition-colors'>
+      <TbTrash/>
+      </button>
       <div className='my-3'>
         <img src={item.imageURL} className='h-auto aspect-[3/4] w-full object-cover rounded-md' />
       </div>

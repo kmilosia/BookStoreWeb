@@ -3,15 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addressValidate, addressesValidate } from '../../utils/validation/addressValidation'
 import { addUserAddress, resetState } from '../../store/userSlice'
 import { showMessage } from '../../store/messageSlice'
-import { useNavigate } from 'react-router-dom'
-import SubmitLoadingButton from '../../components/buttons/SubmitLoadingButton'
 import { getCities, getCountries } from '../../utils/api/dictionaryAPI'
 import Spinner from '../../components/elements/Spinner'
 
 function NewAddress({handleAfterAddedNewAddress}) {
   const {success, loading} = useSelector((state) => state.user)
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const [errors,setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
   const [sameAddress, setSameAddress] = useState(true)

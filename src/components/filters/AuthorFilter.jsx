@@ -13,7 +13,6 @@ function AuthorFilter({filterElements,setFilterElements,filtersOpen,setFiltersOp
   const handleShowMore = () => {
     setDisplayedFields((prevCount) => (prevCount === 6 ? authors.length : 6));
   }
- 
   const handleCheckboxChange = (authorId) => {
     const isSelected = filterElements.author.includes(`&AuthorIds=${authorId}`)
     if (isSelected) {

@@ -6,7 +6,6 @@ import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 
 function FormFilter({filterElements,setFilterElements,filtersOpen,setFiltersOpen}) {
 const [forms, setForms] = useState([])
-
 const handleCheckboxChange = (formId) => {
     const isSelected = filterElements.form.includes(`&FormIds=${formId}`)
     if (isSelected) {

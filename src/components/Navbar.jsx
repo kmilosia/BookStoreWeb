@@ -1,8 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import {checkTheme} from '../utils/functions/theme'
-import { useNavigate } from 'react-router-dom'
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
-import PageTopScrollButton from '../components/buttons/PageTopScrollButton'
 import LogoButton from './buttons/LogoButton'
 import NavbarMenuLinks from './navbar/NavbarMenuLinks'
 import NavbarMenuIcons from './navbar/NavbarMenuIcons'
@@ -10,17 +8,15 @@ import SearchModal from '../modals/SearchModal'
 import AccountModal from '../modals/AccountModal'
 import { useDispatch, useSelector } from 'react-redux'
 import { hideAll, showNavbar } from '../store/navSlice'
+import { FiArrowUp } from 'react-icons/fi'
 
 function Navbar() {
-    const navigate = useNavigate()
     const dispatch = useDispatch()
     const ref = useRef(null)
-    const {isAuth} = useSelector((state) => state.user)
     const {accountModal, searchModal, navbar} = useSelector((state) => state.nav)
     const [isDarkTheme, setIsDarkTheme] = useState(checkTheme())
     const [isScrolled, setIsScrolled] = useState(false)
     const [navHeight, setNavHeight] = useState(0)
-
     const changeNavbarBackground = () => {
       if(window.scrollY > 80){
         setIsScrolled(true)
@@ -46,7 +42,6 @@ function Navbar() {
     useLayoutEffect(() => {
       setNavHeight(ref.current.clientHeight)
     },[navHeight])
-    
     useEffect(() => {
       document.documentElement.classList.toggle('dark', isDarkTheme);
     },[isDarkTheme])
@@ -86,7 +81,9 @@ function Navbar() {
       </div>
     </div>
     {isScrolled &&
-    <PageTopScrollButton />
+    <button onClick={() => {window.scrollTo(0,0)}} className='fixed bottom-[4.5rem] lg:bottom-3 right-3 lg:right-5 flex items-center justify-center rounded-3xl p-2 text-xl z-[100] bg-midnight-950/50 text-white hover:bg-midnight-950 dark:bg-purple-400/30 dark:hover:bg-purple-600'>
+      <FiArrowUp />
+    </button>
     }
     </>
   )

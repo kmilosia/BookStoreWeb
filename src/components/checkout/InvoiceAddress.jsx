@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCities, getCountries } from '../../utils/api/dictionaryAPI'
 import { addressValidate } from '../../utils/validation/addressValidation'
 import { setInvoiceAddress } from '../../store/checkoutSlice'
-import { getValidToken } from '../../utils/functions/getValidToken'
-import axiosClient from '../../utils/api/axiosClient'
+import { fetchUserAddressCheckout } from '../../utils/api/userAPI'
 
 function InvoiceAddress() {
     const dispatch = useDispatch()
@@ -41,7 +40,7 @@ function InvoiceAddress() {
       useEffect(() => {
         getCities(setCities)
         getCountries(setCountries)
-        fetchUserAddress(setUserAddress)
+        fetchUserAddressCheckout(setUserAddress)
       },[])
       useEffect(() => {
         if(userAddress){
@@ -97,22 +96,6 @@ function InvoiceAddress() {
             }))
         }
       },[cities, countries])
-    const fetchUserAddress = async () => {
-        try {
-            const token = getValidToken()
-            const response = await axiosClient.get('User/Address',{
-                headers: {
-                  'Authorization': `Bearer ${token}`,
-                  'Content-Type': 'application/json',
-              },
-            })
-            if(response.status === 200 || response.status === 204){
-            setUserAddress(response.data)
-            }
-        } catch (error) {
-            console.log(error);
-        }
-      }
   return (
     <div className='flex flex-col border-t mt-4 border-gray-200 dark:border-midnight-800'>
         <h3 className='font-semibold text-2xl mt-4 mb-2'>Adres faktury</h3>

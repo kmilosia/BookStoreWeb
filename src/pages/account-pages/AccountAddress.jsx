@@ -4,11 +4,11 @@ import { useState } from 'react'
 import { addUserAddress, fetchUserAddress, resetState } from '../../store/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import NewAddress from './NewAddress'
-import AddNewAddressButton from '../../components/buttons/AddNewAddressButton'
 import Spinner from '../../components/elements/Spinner'
 import { getCities } from '../../utils/api/dictionaryAPI'
 import { editedAddressValidate } from '../../utils/validation/addressValidation'
 import { showMessage } from '../../store/messageSlice'
+import { FaPlus } from 'react-icons/fa6'
 
 function AccountAddress() {
   const dispatch = useDispatch()
@@ -67,7 +67,6 @@ function AccountAddress() {
         "addressTypeID": 2
       }
     }
-    console.log(data);
     dispatch(addUserAddress(data))
     setIsEdited(false)
     dispatch(fetchUserAddress())
@@ -161,7 +160,12 @@ function AccountAddress() {
         <button type='button' onClick={(e) => {getCities(setCities);e.preventDefault();setEditedAddresses([...userAddress]);setIsEdited(true)}} className='purple-button w-max'>Edytuj adres</button>}
       </div>
       :
-      <> {isAdding ? <NewAddress handleAfterAddedNewAddress={handleAfterAddedNewAddress}/> : <AddNewAddressButton onClick={() => setIsAdding(true)} />}</>}
+      <> {isAdding ? <NewAddress handleAfterAddedNewAddress={handleAfterAddedNewAddress}/> :
+       <button onClick={() => setIsAdding(true)} className='w-max my-2 rounded-md shadow-md bg-gray-50 hover:bg-gray-100 dark:hover:bg-midnight-800 dark:bg-midnight-700 flex justify-between items-center px-5 py-5'>
+          <FaPlus className='text-xl mx-3'/>
+          <h1 className='text-xl font-semibold mx-3'>Dodaj nowy adres</h1>
+        </button>
+       }</>}
       </div>
     </div>
     </>

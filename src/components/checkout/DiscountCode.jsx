@@ -43,18 +43,17 @@ function DiscountCode() {
     const restoreDiscountCode = async (data) => {
       try{
         const response = await axiosClient.post('/User/Order/DiscountCode', data)
-        if (response.status === 200) {
+        if (response.status === 200 || response.status === 204) {
           dispatch(setDiscount(response.data))
           dispatch(showMessage({title: "Promocja została dodana!"}))
           setPromoError('')
         }else{
           setPromoError("Niepoprawny kod rabatowy")
         }
-        setPromoLoading(false)
         }catch(e){
           setPromoError("Niepoprawny kod rabatowy")
-          setPromoLoading(false)
       }
+      setPromoLoading(false)
     }
   return (
     <div className='flex flex-col py-2 my-1 divide-border-bottom'>

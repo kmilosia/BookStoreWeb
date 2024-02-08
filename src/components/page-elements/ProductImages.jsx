@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { IoClose } from "react-icons/io5";
 
 function ProductImages({item}) {

@@ -1,22 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import axiosClient from '../../utils/api/axiosClient'
 import { setDeliveryMethod } from '../../store/checkoutSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { getDeliveryMethods } from '../../utils/api/dictionaryAPI'
 
 function DeliveryMethods({errors}) {
     const dispatch = useDispatch()
     const [deliveryMethods, setDeliveryMethods] = useState([])
     const {isElectronicPurchase} = useSelector((state) => state.checkout)
-    const getDeliveryMethods = async () => {
-        try {
-            const response = await axiosClient.get(`/DeliveryMethod`)
-            if(response.status === 200 || response.status === 204){
-            setDeliveryMethods(response.data)
-            }
-        } catch (err) {
-        console.error(err)
-        }
-    }
     const handleDeliveryChange = (e) => {
         const selectedId = parseInt(e.target.value);
         const selectedDelivery = deliveryMethods.find(method => method.id === selectedId);
@@ -33,7 +23,7 @@ function DeliveryMethods({errors}) {
         }
     },[isElectronicPurchase, deliveryMethods])
     useEffect(() => {
-        getDeliveryMethods()
+        getDeliveryMethods(setDeliveryMethods)
     },[])
 
   return (

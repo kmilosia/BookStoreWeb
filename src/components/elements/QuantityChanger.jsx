@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { HiMinusSm, HiPlusSm } from 'react-icons/hi'
 import { TbTrash } from 'react-icons/tb'
 import { useDispatch, useSelector } from 'react-redux'

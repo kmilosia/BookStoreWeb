@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { BiHeart, BiShoppingBag, BiUser } from 'react-icons/bi'
 import { FiMoon, FiSun } from 'react-icons/fi'
 import { HiOutlineSearch } from 'react-icons/hi'
@@ -18,21 +18,19 @@ function NavbarMenuIcons({toggleTheme, isDarkTheme}) {
   }
   const handleWishlistButton = () => {
     if(isAuth){
-      handleClose()
       navigate('/ulubione')
     }else{
-      handleClose()
       dispatch(showLoginMessage({title: "Zaloguj się do swojego konta by mieć dostęp do listy życzeń!"}))
     }
+    handleClose()
   }
   const handleLibraryButton = () => {
     if(isAuth){
-      handleClose()
       navigate('/biblioteka')
     }else{
-      handleClose()
       dispatch(showLoginMessage({title: "Zaloguj się do swojego konta by mieć dostęp do biblioteki!"}))
     }
+    handleClose()
   }
   return (
     <>

@@ -11,7 +11,6 @@ const [displayedFields, setDisplayedFields] = useState(6)
 const handleShowMore = () => {
   setDisplayedFields((prevCount) => (prevCount === 6 ? publishers.length : 6));
 }
-
 const handleCheckboxChange = (publisherId) => {
   const isSelected = filterElements.publisher.includes(`&PublisherIds=${publisherId}`)
   if (isSelected) {

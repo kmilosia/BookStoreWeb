@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Stars from '../elements/Stars'
 
 function ReviewSummary({score, scoreValues}) {

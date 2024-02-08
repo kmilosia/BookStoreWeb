@@ -124,3 +124,13 @@ export const getOrderStatuses = async (setData) => {
     console.log(err);
   }
 }
+export const getDeliveryMethods = async (setData) => {
+  try {
+      const response = await axiosClient.get(`/DeliveryMethod`)
+      if(response.status === 200 || response.status === 204){
+        setData(response.data)
+      }
+  } catch (err) {
+  console.log(err)
+  }
+}
