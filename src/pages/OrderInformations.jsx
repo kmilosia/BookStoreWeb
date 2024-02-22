@@ -37,7 +37,8 @@ function OrderInformations() {
           <p className='text-gray-600 dark:text-gray-300 ml-2 font-light'>{data.orderStatus.name}</p>
         </div>
         </div>
-        <button onClick={() => downloadInvoice(data.id)} className='rounded-purple-button py-2'>{loadingDownload ? <Spinner /> : 'Pobierz fakturę'}</button>
+        {data.orderStatus.id === 2 &&
+        <button onClick={() => downloadInvoice(data.id)} className='rounded-purple-button py-2'>{loadingDownload ? <Spinner /> : 'Pobierz fakturę'}</button>}
       </div>
       <div className='flex flex-col border-y border-gray-200 dark:border-midnight-700 py-4 my-4'>
         {data.orderItems.map((item,index) => {
@@ -53,7 +54,8 @@ function OrderInformations() {
                 </div>
               </div>
               <div className='flex flex-col h-auto items-end'>
-                <button onClick={() => {setReviewed(item.id);setReviewModal(true)}} className='text-purple-400 w-max text-sm lg:text-base hover:font-semibold'>Oceń książkę</button>
+                {data.payment.transactionStatus.id === 2 &&
+                <button onClick={() => {setReviewed(item.id);setReviewModal(true)}} className='text-purple-400 w-max text-sm lg:text-base hover:font-semibold'>Oceń książkę</button>}
                 <h5 className='text-2xl font-semibold mt-auto'>{item.totalBruttoPrice?.toFixed(2)}zł</h5>
               </div>
             </div>

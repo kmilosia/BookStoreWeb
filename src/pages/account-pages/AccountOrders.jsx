@@ -58,14 +58,13 @@ function AccountOrders() {
             <img src={order.imageURL} alt='Book cover' className='rounded-md h-40 w-auto aspect-[4/6] object-cover' />
             <div className='flex flex-col flex-[1] mx-2'>
               <p className='text-sm lg:text-xs text-gray-600 dark:text-gray-400'>{order.formName}</p>
-              <Link to={`/produkt/${order.id}`}><p className='font-medium text-base lg:text-lg w-full lg:w-2/5'>{order.bookTitle}</p></Link>
+              <Link onClick={(e) => {e.stopPropagation()}} to={`/produkt/${order.id}`}><p className='font-medium text-base lg:text-lg w-full lg:w-2/5 hover:font-semibold'>{order.bookTitle}</p></Link>
               <p className='text-sm lg:text-xs font-light'>{order.formName === 'Ebook' ? order.fileFormatName : order.editionName}</p>
               <div className='flex flex-row justify-between mt-auto'>
                 <p className='font-medium my-1 lg:my-0'>{order.quantity} x {order.bruttoPrice?.toFixed(2)}zł</p>
               </div>
             </div>
             <div className='flex flex-col h-auto items-end'>
-              <button onClick={(e) => {e.stopPropagation();setReviewed(order.id);setReviewModal(true)}} className='text-purple-400 w-max text-sm lg:text-base hover:font-semibold whitespace-nowrap my-2'>Oceń książkę</button>
               <h5 className='text-xl font-semibold mt-auto'>{order.totalBruttoPrice?.toFixed(2)}zł</h5>
               </div>
             </div>
@@ -74,7 +73,8 @@ function AccountOrders() {
         })}
         <div className='flex flex-col-reverse lg:flex-row justify-between items-center lg:mt-5'>
           <div className='flex flex-row items-center'>
-          <button onClick={(e) => {e.stopPropagation();downloadInvoice(item.id)}} className='rounded-purple-button py-2'>{loadingDownload ? <Spinner /> : 'Pobierz fakturę'}</button>
+          {item.orderStatusId === 2 &&
+          <button onClick={(e) => {e.stopPropagation();downloadInvoice(item.id)}} className='rounded-purple-button py-2'>{loadingDownload ? <Spinner /> : 'Pobierz fakturę'}</button>}
           </div>
           <div className='flex flex-row items-end my-2 lg:my-0'>
             <p className='text-lg'>Kwota całkowita:</p>
