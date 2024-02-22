@@ -10,14 +10,14 @@ function Rental() {
         <div className='default-page-container'>
           <BannerCarousel />
           <div className='carousel-element'>
-            <EbooksCarousel title="Najpopularniejsze" filter='numberOfElements=10&SortBy=popular&formIds=2'/>
+            <EbooksCarousel title="Najpopularniejsze" filter='numberOfElements=10&SortBy=popular&formIds=2&sortOrder=desc'/>
           </div>
           <div className='carousel-element'>
-            <EbooksCarousel title="Ostatnio dodane" filter='numberOfElements=10&formIds=2&sortBy=recentlyAdded'/>
+            <EbooksCarousel title="Ostatnio dodane" filter='numberOfElements=10&formIds=2&sortBy=recentlyAdded&sortOrder=desc'/>
           </div>
           <ExploreAllElement path="/ebooki" title="Przeglądaj wszystkie dostępne ebooki" />
           <div className='carousel-element'>
-            <EbooksCarousel title="Najlepiej oceniane" filter='numberOfElements=10&formIds=2&sortBy=score'/>
+            <EbooksCarousel title="Najlepiej oceniane" filter='numberOfElements=10&formIds=2&sortBy=score&sortOrder=desc'/>
           </div>
           <InstallAppElement />
         </div>

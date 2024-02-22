@@ -16,14 +16,14 @@ function Store() {
           <StoreTypeLink src='https://iili.io/JCnBzCl.png' path="/kategorie" title="Przeglądaj kategorie" />
         </div>  
       <div className='carousel-element'>
-        <BooksCarousel title="Najpopularniejsze" filter='numberOfElements=10&sortBy=popular'/>
+        <BooksCarousel title="Najpopularniejsze" filter='numberOfElements=10&sortBy=popular&sortOrder=desc'/>
       </div>
       <div className='carousel-element'>
-        <BooksCarousel title="Ostatnio dodane" filter='numberOfElements=10&sortBy=recentlyAdded'/>
+        <BooksCarousel title="Ostatnio dodane" filter='numberOfElements=10&sortBy=recentlyAdded&sortOrder=desc'/>
       </div>
       <ExploreAllElement path="/ksiazki" title="Przeglądaj wszystkie dostępne książki" />
       <div className='carousel-element'>
-        <BooksCarousel title="Najlepiej oceniane" filter='numberOfElements=10&sortBy=score'/>
+        <BooksCarousel title="Najlepiej oceniane" filter='numberOfElements=10&sortBy=score&sortOrder=desc'/>
       </div>
       <ExploreAllElement path="/ebooki" title="Przeglądaj wszystkie dostępne ebooki" />
       <InstallAppElement />

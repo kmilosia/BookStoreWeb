@@ -15,15 +15,15 @@ function Home() {
       </div>
       <div className='default-page-container pt-0'>
         <div className='carousel-element mb-5'>
-          <BooksCarousel title="Najpopularniejsze" filter='numberOfElements=10&sortBy="popular"'/>
+          <BooksCarousel title="Najpopularniejsze" filter='numberOfElements=10&sortBy=popular&sortOrder=desc'/>
         </div>
         <BannerCarousel />
         <div className='carousel-element'>
-          <BooksCarousel title="Ostatnio dodane" filter='numberOfElements=10&sortBy="recentlyAdded"'/>
+          <BooksCarousel title="Ostatnio dodane" filter='numberOfElements=10&sortBy=recentlyAdded&sortOrder=desc'/>
         </div>
         <EventDiscountElement />
         <div className='carousel-element'>
-          <BooksCarousel title="Najlepiej oceniane" filter='numberOfElements=10&sortBy="score"'/>
+          <BooksCarousel title="Najlepiej oceniane" filter='numberOfElements=10&sortBy=score&sortOrder=desc'/>
         </div>
        <HomeNewsSegment />
       </div>
