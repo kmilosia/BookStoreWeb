@@ -111,9 +111,6 @@ function CheckoutSummary({setSubmitting, submitting,errors, setErrors}) {
         dispatch(showMessage({title: 'Błąd podczas składania zamówienia', type: 'warning'}))
       }
     },[success])
-    useEffect(() => {
-      console.log(checkoutCart);
-    },[])
   return (
     <div className='flex flex-col relative'>
     <div className='flex flex-col px-5 lg:px-10 py-5 lg:py-10 bg-white dark:bg-midnight-800 shadow-md rounded-md w-full'>
@@ -125,7 +122,7 @@ function CheckoutSummary({setSubmitting, submitting,errors, setErrors}) {
             <img src={item.imageURL} className='h-24 w-auto object-contain mr-2 rounded-md' />
             <div className='flex flex-col w-full'>
               <h1 className='text-xs font-semibold'>{item.title}</h1>
-              <h2 className='text-xs font-light'>{item.formName}</h2>
+              <h2 className='text-xs font-light'>{item.formName === 'Book' ? 'Książka' : 'Ebook'}</h2>
               {item.formName === 'Ebook' && <p className='text-purple-400 font-light text-xs'>Produkt elektroniczny zostanie dostarczony na Twój adres email</p>}
               <div className='flex flex-row items-baseline mt-auto'>
               <p className='text-sm font-semibold'>{item.quantity} x</p>

@@ -32,7 +32,6 @@ function ReviewModal({setIsReviewed, bookItemId}) {
                 scoreId: rating,
                 bookItemId: bookItemId,
             }
-            console.log(item);
             addReview(item, setLoading, setSuccess)
         }
     }

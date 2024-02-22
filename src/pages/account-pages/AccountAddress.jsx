@@ -51,7 +51,6 @@ function AccountAddress() {
       "address": {
         "street": editedAddresses[0].street,
         "streetNumber": editedAddresses[0].streetNumber,
-        "houseNumber": editedAddresses[0].houseNumber,
         "postcode": editedAddresses[0].postcode,
         "cityID": editedAddresses[0].cityID,
         "countryID": editedAddresses[0].countryID,
@@ -60,27 +59,26 @@ function AccountAddress() {
       "mailingAddress": {
         "street": editedAddresses[1].street,
         "streetNumber": editedAddresses[1].streetNumber,
-        "houseNumber": editedAddresses[1].houseNumber,
         "postcode": editedAddresses[1].postcode,
         "cityID": editedAddresses[1].cityID,
         "countryID": editedAddresses[1].countryID,
         "addressTypeID": 2
       }
     }
-    if(editedAddresses[1].houseNumber && editedAddresses[1].houseNumber !== ''){
-      data.address.houseNumber = editedAddresses[1].houseNumber
+    if(editedAddresses[0].houseNumber && editedAddresses[0].houseNumber !== ''){
+      data.address.houseNumber = editedAddresses[0].houseNumber
     }
     if(editedAddresses[1].houseNumber && editedAddresses[1].houseNumber !== ''){
-      data.address.houseNumber = editedAddresses[1].houseNumber
+      data.mailingAddress.houseNumber = editedAddresses[1].houseNumber
     }
     dispatch(addUserAddress(data))
     setIsEdited(false)
-    dispatch(fetchUserAddress())
   }
   useEffect(() => {
     if(success){
       dispatch(showMessage({title: "Adres użytkownika został pomyślnie zmieniony!"}))
       dispatch(resetState())
+      dispatch(fetchUserAddress())
     }
   },[success])
   useEffect(() => {
