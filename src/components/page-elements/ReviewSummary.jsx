@@ -6,7 +6,7 @@ function ReviewSummary({score, scoreValues}) {
   return (
     <div className='flex flex-col lg:flex-row my-2 py-10 justify-around items-center bg-white dark:bg-midnight-900'>
       <div className='flex flex-col items-center mb-5 lg:mb-0 cursor-default'>
-        <h1 className='font-bold text-5xl'>{score}</h1>
+        <h1 className='font-bold text-5xl'>{score?.toFixed(2)}</h1>
         <Stars score={score} />
         <p className='text-sm'>Średnia ocen z {quantity} recenzjii</p>
       </div>
