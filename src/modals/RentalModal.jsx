@@ -128,7 +128,7 @@ function RentalModal() {
                 <p className='my-2'>Wybierz metodę płatności:</p>
                 <div className='grid grid-cols-3 gap-3'>
                 {paymentLoading ? <div className='bg-gray-100 dark:bg-midnight-900 rounded-md animate-pulse w-full h-20 col-span-3'/> :
-                    paymentMethods && paymentMethods.map((item,index) => {
+                    paymentMethods && paymentMethods.slice(1).map((item,index) => {
                         return (
                         <div key={index} className='flex items-center justify-between w-full bg-gray-100 dark:bg-midnight-900 py-5 px-5 rounded-md'>
                             <label className='flex flex-col text-sm mr-5'>

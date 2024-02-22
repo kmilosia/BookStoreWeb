@@ -47,7 +47,7 @@ function AccountAddress() {
     setSubmitting(true)
   }
   const finishSubmit = () => {
-    const data = {
+    let data = {
       "address": {
         "street": editedAddresses[0].street,
         "streetNumber": editedAddresses[0].streetNumber,
@@ -66,6 +66,12 @@ function AccountAddress() {
         "countryID": editedAddresses[1].countryID,
         "addressTypeID": 2
       }
+    }
+    if(editedAddresses[1].houseNumber && editedAddresses[1].houseNumber !== ''){
+      data.address.houseNumber = editedAddresses[1].houseNumber
+    }
+    if(editedAddresses[1].houseNumber && editedAddresses[1].houseNumber !== ''){
+      data.address.houseNumber = editedAddresses[1].houseNumber
     }
     dispatch(addUserAddress(data))
     setIsEdited(false)
@@ -115,7 +121,6 @@ function AccountAddress() {
                 value={isEdited ? editedAddresses[index]?.houseNumber || '' : item.houseNumber}
                 onChange={(e) => handleEditInputChange(index, 'houseNumber', e.target.value)}
                 />
-                {errors[index]?.houseNumber && <p className='error-text'>{errors[index].houseNumber}</p>}
               </div>
               <div className='flex flex-col col-span-2'>
                 <label className='label-input'>Kod pocztowy</label>

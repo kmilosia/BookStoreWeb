@@ -43,11 +43,11 @@ function InvoiceAddress() {
         fetchUserAddressCheckout(setUserAddress)
       },[])
       useEffect(() => {
-        if(userAddress){
+        if(userAddress && userAddress.length > 0){
             const data = {
                 street: userAddress[1].street,
                 streetNumber: userAddress[1].streetNumber,
-                houseNumber: userAddress[1].houseNumber,
+                houseNumber: userAddress[1].houseNumber ? userAddress[1].houseNumber : '',
                 postcode: userAddress[1].postcode,
                 cityID: userAddress[1].cityID,
                 cityName: userAddress[1].cityName,
@@ -67,13 +67,15 @@ function InvoiceAddress() {
             const newData = {
                 street: data.street,
                 streetNumber: data.streetNumber,
-                houseNumber: data.houseNumber,
                 postcode: data.postcode,
                 cityID: Number(data.cityID),
                 cityName: data.cityName,
                 countryID: data.countryID,
                 countryName: data.countryName,
                 addressTypeID: 3
+            }
+            if(data.houseNumber !== ''){
+                newData.houseNumber = data.houseNumber
             }
             dispatch(setInvoiceAddress(newData))
             setAddNew(false)
@@ -103,7 +105,7 @@ function InvoiceAddress() {
         <div className='grid grid-cols-2 gap-5'>
             <div className='flex flex-row items-center justify-between w-full bg-white dark:bg-midnight-800 py-5 px-5 rounded-md mb-4'>
             <div className='flex flex-col w-full'>
-                <p>{invoiceAddress.street} {invoiceAddress.streetNumber} / {invoiceAddress.houseNumber}</p>
+                <p>{invoiceAddress.street} {invoiceAddress.streetNumber} {invoiceAddress?.houseNumber && '/ ' + invoiceAddress.houseNumber}</p>
                 <p>{invoiceAddress.postcode} {invoiceAddress.cityName}</p>
                 <p>{invoiceAddress.countryName}</p>
             </div>
@@ -134,7 +136,6 @@ function InvoiceAddress() {
              <div className='flex flex-col'>
                  <label htmlFor='houseNumber' className='label-input text-base'>Numer domu</label>
                  <input onChange={handleChange} name='houseNumber' type='text' className='form-input text-sm' placeholder='Numer domu'/>
-                 {errors?.houseNumber && <p className='error-text'>{errors?.houseNumber}</p>}
              </div>
              <div className='flex flex-col col-span-2'>
                  <label htmlFor='postcode' className='label-input text-base'>Kod pocztowy</label>
@@ -180,7 +181,6 @@ function InvoiceAddress() {
              <div className='flex flex-col'>
                  <label htmlFor='houseNumber' className='label-input text-base'>Numer domu</label>
                  <input onChange={handleChange} name='houseNumber' type='text' className='form-input text-sm' value={data.houseNumber} placeholder='Numer domu'/>
-                 {errors?.houseNumber && <p className='error-text'>{errors?.houseNumber}</p>}
              </div>
              <div className='flex flex-col col-span-2'>
                  <label htmlFor='postcode' className='label-input text-base'>Kod pocztowy</label>

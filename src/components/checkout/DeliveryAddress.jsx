@@ -43,11 +43,11 @@ function DeliveryAddress() {
         fetchUserAddressCheckout(setUserAddress)
       },[])
       useEffect(() => {
-        if(userAddress){
+        if(userAddress && userAddress.length > 0){
             const data = {
                 street: userAddress[0].street,
                 streetNumber: userAddress[0].streetNumber,
-                houseNumber: userAddress[0].houseNumber,
+                houseNumber: userAddress[0].houseNumber ? userAddress[0].houseNumber : '' ,
                 postcode: userAddress[0].postcode,
                 cityID: userAddress[0].cityID,
                 cityName: userAddress[0].cityName,
@@ -67,13 +67,15 @@ function DeliveryAddress() {
             const newData = {
                 street: data.street,
                 streetNumber: data.streetNumber,
-                houseNumber: data.houseNumber,
                 postcode: data.postcode,
                 cityID: Number(data.cityID),
                 cityName: data.cityName,
                 countryID: data.countryID,
                 countryName: data.countryName,
                 addressTypeID: 4
+            }
+            if(data.houseNumber !== ''){
+                newData.houseNumber = data.houseNumber
             }
             dispatch(setDeliveryAddress(newData))
             setAddNew(false)
@@ -104,7 +106,7 @@ function DeliveryAddress() {
         <div className='grid grid-cols-2 gap-5'>
             <div className='flex flex-row items-center justify-between w-full bg-white dark:bg-midnight-800 py-5 px-5 rounded-md mb-4'>
             <div className='flex flex-col w-full'>
-                <p>{deliveryAddress.street} {deliveryAddress.streetNumber} / {deliveryAddress.houseNumber}</p>
+                <p>{deliveryAddress.street} {deliveryAddress.streetNumber} {deliveryAddress?.houseNumber && '/ ' + deliveryAddress.houseNumber}</p>
                 <p>{deliveryAddress.postcode} {deliveryAddress.cityName}</p>
                 <p>{deliveryAddress.countryName}</p>
             </div>
@@ -135,7 +137,6 @@ function DeliveryAddress() {
              <div className='flex flex-col'>
                  <label htmlFor='houseNumber' className='label-input text-base'>Numer domu</label>
                  <input onChange={handleChange} name='houseNumber' type='text' className='form-input text-sm' placeholder='Numer domu'/>
-                 {errors?.houseNumber && <p className='error-text'>{errors?.houseNumber}</p>}
              </div>
              <div className='flex flex-col col-span-2'>
                  <label htmlFor='postcode' className='label-input text-base'>Kod pocztowy</label>
@@ -181,7 +182,6 @@ function DeliveryAddress() {
              <div className='flex flex-col'>
                  <label htmlFor='houseNumber' className='label-input text-base'>Numer domu</label>
                  <input onChange={handleChange} name='houseNumber' type='text' className='form-input text-sm' value={data.houseNumber} placeholder='Numer domu'/>
-                 {errors?.houseNumber && <p className='error-text'>{errors?.houseNumber}</p>}
              </div>
              <div className='flex flex-col col-span-2'>
                  <label htmlFor='postcode' className='label-input text-base'>Kod pocztowy</label>

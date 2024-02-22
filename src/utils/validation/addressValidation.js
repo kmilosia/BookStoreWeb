@@ -6,9 +6,6 @@ export const addressValidate = (address) => {
     if (!address.streetNumber) {
         errors.streetNumber = "Numer ulicy jest obowiązkowy!"
     }
-    if (!address.houseNumber) {
-        errors.houseNumber = "Numer domu jest obowiązkowy!"
-    }
     if (!address.postcode) {
         errors.postcode = "Kod pocztowy jest obowiązkowy!"
     }
@@ -22,9 +19,6 @@ export const addressesValidate = (address, mailingAddress) => {
     if (!address.streetNumber) {
         errors.streetNumber = "Numer ulicy jest obowiązkowy!"
     }
-    if (!address.houseNumber) {
-        errors.houseNumber = "Numer domu jest obowiązkowy!"
-    }
     if (!address.postcode) {
         errors.postcode = "Kod pocztowy jest obowiązkowy!"
     }
@@ -34,9 +28,6 @@ export const addressesValidate = (address, mailingAddress) => {
       if (!mailingAddress.mailingStreetNumber) {
           errors.mailingStreetNumber = "Numer ulicy jest obowiązkowy!"
       }
-      if (!mailingAddress.mailingHouseNumber) {
-          errors.mailingHouseNumber = "Numer domu jest obowiązkowy!"
-      }
       if (!mailingAddress.mailingPostcode) {
           errors.mailingPostcode = "Kod pocztowy jest obowiązkowy!"
       }
@@ -44,7 +35,6 @@ export const addressesValidate = (address, mailingAddress) => {
 }
 export const editedAddressValidate = (addresses) => {
     let errorsArray = [];
-  
     addresses.forEach((address, index) => {
       let errors = {};
       if (!address.street) {
@@ -53,14 +43,10 @@ export const editedAddressValidate = (addresses) => {
       if (!address.streetNumber) {
         errors.streetNumber = `Numer ulicy jest obowiązkowy!`;
       }
-      if (!address.houseNumber) {
-        errors.houseNumber = `Numer domu jest obowiązkowy!`;
-      }
       if (!address.postcode) {
         errors.postcode = `Kod pocztowy jest obowiązkowy!`;
       }
       errorsArray.push(errors);
     });
-  
     return errorsArray;
-  };
+  }

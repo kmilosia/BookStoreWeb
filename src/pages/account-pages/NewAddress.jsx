@@ -62,7 +62,6 @@ function NewAddress({handleAfterAddedNewAddress}) {
       "address": {
         "street": userAddress.street,
         "streetNumber": userAddress.streetNumber,
-        "houseNumber": userAddress.houseNumber,
         "postcode": userAddress.postcode,
         "cityID": userAddress.selectedCity,
         "countryID": userAddress.selectedCountry,
@@ -70,18 +69,21 @@ function NewAddress({handleAfterAddedNewAddress}) {
       },"mailingAddress": {
         "street": userAddress.street,
         "streetNumber": userAddress.streetNumber,
-        "houseNumber": userAddress.houseNumber,
         "postcode": userAddress.postcode,
         "cityID": userAddress.selectedCity,
         "countryID": userAddress.selectedCountry,
         "addressTypeID": 2
       }
-    }}else{
+    }
+    if(userAddress.houseNumber !== ''){
+      data.address.houseNumber = userAddress.houseNumber
+      data.mailingAddress.houseNumber = userAddress.houseNumber
+    }
+  }else{
       data = {
         "address": {
           "street": userAddress.street,
           "streetNumber": userAddress.streetNumber,
-          "houseNumber": userAddress.houseNumber,
           "postcode": userAddress.postcode,
           "cityID": userAddress.selectedCity,
           "countryID": userAddress.selectedCountry,
@@ -90,12 +92,17 @@ function NewAddress({handleAfterAddedNewAddress}) {
         "mailingAddress": {
           "street": mailingAddress.mailingStreet,
           "streetNumber": mailingAddress.mailingStreetNumber,
-          "houseNumber": mailingAddress.mailingHouseNumber,
           "postcode": mailingAddress.mailingPostcode,
           "cityID": mailingAddress.selectedMailingCity,
           "countryID": mailingAddress.selectedMailingCountry,
           "addressTypeID": 2
         }
+      }
+      if(userAddress.houseNumber !== ''){
+        data.address.houseNumber = userAddress.houseNumber
+      }
+      if(mailingAddress.houseNumber !== ''){
+        data.mailingAddress.houseNumber = mailingAddress.houseNumber
       }
     }
     dispatch(addUserAddress(data))
@@ -132,7 +139,6 @@ function NewAddress({handleAfterAddedNewAddress}) {
       <div className='flex flex-col'>
         <label htmlFor='houseNumber' className='label-input'>Numer domu</label>
         <input onChange={handleChange} id='houseNumber' name='houseNumber' type='text' className='form-input' placeholder='Numer domu'/>
-        {errors.houseNumber && <p className='error-text'>{errors.houseNumber}</p>}
       </div>
       <div className='flex flex-col col-span-2'>
         <label htmlFor='postcode' className='label-input'>Kod pocztowy</label>
@@ -181,7 +187,6 @@ function NewAddress({handleAfterAddedNewAddress}) {
       <div className='flex flex-col'>
         <label htmlFor='mailingHouseNumber' className='label-input'>Numer domu</label>
         <input onChange={handleMailingChange} id='mailingHouseNumber' name='mailingHouseNumber' type='text' className='form-input' placeholder='Numer domu'/>
-        {errors.mailingHouseNumber && <p className='error-text'>{errors.mailingHouseNumber}</p>}
       </div>
       <div className='flex flex-col col-span-2'>
         <label htmlFor='mailingPostcode' className='label-input'>Kod pocztowy</label>

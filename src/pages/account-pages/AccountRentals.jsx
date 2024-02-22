@@ -4,6 +4,7 @@ import { getFilteredRentedBooks } from '../../utils/api/rentalAPI'
 import PageLoader from '../../components/elements/PageLoader'
 import {convertDateDisplay} from '../../utils/functions/convertDate'
 import AddReviewModal from '../../modals/AddReviewModal'
+import { Link } from 'react-router-dom'
 
 function AccountRentals() {
   const [filter, setFilter] = useState('')
@@ -46,7 +47,7 @@ function AccountRentals() {
         <img src={item.imageURL} className='rounded-md h-40 w-auto aspect-[4/6] object-cover' alt='Book cover'/>
         <div className='flex flex-col flex-[1] mx-2'>
           <p className='text-base lg:text-xs text-gray-600 dark:text-gray-400 my-1 lg:my-0'>{item.fileFormatName}</p>
-          <p className='font-medium text-xl lg:text-lg w-full lg:w-2/5 my-1 lg:my-0'>{item.bookTitle}</p>
+          <Link to={`/produkt/${item.bookItemId}`}><p className='font-medium text-xl lg:text-lg w-full lg:w-2/5 my-1 lg:my-0'>{item.bookTitle}</p></Link>
           <p className='mt-auto text-base lg:text-xs text-gray-600 dark:text-gray-400 font-light'>Wypożyczenie wygasa {item.expirationDate && convertDateDisplay(item.expirationDate)}</p>
         </div>
       </div>

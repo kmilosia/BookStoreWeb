@@ -31,7 +31,6 @@ function CheckoutSummary({setSubmitting, submitting,errors, setErrors}) {
         invoiceAddress: {
           street: invoiceAddress.street,
           streetNumber: invoiceAddress.streetNumber,
-          houseNumber: invoiceAddress.houseNumber,
           postcode: invoiceAddress.postcode,
           cityID: invoiceAddress.cityID,
           countryID: invoiceAddress.countryID,
@@ -39,8 +38,12 @@ function CheckoutSummary({setSubmitting, submitting,errors, setErrors}) {
         },
         cartItems: checkoutCart.map((item) => ({
           bookItemID: item.id,
-          quantity: item.quantity
+          quantity: item.quantity,
+          BookFormID: item.formId,
         }))
+      }
+      if(invoiceAddress?.houseNumber){
+        data.invoiceAddress.houseNumber = invoiceAddress.houseNumber
       }
       if(discount){
         data.discountCodeID = discount.discountID
@@ -56,11 +59,13 @@ function CheckoutSummary({setSubmitting, submitting,errors, setErrors}) {
         data.deliveryAddress = {
           street: deliveryAddress.street,
           streetNumber: deliveryAddress.streetNumber,
-          houseNumber: deliveryAddress.houseNumber,
           postcode: deliveryAddress.postcode,
           cityID: deliveryAddress.cityID,
           countryID: deliveryAddress.countryID,
           addressTypeID: deliveryAddress.addressTypeID
+        }
+        if(deliveryAddress?.houseNumber){
+          data.deliveryAddress.houseNumber = deliveryAddress.houseNumber
         }
       }
       makeOrder(data, setLoading, setSuccess)
@@ -106,6 +111,9 @@ function CheckoutSummary({setSubmitting, submitting,errors, setErrors}) {
         dispatch(showMessage({title: 'Błąd podczas składania zamówienia', type: 'warning'}))
       }
     },[success])
+    useEffect(() => {
+      console.log(checkoutCart);
+    },[])
   return (
     <div className='flex flex-col relative'>
     <div className='flex flex-col px-5 lg:px-10 py-5 lg:py-10 bg-white dark:bg-midnight-800 shadow-md rounded-md w-full'>

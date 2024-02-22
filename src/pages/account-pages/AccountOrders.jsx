@@ -4,7 +4,7 @@ import { getFilteredOrderedBooks, getOrderInvoice } from '../../utils/api/orderA
 import { convertDateDisplay } from '../../utils/functions/convertDate'
 import PageLoader from '../../components/elements/PageLoader'
 import Spinner from '../../components/elements/Spinner'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import AddReviewModal from '../../modals/AddReviewModal'
 
 function AccountOrders() {
@@ -58,7 +58,7 @@ function AccountOrders() {
             <img src={order.imageURL} alt='Book cover' className='rounded-md h-40 w-auto aspect-[4/6] object-cover' />
             <div className='flex flex-col flex-[1] mx-2'>
               <p className='text-sm lg:text-xs text-gray-600 dark:text-gray-400'>{order.formName}</p>
-              <p className='font-medium text-base lg:text-lg w-full lg:w-2/5'>{order.bookTitle}</p>
+              <Link to={`/produkt/${order.id}`}><p className='font-medium text-base lg:text-lg w-full lg:w-2/5'>{order.bookTitle}</p></Link>
               <p className='text-sm lg:text-xs font-light'>{order.formName === 'Ebook' ? order.fileFormatName : order.editionName}</p>
               <div className='flex flex-row justify-between mt-auto'>
                 <p className='font-medium my-1 lg:my-0'>{order.quantity} x {order.bruttoPrice?.toFixed(2)}zł</p>

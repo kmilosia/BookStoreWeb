@@ -74,6 +74,7 @@ export const makeOrder = async (data, setLoading, setSuccess) => {
         }
     } catch (error) {
         console.log(error)
+        setSuccess(false)
     }
     setLoading(false)
 }

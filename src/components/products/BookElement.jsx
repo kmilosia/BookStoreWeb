@@ -7,8 +7,9 @@ import RentButton from '../buttons/RentButton'
 function BookElement({item}) {
   const [showText, setShowText] = useState()
   return (
-    <Link to={`/produkt/${item.id}`} className='flex flex-col group cursor-pointer relative'>
+    <div className='flex flex-col group cursor-pointer relative'>
     <div className='group-hover:z-20 group-hover:absolute group-hover:top-0 group-hover:right-0 w-full shadow-md bg-gray-100 hover:bg-gray-200 dark:bg-midnight-900 dark:hover:bg-midnight-800 rounded-md px-7 py-7 lg:px-5 lg:py-4'>
+        <Link to={`/produkt/${item.id}`}>
         <img src={item.imageURL} className='w-full aspect-[3/4] object-cover rounded-md' />
         <h1 className='font-light text-sm mt-2'>{item.authors.map((item,index)=>{return(<span key={index}>{item.name} {item.surname}</span>)})}</h1>
         <div className='relative' onMouseOver={() => {setShowText(true)}} onMouseLeave={() => {setShowText(false)}}>
@@ -21,12 +22,13 @@ function BookElement({item}) {
         {item.discountedBruttoPrice !== 0 && <p className='font-semibold text-purple-400 text-xl mt-2 mb-1 mr-1'>{item.discountedBruttoPrice.toFixed(2)}zł</p>}
         <p className={`${item.discountedBruttoPrice !== 0 ? 'font-light text-md line-through' : 'font-semibold text-xl no-underline'} mt-2 mb-1`}>{item.price.toFixed(2)}zł</p>
         </div>
+        </Link>
         <div className='lg:hidden lg:group-hover:flex lg:group-hover:flex-col flex flex-col'>
             <AddToCartButton item={item}/>  
             {item.formId === 2 && <RentButton />}
         </div>
     </div>
-  </Link>
+  </div>
   )
 }
 

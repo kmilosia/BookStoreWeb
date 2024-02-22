@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getOrderInvoice, getUserOrder } from '../utils/api/orderAPI'
 import PageLoader from '../components/elements/PageLoader'
 import Spinner from '../components/elements/Spinner'
@@ -46,7 +46,7 @@ function OrderInformations() {
               <div className='flex flex-row'>
                 <img src={item.imageURL} width={100} height={200} className='rounded-md'/>
                 <div className='flex flex-col ml-2'>
-                  <h1 className='font-semibold'>{item.bookTitle}</h1>
+                <Link to={`/produkt/${item.id}`}><h1 className='font-semibold'>{item.bookTitle}</h1></Link>
                   <h2 className='font-light text-sm'>{item.authors.map((item) => {return (item.name + " " + item.surname)})}</h2>
                   <h3 className='font-medium text-sm'>{item.formName === 'Book' ? 'Książka' : 'Ebook'} | {item.formName === 'Ebook' ? item.fileFormatName : item.editionName}</h3>
                   <h4 className='mt-auto font-semibold text-xl'>{item.quantity} x {item.bruttoPrice?.toFixed(2)}zł</h4>

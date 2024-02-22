@@ -19,7 +19,7 @@ function NewsItem() {
     <div className='default-page-wrapper'>
         {loading ? <PageLoader /> :
         <div className='flex flex-col'>
-            <img src={news.imageURL} className='w-full h-48 lg:h-96 object-cover mb-3' />
+            <img src={news.imageURL} className='w-full h-48 lg:h-96 object-cover object-top mb-3' />
             <div className='grid grid-cols-1 lg:grid-cols-[4fr_1fr] gap-2 lg:gap-10 px-5 lg:px-10 py-5'>
                 <div className='flex flex-col cursor-default'>
                     <h1 className='text-3xl lg:text-4xl font-medium text-start mb-4'>{news.topic}</h1>

@@ -21,9 +21,6 @@ function Search() {
       getSearchResults(search,sorting,setResults,setLoading)
     }
   },[search,sorting])
-  useEffect(() => {
-    console.log(results);
-  },[results])
   return (
     <div className='default-page-wrapper'>
       <div className='default-page-container pb-20'>
