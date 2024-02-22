@@ -14,35 +14,35 @@ function ReviewSummary({score, scoreValues}) {
         <div className='flex flex-row items-center'>
           <Stars score={5} />
           <div className="w-[8rem] bg-gray-200 rounded-full h-2.5 mx-2 dark:bg-gray-300">
-          {scoreValues['5'] !== 0 && <div className={`bg-purple-400 h-2.5 rounded-full w-[${(scoreValues['5'] / quantity * 100)}%]`}></div>}
+          {scoreValues['5'] !== 0 && <div style={{ width: `${(scoreValues['5'] / quantity * 100).toFixed(0)}%` }} className={`bg-purple-400 h-2.5 rounded-full`}></div>}
           </div>
           <span className='text-xs font-light'>{scoreValues['5']} recenzji</span>
         </div>
         <div className='flex flex-row items-center'>
           <Stars score={4} />
           <div className="w-[8rem] bg-gray-200 rounded-full h-2.5 mx-2 dark:bg-gray-300">
-          {scoreValues['4'] !== 0 && <div className={`bg-purple-400 h-2.5 rounded-full w-[${(scoreValues['4'] / quantity * 100)}%]`}></div>}
+          {scoreValues['4'] !== 0 && <div style={{ width: `${(scoreValues['4'] / quantity * 100).toFixed(0)}%` }} className={`bg-purple-400 h-2.5 rounded-full`}></div>}
           </div>
           <span className='text-xs font-light'>{scoreValues['4']} recenzji</span>
         </div>
         <div className='flex flex-row items-center'>
           <Stars score={3} />
           <div className="w-[8rem] bg-gray-200 rounded-full h-2.5 mx-2 dark:bg-gray-300">
-          {scoreValues['3'] !== 0 && <div className={`bg-purple-400 h-2.5 rounded-full w-[${(scoreValues['3'] / quantity * 100)}%]`}></div>}
+          {scoreValues['3'] !== 0 && <div style={{ width: `${(scoreValues['3'] / quantity * 100).toFixed(0)}%` }} className={`bg-purple-400 h-2.5 rounded-full`}></div>}
           </div>
           <span className='text-xs font-light'>{scoreValues['3']} recenzji</span>
         </div>
         <div className='flex flex-row items-center'>
           <Stars score={2} />
           <div className="w-[8rem] bg-gray-200 rounded-full h-2.5 mx-2 dark:bg-gray-300">
-          {scoreValues['2'] !== 0 && <div className={`bg-purple-400 h-2.5 rounded-full w-[${(scoreValues['2'] / quantity * 100)}%]`}></div>}
+          {scoreValues['2'] !== 0 && <div style={{ width: `${(scoreValues['2'] / quantity * 100).toFixed(0)}%` }} className={`bg-purple-400 h-2.5 rounded-full`}></div>}
           </div>
           <span className='text-xs font-light'>{scoreValues['2']} recenzji</span>
         </div>
         <div className='flex flex-row items-center'>
           <Stars score={1} />
           <div className="w-[8rem] bg-gray-200 rounded-full h-2.5 mx-2 dark:bg-gray-300">
-          {scoreValues['1'] !== 0 && <div className={`bg-purple-400 h-2.5 rounded-full w-[${(scoreValues['1'] / quantity * 100)}%]`}></div>}
+          {scoreValues['1'] !== 0 && <div style={{ width: `${(scoreValues['1'] / quantity * 100).toFixed(0)}%` }} className={`bg-purple-400 h-2.5 rounded-full`}></div>}
           </div>
           <span className='text-xs font-light'>{scoreValues['1']} recenzji</span>
         </div>
