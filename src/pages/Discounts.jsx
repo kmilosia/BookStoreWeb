@@ -109,6 +109,7 @@ function Discounts() {
         })
         const newFilter = buildFilter()
         setFilter(newFilter)
+        getDiscountedBooksList(sorting,'',setResults,setLoading)
     }
     useEffect(() => {
         setLoading(true)
@@ -150,7 +151,7 @@ function Discounts() {
                             <Select onChange={handleSortingChange} sortOptions={productSortOptions} />
                         </div>
                     </div>
-                    <div className='grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-5 gap-5 my-5 w-full'>
+                    <div className='grid grid-cols-1 lg:grid-cols-4 gap-5 my-5 w-full'>
                         {loading ? <div className='col-span-5'><PageLoader /></div> :
                         results && results.map((item,index) => {
                             return (

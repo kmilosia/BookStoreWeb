@@ -128,7 +128,7 @@ function Product() {
                             <div className='flex flex-col lg:flex-row'>
                                 <button onClick={handleAddToCart} className='rounded-purple-button my-2 lg:my-0'>Dodaj do koszyka</button>
                                 {book.formId === 2 &&
-                                <button onClick={handleRentButton} className='rounded-purple-button my-2 lg:my-0 lg:mx-2'>Wypożycz ebooka</button>
+                                <button onClick={handleRentButton} className='rounded-bordered-purple-button text-base my-2 lg:my-0 lg:mx-2'>Wypożycz ebooka</button>
                                 }
                             </div>
                         </div>

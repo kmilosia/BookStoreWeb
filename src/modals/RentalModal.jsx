@@ -93,7 +93,7 @@ function RentalModal() {
   return (
     rentalModal && (
     <div className='fixed z-[100000] top-0 left-0 w-screen h-screen bg-black/80 dark:text-white flex justify-center items-center lg:items-center'>
-      <div className='w-full h-full max-h-full max-w-full lg:w-5/6 lg:max-w-5/6 lg:max-h-5/6 lg:h-auto grid grid-rows-[max-content_auto_max-content] py-5 px-10 bg-white dark:bg-midnight-800'>
+      <div className='rounded-md w-full h-full max-h-full max-w-full lg:w-5/6 lg:max-w-5/6 lg:max-h-5/6 lg:h-auto grid grid-rows-[max-content_auto_max-content] py-5 px-10 bg-white dark:bg-midnight-800'>
 
         <div className='flex justify-between mt-2 mb-4'>
             <h1 className='text-2xl font-semibold'>Wypożycz</h1>

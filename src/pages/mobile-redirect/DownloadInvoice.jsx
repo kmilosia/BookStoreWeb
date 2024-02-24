@@ -12,7 +12,7 @@ function DownloadInvoice() {
     const downloadInvoice = async () => {
         try {
             setMessage('Pobieranie pliku...')
-            const response = await axiosClient.get(`/Order/Invoice?orderId=${paramId}`, {
+            const response = await axiosClient.get(`/Order/Invoice/Template?orderId=${paramId}`, {
                 headers: {
                     'Authorization': `Bearer ${paramToken}`,
                     'Content-Type': 'application/json',

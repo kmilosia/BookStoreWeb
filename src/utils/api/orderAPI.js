@@ -38,7 +38,7 @@ export const getUserOrder = async (id,setData, setLoading) => {
 export const getOrderInvoice = async (id, setLoading) => {
     try {
         const token = getValidToken();
-        const response = await axiosClient.get(`/Order/Invoice?orderId=${id}`, {
+        const response = await axiosClient.get(`/Order/Invoice/Template?orderId=${id}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
