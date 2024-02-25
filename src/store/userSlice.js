@@ -155,7 +155,7 @@ export const changePassword = createAsyncThunk(
           })
         return response.data
         }catch(error){
-            console.log(error);
+            throw error.response.data;
         }
     }
 )
@@ -172,7 +172,7 @@ export const deleteAccount = createAsyncThunk(
           })
         return response.data
         }catch(error){
-            console.log(error);
+            throw error.response.data;
         }
     }
 )

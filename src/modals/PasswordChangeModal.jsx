@@ -39,7 +39,8 @@ function PasswordChangeModal(props) {
     if (success) {
       props.setPasswordModule(false)
       dispatch(resetState())
-      showMessage({title: "Hasło zostało zmienione!"})
+      console.log("hello");
+      dispatch(showMessage({title: "Hasło zostało zmienione!"}))
     }
   }, [success])
   useEffect(() => {
