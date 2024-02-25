@@ -43,7 +43,7 @@ export const loginUser = createAsyncThunk(
             const response = await axiosClient.post('/Account/login', userCredentials)
             return response.data    
         }catch(error){
-            console.log(error);
+            throw error.response.data;
         }
     }
 )
@@ -245,10 +245,11 @@ const userSlice = createSlice({
     extraReducers:(builder) => {
         builder.addCase(loginUser.pending,(state)=>{
             state.loading = true
+            state.error = "pending"
         }).addCase(loginUser.fulfilled,(state,action)=>{
             state.isAuth = true
             state.loading = false
-            state.error = null
+            state.error = "full"
         }).addCase(loginUser.rejected,(state,action)=>{
             state.loading = false
             state.error = "Błąd podczas logowania"

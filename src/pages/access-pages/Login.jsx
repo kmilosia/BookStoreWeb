@@ -1,21 +1,20 @@
 import React from 'react'
 import ShowPasswordButton from '../../components/buttons/ShowPasswordButton'
 import SubmitLoadingButton from '../../components/buttons/SubmitLoadingButton'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import {loginValidate} from '../../utils/validation/loginValidation'
 import { useEffect } from 'react'
 import AccessIconElement from '../../components/elements/AccessIconElement'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginUser, resetState } from '../../store/userSlice'
+import { loginUser } from '../../store/userSlice'
 
 function Login() {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false)
   const [isHiddenPassword, setIsHiddenPassword] = useState(true)
-  const {loading,error,isAuth} = useSelector((state) => state.user)
+  const {loading,error} = useSelector((state) => state.user)
   const [inputValues, setInputValues] = useState({
     email: "",
     password: "",
@@ -36,12 +35,6 @@ function Login() {
     }
     dispatch(loginUser(userCredentials))
   }
-  useEffect(() => {
-    if (isAuth) {
-      navigate('/')
-      dispatch(resetState())
-    }
-  }, [isAuth])
   useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
       finishSubmit();
@@ -70,9 +63,7 @@ function Login() {
           </div>
           <SubmitLoadingButton title="Zaloguj się" loading={loading} />
           </form>
-          {error &&
-          <p className='error-text my-1'>{error}</p>
-          }
+          {error && <p className='error-text my-1'>{error}</p>}
           <Link to='/dostep/odzyskaj-konto' className='text-button-link my-2 w-max'>Zapomniałeś hasła?</Link>
           <div className='flex flex-row justify-center my-1'>
             <p className='lg:text-xs text-base text-white'>Nie masz jeszcze konta?</p>
